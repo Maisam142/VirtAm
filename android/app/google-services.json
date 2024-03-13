@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "256987251014",
+    "project_id": "virtam-688e0",
+    "storage_bucket": "virtam-688e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256987251014:android:d8fd962db4042882fce547",
+        "android_client_info": {
+          "package_name": "com.example.virtam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVc15CSEPvF44b2Fk7e7q2TvDNgU1cC8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
