@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 class RegisterViewModel extends ChangeNotifier{
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController  = TextEditingController();
-  final TextEditingController phoneNumberController  = TextEditingController();
   final TextEditingController countryController  = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class UserDataStep3ViewModel extends ChangeNotifier{
+class UserDataStep6ViewModel extends ChangeNotifier{
 
   int _selectedOption1 = 0;
   int get selectedOption1 => _selectedOption1;
@@ -32,6 +32,6 @@ class UserDataStep3ViewModel extends ChangeNotifier{
   }
 }
 
-class UserDataViewModelStep3Listener{
+class UserDataViewModelStep6Listener{
 
 }

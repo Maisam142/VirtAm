@@ -12,12 +12,26 @@ import 'package:virtam/register_screen/purpose_screen.dart';
 import 'package:virtam/register_screen/register_screen.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
 import 'package:virtam/splash_Screen/Splash_Screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10_view_model.dart';
 import 'package:virtam/step1-10_screens/user_data_step1_screen/user_data_step1_screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step1_screen/user_data_step1_screen_view_model.dart';
 import 'package:virtam/step1-10_screens/user_data_step2_screen/user_data_step2_screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step2_screen/user_data_step2_view_model.dart';
 import 'package:virtam/step1-10_screens/user_data_step3_screen/user_data_step3_screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step3_screen/user_data_step3_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step4_screen/user_data_step4_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step4_screen/user_data_step4_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step5_screen/user_data_step5_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step5_screen/user_data_step5_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step6_screen/user_data_step6_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step6_screen/user_data_step6_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step7_screen/user_data_step7_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step7_screen/user_data_step7_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step8_screen/user_data_step8_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step8_screen/user_data_step8_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 import 'package:virtam/styles/style.dart';
 import 'package:virtam/user_data_screen/user_data_view_model.dart';
 import 'package:virtam/w.dart';
@@ -61,6 +75,13 @@ void main() async{
     ChangeNotifierProvider(create: (_) => UserDataStep1ViewModel()),
     ChangeNotifierProvider(create: (_) => UserDataStep2ViewModel()),
     ChangeNotifierProvider(create: (_) => UserDataStep3ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep4ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep5ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep6ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep7ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep8ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep9ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep10ViewModel()),
   ],
       child:  MyApp())
   );
@@ -88,9 +109,16 @@ class MyApp extends StatelessWidget{
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
         '/homeScreen': (context, state, data) => const HomeScreen(),
-        '/userDataStep1': (context, state, data) => UserDataScreenStep1(),
+        '/userDataStep1': (context, state, data) => const UserDataScreenStep1(),
         '/userDataStep2': (context, state, data) =>  const UserDataScreenStep2(),
         '/userDataStep3': (context, state, data) =>  const UserDataScreenStep3(),
+        '/userDataStep4': (context, state, data) =>  const UserDataScreenStep4(),
+        '/userDataStep5': (context, state, data) =>  const UserDataScreenStep5(),
+        '/userDataStep6': (context, state, data) =>  const UserDataScreenStep6(),
+        '/userDataStep7': (context, state, data) =>  const UserDataScreenStep7(),
+        '/userDataStep8': (context, state, data) =>  const UserDataScreenStep8(),
+        '/userDataStep9': (context, state, data) =>  const UserDataScreenStep9(),
+        '/userDataStep10': (context, state, data) =>  const UserDataScreenStep10(),
         '/popUp': (context, state, data) =>  const PurposeScreen(),
       },
     ).call,

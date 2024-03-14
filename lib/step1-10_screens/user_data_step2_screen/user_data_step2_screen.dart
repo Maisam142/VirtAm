@@ -42,8 +42,8 @@ class UserDataScreenStep2 extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Align(
                                 alignment: Alignment.topLeft,
-                                child: TextComponent(text: 'Is he allergic to:',
-                                textStyle: Theme.of(context).textTheme.bodyMedium,),),
+                                child: TextComponent(text: 'Is he allergic to : ',
+                                textStyle: Theme.of(context).textTheme.labelMedium,),),
                           ),
                           RadioListTile(
                             title: Row(

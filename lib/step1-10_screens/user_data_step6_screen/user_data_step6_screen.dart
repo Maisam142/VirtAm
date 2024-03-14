@@ -4,19 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/component/text_component.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step3_screen/user_data_step3_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step4_screen/user_data_step4_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step5_screen/user_data_step5_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step6_screen/user_data_step6_view_model.dart';
 
 import '../../component/button_component.dart';
 import '../../component/option_top_component.dart';
 
-class UserDataScreenStep3 extends StatelessWidget {
-  const UserDataScreenStep3({super.key});
+class UserDataScreenStep6 extends StatelessWidget {
+  const UserDataScreenStep6({super.key});
 
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    final UserDataStep3ViewModel userDataModel =
-    Provider.of<UserDataStep3ViewModel>(context);
+    final UserDataStep6ViewModel userDataModel =
+    Provider.of<UserDataStep6ViewModel>(context);
     final RegisterViewModel registerViewModel =
     Provider.of<RegisterViewModel>(context);
     return SafeArea(child: Scaffold(
@@ -25,7 +27,7 @@ class UserDataScreenStep3 extends StatelessWidget {
         child: Column(
           children: [
             const OptionTopComponent(
-              text: 'Step 3/10',
+              text: 'Step 6/10',
             ),
             SizedBox(
               width: double.infinity,
@@ -41,8 +43,7 @@ class UserDataScreenStep3 extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Align(
                             alignment: Alignment.topLeft,
-                            child: TextComponent(text: 'When was the last time you had\n'
-                                ' your thyroid checked?',
+                            child: TextComponent(text: 'When was the last time you \nchecked your vitamin B12?',
                               textStyle: Theme.of(context).textTheme.labelMedium,),),
                         ),
                         RadioListTile(
@@ -140,6 +141,7 @@ class UserDataScreenStep3 extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: screenSize.height * 0.01,),
             SizedBox(
               width: double.infinity,
               height: screenSize.height * 0.3,
@@ -154,7 +156,7 @@ class UserDataScreenStep3 extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Align(
                             alignment: Alignment.topLeft,
-                            child: TextComponent(text: 'Does he have thyroid problems?',
+                            child: TextComponent(text: 'Does he have a vitamin B12 deficiency?',
                               textStyle: Theme.of(context).textTheme.labelMedium,),),
                         ),
                         RadioListTile(
@@ -233,14 +235,14 @@ class UserDataScreenStep3 extends StatelessWidget {
                   text: 'Next',
                   onPress: () async {
                     Map<String, dynamic> additionalData = {
-                      'Thyroid Checked Time': userDataModel.selectedPurpose1,
-                      'Thyroid Problems': userDataModel.selectedPurpose2,
+                      'Vitamin B12 Checked Time': userDataModel.selectedPurpose1,
+                      'Vitamin B12 Deficiency': userDataModel.selectedPurpose2,
                     };
                     await FirebaseFirestore.instance
                         .collection('User')
                         .doc(registerViewModel.nameController.text)
                         .update(additionalData);
-                    Beamer.of(context).beamToNamed('/userDataStep4');
+                    Beamer.of(context).beamToNamed('/userDataStep7');
                   }),
             ),
 

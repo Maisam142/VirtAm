@@ -68,6 +68,7 @@ class RegisterScreen extends StatelessWidget {
                         selectorType: PhoneInputSelectorType.DIALOG,
                       ),
                       ignoreBlank: false,
+
                       autoValidateMode: AutovalidateMode.onUserInteraction,
                       selectorTextStyle: TextStyle(color: Colors.black),
                       textStyle: TextStyle(color: Colors.black),
@@ -361,10 +362,7 @@ class RegisterScreen extends StatelessWidget {
                                     .set({
                                   'name': registerViewModel.nameController.text,
                                   'email': registerViewModel.emailController.text,
-                                  'number':
-                                  registerViewModel.phoneNumberController.text,
-                                  'country':
-                                  registerViewModel.countryController.text,
+                                  'number': registerViewModel.phoneNumber,
                                   'selectedPurpose': registerViewModel.selectedPurpose,
                                 });
 

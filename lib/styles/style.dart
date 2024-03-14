@@ -28,7 +28,7 @@ class ThemeApp {
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 14.0,
+    fontSize: 16.0,
   );
 
   static const TextStyle displayLarge =  TextStyle(
