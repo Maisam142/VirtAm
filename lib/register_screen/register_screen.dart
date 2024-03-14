@@ -69,8 +69,8 @@ class RegisterScreen extends StatelessWidget {
                       ignoreBlank: false,
 
                       autoValidateMode: AutovalidateMode.onUserInteraction,
-                      selectorTextStyle: TextStyle(color: Colors.black),
-                      textStyle: TextStyle(color: Colors.black),
+                      selectorTextStyle: const TextStyle(color: Colors.black),
+                      textStyle: const TextStyle(color: Colors.black),
                       initialValue:
                           PhoneNumber(isoCode: registerViewModel.selectedCountry),
                       textFieldController: TextEditingController(),
@@ -93,43 +93,12 @@ class RegisterScreen extends StatelessWidget {
                                ' ${registerViewModel.selectedPurpose}',
                                 style:  Theme.of(context).textTheme.bodyMedium,
                               ),
-                              SizedBox(width: 15,),
+                              const SizedBox(width: 15,),
                               IconButton(
                                 onPressed: () {
-                                  Beamer.of(context).beamToNamed('/popUp');
-                                  // showModalBottomSheet(
-                                  //   context: context,
-                                  //   builder: (context) {
-                                  //     return ListView(
-                                  //       shrinkWrap: true,
-                                  //       children: [
-                                  //         ListTile(
-                                  //           title: Text('Follow my personal data.'),
-                                  //           onTap: () {
-                                  //             userDataModel.updateSelectedOption(1);
-                                  //             Navigator.pop(context); // Close the modal bottom sheet
-                                  //           },
-                                  //         ),
-                                  //         ListTile(
-                                  //           title: Text('Follow up with my nutrition counselor.'),
-                                  //           onTap: () {
-                                  //             userDataModel.updateSelectedOption(2);
-                                  //             Navigator.pop(context); // Close the modal bottom sheet
-                                  //           },
-                                  //         ),
-                                  //         ListTile(
-                                  //           title: Text('Find a nutrition counselor in my area'),
-                                  //           onTap: () {
-                                  //             userDataModel.updateSelectedOption(3);
-                                  //             Navigator.pop(context); // Close the modal bottom sheet
-                                  //           },
-                                  //         ),
-                                  //       ],
-                                  //     );
-                                  //   },
-                                  //);
+                                  Beamer.of(context).beamToNamed('/purposeScreen');
                                 },
-                                icon: Icon(Icons.expand_more),
+                                icon: const Icon(Icons.expand_more),
                               ),
                             ],
                           ),
@@ -387,51 +356,11 @@ class RegisterScreen extends StatelessWidget {
                             print('Error creating user: $e');
                           }
                         }
-                            : null, // Set onPress to null if terms checkbox is not checked
+                            : null,
                       ),
                     ),
                     SizedBox(height: screenSize.height * 0.01),
                     TextComponent(text: 'By agreeing to the above terms, you are consenting that\n your personal information will be collected, stored, and\n processed ')
-                    // ButtonComponent(
-                    //   customColor: Colors.black,
-                    //   text: 'Next',
-                    //   textStyle: Theme.of(context).textTheme.titleSmall,
-                    //   onPress: () async {
-                    //     CollectionReference collRef =
-                    //     FirebaseFirestore.instance.collection('User');
-                    //     await collRef.doc(userDataModel.nameController.text).set({
-                    //       'name': userDataModel.nameController.text,
-                    //       'email': userDataModel.emailController.text,
-                    //       'number': userDataModel.phoneNumberController.text,
-                    //       'country': userDataModel.countryController.text,
-                    //       'option1': userDataModel.isCheckedOption1,
-                    //       'option2': userDataModel.isCheckedOption2,
-                    //       'option3': userDataModel.isCheckedOption3,
-                    //     });
-                    //
-                    //     try {
-                    //       UserCredential userCredential =
-                    //       await auth.createUserWithEmailAndPassword(
-                    //           email: userDataModel.emailController.text,
-                    //           password: userDataModel.passwordController.text);
-                    //       User? user = userCredential.user;
-                    //       print('New user created: ${user?.uid}');
-                    //
-                    //       if (userDataModel.isFormValid) {
-                    //         if (userDataModel.isCheckedOption1 ||
-                    //             userDataModel.isCheckedOption3) {
-                    //           Beamer.of(context).beamToNamed('/option13');
-                    //         } else if (userDataModel.isCheckedOption2) {
-                    //           Beamer.of(context).beamToNamed('/option2');
-                    //         } else {
-                    //           // Handle other cases
-                    //         }
-                    //       }
-                    //     } catch (e) {
-                    //       print('Error creating user: $e');
-                    //     }
-                    //   },
-                    // ),
                   ],
                 ),
               ),

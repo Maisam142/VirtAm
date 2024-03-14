@@ -103,7 +103,7 @@ class MyApp extends StatelessWidget{
         '/registerScreen': (context, state, data) => const RegisterScreen(),
         '/homeScreen': (context, state, data) => const HomeScreen(),
         '/option2Screen': (context, state, data) => const Option2Screen(),
-        '/popUp': (context, state, data) =>  const PurposeScreen(),
+        '/purposeScreen': (context, state, data) =>  const PurposeScreen(),
         '/userDataStep1': (context, state, data) => const UserDataScreenStep1(),
         '/userDataStep2': (context, state, data) =>  const UserDataScreenStep2(),
         '/userDataStep3': (context, state, data) =>  const UserDataScreenStep3(),
