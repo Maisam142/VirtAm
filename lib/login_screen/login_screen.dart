@@ -112,7 +112,10 @@ class LoginForm extends StatelessWidget {
                             text: 'Create Account',
                             textStyle: Theme.of(context).textTheme.titleMedium,
                             customColor: Colors.white60,
-                            onPress: (){},
+                            onPress: (){
+                              Beamer.of(context).beamToNamed('/registerScreen');
+
+                            },
                           ),
                         ),
 

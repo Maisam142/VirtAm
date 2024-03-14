@@ -91,7 +91,10 @@ class WelcomeScreen extends StatelessWidget {
                         child: ButtonComponent(
                           text: 'Create Account',
                           customColor: Colors.white60,
-                          onPress: (){},
+                          onPress: (){
+                            Beamer.of(context).beamToNamed('/registerScreen');
+
+                          },
                         ),
                       ),
                     ],
