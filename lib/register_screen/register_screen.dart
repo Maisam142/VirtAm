@@ -353,45 +353,41 @@ class RegisterScreen extends StatelessWidget {
                         customColor: registerViewModel.isTermsChecked ? Colors.black : Colors.grey,
                         onPress: registerViewModel.isTermsChecked
                             ? () async {
-                                CollectionReference collRef = FirebaseFirestore
-                                    .instance
-                                    .collection('User');
-                                await collRef
-                                    .doc(registerViewModel.nameController.text)
-                                    .set({
-                                  'name': registerViewModel.nameController.text,
-                                  'email': registerViewModel.emailController.text,
-                                  'number': registerViewModel.phoneNumber,
-                                  'selectedPurpose': registerViewModel.selectedPurpose,
-                                });
+                          CollectionReference collRef = FirebaseFirestore
+                              .instance
+                              .collection('User');
+                          await collRef
+                              .doc(registerViewModel.nameController.text)
+                              .set({
+                            'name': registerViewModel.nameController.text,
+                            'email': registerViewModel.emailController.text,
+                            'number': registerViewModel.phoneNumber,
+                            'selectedPurpose': registerViewModel.selectedPurpose,
+                          });
 
-                                try {
-                                  UserCredential userCredential =
-                                      await auth.createUserWithEmailAndPassword(
-                                          email: registerViewModel
-                                              .emailController.text,
-                                          password: registerViewModel
-                                              .passwordController.text);
-                                  User? user = userCredential.user;
-                                  print('New user created: ${user?.uid}');
+                          try {
+                            UserCredential userCredential =
+                            await auth.createUserWithEmailAndPassword(
+                                email: registerViewModel.emailController.text,
+                                password: registerViewModel.passwordController.text);
+                            User? user = userCredential.user;
+                            print('New user created: ${user?.uid}');
 
-                                  if (registerViewModel.isFormValid) {
-                                    if (registerViewModel.selectedOption == 1 ||
-                                        registerViewModel.selectedOption == 3 ) {
-                                      Beamer.of(context)
-                                          .beamToNamed('/userDataStep1');
-                                    } else if (registerViewModel.selectedOption == 2 ) {
-                                      Beamer.of(context)
-                                          .beamToNamed('/option2');
-                                    } else {
-                                      // Handle other cases
-                                    }
-                                  }
-                                } catch (e) {
-                                  print('Error creating user: $e');
-                                }
+                            if (registerViewModel.isFormValid) {
+                              if (registerViewModel.selectedOption == 1 ||
+                                  registerViewModel.selectedOption == 3) {
+                                Beamer.of(context).beamToNamed('/userDataStep1');
+                              } else if (registerViewModel.selectedOption == 2) {
+                                Beamer.of(context).beamToNamed('/option2');
+                              } else {
+                                // Handle other cases
                               }
-                            : null,
+                            }
+                          } catch (e) {
+                            print('Error creating user: $e');
+                          }
+                        }
+                            : null, // Set onPress to null if terms checkbox is not checked
                       ),
                     ),
                     SizedBox(height: screenSize.height * 0.01),
