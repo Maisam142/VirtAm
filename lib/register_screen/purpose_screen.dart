@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/component/design_component.dart';
+import 'package:virtam/register_screen/register_screen_view_model.dart';
 import '../component/button_component.dart';
 import '../user_data_screen/user_data_view_model.dart';
 
@@ -11,8 +12,8 @@ class PurposeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserDataViewModel userDataModel =
-    Provider.of<UserDataViewModel>(context);
+    final RegisterViewModel userDataModel =
+    Provider.of<RegisterViewModel>(context);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -41,7 +42,7 @@ class PurposeScreen extends StatelessWidget {
                       },
                       activeColor: Theme.of(context).primaryColor,
                       groupValue: userDataModel.selectedOption,
-
+                      controlAffinity: ListTileControlAffinity.trailing,
                     ),
                     RadioListTile(
                       title: Text('Follow up with my nutrition counselor.'),
@@ -55,6 +56,7 @@ class PurposeScreen extends StatelessWidget {
                       },
                       activeColor: Theme.of(context).primaryColor,
                       groupValue: userDataModel.selectedOption,
+                      controlAffinity: ListTileControlAffinity.trailing,
                     ),
 
                     RadioListTile(
@@ -69,7 +71,7 @@ class PurposeScreen extends StatelessWidget {
                       },
                       activeColor: Theme.of(context).primaryColor,
                       groupValue: userDataModel.selectedOption,
-
+                      controlAffinity: ListTileControlAffinity.trailing,
                     ),
 
                   ],

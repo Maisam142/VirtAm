@@ -89,11 +89,32 @@
 //   }
 // }
 //
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:health/health.dart';
+import 'dart:async';
+
+import 'package:daily_pedometer/daily_pedometer.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_background_service_android/flutter_background_service_android.dart';
+
+
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:daily_pedometer/daily_pedometer.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+
+
 class StepCounterScreen extends StatefulWidget {
+  const StepCounterScreen({Key? key}) : super(key: key);
+
   @override
   _StepCounterScreenState createState() => _StepCounterScreenState();
 }
@@ -104,50 +125,48 @@ class _StepCounterScreenState extends State<StepCounterScreen> {
   @override
   void initState() {
     super.initState();
-    _requestPermissions();
-    _fetchStepData();
+    _requestActivityRecognitionPermission();
+    _initPedometer();
   }
-
-  Future<void> _requestPermissions() async {
-    final PermissionStatus permissionStatus = await Permission.activityRecognition.request();
-    if (permissionStatus != PermissionStatus.granted) {
+  Future<void> _requestActivityRecognitionPermission() async {
+    PermissionStatus status = await Permission.activityRecognition.request();
+    if (status != PermissionStatus.granted) {
       // Handle permission denied
     }
   }
+  Future<void> _initPedometer() async {
+    DailyPedometer pedometer = await DailyPedometer.create();
+    setState(() {
+      _stepCount = pedometer.steps;
+    });
 
-  Future<void> _fetchStepData() async {
-    HealthFactory health = HealthFactory();
-    try {
-      List<HealthDataType> types = [HealthDataType.STEPS];
-      DateTime now = DateTime.now();
-      DateTime start = DateTime(now.year, now.month, now.day, 0, 0, 0);
-      List<HealthDataPoint> healthData = await health.getHealthDataFromTypes(start, now, types);
-
-      int stepCount = 0;
-      for (HealthDataPoint point in healthData) {
-        stepCount += point.value as int;
-      }
-
+    pedometer.stepCountStream.listen((event) {
       setState(() {
-        _stepCount = stepCount;
+        _stepCount = event;
       });
-    } catch (e) {
-      print("Error: $e");
-    }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Step Counter'),
+        title: const Text('Step Counter'),
       ),
       body: Center(
-        child: Text(
-          'Steps for Today: $_stepCount',
-          style: TextStyle(fontSize: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Step Count: $_stepCount',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+
+          ],
         ),
       ),
     );
   }
 }
+

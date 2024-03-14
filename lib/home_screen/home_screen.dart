@@ -23,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
     requestPermission();
     startListeningToSteps();
     getLastSavedStepCount();
-
   }
 
   @override

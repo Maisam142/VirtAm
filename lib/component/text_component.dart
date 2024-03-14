@@ -17,7 +17,7 @@ class TextComponent extends StatelessWidget {
     return Text(
       text ?? '',
       textAlign: textAlign,
-      style: textStyle ?? Theme.of(context).textTheme.bodySmall,
+      style: textStyle ?? Theme.of(context).textTheme.bodyMedium,
     );
   }
 }

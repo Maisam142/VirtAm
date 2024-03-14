@@ -8,7 +8,6 @@ import 'package:virtam/component/form_component.dart';
 import 'package:virtam/component/text_component.dart';
 import 'package:virtam/login_screen/login_screen_view_model.dart';
 
-import '../component/logo_component.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

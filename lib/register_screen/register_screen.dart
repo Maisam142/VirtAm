@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:virtam/component/checkBox_component.dart';
 import 'package:virtam/component/design_component.dart';
 import 'package:virtam/component/text_component.dart';
+import 'package:virtam/register_screen/register_screen_view_model.dart';
 import 'package:virtam/user_data_screen/user_data_view_model.dart';
 import '../component/button_component.dart';
 import '../component/form_component.dart';
@@ -18,8 +19,8 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    final UserDataViewModel userDataModel =
-        Provider.of<UserDataViewModel>(context);
+    final RegisterViewModel registerViewModel =
+        Provider.of<RegisterViewModel>(context);
     final auth = FirebaseAuth.instance;
 
     return SafeArea(
@@ -37,30 +38,30 @@ class RegisterScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     FormComponent(
-                      controller: userDataModel.nameController,
+                      controller: registerViewModel.nameController,
                       hintText: 'Full Name',
-                      errorText: userDataModel.isNameValid
+                      errorText: registerViewModel.isNameValid
                           ? null
                           : 'Please enter your Full Name ',
                     ),
                     FormComponent(
                       onChanged: (val) {
                       },
-                      controller: userDataModel.emailController,
+                      controller: registerViewModel.emailController,
                       hintText: 'Email Address',
                       textInputType: TextInputType.emailAddress,
-                      errorText: userDataModel.isEmailValid
+                      errorText: registerViewModel.isEmailValid
                           ? null
                           : 'Please enter a valid email ',
                     ),
                     InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber phoneNumber) {
                         final isValid = phoneNumber.phoneNumber!.length >= 12;
-                        userDataModel.updatePhoneNumberValidity(isValid);
+                        registerViewModel.updatePhoneNumberValidity(isValid);
                         if (phoneNumber != null) {
-                          userDataModel.updatePhoneNumber(phoneNumber.phoneNumber!);
+                          registerViewModel.updatePhoneNumber(phoneNumber.phoneNumber!);
 
-                          userDataModel.updateCountry(phoneNumber.isoCode!);
+                          registerViewModel.updateCountry(phoneNumber.isoCode!);
                         }
                       },
                       selectorConfig: const SelectorConfig(
@@ -71,10 +72,10 @@ class RegisterScreen extends StatelessWidget {
                       selectorTextStyle: TextStyle(color: Colors.black),
                       textStyle: TextStyle(color: Colors.black),
                       initialValue:
-                          PhoneNumber(isoCode: userDataModel.selectedCountry),
+                          PhoneNumber(isoCode: registerViewModel.selectedCountry),
                       textFieldController: TextEditingController(),
                       hintText: 'Phone Number',
-                      errorMessage: userDataModel.isValidPhoneNumber
+                      errorMessage: registerViewModel.isValidPhoneNumber
                           ? null
                           : 'Phone number must have at least 8 digits',
                     ),
@@ -88,8 +89,8 @@ class RegisterScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                userDataModel.selectedOption == 0 ? '  The purpose of creating the account    ' :
-                               ' ${userDataModel.selectedPurpose}',
+                                registerViewModel.selectedOption == 0 ? '  The purpose of creating the account    ' :
+                               ' ${registerViewModel.selectedPurpose}',
                                 style:  Theme.of(context).textTheme.bodyMedium,
                               ),
                               SizedBox(width: 15,),
@@ -137,10 +138,10 @@ class RegisterScreen extends StatelessWidget {
                     ),
 
 
-                    Consumer<UserDataViewModel>(
-                      builder: (context, userDataModel, _) => Column(
+                    Consumer<RegisterViewModel>(
+                      builder: (context, registerViewModel, _) => Column(
                         children: [
-                          if (userDataModel.showPasswordRequirements)
+                          if (registerViewModel.showPasswordRequirements)
                             Card(
                               child: Container(
                                 decoration: BoxDecoration(
@@ -160,7 +161,7 @@ class RegisterScreen extends StatelessWidget {
                                           Text(
                                             'one letter at least',
                                             style: TextStyle(
-                                              color: userDataModel
+                                              color: registerViewModel
                                                               .validationStatus[
                                                           0] ==
                                                       false
@@ -170,7 +171,7 @@ class RegisterScreen extends StatelessWidget {
                                           ),
                                           Expanded(child: Container()),
                                           Image.asset(
-                                            userDataModel.validationStatus[0] ==
+                                            registerViewModel.validationStatus[0] ==
                                                     false
                                                 ? 'images/close.png'
                                                 : 'images/check.png',
@@ -189,14 +190,14 @@ class RegisterScreen extends StatelessWidget {
                                           Text(
                                             'one Capital letter at least',
                                             style: TextStyle(
-                                                color: userDataModel
+                                                color: registerViewModel
                                                         .validationStatus[1]
                                                     ? Colors.green
                                                     : Colors.red),
                                           ),
                                           Expanded(child: Container()),
                                           Image.asset(
-                                            userDataModel.validationStatus[1]
+                                            registerViewModel.validationStatus[1]
                                                 ? 'images/check.png'
                                                 : 'images/close.png',
                                             height: 10,
@@ -214,14 +215,14 @@ class RegisterScreen extends StatelessWidget {
                                           Text(
                                             'one number at least',
                                             style: TextStyle(
-                                                color: userDataModel
+                                                color: registerViewModel
                                                         .validationStatus[2]
                                                     ? Colors.green
                                                     : Colors.red),
                                           ),
                                           Expanded(child: Container()),
                                           Image.asset(
-                                            userDataModel.validationStatus[2]
+                                            registerViewModel.validationStatus[2]
                                                 ? 'images/check.png'
                                                 : 'images/close.png',
                                             height: 10,
@@ -239,14 +240,14 @@ class RegisterScreen extends StatelessWidget {
                                           Text(
                                             'at least 8 letters',
                                             style: TextStyle(
-                                                color: userDataModel
+                                                color: registerViewModel
                                                         .validationStatus[3]
                                                     ? Colors.green
                                                     : Colors.red),
                                           ),
                                           Expanded(child: Container()),
                                           Image.asset(
-                                            userDataModel.validationStatus[3]
+                                            registerViewModel.validationStatus[3]
                                                 ? 'images/check.png'
                                                 : 'images/close.png',
                                             height: 10,
@@ -264,14 +265,14 @@ class RegisterScreen extends StatelessWidget {
                                           Text(
                                             'at least one special character',
                                             style: TextStyle(
-                                                color: userDataModel
+                                                color: registerViewModel
                                                         .validationStatus[4]
                                                     ? Colors.green
                                                     : Colors.red),
                                           ),
                                           Expanded(child: Container()),
                                           Image.asset(
-                                            userDataModel.validationStatus[3]
+                                            registerViewModel.validationStatus[3]
                                                 ? 'images/check.png'
                                                 : 'images/close.png',
                                             height: 10,
@@ -287,25 +288,25 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           FormComponent(
                             //prefixIcon: const Icon(Icons.password),
-                            controller: userDataModel.passwordController,
+                            controller: registerViewModel.passwordController,
                             hintText: 'Password',
-                            obscureText: userDataModel.isObscure,
+                            obscureText: registerViewModel.isObscure,
                             suffixIcon: IconButton(
                                 onPressed: () {
-                                  userDataModel.visibilityPass();
+                                  registerViewModel.visibilityPass();
                                 },
                                 icon: Icon(
-                                  userDataModel.isObscure
+                                  registerViewModel.isObscure
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                 )),
                             onTap: () {
-                              userDataModel.setShowPasswordRequirements(true);
+                              registerViewModel.setShowPasswordRequirements(true);
                             },
                             onChanged: (password) {
-                              userDataModel.validatePassword(password);
+                              registerViewModel.validatePassword(password);
                             },
-                            errorText: userDataModel.isPasswordValid
+                            errorText: registerViewModel.isPasswordValid
                                 ? null
                                 : "Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long",
                           ),
@@ -315,19 +316,19 @@ class RegisterScreen extends StatelessWidget {
                     FormComponent(
                       textInputType: TextInputType.number,
                       //prefixIcon: const Icon(Icons.password),
-                      controller: userDataModel.rePasswordController,
+                      controller: registerViewModel.rePasswordController,
                       hintText: 'Re-write Password',
-                      obscureText: userDataModel.isObscure,
+                      obscureText: registerViewModel.isObscure,
                       suffixIcon: IconButton(
                           onPressed: () {
-                            userDataModel.visibilityPass();
+                            registerViewModel.visibilityPass();
                           },
                           icon: Icon(
-                            userDataModel.isObscure
+                            registerViewModel.isObscure
                                 ? Icons.visibility_off
                                 : Icons.visibility,
                           )),
-                      errorText: userDataModel.isValidRewritePass
+                      errorText: registerViewModel.isValidRewritePass
                           ? null
                           : " Not Match",
                     ),
@@ -340,50 +341,49 @@ class RegisterScreen extends StatelessWidget {
                     // ),
                     CheckBoxComponent(
                       text: 'I agree to the Terms and Privacy Policy',
-                      value: userDataModel.isTermsChecked,
+                      value: registerViewModel.isTermsChecked,
                       onChanged: (value) {
-                        userDataModel.updateTermsChecked(value!);
+                        registerViewModel.updateTermsChecked(value!);
                       },
                     ),
                     SizedBox(height: screenSize.height * 0.01),
-                    Consumer<UserDataViewModel>(
-                      builder: (context, userDataModel, _) => ButtonComponent(
+                    Consumer<RegisterViewModel>(
+                      builder: (context, registerViewModel, _) => ButtonComponentContinue(
                         text: 'Create Account',
-                        textStyle: Theme.of(context).textTheme.titleSmall,
-                        customColor: userDataModel.isTermsChecked ? Colors.black : Colors.grey,
-                        onPress: userDataModel.isTermsChecked
+                        customColor: registerViewModel.isTermsChecked ? Colors.black : Colors.grey,
+                        onPress: registerViewModel.isTermsChecked
                             ? () async {
                                 CollectionReference collRef = FirebaseFirestore
                                     .instance
                                     .collection('User');
                                 await collRef
-                                    .doc(userDataModel.nameController.text)
+                                    .doc(registerViewModel.nameController.text)
                                     .set({
-                                  'name': userDataModel.nameController.text,
-                                  'email': userDataModel.emailController.text,
+                                  'name': registerViewModel.nameController.text,
+                                  'email': registerViewModel.emailController.text,
                                   'number':
-                                      userDataModel.phoneNumberController.text,
+                                  registerViewModel.phoneNumberController.text,
                                   'country':
-                                      userDataModel.countryController.text,
-                                  'selectedOption': userDataModel.selectedPurpose,
+                                  registerViewModel.countryController.text,
+                                  'selectedPurpose': registerViewModel.selectedPurpose,
                                 });
 
                                 try {
                                   UserCredential userCredential =
                                       await auth.createUserWithEmailAndPassword(
-                                          email: userDataModel
+                                          email: registerViewModel
                                               .emailController.text,
-                                          password: userDataModel
+                                          password: registerViewModel
                                               .passwordController.text);
                                   User? user = userCredential.user;
                                   print('New user created: ${user?.uid}');
 
-                                  if (userDataModel.isFormValid) {
-                                    if (userDataModel.isCheckedOption1 ||
-                                        userDataModel.isCheckedOption3) {
+                                  if (registerViewModel.isFormValid) {
+                                    if (registerViewModel.selectedOption == 1 ||
+                                        registerViewModel.selectedOption == 3 ) {
                                       Beamer.of(context)
-                                          .beamToNamed('/option13');
-                                    } else if (userDataModel.isCheckedOption2) {
+                                          .beamToNamed('/userDataStep1');
+                                    } else if (registerViewModel.isCheckedOption2) {
                                       Beamer.of(context)
                                           .beamToNamed('/option2');
                                     } else {

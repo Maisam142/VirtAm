@@ -10,9 +10,15 @@ import 'package:virtam/option1_3_screen/option1_3_view_model.dart';
 import 'package:virtam/push_notification.dart';
 import 'package:virtam/register_screen/purpose_screen.dart';
 import 'package:virtam/register_screen/register_screen.dart';
+import 'package:virtam/register_screen/register_screen_view_model.dart';
 import 'package:virtam/splash_Screen/Splash_Screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step1_screen/user_data_step1_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step1_screen/user_data_step1_screen_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step2_screen/user_data_step2_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step2_screen/user_data_step2_view_model.dart';
+import 'package:virtam/step1-10_screens/user_data_step3_screen/user_data_step3_screen.dart';
+import 'package:virtam/step1-10_screens/user_data_step3_screen/user_data_step3_view_model.dart';
 import 'package:virtam/styles/style.dart';
-import 'package:virtam/user_data_screen/user_data_screen.dart';
 import 'package:virtam/user_data_screen/user_data_view_model.dart';
 import 'package:virtam/w.dart';
 import 'package:virtam/welcome_screen/welcom_screen.dart';
@@ -47,10 +53,14 @@ void main() async{
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => Option13ViewModel()),
     ChangeNotifierProvider(create: (_) => UserDataViewModel()),
+    ChangeNotifierProvider(create: (_) => RegisterViewModel()),
     ChangeNotifierProvider(create: (_) => Option2UserModel()),
     ChangeNotifierProvider(create: (_) => LoginViewModel()),
     ChangeNotifierProvider(create: (_) => HomeViewModel()),
     ChangeNotifierProvider(create: (_) => DrinkCounter()),
+    ChangeNotifierProvider(create: (_) => UserDataStep1ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep2ViewModel()),
+    ChangeNotifierProvider(create: (_) => UserDataStep3ViewModel()),
   ],
       child:  MyApp())
   );
@@ -73,13 +83,14 @@ class MyApp extends StatelessWidget{
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  StepCounterScreen(),
+        '/': (context, state, data) =>  RegisterScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
         '/homeScreen': (context, state, data) => const HomeScreen(),
-        '/option13': (context, state, data) => Option13Screen(),
-        '/option2': (context, state, data) =>  const Option2Screen(),
+        '/userDataStep1': (context, state, data) => UserDataScreenStep1(),
+        '/userDataStep2': (context, state, data) =>  const UserDataScreenStep2(),
+        '/userDataStep3': (context, state, data) =>  const UserDataScreenStep3(),
         '/popUp': (context, state, data) =>  const PurposeScreen(),
       },
     ).call,

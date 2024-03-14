@@ -9,6 +9,7 @@ class ThemeApp {
   static const Color selectedColor =  Colors.black38;
   static const Color unselectedColor = Colors.grey;
   static  Color backGroundColor = Colors.white;
+  static  Color backGroundColor2 = Colors.grey.shade100;
 
 
   static const TextStyle titleMedium = TextStyle(
@@ -17,11 +18,24 @@ class ThemeApp {
     fontWeight: FontWeight.normal,
     fontSize: 14.0,
   );
+  static const TextStyle headlineSmall = TextStyle(
+    color: black,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.normal,
+    fontSize: 8.0,
+  );
   static const TextStyle labelMedium =  TextStyle(
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
     fontSize: 14.0,
+  );
+
+  static const TextStyle displayLarge =  TextStyle(
+    color: black,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 18.0,
   );
   static const TextStyle titleSmall = TextStyle(
     color: white,
@@ -80,11 +94,24 @@ class ThemeApp {
     fontWeight: FontWeight.normal,
     fontSize: 14.0,
   );
+  static const TextStyle darkHeadlineSmall = TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.normal,
+    fontSize: 8.0,
+  );
+
   static const TextStyle darkThemLabelMedium =  TextStyle(
   color: white,
   fontFamily: 'Almarai',
   fontWeight: FontWeight.bold,
   fontSize: 14.0,
+  );
+  static const TextStyle darkDisplayLarge =  TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 18.0,
   );
 
   static const TextStyle darkThemeTitleSmall = TextStyle(
@@ -116,10 +143,19 @@ class ThemeApp {
   );
 
   static const TextStyle  darkThemeDisplaySmall = TextStyle(
-    color: white,
+    color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.normal,
     fontSize: 12.0,
+  );
+
+  static const TextStyle darkThemeLabelSmall = TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.normal,
+    fontSize: 14.0,
+    decoration: TextDecoration.underline,
+
   );
 
   static const TextStyle darkThemeDisplayMedium = TextStyle(
@@ -127,14 +163,6 @@ class ThemeApp {
   fontFamily: 'Almarai',
   fontWeight: FontWeight.bold,
   fontSize: 17.0,
-  );
-  static const TextStyle darkThemeLabelSmall = TextStyle(
-  fontFamily: 'Almarai',
-  fontWeight: FontWeight.normal,
-  fontSize: 14.0,
-  decoration: TextDecoration.underline,
-  color: black,
-
   );
 
 
@@ -170,6 +198,7 @@ class ThemeApp {
   );
 
   static final ThemeData light = ThemeData.light().copyWith(
+    focusColor: backGroundColor2 ,
     primaryColor: primaryColor,
     canvasColor: backGroundColor,
     primaryColorDark: secondColor.withOpacity(0.4),
@@ -183,7 +212,8 @@ class ThemeApp {
       bodySmall: bodySmall,
       bodyMedium: bodyMedium,
       displayMedium: displayMedium,
-
+      displayLarge: displayLarge,
+      headlineSmall: headlineSmall,
     ),
     appBarTheme: AppBarTheme(
       elevation: 0,
@@ -209,6 +239,8 @@ class ThemeApp {
       bodySmall: darkThemeBodySmall,
       bodyMedium: darkThemeBodyMedium,
       displayMedium: darkThemeDisplayMedium,
+      displayLarge: darkDisplayLarge,
+      headlineSmall: darkHeadlineSmall,
     ),
     elevatedButtonTheme: elevatedButtonTheme,
     scaffoldBackgroundColor: secondColor,
