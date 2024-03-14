@@ -8,7 +8,6 @@ import 'package:virtam/component/checkBox_component.dart';
 import 'package:virtam/component/design_component.dart';
 import 'package:virtam/component/text_component.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
-import 'package:virtam/user_data_screen/user_data_view_model.dart';
 import '../component/button_component.dart';
 import '../component/form_component.dart';
 import '../component/popup_component.dart';
@@ -381,7 +380,7 @@ class RegisterScreen extends StatelessWidget {
                                         registerViewModel.selectedOption == 3 ) {
                                       Beamer.of(context)
                                           .beamToNamed('/userDataStep1');
-                                    } else if (registerViewModel.isCheckedOption2) {
+                                    } else if (registerViewModel.selectedOption == 2 ) {
                                       Beamer.of(context)
                                           .beamToNamed('/option2');
                                     } else {

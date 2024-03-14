@@ -4,8 +4,10 @@ import 'package:virtam/component/text_component.dart';
 
 class OptionTopComponent extends StatelessWidget{
   final String? text;
+  final Function()? onPressed;
   const OptionTopComponent({super.key,
     this.text,
+    this.onPressed,
   });
 
   @override
@@ -23,7 +25,7 @@ class OptionTopComponent extends StatelessWidget{
             alignment: Alignment.centerLeft,
             child: Row(
               children: [
-                IconButton(onPressed: (){},
+                IconButton(onPressed: onPressed,
                   icon: Icon(Icons.arrow_back_ios_new),),
                 TextComponent(text: text,
                   textStyle: Theme.of(context).textTheme.bodyMedium,),

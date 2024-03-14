@@ -33,8 +33,11 @@ class UserDataScreenStep1 extends StatelessWidget {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  const OptionTopComponent(
+                  OptionTopComponent(
                     text: 'Step 1/10',
+                    onPressed: () {
+                      Beamer.of(context).beamBack();
+                    },
                   ),
                   Container(
                     height: screenSize.height * 0.22,

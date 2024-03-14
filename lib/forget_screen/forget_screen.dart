@@ -5,7 +5,7 @@ import 'package:virtam/component/button_component.dart';
 
 import '../component/design_component.dart';
 import '../component/form_component.dart';
-import '../user_data_screen/user_data_view_model.dart';
+import 'forget_screen_view_model.dart';
 
 class ForgetPassword extends StatelessWidget {
 
@@ -14,8 +14,8 @@ class ForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    final UserDataViewModel userDataModel =
-    Provider.of<UserDataViewModel>(context);
+    final ForgetViewModel userDataModel =
+    Provider.of<ForgetViewModel>(context);
     final auth = FirebaseAuth.instance;
 
     return SafeArea(
@@ -32,7 +32,7 @@ class ForgetPassword extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    Consumer<UserDataViewModel>(
+                    Consumer<ForgetViewModel>(
                       builder: (context, userDataModel, _) => Column(
                         children: [
                           if (userDataModel.showPasswordRequirements)

@@ -24,8 +24,11 @@ class UserDataScreenStep9 extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const OptionTopComponent(
+              OptionTopComponent(
                 text: 'Step 9/10',
+                onPressed: () {
+                  Beamer.of(context).beamBack();
+                },
               ),
               SizedBox(
                 width: double.infinity,
@@ -51,7 +54,7 @@ class UserDataScreenStep9 extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Expanded(
+                            const Expanded(
                               child: Image(
                                 image: AssetImage('images/wakeup.png'),
                                 fit: BoxFit.contain,

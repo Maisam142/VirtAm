@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:virtam/component/design_component.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
 import '../component/button_component.dart';
-import '../user_data_screen/user_data_view_model.dart';
 
 class PurposeScreen extends StatelessWidget {
   const PurposeScreen({super.key});

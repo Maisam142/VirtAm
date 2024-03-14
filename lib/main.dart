@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/home.dart';
 import 'package:virtam/notifications.dart';
-import 'package:virtam/option1_3_screen/option1_3_screen.dart';
-import 'package:virtam/option1_3_screen/option1_3_view_model.dart';
 import 'package:virtam/push_notification.dart';
 import 'package:virtam/register_screen/purpose_screen.dart';
 import 'package:virtam/register_screen/register_screen.dart';
@@ -33,11 +31,8 @@ import 'package:virtam/step1-10_screens/user_data_step8_screen/user_data_step8_v
 import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 import 'package:virtam/styles/style.dart';
-import 'package:virtam/user_data_screen/user_data_view_model.dart';
-import 'package:virtam/w.dart';
 import 'package:virtam/welcome_screen/welcom_screen.dart';
 import 'firebase_options.dart';
-import 'forget_screen/forget_screen.dart';
 import 'home_screen/home_screen.dart';
 import 'home_screen/home_screen_view_model.dart';
 import 'login_screen/login_screen.dart';
@@ -65,11 +60,9 @@ void main() async{
 
 
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => Option13ViewModel()),
-    ChangeNotifierProvider(create: (_) => UserDataViewModel()),
+    ChangeNotifierProvider(create: (_) => LoginViewModel()),
     ChangeNotifierProvider(create: (_) => RegisterViewModel()),
     ChangeNotifierProvider(create: (_) => Option2UserModel()),
-    ChangeNotifierProvider(create: (_) => LoginViewModel()),
     ChangeNotifierProvider(create: (_) => HomeViewModel()),
     ChangeNotifierProvider(create: (_) => DrinkCounter()),
     ChangeNotifierProvider(create: (_) => UserDataStep1ViewModel()),
@@ -104,11 +97,13 @@ class MyApp extends StatelessWidget{
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  RegisterScreen(),
+        '/': (context, state, data) =>  const SplashScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
         '/homeScreen': (context, state, data) => const HomeScreen(),
+        '/option2Screen': (context, state, data) => const Option2Screen(),
+        '/popUp': (context, state, data) =>  const PurposeScreen(),
         '/userDataStep1': (context, state, data) => const UserDataScreenStep1(),
         '/userDataStep2': (context, state, data) =>  const UserDataScreenStep2(),
         '/userDataStep3': (context, state, data) =>  const UserDataScreenStep3(),
@@ -119,7 +114,6 @@ class MyApp extends StatelessWidget{
         '/userDataStep8': (context, state, data) =>  const UserDataScreenStep8(),
         '/userDataStep9': (context, state, data) =>  const UserDataScreenStep9(),
         '/userDataStep10': (context, state, data) =>  const UserDataScreenStep10(),
-        '/popUp': (context, state, data) =>  const PurposeScreen(),
       },
     ).call,
   );
