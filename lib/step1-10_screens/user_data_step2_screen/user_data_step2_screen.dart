@@ -8,7 +8,6 @@ import 'package:virtam/step1-10_screens/user_data_step2_screen/user_data_step2_v
 
 import '../../component/button_component.dart';
 import '../../component/option_top_component.dart';
-import '../../list_of_values.dart';
 
 class UserDataScreenStep2 extends StatelessWidget {
   const UserDataScreenStep2({super.key});
