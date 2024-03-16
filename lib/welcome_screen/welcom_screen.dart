@@ -50,12 +50,10 @@ class WelcomeScreen extends StatelessWidget {
                               children: [
                                 Align(
                                   alignment: Alignment.bottomLeft,
-                                  child: TextComponent(text: 'Lorem ipsum dolor sit',
-                                      textStyle: Theme.of(context).textTheme.labelLarge),),
+                                  child: TextLabelComponent(text: 'Lorem ipsum dolor sit',),),
                                 Align(
                                   alignment: Alignment.bottomLeft,
-                                  child: TextComponent(text: 'amet consectetur.',
-                                      textStyle: Theme.of(context).textTheme.labelLarge),
+                                  child: TextLabelComponent(text: 'amet consectetur.',),
                                 ),
                               ]),
                           const Column(

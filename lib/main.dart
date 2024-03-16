@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/home.dart';
+import 'package:virtam/location_screen/location_screen_view_model.dart';
 import 'package:virtam/notifications.dart';
 import 'package:virtam/push_notification.dart';
 import 'package:virtam/register_screen/purpose_screen.dart';
@@ -32,11 +33,16 @@ import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_s
 import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 import 'package:virtam/styles/style.dart';
 import 'package:virtam/welcome_screen/welcom_screen.dart';
+import 'add_location_screen/add_location_screen.dart';
+import 'add_location_screen/add_location_view_model.dart';
 import 'firebase_options.dart';
 import 'home_screen/home_screen.dart';
 import 'home_screen/home_screen_view_model.dart';
+import 'location_screen/location_screen.dart';
 import 'login_screen/login_screen.dart';
 import 'login_screen/login_screen_view_model.dart';
+import 'navigation_bar_screen/navigation_bar_screen.dart';
+import 'navigation_bar_screen/navigation_bar_view_model.dart';
 import 'option2_screen/option2_screen.dart';
 import 'option2_screen/option2_view_model.dart';
 
@@ -75,6 +81,9 @@ void main() async{
     ChangeNotifierProvider(create: (_) => UserDataStep8ViewModel()),
     ChangeNotifierProvider(create: (_) => UserDataStep9ViewModel()),
     ChangeNotifierProvider(create: (_) => UserDataStep10ViewModel()),
+    ChangeNotifierProvider(create: (_) => CurrentLocationViewModel()),
+    ChangeNotifierProvider(create: (_) => AddLocationViewModel()),
+    ChangeNotifierProvider(create: (_) => NavigationBarViewModel()),
   ],
       child:  MyApp())
   );
@@ -97,7 +106,7 @@ class MyApp extends StatelessWidget{
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const SplashScreen(),
+        '/': (context, state, data) =>  const HomeNavigationBar(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),

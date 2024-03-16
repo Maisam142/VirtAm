@@ -44,10 +44,10 @@ class ThemeApp {
     fontSize: 14.0,
   );
   static const TextStyle labelLarge= TextStyle(
-    color: white,
+    color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 25.0,
+    fontSize: 27.0,
 
   );
   static const TextStyle  bodyMedium = TextStyle(
@@ -122,10 +122,10 @@ class ThemeApp {
   );
 
   static const TextStyle darkThemeLabelLarge= TextStyle(
-  color: black,
+  color: white,
   fontFamily: 'Almarai',
   fontWeight: FontWeight.bold,
-  fontSize: 25.0,
+  fontSize: 27.0,
 
   );
   static const TextStyle darkThemeBodyMedium = TextStyle(

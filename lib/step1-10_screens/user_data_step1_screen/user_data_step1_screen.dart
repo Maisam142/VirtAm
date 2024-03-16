@@ -231,7 +231,7 @@ class UserDataScreenStep1 extends StatelessWidget {
                           };
                           await FirebaseFirestore.instance
                               .collection('User')
-                              .doc(registerViewModel.nameController.text)
+                              .doc(registerViewModel.emailController.text)
                               .update(additionalData);
                           Beamer.of(context).beamToNamed('/userDataStep2');
                         }),

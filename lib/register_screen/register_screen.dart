@@ -326,7 +326,7 @@ class RegisterScreen extends StatelessWidget {
                               .instance
                               .collection('User');
                           await collRef
-                              .doc(registerViewModel.nameController.text)
+                              .doc(registerViewModel.emailController.text)
                               .set({
                             'name': registerViewModel.nameController.text,
                             'email': registerViewModel.emailController.text,

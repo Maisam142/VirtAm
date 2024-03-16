@@ -167,19 +167,19 @@ class RegisterViewModel extends ChangeNotifier{
     }
     notifyListeners();
   }
-  void addUserDataToFirestore(RegisterViewModel registerViewModel) async {
-    CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
-    String userName = registerViewModel.name ?? 'Unknown';
-    DocumentReference userDocRef = usersCollection.doc(userName);
-    // CollectionReference userDataCollection = userDocRef.collection('userData');
-
-    await usersCollection.add({
-      'name': registerViewModel.name,
-      'email': registerViewModel.email,
-    });
-
-    print('UserData added to Firestore subcollection under document ID: $userName');
-  }
+  // void addUserDataToFirestore(RegisterViewModel registerViewModel) async {
+  //   CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+  //   String userName = registerViewModel.name ?? 'Unknown';
+  //   DocumentReference userDocRef = usersCollection.doc(userName);
+  //   // CollectionReference userDataCollection = userDocRef.collection('userData');
+  //
+  //   await usersCollection.add({
+  //     'name': registerViewModel.name,
+  //     'email': registerViewModel.email,
+  //   });
+  //
+  //   print('UserData added to Firestore subcollection under document ID: $userName');
+  // }
 }
 class RegisterViewModelListener{
 
