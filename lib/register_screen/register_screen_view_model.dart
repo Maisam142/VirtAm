@@ -68,7 +68,7 @@ class RegisterViewModel extends ChangeNotifier{
     validationStatus[1] = c(r'[A-Z]');
     validationStatus[2] = c(r'[0-9]');
     validationStatus[3] = c1(password);
-    validationStatus[4] = c(r'[\$&*~]');
+    validationStatus[4] = c(r'[\$&*~@#]');
 
     notifyListeners();
   }

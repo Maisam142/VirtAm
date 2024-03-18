@@ -247,7 +247,7 @@ class RegisterScreen extends StatelessWidget {
                                             ),
                                             Expanded(child: Container()),
                                             Image.asset(
-                                              registerViewModel.validationStatus[3]
+                                              registerViewModel.validationStatus[4]
                                                   ? 'images/check.png'
                                                   : 'images/close.png',
                                               height: 10,
