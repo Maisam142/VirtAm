@@ -56,7 +56,7 @@ class FormComponent extends StatelessWidget {
 
         keyboardType: textInputType,
         maxLength: 40,
-          style: Theme.of(context).textTheme.bodySmall,
+          style: TextStyle(fontSize: 15,color: Colors.black),
           decoration: InputDecoration(
           hoverColor: Color(0xfffe504f),
           prefixIcon: prefixIcon ,
@@ -70,7 +70,7 @@ class FormComponent extends StatelessWidget {
           errorText: errorText,
 
           counterText: "",
-          hintStyle: Theme.of(context).textTheme.bodyMedium,
+          hintStyle: TextStyle(fontSize: 15,color: Colors.black),
           border: InputBorder.none,
 
             focusedBorder: OutlineInputBorder(

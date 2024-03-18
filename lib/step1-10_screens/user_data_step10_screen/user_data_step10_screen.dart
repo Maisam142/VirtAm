@@ -19,97 +19,103 @@ class UserDataScreenStep10 extends StatelessWidget {
     Provider.of<UserDataStep10ViewModel>(context);
     final RegisterViewModel registerViewModel =
     Provider.of<RegisterViewModel>(context);
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Theme.of(context).focusColor,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              OptionTopComponent(
-                text: 'Step 10/10',
-                onPressed: () {
-                  Beamer.of(context).beamBack();
-                },
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: screenSize.height * 0.8,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        color: Colors.white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: TextComponent(
-                                  text: 'When is your daily bedtime?',
-                                  textStyle:
-                                  Theme.of(context).textTheme.labelMedium,
+    return  WillPopScope(
+      onWillPop: () async {
+        Beamer.of(context).beamToNamed('/userDataStep9');
+        return false;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Theme.of(context).focusColor,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                OptionTopComponent(
+                  text: 'Step 10/10',
+                  onPressed: () {
+                    Beamer.of(context).beamBack();
+                  },
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: screenSize.height * 0.8,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: TextComponent(
+                                    text: 'When is your daily bedtime?',
+                                    textStyle:
+                                    Theme.of(context).textTheme.labelMedium,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: Image(
-                                image: AssetImage('images/sleep.png'),
-                                fit: BoxFit.contain,
+                              Expanded(
+                                child: Image(
+                                  image: AssetImage('images/sleep.png'),
+                                  fit: BoxFit.contain,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: screenSize.height * 0.01 ,),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
+                      SizedBox(height: screenSize.height * 0.01 ,),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
 
-                        margin: EdgeInsets.only(
-                          bottom:
-                          MediaQuery.of(context).viewInsets.bottom ,
-                          top: MediaQuery.of(context).viewInsets.bottom ,
+                          margin: EdgeInsets.only(
+                            bottom:
+                            MediaQuery.of(context).viewInsets.bottom ,
+                            top: MediaQuery.of(context).viewInsets.bottom ,
+                          ),
+                          color: Colors.white,
+                          child: Consumer<UserDataStep9ViewModel>(
+                            builder: (context, provider, _) => CupertinoDatePicker(
+                              initialDateTime: provider.selectedDate,
+                              mode: CupertinoDatePickerMode.time,
+                              use24hFormat: true,
+                              onDateTimeChanged: (DateTime newTime) {
+                                provider.selectedDate = newTime;
+                              },
+                            ),
+                          ),
                         ),
-                        color: Colors.white,
-                        child: Consumer<UserDataStep9ViewModel>(
-                          builder: (context, provider, _) => CupertinoDatePicker(
-                            initialDateTime: provider.selectedDate,
-                            mode: CupertinoDatePickerMode.time,
-                            use24hFormat: true,
-                            onDateTimeChanged: (DateTime newTime) {
-                              provider.selectedDate = newTime;
+                      ),
+                      SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: ButtonComponentContinue(
+                            text: 'Continue',
+                            onPress: () async {
+                              Map<String, dynamic> additionalData = {
+                                'bed time': '${userDataModel.selectedDate.hour}:${userDataModel.selectedDate.minute}',
+                              };
+                              await FirebaseFirestore.instance
+                                  .collection('User')
+                                  .doc(registerViewModel.emailController.text)
+                                  .update(additionalData);
+                              Beamer.of(context).beamToNamed('/homeNavigationBar');
                             },
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: ButtonComponentContinue(
-                          text: 'Continue',
-                          onPress: () async {
-                            Map<String, dynamic> additionalData = {
-                              'bed time': '${userDataModel.selectedDate.hour}:${userDataModel.selectedDate.minute}',
-                            };
-                            await FirebaseFirestore.instance
-                                .collection('User')
-                                .doc(registerViewModel.nameController.text)
-                                .update(additionalData);
-                            Beamer.of(context).beamToNamed('/userDataStep9');
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

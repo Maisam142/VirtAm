@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:virtam/component/design_component.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
 import '../component/button_component.dart';
+import '../component/text_component.dart';
 
 class PurposeScreen extends StatelessWidget {
   const PurposeScreen({super.key});
@@ -29,22 +30,25 @@ class PurposeScreen extends StatelessWidget {
                 height: 300,
                 child: Column(
                   children: [
-                    RadioListTile(
-                      title: Text('Follow my personal data.'),
-                      value: 1,
-                      onChanged: (int? value) {
-                        if (value != null) {
-                          userDataModel.updateSelectedOption(value);
-                          userDataModel.updateSelectedPurpose('Follow my personal data.');
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: RadioListTile(
+                        title: TextComponent(text:'Follow my personal data.'),
+                        value: 1,
+                        onChanged: (int? value) {
+                          if (value != null) {
+                            userDataModel.updateSelectedOption(value);
+                            userDataModel.updateSelectedPurpose('Follow my personal data.');
 
-                        }
-                      },
-                      activeColor: Theme.of(context).primaryColor,
-                      groupValue: userDataModel.selectedOption,
-                      controlAffinity: ListTileControlAffinity.trailing,
+                          }
+                        },
+                        activeColor: Theme.of(context).primaryColor,
+                        groupValue: userDataModel.selectedOption,
+                        controlAffinity: ListTileControlAffinity.trailing,
+                      ),
                     ),
                     RadioListTile(
-                      title: Text('Follow up with my nutrition counselor.'),
+                      title: TextComponent(text:'Follow up with my nutrition counselor.'),
                       value: 2,
                       onChanged: (int? value) {
                         if (value != null) {
@@ -59,7 +63,7 @@ class PurposeScreen extends StatelessWidget {
                     ),
 
                     RadioListTile(
-                      title: Text('Find a nutrition counselor in my area'),
+                      title: TextComponent(text:'Find a nutrition counselor in my area'),
                       value: 3,
                       onChanged: (int? value) {
                         if (value != null) {
@@ -78,10 +82,8 @@ class PurposeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: ButtonComponent(
+                child: ButtonComponentContinue(
                   text: 'Done',
-                  textStyle: Theme.of(context).textTheme.titleSmall,
-                  customColor: Colors.black,
                   onPress: (){
                     Beamer.of(context).beamBack();
 

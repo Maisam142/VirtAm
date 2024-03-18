@@ -6,10 +6,13 @@ import 'logo_component.dart';
 class DesignComponent extends StatelessWidget{
   final String? text;
   final String? smallText;
+  final TextStyle? textStyle;
+
 
   const DesignComponent({super.key,
     this.text,
     this.smallText,
+    this.textStyle
   });
 
   @override
@@ -44,8 +47,9 @@ class DesignComponent extends StatelessWidget{
                child: Column(
                  mainAxisAlignment: MainAxisAlignment.end,
                  children: [
-                   TextComponent(text: text,
-                     textStyle: Theme.of(context).textTheme.labelLarge,),
+                   TextLabelComponent(text: text,
+                     textStyle: textStyle,
+                   ),
                    TextComponent(text: smallText, textStyle: Theme.of(context).textTheme.displaySmall,),
                  ],
                ),

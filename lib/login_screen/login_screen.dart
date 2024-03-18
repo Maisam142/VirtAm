@@ -14,9 +14,15 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => LoginViewModel(),
-      child: const LoginForm(),
+    return WillPopScope(
+      onWillPop: () async {
+        Beamer.of(context).beamToNamed('/welcomeScreen');
+        return false;
+      },
+      child: ChangeNotifierProvider(
+        create: (_) => LoginViewModel(),
+        child: const LoginForm(),
+      ),
     );
   }
 }
@@ -37,7 +43,8 @@ class LoginForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const DesignComponent(text: 'Sign in with your VirtAm ID',),
+              const DesignComponent(text: 'Sign in with your VirtAm ID',
+              textStyle: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
               //SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -80,9 +87,8 @@ class LoginForm extends StatelessWidget {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.07),
                     Column(
                       children: [
-                        ButtonComponent(
+                        ButtonComponentContinue(
                           text: 'Sign In',
-                          customColor: Colors.black,
                           onPress: () async {
                             viewModel.validateFields();
                             if (viewModel.isFormValid) {
@@ -94,7 +100,7 @@ class LoginForm extends StatelessWidget {
                                 final user = userCredential.user;
                                 print('User signed in: ${user?.uid}');
 
-                                Beamer.of(context).beamToNamed('/homeScreen');
+                                Beamer.of(context).beamToNamed('/homeNavigationBar');
                               } catch (e) {
                                 print('Error logging in: $e');
                                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Login failed')));
@@ -103,7 +109,9 @@ class LoginForm extends StatelessWidget {
                           },
                         ),
                         SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                        TextComponent(text: 'Your VirtAm account is now VirtAm ID. If you’ve signed\n into the app before, use the same credentials here.\n otherwise',),
+                        TextComponent(
+                          textStyle: Theme.of(context).textTheme.displaySmall,
+                          text: 'Your VirtAm account is now VirtAm ID. If you’ve signed\n into the app before, use the same credentials here.\n otherwise',),
                         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                         TextComponent(text: 'OR', textStyle: Theme.of(context).textTheme.titleMedium,),
                         Padding(

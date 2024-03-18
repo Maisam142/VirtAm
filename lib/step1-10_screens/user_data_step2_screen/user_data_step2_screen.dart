@@ -19,138 +19,144 @@ class UserDataScreenStep2 extends StatelessWidget {
     final Size screenSize = MediaQuery.of(context).size;
     final UserDataStep2ViewModel userDataModel =
     Provider.of<UserDataStep2ViewModel>(context);
-    return SafeArea(child: Scaffold(
-      backgroundColor: Theme.of(context).focusColor,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            OptionTopComponent(
-              text: 'Step 2/10',
-              onPressed: () {
-                Beamer.of(context).beamBack();
-              },
-            ),
-            Container(
-              width: double.infinity,
-              height: 300,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      height: screenSize.height * 0.15,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Align(
-                                alignment: Alignment.topLeft,
-                                child: TextComponent(text: 'Is he allergic to : ',
-                                textStyle: Theme.of(context).textTheme.labelMedium,),),
-                          ),
-                          RadioListTile(
-                            title: Row(
-                              children: [
-                                const SizedBox(
-                                  width: 40,
-                                  height: 40,
-                                  child: Image(image: AssetImage('images/eggs.png'),),),
-                                SizedBox(width: screenSize.width * 0.02,),
-                                Text('Eggs'),
-                              ],
-                            ),
-                            value: 1,
-                            onChanged: (int? value) {
-                              if (value != null) {
-                                userDataModel.updateSelectedOption(value);
-                                userDataModel.updateSelectedPurpose('Eggs');
-                              }
-                            },
-                
-                            activeColor: Theme.of(context).primaryColor,
-                            groupValue: userDataModel.selectedOption,
-                            controlAffinity: ListTileControlAffinity.trailing,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: screenSize.height * 0.01,),
-                    Container(
-                      color: Colors.white,
-                      height: screenSize.height * 0.08,
-                      child: RadioListTile(
-                        title: Row(
-                          children: [
-                            const SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: Image(image: AssetImage('images/milk.png'),),),
-                            SizedBox(width: screenSize.width * 0.02,),
-                            const Text('Milk'),
-                          ],
-                        ),
-                        value: 2,
-                        onChanged: (int? value) {
-                          if (value != null) {
-                            userDataModel.updateSelectedOption(value);
-                            userDataModel.updateSelectedPurpose('Milk');
-                          }
-                        },
-                        activeColor: Theme.of(context).primaryColor,
-                        groupValue: userDataModel.selectedOption,
-                        controlAffinity: ListTileControlAffinity.trailing,
-                      ),
-                    ),
-                    SizedBox(height: screenSize.height * 0.01,),
-                    Container(
-                      color: Colors.white,
-                      height: screenSize.height * 0.08,
-                      child: RadioListTile(
-                        title: Row(
-                          children: [
-                            const SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: Image(image: AssetImage('images/fish.png'),),),
-                            SizedBox(width: screenSize.width * 0.02,),
-                            const Text('Fish'),
-                          ],
-                        ),
-                        value: 3,
-                        onChanged: (int? value) {
-                          if (value != null) {
-                            userDataModel.updateSelectedOption(value);
-                            userDataModel.updateSelectedPurpose('Eggs');
-                          }
-                        },
-                        activeColor: Theme.of(context).primaryColor,
-                        groupValue: userDataModel.selectedOption,
-                        controlAffinity: ListTileControlAffinity.trailing,
-                      ),
-                    ),
-                  ],
-                ),
+    return  WillPopScope(
+      onWillPop: () async {
+        Beamer.of(context).beamToNamed('/userDataStep1');
+        return false;
+      },
+      child: SafeArea(child: Scaffold(
+        backgroundColor: Theme.of(context).focusColor,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              OptionTopComponent(
+                text: 'Step 2/10',
+                onPressed: () {
+                  Beamer.of(context).beamBack();
+                },
               ),
+              Container(
+                width: double.infinity,
+                height: 300,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        color: Colors.white,
+                        height: screenSize.height * 0.15,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: TextComponent(text: 'Is he allergic to : ',
+                                  textStyle: Theme.of(context).textTheme.labelMedium,),),
+                            ),
+                            RadioListTile(
+                              title: Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 40,
+                                    height: 40,
+                                    child: Image(image: AssetImage('images/eggs.png'),),),
+                                  SizedBox(width: screenSize.width * 0.02,),
+                                  Text('Eggs'),
+                                ],
+                              ),
+                              value: 1,
+                              onChanged: (int? value) {
+                                if (value != null) {
+                                  userDataModel.updateSelectedOption(value);
+                                  userDataModel.updateSelectedPurpose('Eggs');
+                                }
+                              },
 
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ButtonComponentContinue(
-                  text: 'Next',
-                  onPress: () async {
-                    Map<String, dynamic> additionalData = {
-                      'Allergic': userDataModel.selectedPurpose,
-                    };
-                    await FirebaseFirestore.instance
-                        .collection('User')
-                        .doc(registerViewModel.nameController.text)
-                        .update(additionalData);
-                    Beamer.of(context).beamToNamed('/userDataStep3');
-                  }),
-            ),
-          ],
+                              activeColor: Theme.of(context).primaryColor,
+                              groupValue: userDataModel.selectedOption,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: screenSize.height * 0.01,),
+                      Container(
+                        color: Colors.white,
+                        height: screenSize.height * 0.08,
+                        child: RadioListTile(
+                          title: Row(
+                            children: [
+                              const SizedBox(
+                                width: 40,
+                                height: 40,
+                                child: Image(image: AssetImage('images/milk.png'),),),
+                              SizedBox(width: screenSize.width * 0.02,),
+                              const Text('Milk'),
+                            ],
+                          ),
+                          value: 2,
+                          onChanged: (int? value) {
+                            if (value != null) {
+                              userDataModel.updateSelectedOption(value);
+                              userDataModel.updateSelectedPurpose('Milk');
+                            }
+                          },
+                          activeColor: Theme.of(context).primaryColor,
+                          groupValue: userDataModel.selectedOption,
+                          controlAffinity: ListTileControlAffinity.trailing,
+                        ),
+                      ),
+                      SizedBox(height: screenSize.height * 0.01,),
+                      Container(
+                        color: Colors.white,
+                        height: screenSize.height * 0.08,
+                        child: RadioListTile(
+                          title: Row(
+                            children: [
+                              const SizedBox(
+                                width: 40,
+                                height: 40,
+                                child: Image(image: AssetImage('images/fish.png'),),),
+                              SizedBox(width: screenSize.width * 0.02,),
+                              const Text('Fish'),
+                            ],
+                          ),
+                          value: 3,
+                          onChanged: (int? value) {
+                            if (value != null) {
+                              userDataModel.updateSelectedOption(value);
+                              userDataModel.updateSelectedPurpose('Eggs');
+                            }
+                          },
+                          activeColor: Theme.of(context).primaryColor,
+                          groupValue: userDataModel.selectedOption,
+                          controlAffinity: ListTileControlAffinity.trailing,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ButtonComponentContinue(
+                    text: 'Next',
+                    onPress: () async {
+                      Map<String, dynamic> additionalData = {
+                        'Allergic': userDataModel.selectedPurpose,
+                      };
+                      await FirebaseFirestore.instance
+                          .collection('User')
+                          .doc(registerViewModel.emailController.text)
+                          .update(additionalData);
+                      Beamer.of(context).beamToNamed('/userDataStep3');
+                    }),
+              ),
+            ],
+          ),
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

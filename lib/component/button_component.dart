@@ -74,7 +74,7 @@ class ButtonComponentContinue extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: textStyle ?? Theme.of(context).textTheme.titleSmall,
+          style: textStyle ?? TextStyle(color: Colors.white, fontSize: 14,),
         ),
       ),
     );

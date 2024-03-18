@@ -106,11 +106,11 @@ class MyApp extends StatelessWidget{
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const HomeNavigationBar(),
+        '/': (context, state, data) =>  const SplashScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
-        '/homeScreen': (context, state, data) => const HomeScreen(),
+        '/homeNavigationBar': (context, state, data) => const HomeNavigationBar(),
         '/option2Screen': (context, state, data) => const Option2Screen(),
         '/purposeScreen': (context, state, data) =>  const PurposeScreen(),
         '/userDataStep1': (context, state, data) => const UserDataScreenStep1(),

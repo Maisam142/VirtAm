@@ -8,7 +8,7 @@ class ThemeApp {
   static const Color orange =  Colors.orangeAccent;
   static const Color selectedColor =  Colors.black38;
   static const Color unselectedColor = Colors.grey;
-  static  Color backGroundColor = Colors.white;
+  static  Color backGroundColor = Colors.white12;
   static  Color backGroundColor2 = Colors.grey.shade100;
 
 
@@ -35,7 +35,7 @@ class ThemeApp {
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 18.0,
+    fontSize: 44.0,
   );
   static const TextStyle titleSmall = TextStyle(
     color: white,
@@ -82,7 +82,7 @@ class ThemeApp {
     color: white,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 17.0,
+    fontSize: 22.0,
   );
 
 
@@ -129,7 +129,7 @@ class ThemeApp {
 
   );
   static const TextStyle darkThemeBodyMedium = TextStyle(
-  color: white,
+  color: black,
   fontFamily: 'Almarai',
   fontWeight: FontWeight.normal,
   fontSize: 16.0,
@@ -143,7 +143,7 @@ class ThemeApp {
   );
 
   static const TextStyle  darkThemeDisplaySmall = TextStyle(
-    color: black,
+    color: white,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.normal,
     fontSize: 12.0,
@@ -219,7 +219,7 @@ class ThemeApp {
       elevation: 0,
       backgroundColor: backGroundColor,
     ),
-    scaffoldBackgroundColor: backGroundColor,
+    scaffoldBackgroundColor: backGroundColor2,
     inputDecorationTheme: inputDecorationTheme,
     bottomNavigationBarTheme: bottomNavigationBarTheme,
 
@@ -243,7 +243,7 @@ class ThemeApp {
       headlineSmall: darkHeadlineSmall,
     ),
     elevatedButtonTheme: elevatedButtonTheme,
-    scaffoldBackgroundColor: secondColor,
+    scaffoldBackgroundColor: backGroundColor,
     appBarTheme:  AppBarTheme(
       color: secondColor,
       //backgroundColor: secondColor,
