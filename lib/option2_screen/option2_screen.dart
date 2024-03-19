@@ -59,7 +59,7 @@ class Option2Screen extends StatelessWidget {
                             ),
                             const Expanded(
                               child: Image(
-                                image: AssetImage('images/img_2.png'),
+                                image: AssetImage('images/worker.png'),
                                 fit: BoxFit.contain,
                               ),
                             ),

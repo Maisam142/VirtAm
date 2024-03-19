@@ -24,7 +24,7 @@ class RegisterScreen extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        Beamer.of(context).beamToNamed('/loginScreen');
+        Beamer.of(context).beamToNamed('/welcomeScreen');
         return false;
       },
       child: SafeArea(
@@ -322,10 +322,8 @@ class RegisterScreen extends StatelessWidget {
                           customColor: registerViewModel.isTermsChecked ? Colors.black : Colors.grey,
                           onPress: registerViewModel.isTermsChecked
                               ? () async {
-                            // Validate fields before attempting to create the account
                             registerViewModel.validateFields();
 
-                            // Check if all fields are valid before proceeding
                             if (registerViewModel.isFormValid) {
                               CollectionReference collRef = FirebaseFirestore
                                   .instance
@@ -347,7 +345,6 @@ class RegisterScreen extends StatelessWidget {
                                 User? user = userCredential.user;
                                 print('New user created: ${user?.uid}');
 
-                                // Handle navigation based on selected option
                                 if (registerViewModel.selectedOption == 1 ||
                                     registerViewModel.selectedOption == 3) {
                                   Beamer.of(context).beamToNamed(
@@ -356,7 +353,6 @@ class RegisterScreen extends StatelessWidget {
                                     2) {
                                   Beamer.of(context).beamToNamed('/option2');
                                 } else {
-                                  // Handle other cases
                                 }
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'email-already-in-use') {
@@ -370,11 +366,9 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   );
                                 } else {
-                                  // Handle other FirebaseAuth exceptions
                                   print('Firebase Auth Error: $e');
                                 }
                               } catch (e) {
-                                // General error occurred
                                 print('Error creating user: $e');
                               }
                             }

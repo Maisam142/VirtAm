@@ -9,7 +9,7 @@ class ThemeApp {
   static const Color selectedColor =  Colors.black38;
   static const Color unselectedColor = Colors.grey;
   static  Color backGroundColor = Colors.white12;
-  static  Color backGroundColor2 = Colors.grey.shade100;
+  static  Color backGroundColor2 = Color(0xfffafafa);
 
 
   static const TextStyle titleMedium = TextStyle(
@@ -47,7 +47,7 @@ class ThemeApp {
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 27.0,
+    fontSize: 25.0,
 
   );
   static const TextStyle  bodyMedium = TextStyle(

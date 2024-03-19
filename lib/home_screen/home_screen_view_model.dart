@@ -16,7 +16,8 @@ class HomeViewModel extends ChangeNotifier {
   HomeReadingWritingModel? readingWritingModel;
   HomeViewModelListeners? _homeViewModelListeners;
   int _stepCount = 0;
-
+  double mDistance = 0.0;
+  bool mIsMetric = true;
   int get stepCount => _stepCount;
 
   void updateStepCount(int count) {
@@ -38,6 +39,7 @@ class HomeViewModel extends ChangeNotifier {
     Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
     Timer.periodic(const Duration(hours: 1), (Timer t) => _checkDateChange());
   }
+
 
   Future<void> _requestPermission() async {
     final PermissionStatus status = await Permission.activityRecognition.request();
@@ -95,6 +97,41 @@ class HomeViewModel extends ChangeNotifier {
     subscription?.cancel();
     super.dispose();
   }
+  static const double METRIC_RUNNING_FACTOR = 1.02784823;
+  static const double METRIC_WALKING_FACTOR = 0.708;
+
+  static const double IMPERIAL_RUNNING_FACTOR = 0.750319;
+  static const double IMPERIAL_WALKING_FACTOR = 0.555;
+
+  double calculateCalories({
+  required bool isMetric,
+  required bool isRunning,
+  required double bodyWeight,
+  required double stepLength,
+  required int stepCount,
+  }) {
+  double calories = 0.0;
+  if (isMetric) {
+  calories += (bodyWeight * (isRunning ? METRIC_RUNNING_FACTOR : METRIC_WALKING_FACTOR)) *
+  stepLength / 100000.0;
+  } else {
+  calories += (bodyWeight * (isRunning ? IMPERIAL_RUNNING_FACTOR : IMPERIAL_WALKING_FACTOR)) *
+  stepLength / 63360.0;
+  }
+  return calories;
+  }
+
+
+
+  void onStep(double mStepLength) {
+  if (mIsMetric) {
+  mDistance += mStepLength / 100000.0;
+  } else {
+  mDistance += mStepLength / 63360.0;
+  }
+  notifyListeners();
+  }
+
 }
 
 class HomeViewModelListeners {}

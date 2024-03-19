@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:virtam/component/button_component.dart';
@@ -12,7 +14,11 @@ import 'package:virtam/component/circular_component.dart';
 import 'package:virtam/component/home_component.dart';
 import 'package:virtam/component/logo_component.dart';
 import 'package:virtam/component/text_component.dart';
+import 'package:virtam/home_screen/home_screen_view_model.dart';
 import 'package:virtam/notifications.dart';
+
+import '../helper/calories_class.dart';
+import '../register_screen/register_screen_view_model.dart';
 
 // class HomeScreen extends StatefulWidget {
 //   const HomeScreen({Key? key});
@@ -130,6 +136,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int getSteps = 0;
+  int distance =0;
+  late StepCalculator calculator = StepCalculator();
   final HealthFactory health = HealthFactory();
   late StreamSubscription<StepCount> _subscription;
   final List<ChartData> chartData = [
@@ -143,8 +151,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    //requestPermission();
-    //fetchStepData();
+    calculator = StepCalculator();
+    requestPermission();
   }
 
   @override
@@ -161,7 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
       return;
     }
 
-    await fetchStepData();
+    //await fetchStepData();
+
+
 
     _subscription = Pedometer.stepCountStream.listen((StepCount event) {
       setState(() {
@@ -170,41 +180,55 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  Future<void> fetchStepData() async {
-    var permissions = [
-      HealthDataAccess.READ,
-    ];
 
-    bool requested = await health
-        .requestAuthorization([HealthDataType.STEPS], permissions: permissions);
-    if (!requested) {
-      // Handle authorization not granted
-      print("Authorization not granted - error in authorization");
-      return;
-    }
-
-    final now = DateTime.now();
-    final midnight = DateTime(now.year, now.month, now.day);
-
-    try {
-      int? steps = await health.getTotalStepsInInterval(midnight, now);
-      setState(() {
-        getSteps = steps ?? 0;
-      });
-    } catch (error) {
-      print("Error fetching step count: $error");
-    }
-  }
+  // Future<void> fetchStepData() async {
+  //   var permissions = [
+  //     HealthDataAccess.READ,
+  //   ];
+  //
+  //   bool requested = await health
+  //       .requestAuthorization([HealthDataType.STEPS,], permissions: permissions);
+  //   if (!requested) {
+  //     // Handle authorization not granted
+  //     print("Authorization not granted - error in authorization");
+  //     return;
+  //   }
+  //
+  //   final now = DateTime.now();
+  //   final midnight = DateTime(now.year, now.month, now.day);
+  //
+  //   try {
+  //     int? steps = await health.getTotalStepsInInterval(midnight, now);
+  //     setState(() {
+  //       getSteps = steps ?? 0;
+  //     });
+  //   } catch (error) {
+  //     print("Error fetching step count: $error");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final RegisterViewModel registerViewModel =
+    Provider.of<RegisterViewModel>(context);
+    final HomeViewModel homeViewModel =
+    Provider.of<HomeViewModel>(context);
     final Size screenSize = MediaQuery.of(context).size;
 
+    //double distance = stepCalculator.mDistance;
+    double calories = calculator.calculateCalories(
+      isMetric: true,
+      isRunning: false,
+      bodyWeight: 70.0,
+      stepLength: 70.0,
+      stepCount: getSteps,
+    );
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
                   onPressed: () {},
@@ -212,13 +236,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     AssetImage('images/more.png'),
                   ),
                 ),
-                SizedBox(
-                  width: screenSize.width * 0.27,
-                ),
-                Center(child: LogoComponent()),
-                SizedBox(
-                  width: screenSize.width * 0.27,
-                ),
+
+                const Center(child: LogoComponent()),
+
                 IconButton(
                   onPressed: () {},
                   icon: const ImageIcon(
@@ -251,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 200,
               width: 400,
               child: SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 child: CircularComponent(
                   text1: DateFormat(' MMM d, y').format(DateTime.now(),),
                   text2: '$getSteps',
@@ -261,27 +281,33 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Row(
               children: [
-                const Expanded(
-                    child: HomeComponent(
-                      valueText: '12',
-                      text: ' Calories',
-                    ),),
+                Expanded(
+                  child: HomeComponent(
+                    valueText: '$calories',
+                    text: ' Calories',
+                    icon: Icons.local_fire_department_outlined,
+                  ),
+                ),
                 SizedBox(
                   width: screenSize.width * 0.01,
                 ),
                 const Expanded(
-                    child: HomeComponent(
-                      valueText: '0 h 13 m',
-                      text: ' Time',
-                    ),),
+                  child: HomeComponent(
+                    valueText: 'date',
+                    text: ' Time',
+                    icon: Icons.access_time_outlined,
+                  ),
+                ),
                 SizedBox(
                   width: screenSize.width * 0.01,
                 ),
-                const Expanded(
-                    child: HomeComponent(
-                      valueText: '2.4 Km',
-                      text: " Distance",
-                    ),),
+                Expanded(
+                  child: HomeComponent(
+                    valueText: '$distance',
+                    text: ' Distance',
+                    icon: Icons.location_on,
+                  ),
+                ),
               ],
             ),
             Column(
@@ -294,20 +320,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: screenSize.height * 0.18,
                     child: Stack(
                       children: [
-                        Image(image: AssetImage('images/fasting.png')),
+                        const Image(image: AssetImage('images/fasting.png')),
                         Align(
                           alignment: Alignment.topRight,
                           child: IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.navigate_next,
                               color: Colors.white,
                               size: 20,
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
+                        const Padding(
+                          padding: EdgeInsets.all(15.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -334,23 +360,37 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                   child: Container(
                     color: Colors.white,
-                    child: SfCartesianChart(
-                        margin: EdgeInsets.zero,
-                        series: <CartesianSeries>[
-                          SplineSeries<ChartData, int>(
-                            color: Theme.of(context).primaryColor,
-                            dataSource: chartData,
-                            xValueMapper: (ChartData data, _) => data.x,
-                            yValueMapper: (ChartData data, _) => data.y,
-                          )
-                        ]),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextComponent(text: 'Weight History'),
+                            IconButton(onPressed: (){
+                              Beamer.of(context).beamToNamed('/weightHistoryScreen');
+                            },
+                                icon: Icon(Icons.navigate_next))
+                          ],
+                        ),
+                        SfCartesianChart(
+                            margin: EdgeInsets.zero,
+                            series: <CartesianSeries>[
+                              SplineSeries<ChartData, int>(
+                                color: Theme.of(context).primaryColor,
+                                dataSource: chartData,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                              )
+                            ]),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
             Stack(
               children: [
-                Image(
+                const Image(
                   image: AssetImage('images/water.png'),
                   fit: BoxFit.cover,
                 ),
@@ -359,11 +399,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
-                      TextLabelBigComponent(text: '1,290 ml'),
-                      TextComponent(text: 'remaining 603 ml'),
+                      const TextLabelBigComponent(text: '1,290 ml'),
+                      const TextComponent(text: 'remaining 603 ml'),
                       SizedBox(
                         height: screenSize.height * 0.04,
                       ),
@@ -372,6 +412,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 25,
                           child: ButtonComponentContinue(
                             text: 'Add',
+                            onPress: (){
+                              Beamer.of(context).beamToNamed('/drinkWaterScreen');
+                            },
                           )),
                     ],
                   ),
@@ -407,8 +450,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Image(image: AssetImage('images/img_3.png')),
+                      const Expanded(
+                        child: Image(image: AssetImage('images/sport1.png')),
                       ),
                       Expanded(
                         child: Container(
@@ -416,11 +459,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
                                 child: TextComponent(
                                   text: 'Day 2-Fitness',
                                 ),
@@ -438,7 +481,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Container(
                                     height: 30,
                                     width: 110,
-                                    child: ButtonComponentContinue(
+                                    child: const ButtonComponentContinue(
                                       text: 'Play Now',
                                       textStyle: TextStyle(
                                           fontSize: 12, color: Colors.white),
@@ -456,8 +499,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Image(image: AssetImage('images/img_4.png')),
+                      const Expanded(
+                        child: Image(image: AssetImage('images/sport2.png')),
                       ),
                       Expanded(
                         child: Container(
@@ -465,11 +508,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
                                 child: TextComponent(
                                   text: 'Day 2-Fitness',
                                 ),
@@ -487,7 +530,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Container(
                                     height: 30,
                                     width: 110,
-                                    child: ButtonComponentContinue(
+                                    child: const ButtonComponentContinue(
                                       text: 'Play Now',
                                       textStyle: TextStyle(
                                           fontSize: 12, color: Colors.white),

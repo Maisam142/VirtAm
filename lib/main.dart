@@ -32,9 +32,13 @@ import 'package:virtam/step1-10_screens/user_data_step8_screen/user_data_step8_v
 import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 import 'package:virtam/styles/style.dart';
+import 'package:virtam/weight_history_screen/weight_history_screen.dart';
 import 'package:virtam/welcome_screen/welcom_screen.dart';
 import 'add_location_screen/add_location_screen.dart';
 import 'add_location_screen/add_location_view_model.dart';
+import 'drink_water_screen/add_target_screen.dart';
+import 'drink_water_screen/drink_water_screen.dart';
+import 'drink_water_screen/drink_water_view_model.dart';
 import 'firebase_options.dart';
 import 'home_screen/home_screen.dart';
 import 'home_screen/home_screen_view_model.dart';
@@ -84,6 +88,7 @@ void main() async{
     ChangeNotifierProvider(create: (_) => CurrentLocationViewModel()),
     ChangeNotifierProvider(create: (_) => AddLocationViewModel()),
     ChangeNotifierProvider(create: (_) => NavigationBarViewModel()),
+    ChangeNotifierProvider(create: (_) => DrinkWaterViewModel()),
   ],
       child:  MyApp())
   );
@@ -106,7 +111,7 @@ class MyApp extends StatelessWidget{
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const SplashScreen(),
+        '/': (context, state, data) =>  const HomeNavigationBar(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -123,6 +128,9 @@ class MyApp extends StatelessWidget{
         '/userDataStep8': (context, state, data) =>  const UserDataScreenStep8(),
         '/userDataStep9': (context, state, data) =>  const UserDataScreenStep9(),
         '/userDataStep10': (context, state, data) =>  const UserDataScreenStep10(),
+        '/drinkWaterScreen': (context, state, data) =>  const DrinkWaterScreen(),
+        '/addTargetScreen': (context, state, data) =>  const AddTargetScreen(),
+        '/weightHistoryScreen': (context, state, data) =>  const WeightHistoryScreen(),
       },
     ).call,
   );

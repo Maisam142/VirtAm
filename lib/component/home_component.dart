@@ -4,9 +4,11 @@ import 'package:virtam/component/text_component.dart';
 class HomeComponent extends StatelessWidget {
   final String? valueText;
   final String? text;
+  final IconData? icon;
   const HomeComponent({super.key,
     this.text,
-    this.valueText
+    this.valueText,
+    this.icon
 
 
   });
@@ -28,18 +30,20 @@ class HomeComponent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.location_on,
+                  icon,
                   color: Theme.of(context).primaryColor,
                   size: 20,
                 ),
-                TextComponent(
-                  text: text,
-                  textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                Center(
+                  child: TextComponent(
+                    text: text,
+                    textStyle: TextStyle(
+                      color: Theme.of(context).primaryColor,fontSize: 13,
+                    ),
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -8,6 +8,8 @@ import 'package:virtam/component/form_component.dart';
 import 'package:virtam/component/text_component.dart';
 import 'package:virtam/login_screen/login_screen_view_model.dart';
 
+import '../component/popup_component.dart';
+
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -103,8 +105,14 @@ class LoginForm extends StatelessWidget {
                                 Beamer.of(context).beamToNamed('/homeNavigationBar');
                               } catch (e) {
                                 print('Error logging in: $e');
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Login failed')));
-                              }
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => PopupWidget(
+                                    titleText: 'Wrong Email Or Password',
+                                    contentText: 'Please rewrite it to login Successfully ',
+                                        body: [],
+                                  ),
+                                );                              }
                             }
                           },
                         ),
