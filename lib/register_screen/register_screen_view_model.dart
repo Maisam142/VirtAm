@@ -24,6 +24,7 @@ class RegisterViewModel extends ChangeNotifier{
   String _selectedCountry = 'JO';
   String get selectedCountry => _selectedCountry;
   bool isObscure = true;
+  bool isObscureRewrite = true;
 
   bool _isValidPhoneNumber = true;
   bool get isValidPhoneNumber => _isValidPhoneNumber;
@@ -77,6 +78,12 @@ class RegisterViewModel extends ChangeNotifier{
     isObscure = !isObscure;
     notifyListeners();
   }
+  visibilityRewritePass (){
+    isObscureRewrite = !isObscureRewrite;
+    notifyListeners();
+  }
+
+
   void updateSelectedCountry(String country) {
     _selectedCountry = country;
     notifyListeners();

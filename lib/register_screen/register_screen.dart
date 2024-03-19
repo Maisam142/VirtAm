@@ -293,13 +293,13 @@ class RegisterScreen extends StatelessWidget {
                         //prefixIcon: const Icon(Icons.password),
                         controller: registerViewModel.rePasswordController,
                         hintText: 'Re-write Password',
-                        obscureText: registerViewModel.isObscure,
+                        obscureText: registerViewModel.isObscureRewrite,
                         suffixIcon: IconButton(
                             onPressed: () {
-                              registerViewModel.visibilityPass();
+                              registerViewModel.visibilityRewritePass();
                             },
                             icon: Icon(
-                              registerViewModel.isObscure
+                              registerViewModel.isObscureRewrite
                                   ? Icons.visibility_off
                                   : Icons.visibility,
                             )),
@@ -307,13 +307,7 @@ class RegisterScreen extends StatelessWidget {
                             ? null
                             : " Not Match",
                       ),
-                      // FormComponent(
-                      //   controller: userDataModel.countryController,
-                      //   hintText: 'country',
-                      //   errorText: userDataModel.countryController.text.isEmpty
-                      //       ? 'Please enter your country'
-                      //       : null,
-                      // ),
+
                       CheckBoxComponent(
                         text: 'I agree to the Terms and Privacy Policy',
                         value: registerViewModel.isTermsChecked,
@@ -328,38 +322,61 @@ class RegisterScreen extends StatelessWidget {
                           customColor: registerViewModel.isTermsChecked ? Colors.black : Colors.grey,
                           onPress: registerViewModel.isTermsChecked
                               ? () async {
-                            CollectionReference collRef = FirebaseFirestore
-                                .instance
-                                .collection('User');
-                            await collRef
-                                .doc(registerViewModel.emailController.text)
-                                .set({
-                              'name': registerViewModel.nameController.text,
-                              'email': registerViewModel.emailController.text,
-                              'number': registerViewModel.phoneNumber,
-                              'selectedPurpose': registerViewModel.selectedPurpose,
-                            });
+                            // Validate fields before attempting to create the account
+                            registerViewModel.validateFields();
 
-                            try {
-                              UserCredential userCredential =
-                              await auth.createUserWithEmailAndPassword(
-                                  email: registerViewModel.emailController.text,
-                                  password: registerViewModel.passwordController.text);
-                              User? user = userCredential.user;
-                              print('New user created: ${user?.uid}');
+                            // Check if all fields are valid before proceeding
+                            if (registerViewModel.isFormValid) {
+                              CollectionReference collRef = FirebaseFirestore
+                                  .instance
+                                  .collection('User');
+                              await collRef
+                                  .doc(registerViewModel.emailController.text)
+                                  .set({
+                                'name': registerViewModel.nameController.text,
+                                'email': registerViewModel.emailController.text,
+                                'number': registerViewModel.phoneNumber,
+                                'selectedPurpose': registerViewModel.selectedPurpose,
+                              });
 
-                              if (registerViewModel.isFormValid) {
+                              try {
+                                UserCredential userCredential =
+                                await auth.createUserWithEmailAndPassword(
+                                    email: registerViewModel.emailController.text,
+                                    password: registerViewModel.passwordController.text);
+                                User? user = userCredential.user;
+                                print('New user created: ${user?.uid}');
+
+                                // Handle navigation based on selected option
                                 if (registerViewModel.selectedOption == 1 ||
                                     registerViewModel.selectedOption == 3) {
-                                  Beamer.of(context).beamToNamed('/userDataStep1');
-                                } else if (registerViewModel.selectedOption == 2) {
+                                  Beamer.of(context).beamToNamed(
+                                      '/userDataStep1');
+                                } else if (registerViewModel.selectedOption ==
+                                    2) {
                                   Beamer.of(context).beamToNamed('/option2');
                                 } else {
                                   // Handle other cases
                                 }
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'email-already-in-use') {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => PopupWidget(
+                                      titleText: 'Email Already Exists',
+                                      contentText:
+                                      'The email address you provided is already registered. Please use a different email address.',
+                                      body: [],
+                                    ),
+                                  );
+                                } else {
+                                  // Handle other FirebaseAuth exceptions
+                                  print('Firebase Auth Error: $e');
+                                }
+                              } catch (e) {
+                                // General error occurred
+                                print('Error creating user: $e');
                               }
-                            } catch (e) {
-                              print('Error creating user: $e');
                             }
                           }
                               : null,
@@ -382,3 +399,4 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 }
+
