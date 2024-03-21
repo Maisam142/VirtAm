@@ -36,6 +36,7 @@ class RegisterScreen extends StatelessWidget {
                   text: 'Create your VirtAm id',
                   smallText:
                       'You will get 90 days free trial on creating new account.\n Make sure you use correct information',
+                  textStyle: TextStyle(color: Colors.white, fontSize: 30,fontWeight: FontWeight.bold),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
@@ -48,6 +49,7 @@ class RegisterScreen extends StatelessWidget {
                             ? null
                             : 'Please enter your Full Name ',
                       ),
+                      SizedBox(height: screenSize.height * 0.02,),
                       FormComponent(
                         onChanged: (val) {
                         },
@@ -58,6 +60,7 @@ class RegisterScreen extends StatelessWidget {
                             ? null
                             : 'Please enter a valid email ',
                       ),
+                      SizedBox(height: screenSize.height * 0.02,),
                       InternationalPhoneNumberInput(
                         onInputChanged: (PhoneNumber phoneNumber) {
                           final isValid = phoneNumber.phoneNumber!.length >= 12;
@@ -84,7 +87,7 @@ class RegisterScreen extends StatelessWidget {
                             ? null
                             : 'Phone number must have at least 8 digits',
                       ),
-                      SizedBox(height: screenSize.height * 0.01,),
+                      SizedBox(height: screenSize.height * 0.02,),
                       Column(
                         children: [
                           Container(
@@ -97,7 +100,7 @@ class RegisterScreen extends StatelessWidget {
                                 Text(
                                   registerViewModel.selectedOption == 0 ? '  The purpose of creating the account    ' :
                                  ' ${registerViewModel.selectedPurpose}',
-                                  style:  TextStyle(color: Colors.black,fontSize: 14,),
+                                  style:  const TextStyle(color: Colors.black,fontSize: 14,),
                                 ),
                                 const SizedBox(width: 15,),
                                 IconButton(
@@ -112,6 +115,7 @@ class RegisterScreen extends StatelessWidget {
                         ],
                       ),
 
+                      SizedBox(height: screenSize.height * 0.02,),
 
                       Consumer<RegisterViewModel>(
                         builder: (context, registerViewModel, _) => Column(
@@ -124,10 +128,10 @@ class RegisterScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   height: 170,
-                                  width: 350,
+                                  width: 205,
                                   child: Column(
                                     children: [
-                                      const Text('password should contain :'),
+                                      const Text('password should contain :',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             top: 5, left: 5, right: 5),
@@ -136,6 +140,7 @@ class RegisterScreen extends StatelessWidget {
                                             Text(
                                               'one letter at least',
                                               style: TextStyle(
+                                                fontSize: 12,
                                                 color: registerViewModel
                                                                 .validationStatus[
                                                             0] ==
@@ -165,6 +170,7 @@ class RegisterScreen extends StatelessWidget {
                                             Text(
                                               'one Capital letter at least',
                                               style: TextStyle(
+                                                  fontSize: 12,
                                                   color: registerViewModel
                                                           .validationStatus[1]
                                                       ? Colors.green
@@ -190,6 +196,7 @@ class RegisterScreen extends StatelessWidget {
                                             Text(
                                               'one number at least',
                                               style: TextStyle(
+                                                  fontSize: 12,
                                                   color: registerViewModel
                                                           .validationStatus[2]
                                                       ? Colors.green
@@ -215,6 +222,7 @@ class RegisterScreen extends StatelessWidget {
                                             Text(
                                               'at least 8 letters',
                                               style: TextStyle(
+                                                  fontSize: 12,
                                                   color: registerViewModel
                                                           .validationStatus[3]
                                                       ? Colors.green
@@ -240,6 +248,7 @@ class RegisterScreen extends StatelessWidget {
                                             Text(
                                               'at least one special character',
                                               style: TextStyle(
+                                                  fontSize: 12,
                                                   color: registerViewModel
                                                           .validationStatus[4]
                                                       ? Colors.green
@@ -288,6 +297,7 @@ class RegisterScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(height: screenSize.height * 0.02),
                       FormComponent(
                         textInputType: TextInputType.text,
                         //prefixIcon: const Icon(Icons.password),
@@ -307,7 +317,6 @@ class RegisterScreen extends StatelessWidget {
                             ? null
                             : " Not Match",
                       ),
-
                       CheckBoxComponent(
                         text: 'I agree to the Terms and Privacy Policy',
                         value: registerViewModel.isTermsChecked,

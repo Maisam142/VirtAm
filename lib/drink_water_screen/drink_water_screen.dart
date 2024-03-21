@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 
+import '../component/back_component.dart';
 import '../component/text_component.dart';
 
 class DrinkWaterScreen extends StatelessWidget {
@@ -18,16 +19,12 @@ class DrinkWaterScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Row(
-                        children: [
-                          IconButton(onPressed: (){
-                            Beamer.of(context).beamBack();
-                          },
-                              icon: const Icon(Icons.arrow_back_ios_new)),
-                          const TextComponent(text: 'Drink Water'),
-                        ],
+                    const Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: BackComponent(
+
+                          text:'Drink Water',
+
                       ),
                     ),
                     IconButton(

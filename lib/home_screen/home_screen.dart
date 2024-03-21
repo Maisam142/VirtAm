@@ -17,6 +17,7 @@ import 'package:virtam/component/text_component.dart';
 import 'package:virtam/home_screen/home_screen_view_model.dart';
 import 'package:virtam/notifications.dart';
 
+import '../component/viewall_component.dart';
 import '../helper/calories_class.dart';
 import '../register_screen/register_screen_view_model.dart';
 
@@ -428,20 +429,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const TextComponent(text: 'Exercise'),
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Row(
-                        children: [
-                          Text(
-                            'View All',
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15),
-                          ),
-                          Icon(Icons.navigate_next_rounded,
-                              color: Theme.of(context).primaryColor),
-                        ],
-                      ),
+                    ViewAllComponent(
+                      onPressed: (){},
                     ),
                   ],
                 ),

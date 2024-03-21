@@ -3,6 +3,7 @@ import 'package:beamer/beamer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:virtam/exercieses_screen/exercieses_screen.dart';
 import 'package:virtam/home.dart';
 import 'package:virtam/location_screen/location_screen_view_model.dart';
 import 'package:virtam/notifications.dart';
@@ -47,6 +48,7 @@ import 'login_screen/login_screen.dart';
 import 'login_screen/login_screen_view_model.dart';
 import 'navigation_bar_screen/navigation_bar_screen.dart';
 import 'navigation_bar_screen/navigation_bar_view_model.dart';
+import 'nutrition_screen/nutrition_screen.dart';
 import 'option2_screen/option2_screen.dart';
 import 'option2_screen/option2_view_model.dart';
 
@@ -131,6 +133,7 @@ class MyApp extends StatelessWidget{
         '/drinkWaterScreen': (context, state, data) =>  const DrinkWaterScreen(),
         '/addTargetScreen': (context, state, data) =>  const AddTargetScreen(),
         '/weightHistoryScreen': (context, state, data) =>  const WeightHistoryScreen(),
+        '/nutritionScreen': (context, state, data) =>  const NutritionScreen(),
       },
     ).call,
   );
