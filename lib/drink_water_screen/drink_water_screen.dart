@@ -11,24 +11,31 @@ class DrinkWaterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
 
-    return SafeArea(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/homeScreen');
+      return false;
+    },
+    child: SafeArea(
         child: Scaffold(
           body: SingleChildScrollView(
             child: Column(
               children: [
                 Row(
+
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: BackComponent(
-
-                          text:'Drink Water',
-
-                      ),
+                    BackComponent(
+                        text:'Drink Water',
+                      onPressed: (){
+                          Beamer.of(context).beamBack();
+                      },
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Beamer.of(context).beamToNamed('/drinkSettingScreen');
+
+                      },
                       icon: const ImageIcon(
                         AssetImage('images/setting.png'),
                       ),
@@ -74,6 +81,6 @@ class DrinkWaterScreen extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        )));
   }
 }

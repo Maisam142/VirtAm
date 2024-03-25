@@ -224,7 +224,12 @@ class _HomeScreenState extends State<HomeScreen> {
       stepLength: 70.0,
       stepCount: getSteps,
     );
-    return SafeArea(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('');
+      return false;
+    },
+    child: SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(children: [
@@ -241,7 +246,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Center(child: LogoComponent()),
 
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Beamer.of(context).beamToNamed('notificationScreen');
+                  },
                   icon: const ImageIcon(
                     AssetImage('images/notification.png'),
                   ),
@@ -325,7 +332,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         Align(
                           alignment: Alignment.topRight,
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Beamer.of(context).beamToNamed('fastScreen');
+
+                            },
                             icon: const Icon(
                               Icons.navigate_next,
                               color: Colors.white,
@@ -428,9 +438,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const TextComponent(text: 'Exercise'),
+                    const TextComponent(text: '  Exercise'),
                     ViewAllComponent(
-                      onPressed: (){},
+                      onPressed: (){
+                        Beamer.of(context).beamToNamed('/exercisesScreen');
+
+                      },
                     ),
                   ],
                 ),
@@ -537,7 +550,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
         ),
       ),
-    );
+    ));
   }
 }
 

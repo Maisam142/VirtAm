@@ -11,6 +11,7 @@ import 'package:virtam/push_notification.dart';
 import 'package:virtam/register_screen/purpose_screen.dart';
 import 'package:virtam/register_screen/register_screen.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
+import 'package:virtam/setting_menu_screen/setting_menu_screen.dart';
 import 'package:virtam/splash_Screen/Splash_Screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10_screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10_view_model.dart';
@@ -35,11 +36,16 @@ import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_v
 import 'package:virtam/styles/style.dart';
 import 'package:virtam/weight_history_screen/weight_history_screen.dart';
 import 'package:virtam/welcome_screen/welcom_screen.dart';
+import 'about_virtam_screen.dart';
 import 'add_location_screen/add_location_screen.dart';
 import 'add_location_screen/add_location_view_model.dart';
+import 'calories_screen/calories_setting_screen.dart';
 import 'drink_water_screen/add_target_screen.dart';
 import 'drink_water_screen/drink_water_screen.dart';
+import 'drink_water_screen/drink_water_settings_screen.dart';
 import 'drink_water_screen/drink_water_view_model.dart';
+import 'fast_screen/break_fast_screen.dart';
+import 'fast_screen/fast_screen.dart';
 import 'firebase_options.dart';
 import 'home_screen/home_screen.dart';
 import 'home_screen/home_screen_view_model.dart';
@@ -48,6 +54,7 @@ import 'login_screen/login_screen.dart';
 import 'login_screen/login_screen_view_model.dart';
 import 'navigation_bar_screen/navigation_bar_screen.dart';
 import 'navigation_bar_screen/navigation_bar_view_model.dart';
+import 'notification_screen/notification_sceen.dart';
 import 'nutrition_screen/nutrition_screen.dart';
 import 'option2_screen/option2_screen.dart';
 import 'option2_screen/option2_view_model.dart';
@@ -113,7 +120,7 @@ class MyApp extends StatelessWidget{
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const HomeNavigationBar(),
+        '/': (context, state, data) =>  const SettingMenuScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -134,6 +141,13 @@ class MyApp extends StatelessWidget{
         '/addTargetScreen': (context, state, data) =>  const AddTargetScreen(),
         '/weightHistoryScreen': (context, state, data) =>  const WeightHistoryScreen(),
         '/nutritionScreen': (context, state, data) =>  const NutritionScreen(),
+        '/exercisesScreen': (context, state, data) =>  const ExercisesScreen(),
+        '/fastScreen': (context, state, data) =>  const FastScreen(),
+        '/breakFastScreen': (context, state, data) =>  const BreakFastScreen(),
+        '/settingMenuScreen': (context, state, data) =>  const SettingMenuScreen(),
+        '/drinkSettingScreen': (context, state, data) =>  const DrinkSettingScreen(),
+        '/aboutVirtAmScreen': (context, state, data) =>  const AboutVirtAmScreen(),
+        '/caloriesSettingScreen': (context, state, data) =>  const CaloriesSettingScreen(),
       },
     ).call,
   );

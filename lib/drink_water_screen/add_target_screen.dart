@@ -16,7 +16,12 @@ class AddTargetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final DrinkWaterViewModel viewModel =
     Provider.of<DrinkWaterViewModel>(context);
-    return SafeArea(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/drinkWaterScreen');
+      return false;
+    },
+    child:SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -49,6 +54,6 @@ class AddTargetScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

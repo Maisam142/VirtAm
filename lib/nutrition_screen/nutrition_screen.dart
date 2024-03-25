@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:banner_carousel/banner_carousel.dart';
 import 'package:virtam/component/form_component.dart';
@@ -35,7 +36,12 @@ class NutritionScreen extends StatelessWidget {
       },
     ];
 
-    return SafeArea(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/homeScreen');
+      return false;
+    },
+    child:SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
@@ -262,6 +268,6 @@ class NutritionScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

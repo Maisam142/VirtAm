@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ViewAllComponent extends StatelessWidget {
-  final Function? onPressed;
+  final Function()? onPressed;
   const ViewAllComponent({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: (){
-        onPressed;
-      },
+      onPressed:  onPressed,
       child: Row(
         children: [
           Text(

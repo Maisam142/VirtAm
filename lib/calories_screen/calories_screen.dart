@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:virtam/component/meals_component.dart';
@@ -27,7 +28,9 @@ class CaloriesScreen extends StatelessWidget {
                       child: TextComponent(text: 'Calorie calculator'),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Beamer.of(context).beamToNamed('/caloriesSettingScreen');
+                      },
                       icon: const ImageIcon(
                         AssetImage('images/setting.png'),
                       ),

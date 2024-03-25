@@ -32,7 +32,12 @@ class ExercisesScreen extends StatelessWidget {
       },
     ];
 
-    return SafeArea(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/homeScreen');
+      return false;
+    },
+    child:SafeArea(
       child: Scaffold(
         body: Column(
           children: [
@@ -146,6 +151,6 @@ class ExercisesScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }
