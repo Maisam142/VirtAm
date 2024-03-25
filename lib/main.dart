@@ -12,6 +12,8 @@ import 'package:virtam/register_screen/purpose_screen.dart';
 import 'package:virtam/register_screen/register_screen.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
 import 'package:virtam/setting_menu_screen/setting_menu_screen.dart';
+import 'package:virtam/setting_menu_screen/setting_menu_view_model.dart';
+import 'package:virtam/setting_menu_screen/subscription_screen.dart';
 import 'package:virtam/splash_Screen/Splash_Screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10_screen.dart';
 import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10_view_model.dart';
@@ -36,9 +38,10 @@ import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_v
 import 'package:virtam/styles/style.dart';
 import 'package:virtam/weight_history_screen/weight_history_screen.dart';
 import 'package:virtam/welcome_screen/welcom_screen.dart';
-import 'about_virtam_screen.dart';
+import 'setting_menu_screen/about_virtam_screen.dart';
 import 'add_location_screen/add_location_screen.dart';
 import 'add_location_screen/add_location_view_model.dart';
+import 'calories_screen/calories_screen.dart';
 import 'calories_screen/calories_setting_screen.dart';
 import 'drink_water_screen/add_target_screen.dart';
 import 'drink_water_screen/drink_water_screen.dart';
@@ -98,6 +101,7 @@ void main() async{
     ChangeNotifierProvider(create: (_) => AddLocationViewModel()),
     ChangeNotifierProvider(create: (_) => NavigationBarViewModel()),
     ChangeNotifierProvider(create: (_) => DrinkWaterViewModel()),
+    ChangeNotifierProvider(create: (_) => SettingMenuViewModel()),
   ],
       child:  MyApp())
   );
@@ -120,7 +124,7 @@ class MyApp extends StatelessWidget{
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const SettingMenuScreen(),
+        '/': (context, state, data) =>  const HomeNavigationBar(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -148,6 +152,9 @@ class MyApp extends StatelessWidget{
         '/drinkSettingScreen': (context, state, data) =>  const DrinkSettingScreen(),
         '/aboutVirtAmScreen': (context, state, data) =>  const AboutVirtAmScreen(),
         '/caloriesSettingScreen': (context, state, data) =>  const CaloriesSettingScreen(),
+        '/caloriesScreen': (context, state, data) =>  const CaloriesScreen(),
+        '/notificationScreen': (context, state, data) =>  const NotificationScreen(),
+        '/subscriptionScreen': (context, state, data) =>  const SubscriptionScreen(),
       },
     ).call,
   );

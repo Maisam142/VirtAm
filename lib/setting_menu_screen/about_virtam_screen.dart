@@ -4,7 +4,7 @@ import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/logo_component.dart';
 import 'package:virtam/component/text_component.dart';
 
-import '../component/button_component.dart';
+import '../../component/button_component.dart';
 
 class AboutVirtAmScreen extends StatelessWidget {
   const AboutVirtAmScreen({super.key});
@@ -12,7 +12,12 @@ class AboutVirtAmScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    return SafeArea(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/settingMenuScreen');
+      return false;
+    },
+    child:SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -88,6 +93,6 @@ class AboutVirtAmScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

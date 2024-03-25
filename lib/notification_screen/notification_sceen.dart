@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:virtam/component/back_component.dart';
 
@@ -9,11 +10,19 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    return SafeArea(
+    return  WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/homeNavigationBar');
+      return false;
+    },
+    child: SafeArea(
       child: Scaffold(
         body: Column(
           children: <Widget>[
-            const BackComponent(
+            BackComponent(
+              onPressed: (){
+                Beamer.of(context).beamBack();
+              },
               text: 'Notification',
             ),
             Column(
@@ -99,6 +108,6 @@ class NotificationScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }

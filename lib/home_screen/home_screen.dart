@@ -226,7 +226,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     return WillPopScope(
         onWillPop: () async {
-      Beamer.of(context).beamToNamed('');
       return false;
     },
     child: SafeArea(
@@ -237,7 +236,9 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Beamer.of(context).beamToNamed('/settingMenuScreen');
+                  },
                   icon: const ImageIcon(
                     AssetImage('images/more.png'),
                   ),
@@ -247,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 IconButton(
                   onPressed: () {
-                    Beamer.of(context).beamToNamed('notificationScreen');
+                    Beamer.of(context).beamToNamed('/notificationScreen');
                   },
                   icon: const ImageIcon(
                     AssetImage('images/notification.png'),
@@ -333,7 +334,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           alignment: Alignment.topRight,
                           child: IconButton(
                             onPressed: () {
-                              Beamer.of(context).beamToNamed('fastScreen');
+                              Beamer.of(context).beamToNamed('/fastScreen');
 
                             },
                             icon: const Icon(

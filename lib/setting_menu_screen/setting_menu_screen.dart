@@ -23,6 +23,7 @@ class SettingMenuScreen extends StatelessWidget {
             const SizedBox(height: 40,),
             FieldComponent(
               onPressed: (){
+                Beamer.of(context).beamToNamed('/aboutVirtAmScreen');
 
               },
               text: '  About VirAm',
@@ -31,7 +32,6 @@ class SettingMenuScreen extends StatelessWidget {
             SizedBox(height: 10,),
             FieldComponent(
               onPressed: (){
-                Beamer.of(context).beamToNamed('aboutVirtAmScreen');
               },
               text: '  Language',
               imageIcon: AssetImage('images/language.png'),
@@ -47,7 +47,7 @@ class SettingMenuScreen extends StatelessWidget {
             SizedBox(height: 10,),
             FieldComponent(
               onPressed: (){
-
+                Beamer.of(context).beamToNamed('/subscriptionScreen');
               },
               text: '   Subscription',
               imageIcon: AssetImage('images/subscription.png'),

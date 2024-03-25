@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/text_component.dart';
@@ -9,14 +10,19 @@ class DrinkSettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/drinkWaterScreen');
+      return false;
+    },
+    child:SafeArea(child: Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             BackComponent(
               text: 'Settings',
               onPressed: (){
-
+                Beamer.of(context).beamBack();
               },
             ),
             const SizedBox(height: 40,),
@@ -39,6 +45,6 @@ class DrinkSettingScreen extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    )));
   }
 }
