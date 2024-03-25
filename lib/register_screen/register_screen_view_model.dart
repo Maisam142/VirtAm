@@ -38,6 +38,18 @@ class RegisterViewModel extends ChangeNotifier{
   String _selectedPurpose = '';
   String get selectedPurpose => _selectedPurpose;
 
+
+
+  void validateFieldsLogin() {
+    isEmailValid = emailController.text.isNotEmpty && emailController.text.contains("@");
+    isPasswordValid = passwordController.text.isNotEmpty && RegExp(
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+        .hasMatch(passwordController.text);
+    notifyListeners();
+  }
+
+  bool get isFormValidLogin => isEmailValid && isPasswordValid;
+
   void updateSelectedPurpose(String purpose) {
     _selectedPurpose = purpose;
     notifyListeners();

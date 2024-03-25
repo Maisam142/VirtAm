@@ -4,6 +4,7 @@ import 'package:virtam/home_screen/home_screen.dart';
 
 import '../calories_screen/calories_screen.dart';
 import '../nutrition_screen/nutrition_screen.dart';
+import '../profile_screen/profile_screen.dart';
 import 'navigation_bar_view_model.dart';
 
 class HomeNavigationBar extends StatelessWidget {
@@ -27,6 +28,7 @@ class HomeNavigationBar extends StatelessWidget {
               HomeScreen(),
               CaloriesScreen(),
               NutritionScreen(),
+              ProfileScreen()
             ],
           );
         },

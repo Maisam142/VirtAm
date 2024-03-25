@@ -7,6 +7,8 @@ import 'package:virtam/exercieses_screen/exercieses_screen.dart';
 import 'package:virtam/home.dart';
 import 'package:virtam/location_screen/location_screen_view_model.dart';
 import 'package:virtam/notifications.dart';
+import 'package:virtam/profile_screen/profile_screen.dart';
+import 'package:virtam/profile_screen/profile_view_model.dart';
 import 'package:virtam/push_notification.dart';
 import 'package:virtam/register_screen/purpose_screen.dart';
 import 'package:virtam/register_screen/register_screen.dart';
@@ -102,6 +104,7 @@ void main() async{
     ChangeNotifierProvider(create: (_) => NavigationBarViewModel()),
     ChangeNotifierProvider(create: (_) => DrinkWaterViewModel()),
     ChangeNotifierProvider(create: (_) => SettingMenuViewModel()),
+    ChangeNotifierProvider(create: (_) => ProfileViewModel()),
   ],
       child:  MyApp())
   );
@@ -124,7 +127,7 @@ class MyApp extends StatelessWidget{
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const HomeNavigationBar(),
+        '/': (context, state, data) =>  const LoginScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),

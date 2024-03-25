@@ -9,6 +9,7 @@ import 'package:virtam/component/text_component.dart';
 import 'package:virtam/login_screen/login_screen_view_model.dart';
 
 import '../component/popup_component.dart';
+import '../register_screen/register_screen_view_model.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -36,7 +37,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
 
-    final viewModel = Provider.of<LoginViewModel>(context);
+    final viewModel = Provider.of<RegisterViewModel>(context);
     final auth = FirebaseAuth.instance;
 
     return SafeArea(
@@ -92,8 +93,8 @@ class LoginForm extends StatelessWidget {
                         ButtonComponentContinue(
                           text: 'Sign In',
                           onPress: () async {
-                            viewModel.validateFields();
-                            if (viewModel.isFormValid) {
+                            viewModel.validateFieldsLogin();
+                            if (viewModel.isFormValidLogin) {
                               try {
                                 final userCredential = await auth.signInWithEmailAndPassword(
                                   email: viewModel.emailController.text,

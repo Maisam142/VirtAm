@@ -20,7 +20,7 @@ class CurrentLocationScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 300,
               child: const Stack(
