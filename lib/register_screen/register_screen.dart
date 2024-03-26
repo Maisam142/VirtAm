@@ -342,6 +342,7 @@ class RegisterScreen extends StatelessWidget {
                                   .set({
                                 'name': registerViewModel.nameController.text,
                                 'email': registerViewModel.emailController.text,
+                                'password' : registerViewModel.passwordController.text,
                                 'number': registerViewModel.phoneNumber,
                                 'selectedPurpose': registerViewModel.selectedPurpose,
                               });

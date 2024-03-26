@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
 
+
 class StoreDate {
   Future<String> uploadImageToStorage(
       String childName, Uint8List file, BuildContext context) async {
@@ -18,4 +19,34 @@ class StoreDate {
     return downloadUrl;
     }
 }
+class UserModel {
+  final String username;
+  final String email;
+  final String password;
+  final String phone;
 
+  UserModel({
+    required this.username,
+    required this.email,
+    required this.password,
+    required this.phone,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      username: json['username'] ?? '',
+      email: json['email'] ?? '',
+      password: json['password'] ?? '',
+      phone: json['phone'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'username': username,
+      'email': email,
+      'password': password,
+      'phone': phone,
+    };
+  }
+}
