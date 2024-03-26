@@ -226,7 +226,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     return WillPopScope(
         onWillPop: () async {
-      return false;
+          Beamer.of(context).beamToNamed('/homeNavigationBar');
+
+          return false;
     },
     child: SafeArea(
       child: Scaffold(
@@ -326,7 +328,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(20.0),
                   child: Container(
                     width: double.infinity,
-                    height: screenSize.height * 0.18,
+                    height: 140,
                     child: Stack(
                       children: [
                         const Image(image: AssetImage('images/fasting.png')),

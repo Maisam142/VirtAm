@@ -1,0 +1,51 @@
+{
+  "@@locale": "en",
+  "english" : "English",
+  "arabic" : "Arabic",
+  "selectLanguage" : "Select Language",
+  "start": "Let's Start",
+  "dontHaveAnAccount" : "Don't have an account? ",
+  "createNewOne" : "Create New One!",
+  "login" : "Login",
+  "go": "GO",
+  "away" :"AWAY",
+  "organizationId" : "Organization ID",
+  "start" : "Start",
+  "chooseYourStatus" : "Choose your status, please",
+
+  "ok" : "OK",
+  "cancel" : "Cancel",
+  "home": "Home",
+  "profile": "Profile",
+  "warningMsg": "Are you sure you want to cancel the trip ?",
+  "trip" : "Trip",
+  "warning" : "Warning !",
+  "arrived" : "Arrived",
+  "didNotCome" : "Didn't come",
+  "pickup" : "Pick up the students",
+  "wait" : "Please wait for 5 minutes...",
+  "done" : "Done",
+
+
+  "keepYourFaceOnLeft" : "Keep Your Face On Left",
+  "tryLoginWithEmail" : "Try Login With Email",
+
+  "organizationIdOrEmail" : "Organization ID or Email",
+  "enterYourPassword" : "Enter your password",
+  "keepMeLoggedIn" : "Keep me logged in",
+  "forgotPassword" : "Forgot Password? ",
+  "clickHere" : "Click Here",
+
+
+  "signUp" : "Sign Up",
+  "alreadyHaveAnAccount" : "already have an account?",
+  "enterYourName" : "Enter your name",
+  "enterYourEmail" : "Enter your email",
+  "retypeYourEmail" : "Retype your email",
+  "enterYourPhoneNumber" : "Enter your phone number",
+  "retypeYourPassword" : "Retype your password",
+  "createAccount": "Create Account",
+  "privacyPolicyAndTerms": "By continuing, you agree to accept our Privacy Policy and Terms of Service."
+
+
+}

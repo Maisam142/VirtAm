@@ -38,7 +38,7 @@ class NutritionScreen extends StatelessWidget {
 
     return WillPopScope(
         onWillPop: () async {
-      Beamer.of(context).beamToNamed('/homeScreen');
+      Beamer.of(context).beamToNamed('/homeNavigationBar');
       return false;
     },
     child:SafeArea(

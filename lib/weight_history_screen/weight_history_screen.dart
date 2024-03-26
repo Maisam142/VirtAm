@@ -17,7 +17,12 @@ class WeightHistoryScreen extends StatelessWidget {
       ChartData(60, 4),
       ChartData(55, 5)
     ];
-    return SafeArea(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/homeNavigationBar');
+      return false;
+    },
+    child: SafeArea(
         child: Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -66,7 +71,7 @@ class WeightHistoryScreen extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    )));
   }
 }
 

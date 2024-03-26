@@ -9,6 +9,7 @@ import 'package:virtam/component/text_component.dart';
 import 'package:virtam/login_screen/login_screen_view_model.dart';
 
 import '../component/popup_component.dart';
+import '../generated/l10n.dart';
 import '../register_screen/register_screen_view_model.dart';
 
 
@@ -55,7 +56,7 @@ class LoginForm extends StatelessWidget {
                   children: [
                     FormComponent(
                       // prefixIcon: const Icon(Icons.person, size: 20),
-                      hintText: 'Email ',
+                      hintText: S.of(context).organizationIdOrEmail,
                       controller: viewModel.emailController,
                       errorText: viewModel.isEmailValid
                           ? null

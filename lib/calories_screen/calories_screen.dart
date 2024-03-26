@@ -14,8 +14,13 @@ class CaloriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/homeNavigationBar');
 
-    return SafeArea(
+      return false;
+    },
+    child: SafeArea(
         child: Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -115,6 +120,6 @@ class CaloriesScreen extends StatelessWidget {
             ),
           ),
         )
-    );
+    ));
   }
 }

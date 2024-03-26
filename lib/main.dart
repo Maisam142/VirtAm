@@ -2,6 +2,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:beamer/beamer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/exercieses_screen/exercieses_screen.dart';
 import 'package:virtam/home.dart';
@@ -40,6 +41,8 @@ import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_v
 import 'package:virtam/styles/style.dart';
 import 'package:virtam/weight_history_screen/weight_history_screen.dart';
 import 'package:virtam/welcome_screen/welcom_screen.dart';
+import 'generated/l10n.dart';
+import 'main_view_model.dart';
 import 'setting_menu_screen/about_virtam_screen.dart';
 import 'add_location_screen/add_location_screen.dart';
 import 'add_location_screen/add_location_view_model.dart';
@@ -84,6 +87,7 @@ void main() async{
 
 
   runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => MainViewModel()),
     ChangeNotifierProvider(create: (_) => LoginViewModel()),
     ChangeNotifierProvider(create: (_) => RegisterViewModel()),
     ChangeNotifierProvider(create: (_) => Option2UserModel()),
@@ -109,25 +113,55 @@ void main() async{
       child:  MyApp())
   );
 }
-class MyApp extends StatelessWidget{
-   MyApp({super.key});
 
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MyApp();
+  }
+}
+
+class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
+  _MyApp();
+
+  late final MainViewModel? vmProvider;
+  // StreamSubscription? _streamSubscription;
+
+  @override
+  void initState() {
+    vmProvider = Provider.of<MainViewModel>(context, listen: false);
+    vmProvider?.init(this);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context)
   {
+    final vm = Provider.of<MainViewModel>(context);
+
     return  MaterialApp.router(
 
       theme: ThemeApp.light,
       darkTheme: ThemeApp.dark,
       themeMode: ThemeMode.system,
       routerDelegate: routerDelegate,
+      locale: vm.appLocal,
+      supportedLocales: S.delegate.supportedLocales,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       routeInformationParser: BeamerParser(),
       debugShowCheckedModeBanner: false,
     );}
+
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const LoginScreen(),
+        '/': (context, state, data) =>  const HomeScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -158,8 +192,10 @@ class MyApp extends StatelessWidget{
         '/caloriesScreen': (context, state, data) =>  const CaloriesScreen(),
         '/notificationScreen': (context, state, data) =>  const NotificationScreen(),
         '/subscriptionScreen': (context, state, data) =>  const SubscriptionScreen(),
+        '/profileScreen': (context, state, data) =>  const ProfileScreen(),
+        '/homeScreen': (context, state, data) =>  const HomeScreen(),
+        '/nutritionScreen': (context, state, data) =>  const NutritionScreen(),
       },
     ).call,
   );
-
 }

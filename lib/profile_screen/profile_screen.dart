@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -35,7 +36,7 @@ class ProfileScreenContent extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        Navigator.of(context).pop();
+        Beamer.of(context).beamToNamed('/profileScreen');
         return false;
       },
       child: SafeArea(

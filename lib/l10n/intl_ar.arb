@@ -1,0 +1,49 @@
+{
+  "@@locale": "ar",
+  "selectLanguage" : "اختيار اللغة",
+  "arabic": "العربية",
+  "english" : "انجليزي",
+  "start": "ابدأ",
+  "dontHaveAnAccount" : "ليس لديك حساب؟ ",
+  "go": " ذهاب",
+  "away" : "اياب",
+  "createNewOne" : "إنشاء حساب",
+  "login" : "تسجيل الدخول",
+  "organizationId" : "رقم المنشأة",
+  "chooseYourStatus" : "لو سمحت, إختر حالتك",
+
+  "ok" : "نعم",
+  "cancel" : "إلغاء",
+  "home": "الصفحة الرئيسية",
+  "profile": "الصفحة الشخصية",
+  "warningMsg": "هل متأكد من انك تريد إلغاء الرحلة؟",
+  "trip" : "الرحلة",
+  "warning" : "تنبيه !",
+  "arrived" : "لقد وصل",
+  "didNotCome" : "لم يأتي",
+  "pickup" : "اصطحاب الطلاب",
+  "wait" : "الرجاء الانتظار ل ٥ دقائق ... ",
+  "done" : "تم",
+
+  "keepYourFaceOnLeft" : "يرجى النظر الى اليسار",
+  "tryLoginWithEmail" : "حاول تسجيل الدخول بالبريد الإلكتروني",
+
+  "organizationIdOrEmail" : "رقم المنشأة او البريد الإلكتروني",
+  "enterYourPassword" : "أدخل كلمة المرور",
+  "keepMeLoggedIn" : "البقاء على تسجيل الدخول",
+  "forgotPassword" : "هل نسيت كلمة المرور؟ ",
+  "clickHere" : "انقر هنا",
+
+
+  "signUp" : "إنشاء حساب",
+  "alreadyHaveAnAccount" : "لديك حساب بالفعل؟ ",
+  "enterYourName" : "أدخل الإسم",
+  "enterYourEmail" : "أدخل بريدك الإلكتروني",
+  "retypeYourEmail" : "أعد إدخال بريدك الإلكتروني",
+  "enterYourPhoneNumber" : "أدخل رقم الهاتف",
+  "retypeYourPassword" : "أعد كتابة كلمة المرور",
+  "createAccount": "إنشاء حساب",
+  "privacyPolicyAndTerms": "من خلال المتابعة فإنك تافق على قبول سياسة الخصوصية وشروط الخدمة.",
+  "": ""
+
+}

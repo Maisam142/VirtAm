@@ -10,7 +10,13 @@ class SettingMenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+      Beamer.of(context).beamToNamed('/homeNavigationBar');
+      return false;
+    },
+    child: SafeArea(
+        child: Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -56,6 +62,6 @@ class SettingMenuScreen extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    )));
   }
 }
