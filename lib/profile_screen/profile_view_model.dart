@@ -9,7 +9,7 @@ import '../register_screen/register_screen_view_model.dart';
 
 class ProfileViewModel extends ChangeNotifier{
   Uint8List? selectedImage;
-  String _imageUrl = '';
+  String imageUrl = '';
 
   Uint8List? get _selectedImage => selectedImage;
 

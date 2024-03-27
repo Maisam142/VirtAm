@@ -11,6 +11,7 @@ import 'package:virtam/step1-10_screens/user_data_step7_screen/user_data_step7_v
 
 import '../../component/button_component.dart';
 import '../../component/option_top_component.dart';
+import '../../generated/l10n.dart';
 
 class UserDataScreenStep7 extends StatelessWidget {
   const UserDataScreenStep7({super.key});
@@ -34,7 +35,7 @@ class UserDataScreenStep7 extends StatelessWidget {
           child: Column(
             children: [
               OptionTopComponent(
-                text: 'Step 7/10',
+                text: S.of(context).step7,
                 onPressed: () {
                   Beamer.of(context).beamBack();
                 },
@@ -52,7 +53,7 @@ class UserDataScreenStep7 extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: TextComponent(text: 'Are you an employee/worker?',
+                              child: TextComponent(text: S.of(context).employeeWorker,
                                 textStyle: Theme.of(context).textTheme.labelMedium,),),
                           ),
                           Container(
@@ -61,9 +62,9 @@ class UserDataScreenStep7 extends StatelessWidget {
                             child: Image(image: AssetImage('images/worker.png') ,),
                           ),
                           RadioListTile(
-                            title:const Align(
+                            title: Align(
                                 alignment: Alignment.centerLeft,
-                                child: TextComponent(text:'Yes')),
+                                child: TextComponent(text:S.of(context).yes)),
                             value: 1,
                             onChanged: (int? value) {
                               if (value != null) {
@@ -87,9 +88,9 @@ class UserDataScreenStep7 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: RadioListTile(
-                          title: const Align(
+                          title:  Align(
                               alignment: Alignment.centerLeft,
-                              child: TextComponent(text:'No')),
+                              child: TextComponent(text:S.of(context).no)),
                           value: 2,
                           onChanged: (int? value) {
                             if (value != null) {
@@ -111,7 +112,7 @@ class UserDataScreenStep7 extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ButtonComponentContinue(
-                    text: 'Continue',
+                    text: S.of(context).next,
                     onPress: () async {
                       Map<String, dynamic> additionalData = {
                         'worker': userDataModel.selectedPurpose1,

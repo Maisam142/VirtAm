@@ -22,6 +22,7 @@ class MealsComponent extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
             children: [
               Row(
                 children: [
@@ -40,7 +41,6 @@ class MealsComponent extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(width: screenSize.width * 0.3,),
               IconButton(onPressed: (){
                 onPressedIcon;
               },

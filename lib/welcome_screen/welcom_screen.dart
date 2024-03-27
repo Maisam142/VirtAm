@@ -4,6 +4,7 @@ import 'package:virtam/component/logo_component.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../component/button_component.dart';
+import '../generated/l10n.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -77,7 +78,7 @@ class WelcomeScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 25.0,left: 25.0),
                         child: ButtonComponent(
-                          text: 'Log In',
+                          text: S.of(context).login,
                           textStyle: TextStyle(color: Colors.white , fontSize: 15,),
                           onPress: (){
                             Beamer.of(context).beamToNamed('/loginScreen');
@@ -88,7 +89,7 @@ class WelcomeScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 25.0,left: 25.0),
                         child: ButtonComponent(
-                          text: 'Create Account',
+                          text: S.of(context).createAccount,
                           customColor: Colors.white60,
                           onPress: (){
                             Beamer.of(context).beamToNamed('/registerScreen');

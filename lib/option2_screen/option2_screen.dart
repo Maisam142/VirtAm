@@ -10,6 +10,7 @@ import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10
 import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 import '../../component/button_component.dart';
 import '../../component/option_top_component.dart';
+import '../generated/l10n.dart';
 import 'option2_view_model.dart';
 class Option2Screen extends StatelessWidget {
   const Option2Screen({super.key});
@@ -28,7 +29,7 @@ class Option2Screen extends StatelessWidget {
           child: Column(
             children: [
                OptionTopComponent(
-                text: 'Complete Login',
+                text: S.of(context).completeLogin,
                 onPressed: () {
                   Beamer.of(context).beamBack();
                 },
@@ -51,7 +52,7 @@ class Option2Screen extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: TextComponent(
-                                  text: 'Name of the nutrition consultant \nyou follow up with?',
+                                  text: S.of(context).nutritionName,
                                   textStyle:
                                   Theme.of(context).textTheme.labelMedium,
                                 ),
@@ -71,7 +72,7 @@ class Option2Screen extends StatelessWidget {
                     Container(
                         color: Colors.white,
                         child:  FormComponent(
-                          hintText: 'nutrition consultant name',
+                          hintText: S.of(context).consultantName,
                           controller: userDataModel.companyNameController,
                         ),),
 
@@ -80,7 +81,7 @@ class Option2Screen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ButtonComponentContinue(
-                          text: 'Continue',
+                          text: S.of(context).next,
                           onPress: () async {
                             Map<String, dynamic> additionalData = {
                               'Company name ' : userDataModel.companyNameController.text,

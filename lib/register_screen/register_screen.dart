@@ -11,6 +11,7 @@ import 'package:virtam/register_screen/register_screen_view_model.dart';
 import '../component/button_component.dart';
 import '../component/form_component.dart';
 import '../component/popup_component.dart';
+import '../generated/l10n.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -32,10 +33,10 @@ class RegisterScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                const DesignComponent(
-                  text: 'Create your VirtAm id',
+                DesignComponent(
+                  text: S.of(context).createYourVirtAm,
                   smallText:
-                      'You will get 90 days free trial on creating new account.\n Make sure you use correct information',
+                      S.of(context).createYourVirtAmSmallText,
                   textStyle: TextStyle(color: Colors.white, fontSize: 30,fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -44,7 +45,8 @@ class RegisterScreen extends StatelessWidget {
                     children: [
                       FormComponent(
                         controller: registerViewModel.nameController,
-                        hintText: 'Full Name',
+                        hintText: S.of(context).fullName,
+
                         errorText: registerViewModel.isNameValid
                             ? null
                             : 'Please enter your Full Name ',
@@ -54,7 +56,8 @@ class RegisterScreen extends StatelessWidget {
                         onChanged: (val) {
                         },
                         controller: registerViewModel.emailController,
-                        hintText: 'Email Address',
+                        hintText: S.of(context).email,
+
                         textInputType: TextInputType.emailAddress,
                         errorText: registerViewModel.isEmailValid
                             ? null
@@ -82,7 +85,8 @@ class RegisterScreen extends StatelessWidget {
                         initialValue:
                             PhoneNumber(isoCode: registerViewModel.selectedCountry),
                         textFieldController: TextEditingController(),
-                        hintText: 'Phone Number',
+                        hintText: S.of(context).phoneNumber,
+
                         errorMessage: registerViewModel.isValidPhoneNumber
                             ? null
                             : 'Phone number must have at least 8 digits',
@@ -98,7 +102,7 @@ class RegisterScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  registerViewModel.selectedOption == 0 ? '  The purpose of creating the account    ' :
+                                  registerViewModel.selectedOption == 0 ? S.of(context).purpose   :
                                  ' ${registerViewModel.selectedPurpose}',
                                   style:  const TextStyle(color: Colors.black,fontSize: 14,),
                                 ),
@@ -131,14 +135,14 @@ class RegisterScreen extends StatelessWidget {
                                   width: 205,
                                   child: Column(
                                     children: [
-                                      const Text('password should contain :',style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),),
+                                      Text(S.of(context).shouldContain,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             top: 5, left: 5, right: 5),
                                         child: Row(
                                           children: [
                                             Text(
-                                              'one letter at least',
+                                              S.of(context).condition1,
                                               style: TextStyle(
                                                 fontSize: 12,
                                                 color: registerViewModel
@@ -168,7 +172,7 @@ class RegisterScreen extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Text(
-                                              'one Capital letter at least',
+                                              S.of(context).condition2,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   color: registerViewModel
@@ -194,7 +198,7 @@ class RegisterScreen extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Text(
-                                              'one number at least',
+                                              S.of(context).condition3,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   color: registerViewModel
@@ -220,7 +224,7 @@ class RegisterScreen extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Text(
-                                              'at least 8 letters',
+                                              S.of(context).condition4,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   color: registerViewModel
@@ -246,7 +250,7 @@ class RegisterScreen extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Text(
-                                              'at least one special character',
+                                              S.of(context).condition5,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   color: registerViewModel
@@ -273,7 +277,7 @@ class RegisterScreen extends StatelessWidget {
                             FormComponent(
                               //prefixIcon: const Icon(Icons.password),
                               controller: registerViewModel.passwordController,
-                              hintText: 'Password',
+                              hintText: S.of(context).password,
                               obscureText: registerViewModel.isObscure,
                               suffixIcon: IconButton(
                                   onPressed: () {
@@ -302,7 +306,7 @@ class RegisterScreen extends StatelessWidget {
                         textInputType: TextInputType.text,
                         //prefixIcon: const Icon(Icons.password),
                         controller: registerViewModel.rePasswordController,
-                        hintText: 'Re-write Password',
+                        hintText: S.of(context).rePassword,
                         obscureText: registerViewModel.isObscureRewrite,
                         suffixIcon: IconButton(
                             onPressed: () {
@@ -318,7 +322,7 @@ class RegisterScreen extends StatelessWidget {
                             : " Not Match",
                       ),
                       CheckBoxComponent(
-                        text: 'I agree to the Terms and Privacy Policy',
+                        text: S.of(context).agree,
                         value: registerViewModel.isTermsChecked,
                         onChanged: (value) {
                           registerViewModel.updateTermsChecked(value!);
@@ -327,7 +331,7 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(height: screenSize.height * 0.01),
                       Consumer<RegisterViewModel>(
                         builder: (context, registerViewModel, _) => ButtonComponentContinue(
-                          text: 'Create Account',
+                          text: S.of(context).createAccount,
                           customColor: registerViewModel.isTermsChecked ? Colors.black : Colors.grey,
                           onPress: registerViewModel.isTermsChecked
                               ? () async {
@@ -368,10 +372,10 @@ class RegisterScreen extends StatelessWidget {
                                 if (e.code == 'email-already-in-use') {
                                   showDialog(
                                     context: context,
-                                    builder: (context) => PopupWidget(
-                                      titleText: 'Email Already Exists',
+                                    builder: (context) =>  PopupWidget(
+                                      titleText: S.of(context).existEmail,
                                       contentText:
-                                      'The email address you provided is already registered. Please use a different email address.',
+                                      S.of(context).errorExistEmail,
                                       body: [],
                                     ),
                                   );
@@ -388,7 +392,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       SizedBox(height: screenSize.height * 0.01),
                       TextComponent(
-                          text: 'By agreeing to the above terms, you are consenting that your personal information will be collected, stored, and processed ',
+                          text: S.of(context).noteReg,
                         textStyle: Theme.of(context).textTheme.displaySmall,
                       ),
 

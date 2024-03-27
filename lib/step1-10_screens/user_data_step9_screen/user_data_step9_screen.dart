@@ -8,6 +8,7 @@ import 'package:virtam/register_screen/register_screen_view_model.dart';
 import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 import '../../component/button_component.dart';
 import '../../component/option_top_component.dart';
+import '../../generated/l10n.dart';
 class UserDataScreenStep9 extends StatelessWidget {
   const UserDataScreenStep9({super.key});
 
@@ -30,7 +31,7 @@ class UserDataScreenStep9 extends StatelessWidget {
             child: Column(
               children: [
                 OptionTopComponent(
-                  text: 'Step 9/10',
+                  text: S.of(context).step9,
                   onPressed: () {
                     Beamer.of(context).beamBack();
                   },
@@ -53,7 +54,7 @@ class UserDataScreenStep9 extends StatelessWidget {
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: TextComponent(
-                                    text: 'When do you wake up every day?',
+                                    text: S.of(context).wakeUp,
                                     textStyle:
                                     Theme.of(context).textTheme.labelMedium,
                                   ),
@@ -96,7 +97,7 @@ class UserDataScreenStep9 extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: ButtonComponentContinue(
-                            text: 'Continue',
+                            text: S.of(context).next,
                             onPress: () async {
                               Map<String, dynamic> additionalData = {
                                 'wakeup time': '${userDataModel.selectedDate.hour}:${userDataModel.selectedDate.minute}',

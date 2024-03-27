@@ -55,13 +55,16 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 dependency_overrides:
     intl: ^0.18.1
 
 
 
 
+
 flutter:
+
   fonts:
     - family: Almarai
       fonts:
@@ -73,3 +76,6 @@ flutter:
   assets:
     - images/
     - images/splashScreenImages/
+
+flutter_intl:
+  enabled: true

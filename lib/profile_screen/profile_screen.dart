@@ -8,6 +8,7 @@ import 'package:virtam/component/text_component.dart';
 import 'package:virtam/profile_screen/profile_view_model.dart';
 import '../component/design_component.dart';
 import '../component/form_component.dart';
+import '../generated/l10n.dart';
 import '../helper/profile_class.dart';
 import '../register_screen/register_screen_view_model.dart';
 
@@ -54,6 +55,7 @@ class ProfileScreenContent extends StatelessWidget {
                 final originalName = data?['name'];
                 final originalEmail = data?['email'];
                 final originalNumber = data?['number'];
+                final imageUrl = data?['imageLink'];
 
                 return SingleChildScrollView(
                   child: Column(
@@ -69,10 +71,9 @@ class ProfileScreenContent extends StatelessWidget {
                               child: CircleAvatar(
                                 radius: 70,
                                 backgroundColor: Colors.white,
-                                child: profileProvider.selectedImage != null
+                                child: imageUrl != null
                                     ? CircleAvatar(
-                                  backgroundImage: MemoryImage(
-                                      profileProvider.selectedImage!),
+                                  backgroundImage: NetworkImage(imageUrl),
                                   radius: 68,
                                 )
                                     : const CircleAvatar(
@@ -87,13 +88,13 @@ class ProfileScreenContent extends StatelessWidget {
                         ),
                       ),
                       MaterialButton(
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextComponent(
-                              text: 'Change Picture',
+                              text: S.of(context).changePic,
                             ),
-                            ImageIcon(AssetImage('images/edit.png')),
+                            const ImageIcon(AssetImage('images/edit.png')),
                           ],
                         ),
                         onPressed: () {
@@ -104,14 +105,14 @@ class ProfileScreenContent extends StatelessWidget {
                         height: screenSize.height * 0.02,
                       ),
                       FormComponent(
-                        hintText: 'Full Name:   ${data?['name']}',
+                        hintText: S.of(context).fullName +   '  $originalName',
                         controller: registerViewModel.nameController,
                       ),
                       SizedBox(
                         height: screenSize.height * 0.02,
                       ),
                       FormComponent(
-                        hintText: 'Email Address:   ${data?['email']}',
+                        hintText: S.of(context).email  +  '  $originalEmail',
                         controller: registerViewModel.emailController,
                         // Disable email field
                         enabled: false,
@@ -133,13 +134,13 @@ class ProfileScreenContent extends StatelessWidget {
                               isoCode:
                               registerViewModel.selectedCountry),
                           textFieldController: TextEditingController(),
-                          hintText: '${data?['number']}',
+                          hintText: '  $originalNumber',
                           // Disable phone number field
                           isEnabled: false,
                         ),
                       ),
                       FormComponent(
-                        hintText: 'Password:    . . . . . . . . . ',
+                        hintText: S.of(context).password  + '. . . . . . . . . ',
                         obscureText: registerViewModel.isObscure,
                         controller: registerViewModel.passwordController,
                       ),
@@ -149,7 +150,7 @@ class ProfileScreenContent extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ButtonComponentContinue(
-                          text: 'Update',
+                          text: S.of(context).update,
                           onPress: () async {
                             String imageUrl = '';
                             if (profileProvider.selectedImage != null) {
@@ -186,9 +187,9 @@ class ProfileScreenContent extends StatelessWidget {
                                 .update(updatedData);
                             print(profileProvider.selectedImage);
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
+                              SnackBar(
                                   content:
-                                  Text('Profile updated successfully')),
+                                  Text(S.of(context).updated)),
                             );
                           },
                         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../component/back_component.dart';
 import '../component/text_component.dart';
+import '../generated/l10n.dart';
 
 class DrinkWaterScreen extends StatelessWidget {
   const DrinkWaterScreen({super.key});
@@ -26,7 +27,7 @@ class DrinkWaterScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     BackComponent(
-                        text:'Drink Water',
+                        text: S.of(context).drinkWater,
                       onPressed: (){
                           Beamer.of(context).beamBack();
                       },
@@ -45,7 +46,7 @@ class DrinkWaterScreen extends StatelessWidget {
                 SizedBox(height: screenSize.height * 0.05,),
                 Column(
                   children: [
-                    Text('Remaining 603 ml',style: TextStyle(fontSize: 13,color: Colors.grey, fontWeight: FontWeight.bold),),
+                    Text(S.of(context).remaining200,style: TextStyle(fontSize: 13,color: Colors.grey, fontWeight: FontWeight.bold),),
                     TextLabelComponent(text: '1,290 ml',textStyle: TextStyle(color: Colors.black,fontSize: 40,fontWeight: FontWeight.bold),),
                     SizedBox(height: screenSize.height * 0.09,),
                     Stack(

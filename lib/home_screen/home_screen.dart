@@ -18,6 +18,7 @@ import 'package:virtam/home_screen/home_screen_view_model.dart';
 import 'package:virtam/notifications.dart';
 
 import '../component/viewall_component.dart';
+import '../generated/l10n.dart';
 import '../helper/calories_class.dart';
 import '../register_screen/register_screen_view_model.dart';
 
@@ -258,18 +259,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.location_on_rounded,
                   size: 15,
                 ),
                 TextComponent(
-                  text: 'Location Name',
+                  text: S.of(context).locationName,
                   textStyle: TextStyle(fontSize: 15),
                 ),
-                Icon(
+                const Icon(
                   Icons.expand_more_sharp,
                   size: 15,
                 ),
@@ -286,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircularComponent(
                   text1: DateFormat(' MMM d, y').format(DateTime.now(),),
                   text2: '$getSteps',
-                  text3: 'Steps Goal: 10000',
+                  text3: S.of(context).stepGoal,
                 )
               ),
             ),
@@ -295,17 +296,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: HomeComponent(
                     valueText: '$calories',
-                    text: ' Calories',
+                    text: S.of(context).calories,
                     icon: Icons.local_fire_department_outlined,
                   ),
                 ),
                 SizedBox(
                   width: screenSize.width * 0.01,
                 ),
-                const Expanded(
+                Expanded(
                   child: HomeComponent(
-                    valueText: 'date',
-                    text: ' Time',
+                    valueText: S.of(context).date,
+                    text: S.of(context).time,
                     icon: Icons.access_time_outlined,
                   ),
                 ),
@@ -315,56 +316,55 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: HomeComponent(
                     valueText: '$distance',
-                    text: ' Distance',
+                    text: S.of(context).distance,
                     icon: Icons.location_on,
                   ),
                 ),
               ],
             ),
             Column(
-              mainAxisSize: MainAxisSize.min, // Set mainAxisSize to min
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Container(
+                  child: SizedBox(
                     width: double.infinity,
-                    height: 140,
+                    height: 150,
                     child: Stack(
                       children: [
-                        const Image(image: AssetImage('images/fasting.png')),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: IconButton(
-                            onPressed: () {
-                              Beamer.of(context).beamToNamed('/fastScreen');
-
-                            },
-                            icon: const Icon(
+                        const Image(image: AssetImage('images/fasting.png'),fit: BoxFit.contain,),
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                IconButton(
+                                onPressed: () {
+                                  Beamer.of(context).beamToNamed('/fastScreen');
+                                  },
+                                  icon: const Icon(
                               Icons.navigate_next,
                               color: Colors.white,
                               size: 20,
                             ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'During a fast, water is the only\n drink allowed.',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18),
-                              ),
-                              Text(
-                                '00:32:10',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
+                                                    ),
+                                Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Text(
+                                    S.of(context).duringFast,
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 18),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Text(
+                              '00:32:10',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -379,11 +379,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextComponent(text: 'Weight History'),
+                            TextComponent(text: S.of(context).weightHistory),
                             IconButton(onPressed: (){
                               Beamer.of(context).beamToNamed('/weightHistoryScreen');
                             },
-                                icon: Icon(Icons.navigate_next))
+                                icon: const Icon(Icons.navigate_next))
                           ],
                         ),
                         SfCartesianChart(
@@ -417,15 +417,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 40,
                       ),
                       const TextLabelBigComponent(text: '1,290 ml'),
-                      const TextComponent(text: 'remaining 603 ml'),
+                      TextComponent(text: S.of(context).remainingMl),
                       SizedBox(
                         height: screenSize.height * 0.04,
                       ),
-                      Container(
+                      SizedBox(
                           width: 100,
                           height: 25,
                           child: ButtonComponentContinue(
-                            text: 'Add',
+                            text: S.of(context).add,
                             onPress: (){
                               Beamer.of(context).beamToNamed('/drinkWaterScreen');
                             },
@@ -441,7 +441,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const TextComponent(text: '  Exercise'),
+                    TextComponent(text: S.of(context).exercise ),
                     ViewAllComponent(
                       onPressed: (){
                         Beamer.of(context).beamToNamed('/exercisesScreen');
@@ -483,12 +483,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Container(
+                                child: SizedBox(
                                     height: 30,
                                     width: 110,
-                                    child: const ButtonComponentContinue(
-                                      text: 'Play Now',
-                                      textStyle: TextStyle(
+                                    child: ButtonComponentContinue(
+                                      text: S.of(context).play,
+                                      textStyle: const TextStyle(
                                           fontSize: 12, color: Colors.white),
                                     )),
                               ),
@@ -531,12 +531,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
+                                padding: EdgeInsets.all(8.0),
+                                child: SizedBox(
                                     height: 30,
                                     width: 110,
-                                    child: const ButtonComponentContinue(
-                                      text: 'Play Now',
+                                    child: ButtonComponentContinue(
+                                      text: S.of(context).play,
                                       textStyle: TextStyle(
                                           fontSize: 12, color: Colors.white),
                                     )),

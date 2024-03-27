@@ -8,6 +8,7 @@ import 'package:virtam/step1-10_screens/user_data_step2_screen/user_data_step2_v
 
 import '../../component/button_component.dart';
 import '../../component/option_top_component.dart';
+import '../../generated/l10n.dart';
 
 class UserDataScreenStep2 extends StatelessWidget {
   const UserDataScreenStep2({super.key});
@@ -30,7 +31,7 @@ class UserDataScreenStep2 extends StatelessWidget {
           child: Column(
             children: [
               OptionTopComponent(
-                text: 'Step 2/10',
+                text: S.of(context).step2,
                 onPressed: () {
                   Beamer.of(context).beamBack();
                 },
@@ -50,7 +51,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Align(
                                   alignment: Alignment.topLeft,
-                                  child: TextComponent(text: 'Is he allergic to : ',
+                                  child: TextComponent(text: S.of(context).hasAllergic,
                                   textStyle: Theme.of(context).textTheme.labelMedium,),),
                             ),
                             RadioListTile(
@@ -61,7 +62,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                                     height: 40,
                                     child: Image(image: AssetImage('images/eggs.png'),),),
                                   SizedBox(width: screenSize.width * 0.02,),
-                                  Text('Eggs'),
+                                  Text(S.of(context).eggs),
                                 ],
                               ),
                               value: 1,
@@ -91,7 +92,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                                 height: 40,
                                 child: Image(image: AssetImage('images/milk.png'),),),
                               SizedBox(width: screenSize.width * 0.02,),
-                              const Text('Milk'),
+                              Text(S.of(context).milk),
                             ],
                           ),
                           value: 2,
@@ -118,14 +119,14 @@ class UserDataScreenStep2 extends StatelessWidget {
                                 height: 40,
                                 child: Image(image: AssetImage('images/fish.png'),),),
                               SizedBox(width: screenSize.width * 0.02,),
-                              const Text('Fish'),
+                              Text(S.of(context).fish),
                             ],
                           ),
                           value: 3,
                           onChanged: (int? value) {
                             if (value != null) {
                               userDataModel.updateSelectedOption(value);
-                              userDataModel.updateSelectedPurpose('Eggs');
+                              userDataModel.updateSelectedPurpose('Fish');
                             }
                           },
                           activeColor: Theme.of(context).primaryColor,
@@ -141,7 +142,7 @@ class UserDataScreenStep2 extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ButtonComponentContinue(
-                    text: 'Next',
+                    text: S.of(context).next,
                     onPress: () async {
                       Map<String, dynamic> additionalData = {
                         'Allergic': userDataModel.selectedPurpose,

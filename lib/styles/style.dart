@@ -171,10 +171,8 @@ class ThemeApp {
     style: ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
-      ),
+      ), backgroundColor: Color(0xffBE543D),
       padding: EdgeInsets.zero,
-      primary: Color(0xffBE543D),
-      backgroundColor:Color(0xffBE543D),
     ),
   );
   static const BottomNavigationBarThemeData bottomNavigationBarTheme = BottomNavigationBarThemeData(

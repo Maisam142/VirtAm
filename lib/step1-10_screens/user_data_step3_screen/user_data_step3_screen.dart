@@ -8,6 +8,7 @@ import 'package:virtam/step1-10_screens/user_data_step3_screen/user_data_step3_v
 
 import '../../component/button_component.dart';
 import '../../component/option_top_component.dart';
+import '../../generated/l10n.dart';
 
 class UserDataScreenStep3 extends StatelessWidget {
   const UserDataScreenStep3({super.key});
@@ -31,7 +32,7 @@ class UserDataScreenStep3 extends StatelessWidget {
           child: Column(
             children: [
               OptionTopComponent(
-                text: 'Step 3/10',
+                text: S.of(context).step3,
                 onPressed: () {
                   Beamer.of(context).beamBack();
                 },
@@ -50,14 +51,13 @@ class UserDataScreenStep3 extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: TextComponent(text: 'When was the last time you had\n'
-                                  ' your thyroid checked?',
+                              child: TextComponent(text: S.of(context).thyroidCheckedTime,
                                 textStyle: Theme.of(context).textTheme.labelMedium,),),
                           ),
                           RadioListTile(
-                            title: const Align(
+                            title: Align(
                                 alignment: Alignment.centerLeft,
-                                child: TextComponent(text:'Less than 90 days')),
+                                child: TextComponent(text:S.of(context).lessThan90Days)),
                             value: 1,
                             onChanged: (int? value) {
                               if (value != null) {
@@ -80,9 +80,9 @@ class UserDataScreenStep3 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: RadioListTile(
-                          title: const Align(
+                          title: Align(
                               alignment: Alignment.centerLeft,
-                              child: TextComponent(text:'last 3 months')),
+                              child: TextComponent(text:S.of(context).last3Months)),
                           value: 2,
                           onChanged: (int? value) {
                             if (value != null) {
@@ -104,9 +104,9 @@ class UserDataScreenStep3 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: RadioListTile(
-                          title:const Align(
+                          title: Align(
                               alignment: Alignment.centerLeft,
-                              child: TextComponent(text:'last 6 months')),
+                              child: TextComponent(text:S.of(context).last6Months)),
                           value: 3,
                           onChanged: (int? value) {
                             if (value != null) {
@@ -128,9 +128,9 @@ class UserDataScreenStep3 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: RadioListTile(
-                          title:const Align(
+                          title: Align(
                               alignment: Alignment.centerLeft,
-                              child: TextComponent(text:'more than 6 months')),
+                              child: TextComponent(text:S.of(context).more6Months)),
                           value: 4,
                           onChanged: (int? value) {
                             if (value != null) {
@@ -163,13 +163,13 @@ class UserDataScreenStep3 extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: TextComponent(text: 'Does he have thyroid problems?',
+                              child: TextComponent(text: S.of(context).thyroidProblems,
                                 textStyle: Theme.of(context).textTheme.labelMedium,),),
                           ),
                           RadioListTile(
-                            title:const Align(
+                            title: Align(
                                 alignment: Alignment.centerLeft,
-                                child: TextComponent(text:'Yes')),
+                                child: TextComponent(text:S.of(context).yes)),
                             value: 1,
                             onChanged: (int? value) {
                               if (value != null) {
@@ -192,9 +192,9 @@ class UserDataScreenStep3 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: RadioListTile(
-                          title: const Align(
+                          title:  Align(
                               alignment: Alignment.centerLeft,
-                              child: TextComponent(text:'No')),
+                              child: TextComponent(text:S.of(context).no)),
                           value: 2,
                           onChanged: (int? value) {
                             if (value != null) {
@@ -216,9 +216,9 @@ class UserDataScreenStep3 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: RadioListTile(
-                          title:const Align(
+                          title: Align(
                               alignment: Alignment.centerLeft,
-                              child: TextComponent(text:'I Don\'t Know ')),
+                              child: TextComponent(text: S.of(context).dontKnow)),
                           value: 3,
                           onChanged: (int? value) {
                             if (value != null) {
@@ -239,7 +239,7 @@ class UserDataScreenStep3 extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ButtonComponentContinue(
-                    text: 'Next',
+                    text: S.of(context).next,
                     onPress: () async {
                       Map<String, dynamic> additionalData = {
                         'Thyroid Checked Time': userDataModel.selectedPurpose1,

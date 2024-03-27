@@ -6,6 +6,7 @@ import 'package:virtam/component/home_component.dart';
 import '../component/back_component.dart';
 import '../component/circular_component.dart';
 import '../component/text_component.dart';
+import '../generated/l10n.dart';
 
 class FastScreen extends StatelessWidget {
   const FastScreen({super.key});
@@ -27,29 +28,30 @@ class FastScreen extends StatelessWidget {
                 onPressed: (){
                   Beamer.of(context).beamBack();
                 }),
-                const SizedBox(
+                SizedBox(
                   height: 200,
                   width: 400,
                   child: SingleChildScrollView(
                       physics: NeverScrollableScrollPhysics(),
                       child: CircularComponent(
-                        text1: '10 Hours',
-                        text3: 'remaining: 13:00 h',
+                        text1: S.of(context).hours,
+                        text3: S.of(context).remainingTime,
                       ),
                   ),
                 ),
-                const Row(
+                Row(
                   children: [
                     Expanded(
                       child: HomeComponent(
                         valueText: '5:00',
-                        text: 'Start Time',
+                        text: S.of(context).start,
                       ),
                     ),
+                    const SizedBox(width: 10,),
                     Expanded(
                       child: HomeComponent(
                         valueText: '7:00',
-                        text: 'End Time',
+                        text: S.of(context).end,
                       ),
                     ),
                   ],
@@ -58,9 +60,9 @@ class FastScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
                     children: [
-                      const Align(
+                      Align(
                           alignment: Alignment.centerLeft,
-                          child: Text('Instructions for when to fast', style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold))),
+                          child: Text(S.of(context).instructions, style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold))),
                       SizedBox(height: screenSize.height * 0.02,),
                       const Align(
                           alignment: Alignment.centerLeft,
@@ -80,13 +82,13 @@ class FastScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.05),
-                const Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: ButtonComponentContinue(text: 'End Fast'),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: ButtonComponentContinue(text: S.of(context).end),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: ButtonComponentContinue(text: 'Break Fast',customColor: Colors.grey.shade400,
+                  child: ButtonComponentContinue(text: S.of(context).breakFast ,customColor: Colors.grey.shade400,
                   onPress: (){
                     Beamer.of(context).beamToNamed('/breakFastScreen');
                   },),

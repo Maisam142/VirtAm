@@ -1,10 +1,12 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/component/design_component.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
 import '../component/button_component.dart';
 import '../component/text_component.dart';
+import '../generated/l10n.dart';
 
 class PurposeScreen extends StatelessWidget {
   const PurposeScreen({super.key});
@@ -20,35 +22,38 @@ class PurposeScreen extends StatelessWidget {
           child: Column(
             children: [
                DesignComponent2(
-                smallText: 'The purpose of creating the account? ',
+                smallText: S.of(context).purpose,
                 onPressed: (){
                   Beamer.of(context).beamBack();
                 },
-              ),
+                             ),
               Container(
                 width: double.infinity,
                 height: 300,
                 child: Column(
                   children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: RadioListTile(
-                        title: TextComponent(text:'Follow my personal data.'),
-                        value: 1,
-                        onChanged: (int? value) {
-                          if (value != null) {
-                            userDataModel.updateSelectedOption(value);
-                            userDataModel.updateSelectedPurpose('Follow my personal data.');
+                    RadioListTile(
+                      title: Align(
+                          alignment: Alignment.centerLeft,
 
-                          }
-                        },
-                        activeColor: Theme.of(context).primaryColor,
-                        groupValue: userDataModel.selectedOption,
-                        controlAffinity: ListTileControlAffinity.trailing,
-                      ),
+                          child: TextComponent(text:S.of(context).purpose1,)),
+                      value: 1,
+                      onChanged: (int? value) {
+                        if (value != null) {
+                          userDataModel.updateSelectedOption(value);
+                          userDataModel.updateSelectedPurpose('Follow my personal data.');
+
+                        }
+                      },
+                      activeColor: Theme.of(context).primaryColor,
+                      groupValue: userDataModel.selectedOption,
+                      controlAffinity: ListTileControlAffinity.trailing,
                     ),
                     RadioListTile(
-                      title: TextComponent(text:'Follow up with my nutrition counselor.'),
+                      title: Align(
+                        alignment: Alignment.centerLeft,
+
+                        child: TextComponent(text:S.of(context).purpose2,),),
                       value: 2,
                       onChanged: (int? value) {
                         if (value != null) {
@@ -63,7 +68,10 @@ class PurposeScreen extends StatelessWidget {
                     ),
 
                     RadioListTile(
-                      title: TextComponent(text:'Find a nutrition counselor in my area'),
+                      title: Align(
+                        alignment: Alignment.centerLeft,
+
+                        child: TextComponent(text:S.of(context).purpose3,),),
                       value: 3,
                       onChanged: (int? value) {
                         if (value != null) {
@@ -83,7 +91,7 @@ class PurposeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: ButtonComponentContinue(
-                  text: 'Done',
+                  text: S.of(context).done,
                   onPress: (){
                     Beamer.of(context).beamBack();
 

@@ -5,6 +5,7 @@ import 'package:virtam/component/logo_component.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../../component/button_component.dart';
+import '../generated/l10n.dart';
 
 class AboutVirtAmScreen extends StatelessWidget {
   const AboutVirtAmScreen({super.key});
@@ -23,7 +24,7 @@ class AboutVirtAmScreen extends StatelessWidget {
           child: Column(
             children: [
               BackComponent(
-                text: ' About VirtAm',
+                text: S.of(context).aboutVirAm,
                 onPressed: (){
                   Beamer.of(context).beamBack();
 

@@ -5,6 +5,8 @@ import 'package:virtam/component/form_component.dart';
 import 'package:virtam/component/text_component.dart';
 import 'package:virtam/component/viewall_component.dart';
 
+import '../generated/l10n.dart';
+
 class NutritionScreen extends StatelessWidget {
   const NutritionScreen({Key? key});
 
@@ -49,22 +51,25 @@ class NutritionScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextComponent(
-                  text: 'Nutrition and slimming centers',
-                  textStyle: Theme.of(context).textTheme.labelMedium,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextComponent(
+                    text: S.of(context).nutritionCenters,
+                    textStyle: Theme.of(context).textTheme.labelMedium,
+                  ),
                 ),
                 SizedBox(height: screenSize.height * 0.04),
-                const Row(
+                Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.location_on_rounded,
                       size: 15,
                     ),
                     TextComponent(
-                      text: ' Location Name',
+                      text: S.of(context).locationName,
                       textStyle: TextStyle(fontSize: 15),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.expand_more_sharp,
                       size: 15,
                     ),
@@ -72,15 +77,15 @@ class NutritionScreen extends StatelessWidget {
                 ),
                 SizedBox(height: screenSize.height * 0.04),
                 FormComponent(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: ' Search',
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: S.of(context).search,
                   suffixIcon: IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.filter_list_alt),
+                    icon: const Icon(Icons.filter_list_alt),
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 BannerCarousel(
                   height: screenSize.height * 0.3,
                   activeColor: Theme.of(context).primaryColor,
@@ -106,15 +111,15 @@ class NutritionScreen extends StatelessWidget {
                                     Container(
                                       width: 90,
                                       color: Colors.white70.withOpacity(0.2),
-                                      child: Row(
+                                      child: const Row(
                                         children: [
                                           Icon(Icons.local_fire_department, color: Colors.white, size: 15),
                                           TextComponent(text: '7:00 - 8:00', textStyle: TextStyle(color: Colors.white)),
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: 4),
-                                    TextComponent(text: 'Day 01-Fitness', textStyle: TextStyle(color: Colors.white, fontSize: 45)),
+                                    const SizedBox(height: 4),
+                                    const TextComponent(text: 'Day 01-Fitness', textStyle: TextStyle(color: Colors.white, fontSize: 45)),
                                   ],
                                 ),
                               ),
@@ -131,7 +136,7 @@ class NutritionScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TextLabelComponent(text: 'Popular Center',),
+                          TextLabelComponent(text: S.of(context).popularCenter,),
                           ViewAllComponent(
                             onPressed: () {},
                           ),
@@ -201,7 +206,7 @@ class NutritionScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const TextLabelComponent(text: 'All Center',),
+                          TextLabelComponent(text: S.of(context).allCenter,),
                           ViewAllComponent(
                             onPressed: () {},
                           ),

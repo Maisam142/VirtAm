@@ -7,6 +7,7 @@ import 'package:virtam/drink_water_screen/drink_water_view_model.dart';
 import 'package:virtam/register_screen/register_screen_view_model.dart';
 import '../component/button_component.dart';
 import '../component/text_component.dart';
+import '../generated/l10n.dart';
 
 class AddTargetScreen extends StatelessWidget {
   const AddTargetScreen({super.key});
@@ -28,7 +29,7 @@ class AddTargetScreen extends StatelessWidget {
             children: [
               DesignComponent2(
                 text: '8993 ml ',
-                smallText: 'custom water goal' ,
+                smallText: S.of(context).customGoal ,
                 onPressed: (){
                   Beamer.of(context).beamBack();
                 },
@@ -37,13 +38,13 @@ class AddTargetScreen extends StatelessWidget {
                 child: FormComponent(
                   controller: viewModel.targetController,
                   textInputType: TextInputType.number,
-                  hintText: 'The Target ',
+                  hintText: S.of(context).target,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: ButtonComponentContinue(
-                  text: 'Done',
+                  text: S.of(context).done,
                   onPress: (){
                     Beamer.of(context).beamBack();
 

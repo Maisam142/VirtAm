@@ -7,6 +7,7 @@ import 'package:virtam/component/text_component.dart';
 import '../component/circular_component.dart';
 import '../component/home_component.dart';
 import '../component/logo_component.dart';
+import '../generated/l10n.dart';
 
 class CaloriesScreen extends StatelessWidget {
   const CaloriesScreen({super.key});
@@ -28,9 +29,9 @@ class CaloriesScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: TextComponent(text: 'Calorie calculator'),
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: TextComponent(text: S.of(context).CalorieCalc),
                     ),
                     IconButton(
                       onPressed: () {
@@ -48,36 +49,36 @@ class CaloriesScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                       physics: NeverScrollableScrollPhysics(),
                       child: CircularComponent(
-                        text1: 'Remaining',
-                        text2: 'Calories',
-                        text3: 'Remaining: 2000',
+                        text1: S.of(context).remaining,
+                        text2: S.of(context).calories,
+                        text3: S.of(context).remaining200,
                       )
                   ),
                 ),
                 Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: HomeComponent(
                         valueText: '21/4656.0',
-                        text: 'Proteina',
+                        text: S.of(context).proteina,
                       ),
                     ),
                     SizedBox(
                       width: screenSize.width * 0.01,
                     ),
-                    const Expanded(
+                    Expanded(
                       child: HomeComponent(
                         valueText: '18/435.0',
-                        text: 'carbohydrates',
+                        text: S.of(context).carbohydrates,
                       ),
                     ),
                     SizedBox(
                       width: screenSize.width * 0.01,
                     ),
-                    const Expanded(
+                    Expanded(
                       child: HomeComponent(
                         valueText: '18/59.0',
-                        text: 'Fats',
+                        text: S.of(context).fast,
                       ),
                     ),
                   ],
@@ -87,30 +88,30 @@ class CaloriesScreen extends StatelessWidget {
                   children: [
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/breakfast.png'),
-                      mealTypeText: ' Add Breakfast',
-                      text: 'recommended .767-1024',
+                      mealTypeText: S.of(context).addBreakFast,
+                      text: S.of(context).recommended,
                       onPressedIcon: (){},
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/lunch.png'),
-                      mealTypeText: 'Add Lunch',
-                      text: 'recommended .767-1024',
+                      mealTypeText: S.of(context).addLunch,
+                      text: S.of(context).recommended,
                       onPressedIcon: (){},
 
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/dinner.png'),
-                      mealTypeText: 'Add Dinner',
-                      text: 'recommended .767-1024',
+                      mealTypeText: S.of(context).addDinner,
+                      text: S.of(context).recommended,
                       onPressedIcon: (){},
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/snack.png'),
-                      mealTypeText: ' Add Snack',
-                      text: 'recommended .767-1024',
+                      mealTypeText: S.of(context).addSnack,
+                      text: S.of(context).recommended,
                       onPressedIcon: (){},
                     ),
                     SizedBox(height: screenSize.height * 0.02,),

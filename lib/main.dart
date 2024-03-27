@@ -41,7 +41,9 @@ import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_v
 import 'package:virtam/styles/style.dart';
 import 'package:virtam/weight_history_screen/weight_history_screen.dart';
 import 'package:virtam/welcome_screen/welcom_screen.dart';
+
 import 'generated/l10n.dart';
+
 import 'main_view_model.dart';
 import 'setting_menu_screen/about_virtam_screen.dart';
 import 'add_location_screen/add_location_screen.dart';
@@ -154,6 +156,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+
       routeInformationParser: BeamerParser(),
       debugShowCheckedModeBanner: false,
     );}
@@ -161,7 +164,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const HomeScreen(),
+        '/': (context, state, data) =>  const HomeNavigationBar(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),

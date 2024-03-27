@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:virtam/component/text_component.dart';
 
+import '../generated/l10n.dart';
+
 class WeightHistoryScreen extends StatelessWidget {
   const WeightHistoryScreen({super.key});
 
@@ -35,8 +37,8 @@ class WeightHistoryScreen extends StatelessWidget {
                       onPressed: (){
                         Beamer.of(context).beamBack();
                       },
-                      icon: Icon(Icons.arrow_back_ios_new_rounded),),
-                  TextComponent(text: 'Name - wight history'),
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded),),
+                  TextComponent(text: S.of(context).wightHistory),
                 ],
               ),
             ),
@@ -54,15 +56,15 @@ class WeightHistoryScreen extends StatelessWidget {
                   ]),
             ),
             SizedBox(height: screenSize.height * 0.05,),
-            const Column(
+            Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    TextComponent(text: 'Time',textStyle: TextStyle(color: Colors.grey ,fontSize: 12),),
-                    TextComponent(text: 'Weight(kg)',textStyle: TextStyle(color: Colors.grey ,fontSize: 12),),
-                    TextComponent(text: 'Fat',textStyle: TextStyle(color: Colors.grey ,fontSize: 12),),
-                    SizedBox(width: 15,)
+                    TextComponent(text: S.of(context).time,textStyle: const TextStyle(color: Colors.grey ,fontSize: 12),),
+                    TextComponent(text: S.of(context).wightKg,textStyle: const TextStyle(color: Colors.grey ,fontSize: 12),),
+                    TextComponent(text: S.of(context).fat,textStyle: const TextStyle(color: Colors.grey ,fontSize: 12),),
+                    const SizedBox(width: 15,)
                   ],
                 )
               ],

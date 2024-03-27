@@ -13,6 +13,7 @@ import 'package:virtam/step1-10_screens/user_data_step8_screen/user_data_step8_v
 import '../../component/button_component.dart';
 import '../../component/form_component.dart';
 import '../../component/option_top_component.dart';
+import '../../generated/l10n.dart';
 
 class UserDataScreenStep8 extends StatelessWidget {
   const UserDataScreenStep8({super.key});
@@ -36,7 +37,7 @@ class UserDataScreenStep8 extends StatelessWidget {
           child: Column(
             children: [
               OptionTopComponent(
-                text: 'Step 8/10',
+                text: S.of(context).step8,
                 onPressed: () {
                   Beamer.of(context).beamBack();
                 },
@@ -54,7 +55,7 @@ class UserDataScreenStep8 extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: TextComponent(text: 'Are you an employee/worker?',
+                              child: TextComponent(text: S.of(context).employeeWorker,
                                 textStyle: Theme.of(context).textTheme.labelMedium,),),
                           ),
 
@@ -64,9 +65,9 @@ class UserDataScreenStep8 extends StatelessWidget {
                             child: Image(image: AssetImage('images/worker.png') ,),
                           ),
                           RadioListTile(
-                            title:const Align(
+                            title: Align(
                                 alignment: Alignment.centerLeft,
-                                child: TextComponent(text:'Yes')),
+                                child: TextComponent(text:S.of(context).yes)),
                             value: 1,
                             onChanged: (int? value) {
                               if (value != null) {
@@ -125,7 +126,7 @@ class UserDataScreenStep8 extends StatelessWidget {
                             padding: const EdgeInsets.all(10.0),
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: TextComponent(text: 'Nature of work?',
+                              child: TextComponent(text: S.of(context).work,
                                 textStyle: Theme.of(context).textTheme.labelMedium,),),
                           ),
                           Padding(
@@ -133,12 +134,12 @@ class UserDataScreenStep8 extends StatelessWidget {
                             child: Column(
                               children: [
                                 FormComponent(
-                                  hintText: 'Office',
+                                  hintText: S.of(context).office,
                                   controller: userDataModel.officeController,
                                 ),
                                 SizedBox(height: screenSize.height * 0.003,),
                                 FormComponent(
-                                  hintText: 'Field',
+                                  hintText: S.of(context).field,
                                   controller: userDataModel.fieldController,
                                 ),
                               ],
@@ -179,7 +180,7 @@ class UserDataScreenStep8 extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ButtonComponentContinue(
-                    text: 'Continue',
+                    text: S.of(context).next,
                     onPress: () async {
                       Map<String, dynamic> additionalData = {
                         'Office': userDataModel.officeController.text,

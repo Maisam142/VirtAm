@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../generated/l10n.dart';
+
 class ViewAllComponent extends StatelessWidget {
   final Function()? onPressed;
   const ViewAllComponent({super.key, this.onPressed});
@@ -11,7 +13,7 @@ class ViewAllComponent extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'View All',
+            S.of(context).viewAll,
             style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontSize: 15),

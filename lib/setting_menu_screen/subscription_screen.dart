@@ -6,6 +6,7 @@ import 'package:virtam/component/text_component.dart';
 import 'package:virtam/setting_menu_screen/setting_menu_view_model.dart';
 
 import '../component/back_component.dart';
+import '../generated/l10n.dart';
 
 class SubscriptionScreen extends StatelessWidget {
   const SubscriptionScreen({super.key});
@@ -33,9 +34,9 @@ class SubscriptionScreen extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 40,),
-                const Align(
+                Align(
                     alignment: Alignment.centerLeft,
-                    child: TextLabelBigComponent(text: '  Subscription'),),
+                    child: TextLabelBigComponent(text: S.of(context).subscription),),
                 const SizedBox(height: 20,),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
@@ -72,11 +73,11 @@ class SubscriptionScreen extends StatelessWidget {
                             children: [
                               Align(
                                 alignment: Alignment.centerLeft ,
-                                child: TextComponent(text: '5 JOD / Month ',
+                                child: TextComponent(text: S.of(context).month5,
                                   textStyle: TextStyle(color: Theme.of(context).primaryColor,
                                       fontSize: 25,fontWeight: FontWeight.bold),),
                               ),
-                              TextComponent(text: 'virtAm is free for the first 90 days for every person',
+                              TextComponent(text: S.of(context).free,
                               textStyle: TextStyle(color: Colors.grey,fontSize: 12),),
                             ],
                           )
@@ -107,12 +108,12 @@ class SubscriptionScreen extends StatelessWidget {
                               children: [
                                 Align(
                                   alignment: Alignment.centerLeft ,
-                                  child: TextComponent(text: '50 JOD /Year ',
+                                  child: TextComponent(text: S.of(context).year5,
                                     textStyle: TextStyle(color: Theme.of(context).primaryColor,
                                         fontSize: 25,fontWeight: FontWeight.bold),),
                                 ),
-                                const TextComponent(text: 'virtAm is free for the first 90 days for every person',
-                                  textStyle: TextStyle(color: Colors.grey,fontSize: 12),),
+                                TextComponent(text: S.of(context).free,
+                                  textStyle: const TextStyle(color: Colors.grey,fontSize: 12),),
                               ],
                             )
                         )],
@@ -121,7 +122,7 @@ class SubscriptionScreen extends StatelessWidget {
                     onChanged: (int? value) {
                       if (value != null) {
                         userDataModel.updateSelectedOption(value);
-                        userDataModel.updateSelectedPurpose('50 JOD / Yonth');
+                        userDataModel.updateSelectedPurpose('50 JOD / Year');
                       }
                     },
                     activeColor: Theme.of(context).primaryColor,
@@ -133,7 +134,7 @@ class SubscriptionScreen extends StatelessWidget {
                 SizedBox(height: screenSize.height * 0.06,),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: ButtonComponentContinue(text: 'Subscription'),
+                  child: ButtonComponentContinue(text: S.of(context).subscription),
                 )
               ],
             ),

@@ -4,6 +4,7 @@ import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../component/feild_component.dart';
+import '../generated/l10n.dart';
 
 class DrinkSettingScreen extends StatelessWidget {
   const DrinkSettingScreen({super.key});
@@ -20,7 +21,7 @@ class DrinkSettingScreen extends StatelessWidget {
         child: Column(
           children: [
             BackComponent(
-              text: 'Settings',
+              text: S.of(context).settings,
               onPressed: (){
                 Beamer.of(context).beamBack();
               },
@@ -30,16 +31,15 @@ class DrinkSettingScreen extends StatelessWidget {
               onPressed: (){
 
               },
-              text: '  Water Drinking Goal',
+              text: S.of(context).waterGoal,
             ),
-            SizedBox(height: 10,),
 
             SizedBox(height: 10,),
             FieldComponent(
               onPressed: (){
 
               },
-              text: '   Habit Settings',
+              text: S.of(context).habitSetting,
             ),
 
           ],

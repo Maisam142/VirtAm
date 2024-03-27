@@ -3,14 +3,190 @@
   "english" : "English",
   "arabic" : "Arabic",
   "selectLanguage" : "Select Language",
-  "start": "Let's Start",
-  "dontHaveAnAccount" : "Don't have an account? ",
-  "createNewOne" : "Create New One!",
+
+
+  "createYourVirtAm": "Create your VirtAm id",
+  "createYourVirtAmSmallText": "You will get 90 days free trial on creating new account.\n Make sure you use correct information",
   "login" : "Login",
+  "signIn" : "Sign In",
+
+
+
+
+  "fullName": "Full Name",
+  "email": "Email Address",
+  "existEmail": "Email Already Exists",
+  "errorExistEmail": "The email address you provided is already registered. Please use a different email address.",
+  "phoneNumber": "Phone Number",
+  "password": "Password",
+  "rePassword": "Re-write Password",
+  "shouldContain": "password should contain :",
+  "condition1": "one letter at least",
+  "condition2": "one letter at least",
+  "condition3": "one letter at least",
+  "condition4": "one letter at least",
+  "condition5": "one letter at least",
+  "purpose": "The purpose of creating the account?",
+  "purpose1": "Follow my personal data",
+  "purpose2": "Follow up with my nutrition counselor",
+  "purpose3": "Find a nutrition counselor in my area",
+  "agree": "I agree to  the Terms and Privacy Policy",
+  "noteReg": "By agreeing to the above terms, you are consenting that your personal information will be collected, stored, and processed ",
+  "signWith": "Sign in with your VirtAm ID",
+  "enterValidEmail": "Please enter a valid email ",
+  "enterValidPass": "Wrong Password ",
+  "forgetPass": "Forgot the password? ",
+  "or": "OR",
+  "wrongEmailPass": "Wrong Email Or Password",
+  "rewriteCorrect": "Please rewrite it to login Successfully ",
+  "signedAlready": "Your VirtAm account is now VirtAm ID. If you’ve signed\n into the app before, use the same credentials here.\n otherwise",
+  "createAccount": "Create Account",
+
+
+
+
+  "step1": "Step 1/10",
+  "whatIsYour": "What is your",
+  "age": "age ?",
+  "years": "Years",
+  "weight": "Weight ?",
+  "kg": "Kg",
+  "height": "Height ?",
+  "cm": "Cm",
+  "step2": "Step 2/10",
+  "hasAllergic": "Is he allergic to : ",
+  "eggs": "Eggs",
+  "milk": "Milk",
+  "fish": "Fish",
+  "step3": "Step 3/10",
+  "thyroidCheckedTime": "When was the last time you had\n your thyroid checked?",
+  "lessThan90Days": "Less than 90 days",
+  "last3Months": "last 3 months",
+  "last6Months": "last 6 months",
+  "more6Months": "more than 6 months",
+  "thyroidProblems": "Does he have thyroid problems?",
+  "yes": "Yes",
+  "no": "No",
+  "dontKnow": "I Don't Know",
+  "step4": "Step 4/10",
+  "ironCheck": "When did you last check the iron?",
+  "ironDeficiency": "Does he/she have an iron deficiency?",
+  "step5": "Step 5/10",
+  "vitaminDChecked": "When was the last time you checked \n your vitamin D?",
+  "vitaminDDeficiency": "Does he/she have a vitamin D deficiency?",
+  "step6": "Step 6/10",
+  "vitaminB12Checked": "When was the last time you \n checked your vitamin B12?",
+  "vitaminB12Deficiency": "Does he have a vitamin B12 deficiency?",
+  "step7": "Step 7/10",
+  "employeeWorker": "Are you an employee/worker?",
+  "step8": "Step 8/10",
+  "work": "Nature of work?",
+  "office": "Office",
+  "field": "Field",
+  "step9": "Step 9/10",
+  "wakeUp": "When do you wake up every day?",
+  "step10": "Step 10/10",
+  "bedtime": "When is your daily bedtime?",
+  "next": "Next",
+  "completeLogin": "Complete Login",
+  "nutritionName": "Name of the nutrition consultant \n you follow up with?",
+  "consultantName": "nutrition consultant name",
+
+
+
+
+  "locationName" : "  Location Name  ",
+  "stepGoal": "Steps Goal: 10000",
+  "calories": " Calories",
+  "date": " date",
+  "time": "  Time",
+  "distance": "  Distance",
+  "duringFast": "During a fast, water is the only\n drink allowed.",
+  "weightHistory": "Weight History",
+  "remainingMl": "remaining 603 ml",
+  "add": "Add",
+  "exercise": "  Exercise",
+  "play": "Play Now",
+  "viewAll": "View All",
+
+
+
+
+  "CalorieCalc": "Calorie calculator",
+  "remaining": "Remaining",
+  "remaining200": "Remaining: 2000",
+  "proteina": "Proteina",
+  "carbohydrates": "Carbohydrates",
+  "fast": "Fats",
+  "addBreakFast": " Add Breakfast",
+  "recommended": " recommended .767-1024",
+  "addLunch": " Add Lunch",
+  "addDinner": " Add Dinner",
+  "addSnack": " Add Snack",
+
+
+
+
+  "nutritionCenters": "Nutrition and slimming centers",
+  "search": " Search",
+  "popularCenter": " Popular Center",
+  "allCenter": " All Center",
+
+
+
+  "changePic": "Change Picture",
+  "update": " Update",
+  "updated": "Profile updated successfully",
+
+
+
+
+  "drinkWater": "Drink Water",
+  "customGoal": "custom water goal",
+  "target": "The Target ",
+  "settings": "Settings",
+  "waterGoal": "  Water Drinking Goal",
+  "habitSetting": "   Habit Settings",
+
+
+
+  "hours": "10 Hours",
+  "remainingTime": "remaining: 13:00 h",
+  "start" : "Start Time",
+  "end": "End Time",
+  "instructions": "Instructions for when to fast",
+  "breakFast": "Break Fast",
+  "wightHistory": "Name - wight history",
+  "wightKg": "Weight(kg)",
+  "fat": "Fat",
+  "exercises": "Exercises",
+  "lorem": "Lorem",
+  "fitness": "Fitness",
+  "caloriesGoal": "  Calories Goal",
+  "mealNum": "  Meal Numbers",
+
+
+
+  "aboutVirAm": "  About VirAm",
+  "termsCondition": "  Terms and Conditions",
+  "subscription": "   Subscription",
+
+
+  "month5": "5 JOD / Month ",
+  "year5": "5 JOD / Year ",
+  "free": "virtAm is free for the first 90 days for every person",
+
+
+
+  "notification": "Notification",
+  "today": "Today",
+  "reminderToDrink": "Reminder to drink water",
+  "yesterday": "Yesterday",
+
+  "createNewOne" : "Create New One!",
   "go": "GO",
   "away" :"AWAY",
   "organizationId" : "Organization ID",
-  "start" : "Start",
   "chooseYourStatus" : "Choose your status, please",
 
   "ok" : "OK",
@@ -37,14 +213,12 @@
   "clickHere" : "Click Here",
 
 
-  "signUp" : "Sign Up",
   "alreadyHaveAnAccount" : "already have an account?",
   "enterYourName" : "Enter your name",
   "enterYourEmail" : "Enter your email",
   "retypeYourEmail" : "Retype your email",
   "enterYourPhoneNumber" : "Enter your phone number",
   "retypeYourPassword" : "Retype your password",
-  "createAccount": "Create Account",
   "privacyPolicyAndTerms": "By continuing, you agree to accept our Privacy Policy and Terms of Service."
 
 

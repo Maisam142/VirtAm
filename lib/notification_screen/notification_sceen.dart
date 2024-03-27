@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:virtam/component/back_component.dart';
 
 import '../component/text_component.dart';
+import '../generated/l10n.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -23,37 +24,37 @@ class NotificationScreen extends StatelessWidget {
               onPressed: (){
                 Beamer.of(context).beamBack();
               },
-              text: 'Notification',
+              text: S.of(context).notification,
             ),
             Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Align(
                       alignment: Alignment.centerLeft,
-                      child: TextComponent(text: 'Today')),
+                      child: TextComponent(text: S.of(context).today)),
                 ),
                 Container(
                   color: Colors.white,
                   width: double.infinity,
                   height: screenSize.height * 0.1,
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Row(
                       mainAxisAlignment : MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Image(image: AssetImage('images/notificationLogo.png',),width: 50,height: 50,),
                             ),
                             Column(
                               children: [
-                                TextLabelComponent(text: 'Drink Water'),
+                                TextLabelComponent(text: S.of(context).drinkWater),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5.0),
-                                  child: TextComponent(text: 'Reminder to drink water', textStyle: Theme.of(context).textTheme.bodySmall,),
+                                  child: TextComponent(text: S.of(context).reminderToDrink, textStyle: Theme.of(context).textTheme.bodySmall,),
                                 ),
                               ],
                             ),
@@ -65,33 +66,33 @@ class NotificationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Align(
                       alignment: Alignment.centerLeft,
-                      child: TextComponent(text: 'Yesterday')),
+                      child: TextComponent(text: S.of(context).yesterday)),
                 ),
                 Container(
                   color: Colors.white,
                   width: double.infinity,
                   height: screenSize.height * 0.1,
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Row(
                       mainAxisAlignment : MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Image(image: AssetImage('images/notificationLogo.png',),width: 50,height: 50,),
                             ),
                             Column(
                               children: [
-                                TextLabelComponent(text: 'Drink Water'),
+                                TextLabelComponent(text: S.of(context).drinkWater),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5.0),
-                                  child: TextComponent(text: 'Reminder to drink water', textStyle: Theme.of(context).textTheme.bodySmall,),
+                                  child: TextComponent(text: S.of(context).reminderToDrink, textStyle: Theme.of(context).textTheme.bodySmall,),
                                 ),
                               ],
                             ),

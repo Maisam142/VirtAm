@@ -47,7 +47,7 @@ class LoginForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const DesignComponent(text: 'Sign in with your VirtAm ID',
+              DesignComponent(text: S.of(context).signWith,
               textStyle: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
               //SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Padding(
@@ -56,16 +56,16 @@ class LoginForm extends StatelessWidget {
                   children: [
                     FormComponent(
                       // prefixIcon: const Icon(Icons.person, size: 20),
-                      hintText: S.of(context).organizationIdOrEmail,
+                      hintText: S.of(context).email,
                       controller: viewModel.emailController,
                       errorText: viewModel.isEmailValid
                           ? null
-                          : 'Please enter a valid email ',
+                          : S.of(context).enterValidEmail,
                     ),
 
                     FormComponent(
                       // prefixIcon: const Icon(Icons.password, size: 20),
-                      hintText: 'Password',
+                      hintText: S.of(context).password,
                       controller: viewModel.passwordController,
                       obscureText: viewModel.isObscure,
                       suffixIcon: IconButton(onPressed: (){
@@ -76,14 +76,14 @@ class LoginForm extends StatelessWidget {
                       ),
                       errorText: viewModel.isPasswordValid
                           ? null
-                          : "Wrong Password",
+                          : S.of(context).enterValidPass,
                     ),
                     Align(
                       alignment: Alignment.topRight,
                       child: TextButton(
                         onPressed: () {},
                         child: Text(
-                          'Forgot the password?',
+                          S.of(context).forgetPass,
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                       ),
@@ -92,7 +92,7 @@ class LoginForm extends StatelessWidget {
                     Column(
                       children: [
                         ButtonComponentContinue(
-                          text: 'Sign In',
+                          text: S.of(context).signIn,
                           onPress: () async {
                             viewModel.validateFieldsLogin();
                             if (viewModel.isFormValidLogin) {
@@ -102,7 +102,7 @@ class LoginForm extends StatelessWidget {
                                   password: viewModel.passwordController.text,
                                 );
                                 final user = userCredential.user;
-                                print('User signed in: ${user?.uid}');
+                                //print('User signed in: ${user?.uid}');
 
                                 Beamer.of(context).beamToNamed('/homeNavigationBar');
                               } catch (e) {
@@ -110,8 +110,8 @@ class LoginForm extends StatelessWidget {
                                 showDialog(
                                   context: context,
                                   builder: (context) => PopupWidget(
-                                    titleText: 'Wrong Email Or Password',
-                                    contentText: 'Please rewrite it to login Successfully ',
+                                    titleText: S.of(context).wrongEmailPass,
+                                    contentText: S.of(context).rewriteCorrect,
                                         body: [],
                                   ),
                                 );                              }
@@ -121,13 +121,13 @@ class LoginForm extends StatelessWidget {
                         SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                         TextComponent(
                           textStyle: Theme.of(context).textTheme.displaySmall,
-                          text: 'Your VirtAm account is now VirtAm ID. If you’ve signed\n into the app before, use the same credentials here.\n otherwise',),
+                          text: S.of(context).signedAlready,),
                         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                        TextComponent(text: 'OR', textStyle: Theme.of(context).textTheme.titleMedium,),
+                        TextComponent(text: S.of(context).or, textStyle: Theme.of(context).textTheme.titleMedium,),
                         Padding(
                           padding: const EdgeInsets.only(right: 25.0,left: 25.0),
                           child: ButtonComponent(
-                            text: 'Create Account',
+                            text: S.of(context).createAccount,
                             textStyle: Theme.of(context).textTheme.titleMedium,
                             customColor: Colors.white60,
                             onPress: (){

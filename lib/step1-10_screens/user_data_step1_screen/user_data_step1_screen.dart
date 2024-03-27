@@ -7,6 +7,7 @@ import 'package:virtam/step1-10_screens/user_data_step1_screen/user_data_step1_s
 
 import '../../component/button_component.dart';
 import '../../component/option_top_component.dart';
+import '../../generated/l10n.dart';
 import '../../register_screen/register_screen_view_model.dart';
 
 
@@ -39,7 +40,7 @@ class UserDataScreenStep1 extends StatelessWidget {
                 child: Column(
                   children: [
                     OptionTopComponent(
-                      text: 'Step 1/10',
+                      text: S.of(context).step1,
                       onPressed: () {
                         Beamer.of(context).beamBack();
                       },
@@ -55,9 +56,9 @@ class UserDataScreenStep1 extends StatelessWidget {
                               alignment: Alignment.topLeft,
                               child: Row(
                                 children: [
-                                  TextComponent(text: 'What is your',
+                                  TextComponent(text: S.of(context).whatIsYour,
                                     textStyle: Theme.of(context).textTheme.bodyMedium,),
-                                  TextLabelComponent(text: ' age?',),
+                                  TextLabelComponent(text: S.of(context).age,),
                                 ],
                               ),),
                           ),
@@ -65,7 +66,7 @@ class UserDataScreenStep1 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(' ${model.selectedValueAge}'),
-                              TextComponent(text: '  Years', textStyle: Theme.of(context).textTheme.headlineSmall,)
+                              TextComponent(text: S.of(context).years, textStyle: Theme.of(context).textTheme.headlineSmall,)
                             ],
                           ),
                           SizedBox(
@@ -114,9 +115,9 @@ class UserDataScreenStep1 extends StatelessWidget {
                               alignment: Alignment.topLeft,
                               child: Row(
                                 children: [
-                                  TextComponent(text: 'What is your',
+                                  TextComponent(text: S.of(context).whatIsYour,
                                     textStyle: Theme.of(context).textTheme.bodyMedium,),
-                                  TextLabelComponent(text: ' Wight?',),
+                                  TextLabelComponent(text:S.of(context).weight,),
                                 ],
                               ),),
                           ),
@@ -124,7 +125,7 @@ class UserDataScreenStep1 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(' ${model.selectedValueWeight}'),
-                              TextComponent(text: '  Kg', textStyle: Theme.of(context).textTheme.headlineSmall,)
+                              TextComponent(text: S.of(context).kg, textStyle: Theme.of(context).textTheme.headlineSmall,)
                             ],
                           ),
                           SizedBox(
@@ -173,9 +174,9 @@ class UserDataScreenStep1 extends StatelessWidget {
                               alignment: Alignment.topLeft,
                               child: Row(
                                 children: [
-                                  TextComponent(text: 'What is your',
+                                  TextComponent(text: S.of(context).whatIsYour,
                                     textStyle: TextStyle(color: Colors.black)),
-                                  TextLabelComponent(text: ' Height?',
+                                  TextLabelComponent(text: S.of(context).height,
                                   ),
                                 ],
                               ),),
@@ -184,7 +185,7 @@ class UserDataScreenStep1 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(' ${model.selectedValueHeight}'),
-                              TextComponent(text: '  Cm', textStyle: Theme.of(context).textTheme.headlineSmall,)
+                              TextComponent(text: S.of(context).cm, textStyle: Theme.of(context).textTheme.headlineSmall,)
                             ],
                           ),
                           SizedBox(
@@ -224,7 +225,7 @@ class UserDataScreenStep1 extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ButtonComponentContinue(
-                          text: 'Next',
+                          text: S.of(context).next,
                           onPress: () async {
                             Map<String, dynamic> additionalData = {
                               'weight': userDataModel.selectedValueWeight,

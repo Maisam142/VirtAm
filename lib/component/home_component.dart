@@ -24,6 +24,7 @@ class HomeComponent extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextLabelComponent(text: valueText),
             Row(

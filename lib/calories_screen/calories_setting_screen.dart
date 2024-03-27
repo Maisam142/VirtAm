@@ -4,6 +4,7 @@ import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../component/feild_component.dart';
+import '../generated/l10n.dart';
 
 class CaloriesSettingScreen extends StatelessWidget {
   const CaloriesSettingScreen({super.key});
@@ -20,7 +21,7 @@ class CaloriesSettingScreen extends StatelessWidget {
         child: Column(
           children: [
             BackComponent(
-              text: 'Settings',
+              text: S.of(context).settings,
               onPressed: (){
                 Beamer.of(context).beamBack();
 
@@ -31,16 +32,14 @@ class CaloriesSettingScreen extends StatelessWidget {
               onPressed: (){
 
               },
-              text: '  Calories Goal',
+              text: S.of(context).caloriesGoal,
             ),
-            SizedBox(height: 10,),
-
             SizedBox(height: 10,),
             FieldComponent(
               onPressed: (){
 
               },
-              text: '   Meal Numbers',
+              text: S.of(context).mealNum,
             ),
 
           ],

@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:virtam/component/text_component.dart';
 import '../component/back_component.dart';
+import '../generated/l10n.dart';
 
 class ExercisesScreen extends StatelessWidget {
   const ExercisesScreen({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class ExercisesScreen extends StatelessWidget {
         body: Column(
           children: [
             BackComponent(
-              text: 'Exercises',
+              text: S.of(context).exercises,
               onPressed: (){
                 Beamer.of(context).beamBack();
               },
@@ -88,14 +89,14 @@ class ExercisesScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MaterialButton(onPressed: (){},
-                  child: TextComponent(text: 'Lorem'),),
+                  child: TextComponent(text: S.of(context).lorem),),
                 MaterialButton(onPressed: (){},
-                  child: TextComponent(text: 'Lorem'),),
+                  child: TextComponent(text:  S.of(context).lorem),),
                 MaterialButton(
                   onPressed: (){},
-                  child: TextComponent(text: 'Lorem'),),
+                  child: TextComponent(text: S.of(context).lorem),),
                 MaterialButton(onPressed: (){},
-                  child: TextComponent(text: 'Fitness'),),
+                  child: TextComponent(text: S.of(context).fitness),),
               ],
             ),
             Expanded(
