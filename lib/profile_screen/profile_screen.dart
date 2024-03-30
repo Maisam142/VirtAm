@@ -56,6 +56,7 @@ class ProfileScreenContent extends StatelessWidget {
                 final originalEmail = data?['email'];
                 final originalNumber = data?['number'];
                 final imageUrl = data?['imageLink'];
+                final wakeupTime = data?['wakeup time'];
 
                 return SingleChildScrollView(
                   child: Column(

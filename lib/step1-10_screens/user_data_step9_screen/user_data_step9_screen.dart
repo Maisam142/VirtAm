@@ -12,6 +12,7 @@ import '../../generated/l10n.dart';
 class UserDataScreenStep9 extends StatelessWidget {
   const UserDataScreenStep9({super.key});
 
+  @override
   Widget build(BuildContext context) {
 
     final Size screenSize = MediaQuery.of(context).size;

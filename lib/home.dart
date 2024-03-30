@@ -603,3 +603,85 @@
 // //     );
 // //   }
 // // }
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'home_screen/home_screen_view_model.dart';
+
+class home extends StatefulWidget {
+  @override
+  _homeState createState() => _homeState();
+}
+
+class _homeState extends State<home> {
+  int countdownSeconds = 180;
+  late CountdownTimer countdownTimer;
+  bool isTimerRunning = false;
+
+  @override
+  void initState() {
+    super.initState();
+    initTimerOperation();
+  }
+
+  void initTimerOperation() {
+    countdownTimer = CountdownTimer(
+      seconds: countdownSeconds,
+      onTick: (seconds) {
+        setState(() {
+          isTimerRunning = true;
+          countdownSeconds = seconds;
+        });
+      },
+      onFinished: () {
+        setState(() {
+          isTimerRunning = false;
+          countdownSeconds = 0;
+        });
+      },
+    );
+
+    SystemChannels.lifecycle.setMessageHandler((msg) {
+      if (msg == AppLifecycleState.paused.toString()) {
+        if (isTimerRunning) {
+          countdownTimer.pause(countdownSeconds);
+        }
+      }
+
+      if (msg == AppLifecycleState.resumed.toString()) {
+        if (isTimerRunning) {
+          countdownTimer.resume();
+        }
+      }
+      return Future(() => null);
+    });
+
+    isTimerRunning = true;
+    countdownTimer.start();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text(
+          formatDuration(Duration(seconds: countdownSeconds)),
+          style: TextStyle(fontSize: 40),
+        ),
+      ),
+    );
+  }
+
+  String formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+    return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
+  }
+
+  @override
+  void dispose() {
+    countdownTimer.stop();
+    super.dispose();
+  }
+}

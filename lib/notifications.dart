@@ -105,9 +105,7 @@ class NotificationController {
   static Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
     if (receivedAction.buttonKeyPressed == 'drink_now') {
       print('Drink counter incremented');
-
       incrementDrinkCounter();
-
     }
   }
 
@@ -163,12 +161,12 @@ class NotificationHelper {
 }
 
 class DrinkCounter extends ChangeNotifier {
-  int _drinkCount = 0;
-
-  int get drinkCount => _drinkCount;
 
   void incrementDrinkCount() {
-    _drinkCount++;
+    int drinkCount = 0;
+
+    drinkCount++;
+    print(drinkCount);
     notifyListeners();
   }
 }

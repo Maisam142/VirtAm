@@ -1,12 +1,22 @@
 import 'dart:async';
-
+import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:logger_util/logger_util.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 import 'home_screen_reading_writing_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
+
+
+  HomeViewModel(){
+    startTimer();
+  }
+
+  // UserDataStep9ViewModel?vm;
+
   late String timeString;
   int initSteps = 0;
   double progressValue = 0.0;
@@ -20,6 +30,40 @@ class HomeViewModel extends ChangeNotifier {
   bool mIsMetric = true;
   int get stepCount => _stepCount;
 
+  Timer? countdownTimer;
+  Duration myDuration = const Duration(hours: 14);
+  bool notFinished = true;
+  int? startTimeHour;
+  int? startTimeMinute;
+  //final int? startTime= vm?.selectedDate.hour;
+
+
+
+  void setCountDown() {
+    const reduceSecondsBy = 1;
+    final seconds = myDuration.inSeconds - reduceSecondsBy;
+    if (seconds <= 0) {
+      countdownTimer!.cancel();
+      notFinished = false;
+    } else {
+      myDuration = Duration(seconds: seconds);
+      notFinished = true;
+    }
+    notifyListeners();
+  }
+
+  void startTimer() {
+    DateTime now = DateTime.now();
+    DateTime startDateTime = DateTime(now.year, now.month, now.day, 09, 00 , 00);
+    if (now.isAfter(startDateTime)) {
+      startDateTime = startDateTime.add(const Duration(days: 1));
+    }
+    Duration initialDelay = startDateTime.difference(now);
+
+    countdownTimer = Timer(initialDelay, () {
+      countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+    });
+  }
   void updateStepCount(int count) {
     _stepCount = count;
     notifyListeners();
@@ -44,7 +88,6 @@ class HomeViewModel extends ChangeNotifier {
   Future<void> _requestPermission() async {
     final PermissionStatus status = await Permission.activityRecognition.request();
     if (status != PermissionStatus.granted) {
-      // Permission not granted, handle accordingly
       print('Permission not granted for accessing step count data');
     }
   }
@@ -135,3 +178,85 @@ class HomeViewModel extends ChangeNotifier {
 }
 
 class HomeViewModelListeners {}
+
+class TimerDifferenceHandler {
+  static late DateTime endingTime;
+
+  static final TimerDifferenceHandler _instance = TimerDifferenceHandler();
+
+  static TimerDifferenceHandler get instance => _instance;
+
+  int get remainingSeconds {
+    final DateTime dateTimeNow = DateTime.now();
+    Duration remainingTime = endingTime.difference(dateTimeNow);
+    // Return in seconds
+    return remainingTime.inSeconds;
+  }
+
+  void setEndingTime(int durationToEnd) {
+    final DateTime dateTimeNow = DateTime.now();
+    endingTime = dateTimeNow.add(
+      Duration(
+        seconds: durationToEnd,
+      ),
+    );
+  }
+}
+class CountdownTimer {
+  int _countdownSeconds;
+  late Timer _timer;
+  final Function(int)? _onTick;
+  final Function()? _onFinished;
+  final timerHandler = TimerDifferenceHandler.instance;
+  bool onPausedCalled = false;
+
+  CountdownTimer({
+    required int seconds,
+    Function(int)? onTick,
+    Function()? onFinished,
+  })  : _countdownSeconds = seconds,
+        _onTick = onTick,
+        _onFinished = onFinished;
+
+  void start() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      _countdownSeconds--;
+      if (_onTick != null) {
+        _onTick(_countdownSeconds);
+      }
+
+      if (_countdownSeconds <= 0) {
+        stop();
+        if (_onFinished != null) {
+          _onFinished();
+        }
+      }
+    });
+  }
+
+
+  void pause(int endTime) {
+    onPausedCalled = true;
+    stop();
+    timerHandler.setEndingTime(endTime);
+  }
+
+  void resume() {
+    if(!onPausedCalled){
+      return;
+    }
+    if (timerHandler.remainingSeconds > 0) {
+      _countdownSeconds = timerHandler.remainingSeconds;
+      start();
+    } else {
+      stop();
+      _onTick!(_countdownSeconds); //callback
+    }
+    onPausedCalled = false;
+  }
+
+  void stop() {
+    _timer.cancel();
+    _countdownSeconds = 0;
+  }
+}

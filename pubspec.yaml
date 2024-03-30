@@ -51,6 +51,8 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+  logger_util: ^0.0.1
+  logger: ^2.2.0
 
 dev_dependencies:
   flutter_test:

@@ -3,7 +3,6 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
 import 'package:pedometer/pedometer.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +20,7 @@ import '../component/viewall_component.dart';
 import '../generated/l10n.dart';
 import '../helper/calories_class.dart';
 import '../register_screen/register_screen_view_model.dart';
+import '../step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 
 // class HomeScreen extends StatefulWidget {
 //   const HomeScreen({Key? key});
@@ -137,6 +137,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   int getSteps = 0;
   int distance =0;
   late StepCalculator calculator = StepCalculator();
@@ -149,12 +150,16 @@ class _HomeScreenState extends State<HomeScreen> {
     ChartData(60, 4),
     ChartData(55, 5)
   ];
+  HomeViewModel?vm;
 
   @override
   void initState() {
     super.initState();
     calculator = StepCalculator();
     requestPermission();
+    vm?.startTimer();
+    //NotificationHelper.showNotification();
+    //DrinkCounter();
   }
 
   @override
@@ -172,6 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     //await fetchStepData();
+
 
 
 
@@ -211,13 +217,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String strDigits(int n) => n.toString().padLeft(2, '0');
+    final UserDataStep9ViewModel userDataModel =
+    Provider.of<UserDataStep9ViewModel>(context);
+
     final RegisterViewModel registerViewModel =
     Provider.of<RegisterViewModel>(context);
     final HomeViewModel homeViewModel =
     Provider.of<HomeViewModel>(context);
     final Size screenSize = MediaQuery.of(context).size;
+    final hour = strDigits(homeViewModel.myDuration.inHours.remainder(60));
+    final minutes = strDigits(homeViewModel.myDuration.inMinutes.remainder(60));
+    final seconds = strDigits(homeViewModel.myDuration.inSeconds.remainder(60));
 
-    //double distance = stepCalculator.mDistance;
+
     double calories = calculator.calculateCalories(
       isMetric: true,
       isRunning: false,
@@ -228,7 +241,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return WillPopScope(
         onWillPop: () async {
           Beamer.of(context).beamToNamed('/homeNavigationBar');
-
           return false;
     },
     child: SafeArea(
@@ -268,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 TextComponent(
                   text: S.of(context).locationName,
-                  textStyle: TextStyle(fontSize: 15),
+                  textStyle: const TextStyle(fontSize: 15),
                 ),
                 const Icon(
                   Icons.expand_more_sharp,
@@ -346,9 +358,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.white,
                               size: 20,
                             ),
-                                                    ),
+                                ),
                                 Padding(
-                                  padding: EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.all(10.0),
                                   child: Text(
                                     S.of(context).duringFast,
                                     style: const TextStyle(
@@ -357,9 +369,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ],
                             ),
-                            const Text(
-                              '00:32:10',
-                              style: TextStyle(
+                            Text(
+                              homeViewModel.notFinished
+                                  ? '$hour:$minutes:$seconds'
+                                  : 'Time Is Over ... !!  ',
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 40,
                                   fontWeight: FontWeight.bold),
@@ -531,13 +545,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: SizedBox(
                                     height: 30,
                                     width: 110,
                                     child: ButtonComponentContinue(
                                       text: S.of(context).play,
-                                      textStyle: TextStyle(
+                                      textStyle: const TextStyle(
                                           fontSize: 12, color: Colors.white),
                                     )),
                               ),
