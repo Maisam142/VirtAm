@@ -1,74 +1,69 @@
+
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:beamer/beamer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:virtam/exercieses_screen/exercieses_screen.dart';
-import 'package:virtam/home.dart';
-import 'package:virtam/location_screen/location_screen_view_model.dart';
-import 'package:virtam/notifications.dart';
-import 'package:virtam/profile_screen/profile_screen.dart';
-import 'package:virtam/profile_screen/profile_view_model.dart';
-import 'package:virtam/push_notification.dart';
-import 'package:virtam/register_screen/purpose_screen.dart';
-import 'package:virtam/register_screen/register_screen.dart';
-import 'package:virtam/register_screen/register_screen_view_model.dart';
-import 'package:virtam/setting_menu_screen/setting_menu_screen.dart';
-import 'package:virtam/setting_menu_screen/setting_menu_view_model.dart';
-import 'package:virtam/setting_menu_screen/subscription_screen.dart';
-import 'package:virtam/splash_Screen/Splash_Screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step10_screen/user_data_step10_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step1_screen/user_data_step1_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step1_screen/user_data_step1_screen_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step2_screen/user_data_step2_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step2_screen/user_data_step2_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step3_screen/user_data_step3_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step3_screen/user_data_step3_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step4_screen/user_data_step4_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step4_screen/user_data_step4_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step5_screen/user_data_step5_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step5_screen/user_data_step5_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step6_screen/user_data_step6_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step6_screen/user_data_step6_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step7_screen/user_data_step7_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step7_screen/user_data_step7_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step8_screen/user_data_step8_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step8_screen/user_data_step8_view_model.dart';
-import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_screen.dart';
-import 'package:virtam/step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
 import 'package:virtam/styles/style.dart';
-import 'package:virtam/weight_history_screen/weight_history_screen.dart';
-import 'package:virtam/welcome_screen/welcom_screen.dart';
 
-import 'generated/l10n.dart';
-
-import 'main_view_model.dart';
-import 'setting_menu_screen/about_virtam_screen.dart';
-import 'add_location_screen/add_location_screen.dart';
-import 'add_location_screen/add_location_view_model.dart';
-import 'calories_screen/calories_screen.dart';
-import 'calories_screen/calories_setting_screen.dart';
-import 'drink_water_screen/add_target_screen.dart';
-import 'drink_water_screen/drink_water_screen.dart';
-import 'drink_water_screen/drink_water_settings_screen.dart';
-import 'drink_water_screen/drink_water_view_model.dart';
-import 'fast_screen/break_fast_screen.dart';
-import 'fast_screen/fast_screen.dart';
+import 'feature/add_location_screen/add_location_view_model.dart';
+import 'feature/calories_screen/calories_screen.dart';
+import 'feature/calories_screen/calories_setting_screen.dart';
+import 'feature/drink_water_screen/add_target_screen.dart';
+import 'feature/drink_water_screen/drink_water_screen.dart';
+import 'feature/drink_water_screen/drink_water_settings_screen.dart';
+import 'feature/drink_water_screen/drink_water_view_model.dart';
+import 'feature/exercieses_screen/exercieses_screen.dart';
+import 'feature/fast_screen/break_fast_screen.dart';
+import 'feature/fast_screen/fast_screen.dart';
+import 'feature/home_screen/home_screen.dart';
+import 'feature/home_screen/home_screen_view_model.dart';
+import 'feature/location_screen/location_screen_view_model.dart';
+import 'feature/login_screen/login_screen.dart';
+import 'feature/login_screen/login_screen_view_model.dart';
+import 'feature/navigation_bar_screen/navigation_bar_screen.dart';
+import 'feature/navigation_bar_screen/navigation_bar_view_model.dart';
+import 'feature/notification_screen/notification_sceen.dart';
+import 'feature/nutrition_screen/nutrition_screen.dart';
+import 'feature/option2_screen/option2_screen.dart';
+import 'feature/option2_screen/option2_view_model.dart';
+import 'feature/profile_screen/profile_screen.dart';
+import 'feature/profile_screen/profile_view_model.dart';
+import 'feature/register_screen/purpose_screen.dart';
+import 'feature/register_screen/register_screen.dart';
+import 'feature/register_screen/register_screen_view_model.dart';
+import 'feature/setting_menu_screen/about_virtam_screen.dart';
+import 'feature/setting_menu_screen/setting_menu_screen.dart';
+import 'feature/setting_menu_screen/setting_menu_view_model.dart';
+import 'feature/setting_menu_screen/subscription_screen.dart';
+import 'feature/step1-10_screens/user_data_step10_screen/user_data_step10_screen.dart';
+import 'feature/step1-10_screens/user_data_step10_screen/user_data_step10_view_model.dart';
+import 'feature/step1-10_screens/user_data_step1_screen/user_data_step1_screen.dart';
+import 'feature/step1-10_screens/user_data_step1_screen/user_data_step1_screen_view_model.dart';
+import 'feature/step1-10_screens/user_data_step2_screen/user_data_step2_screen.dart';
+import 'feature/step1-10_screens/user_data_step2_screen/user_data_step2_view_model.dart';
+import 'feature/step1-10_screens/user_data_step3_screen/user_data_step3_screen.dart';
+import 'feature/step1-10_screens/user_data_step3_screen/user_data_step3_view_model.dart';
+import 'feature/step1-10_screens/user_data_step4_screen/user_data_step4_screen.dart';
+import 'feature/step1-10_screens/user_data_step4_screen/user_data_step4_view_model.dart';
+import 'feature/step1-10_screens/user_data_step5_screen/user_data_step5_screen.dart';
+import 'feature/step1-10_screens/user_data_step5_screen/user_data_step5_view_model.dart';
+import 'feature/step1-10_screens/user_data_step6_screen/user_data_step6_screen.dart';
+import 'feature/step1-10_screens/user_data_step6_screen/user_data_step6_view_model.dart';
+import 'feature/step1-10_screens/user_data_step7_screen/user_data_step7_screen.dart';
+import 'feature/step1-10_screens/user_data_step7_screen/user_data_step7_view_model.dart';
+import 'feature/step1-10_screens/user_data_step8_screen/user_data_step8_screen.dart';
+import 'feature/step1-10_screens/user_data_step8_screen/user_data_step8_view_model.dart';
+import 'feature/step1-10_screens/user_data_step9_screen/user_data_step9_screen.dart';
+import 'feature/step1-10_screens/user_data_step9_screen/user_data_step9_view_model.dart';
+import 'feature/weight_history_screen/weight_history_screen.dart';
+import 'feature/welcome_screen/welcom_screen.dart';
 import 'firebase_options.dart';
-import 'home_screen/home_screen.dart';
-import 'home_screen/home_screen_view_model.dart';
-import 'location_screen/location_screen.dart';
-import 'login_screen/login_screen.dart';
-import 'login_screen/login_screen_view_model.dart';
-import 'navigation_bar_screen/navigation_bar_screen.dart';
-import 'navigation_bar_screen/navigation_bar_view_model.dart';
-import 'notification_screen/notification_sceen.dart';
-import 'nutrition_screen/nutrition_screen.dart';
-import 'option2_screen/option2_screen.dart';
-import 'option2_screen/option2_view_model.dart';
-
+import 'generated/l10n.dart';
+import 'main_view_model.dart';
+import 'notifications.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -193,7 +188,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/aboutVirtAmScreen': (context, state, data) =>  const AboutVirtAmScreen(),
         '/caloriesSettingScreen': (context, state, data) =>  const CaloriesSettingScreen(),
         '/caloriesScreen': (context, state, data) =>  const CaloriesScreen(),
-        '/notificationScreen': (context, state, data) =>  const NotificationScreen(),
+        '/notificationScreen': (context, state, data) =>  NotificationScreen(),
         '/subscriptionScreen': (context, state, data) =>  const SubscriptionScreen(),
         '/profileScreen': (context, state, data) =>  const ProfileScreen(),
         '/homeScreen': (context, state, data) =>  const HomeScreen(),

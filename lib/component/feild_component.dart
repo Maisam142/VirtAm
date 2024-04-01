@@ -3,9 +3,10 @@ import 'package:virtam/component/text_component.dart';
 
 class FieldComponent extends StatelessWidget {
   final ImageProvider? imageIcon;
+  final IconData? icon;
   final String? text;
   final Function()? onPressed;
-  const FieldComponent({super.key, this.imageIcon, this.text, this.onPressed});
+  const FieldComponent({super.key, this.imageIcon, this.text, this.onPressed, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class FieldComponent extends StatelessWidget {
             ),
             IconButton(
                 onPressed: onPressed,
-                icon: Icon(Icons.navigate_next_sharp)),
+                icon: Icon(Icons.navigate_next_sharp),),
           ],
         ),
       ),

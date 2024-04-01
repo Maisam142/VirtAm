@@ -82,7 +82,6 @@
 //   }
 // }
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 
 class NotificationController {
@@ -93,19 +92,16 @@ class NotificationController {
 
   @pragma("vm:entry-point")
   static Future<void> onNotificationDisplayedMethod(ReceivedNotification receivedNotification) async {
-    // Your code for handling notification display goes here
   }
 
   @pragma("vm:entry-point")
   static Future<void> onDismissActionReceivedMethod(ReceivedAction receivedAction) async {
-    // Your code for handling notification dismissal goes here
   }
 
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
     if (receivedAction.buttonKeyPressed == 'drink_now') {
       print('Drink counter incremented');
-      incrementDrinkCounter();
     }
   }
 
@@ -130,6 +126,7 @@ class NotificationHelper {
     );
 
   }
+
   static Future<void> showNotification() async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -140,7 +137,7 @@ class NotificationHelper {
         displayOnBackground: true,
       ),
       schedule: NotificationInterval(
-        interval: 2 * 60, // Every 5 minutes
+        interval: 2 * 60,
         timeZone: 'UTC',
         preciseAlarm: true,
         repeats: true,

@@ -3,7 +3,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:virtam/register_screen/register_screen_view_model.dart';
+
+import '../feature/register_screen/register_screen_view_model.dart';
 
 
 class StoreDate {
