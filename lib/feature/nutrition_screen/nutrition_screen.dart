@@ -76,7 +76,7 @@ class NutritionScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: screenSize.height * 0.04),
+                SizedBox(height: screenSize.height * 0.03),
                 FormComponent(
                   prefixIcon: const Icon(Icons.search),
                   hintText: S.of(context).search,
@@ -108,7 +108,7 @@ class NutritionScreen extends StatelessWidget {
                                 alignment: Alignment.bottomLeft,
                                 child: Column(
                                   children: [
-                                    SizedBox(height: 110,),
+                                    SizedBox(height: 100,),
                                     Container(
                                       width: 90,
                                       color: Colors.white70.withOpacity(0.2),
@@ -120,7 +120,7 @@ class NutritionScreen extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(height: 4),
-                                    const TextComponent(text: 'Day 01-Fitness', textStyle: TextStyle(color: Colors.white, fontSize: 45)),
+                                    const TextComponent(text: 'Day 01-Fitness', textStyle: TextStyle(color: Colors.white, fontSize: 40)),
                                   ],
                                 ),
                               ),

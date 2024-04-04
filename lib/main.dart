@@ -1,5 +1,3 @@
-
-
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:beamer/beamer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -74,8 +72,6 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => MainViewModel()),
@@ -153,7 +149,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const SplashScreen(),
+        '/': (context, state, data) =>  const HomeNavigationBar(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -190,4 +186,5 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
       },
     ).call,
   );
+
 }

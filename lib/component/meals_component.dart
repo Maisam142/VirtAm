@@ -16,37 +16,40 @@ class MealsComponent extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: screenSize.height * 0.1,
+      height: screenSize.height * 0.13,
       color: Colors.white,
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                        width: 55,
-                        height: 55,
-                        child: Image(image: mealTypeImage!,fit: BoxFit.cover,)),
-                  ),
-                  Column(
-                    children: [
-                      TextComponent(text: mealTypeText,textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
-                      Text(text!, style: TextStyle(fontSize: 12,color: Colors.grey),),
-                    ],
-                  ),
-                ],
-              ),
-              IconButton(onPressed: (){
-                onPressedIcon;
-              },
-                icon: Icon(Icons.add_box,size: 30,color: Colors.black,),),
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                          width: 55,
+                          height: 55,
+                          child: Image(image: mealTypeImage!,fit: BoxFit.cover,)),
+                    ),
+                    Column(
+                      children: [
+                        TextComponent(text: mealTypeText,textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
+                        Text(text!, style: TextStyle(fontSize: 12,color: Colors.grey),),
+                      ],
+                    ),
+                  ],
+                ),
+                IconButton(onPressed: (){
+                  onPressedIcon;
+                },
+                  icon: Icon(Icons.add_box,size: 30,color: Colors.black,),),
 
-            ],
+              ],
+            ),
           )
         ],
       ),

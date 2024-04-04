@@ -274,15 +274,9 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   void initState() {
     super.initState();
     startListeningToSteps();
-    getLastSavedStepCount();
     DateTime now = DateTime.now();
-    if(now.hour == 0 && now.minute == 0 && now.second == 0){
-      is12Am =true ;
-    }
-    if (is12Am = true ) {
-      print('hhhhhhhhhhhhhhhhhhhhhh');
-      is12Am = false;
-    }
+      getLastSavedStepCount();
+
     calculator = StepCalculator();
     requestPermission();
     startTimer();
@@ -310,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
 
   void startTimer() {
     DateTime now = DateTime.now();
-    if(now.hour>=1 && now.hour<=12){
+    if(now.hour>=13 && now.hour<=12){
       DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour,now.minute,now.second+1);
 
     if (now.isAfter(startDateTime)) {
@@ -320,7 +314,9 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
 
     countdownTimer = Timer(initialDelay, () {
       countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
-    });}
+    });}else{
+      notFinished = false;
+    }
   }
   Future<void> requestPermission() async {
     final PermissionStatus status =
@@ -338,9 +334,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
           dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
 
         });
-        if(is12Am){
           saveDailyStepCount(event.steps);
-        }
       },
       onError: (error) {
         print("An error occurred while fetching step count: $error");
@@ -516,10 +510,11 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
                         height: 150,
                         child: Stack(
                           children: [
-                            const Image(image: AssetImage('images/fasting.png'),fit: BoxFit.contain,
+                            const Image(image: AssetImage('images/fasting.png'),fit: BoxFit.fill,
                               height: 140,),
                             Column(
                               children: [
+                                //SizedBox(height:20 ,),
                                 Row(
                                   children: [
                                     IconButton(
@@ -632,6 +627,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
                         ViewAllComponent(
                           onPressed: (){
                             Beamer.of(context).beamToNamed('/exercisesScreen');
+                            print('${is12Am} -----------------------------------------------------------------------');
 
                           },
                         ),

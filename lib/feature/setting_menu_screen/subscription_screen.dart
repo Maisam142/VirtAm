@@ -79,7 +79,7 @@ class SubscriptionScreen extends StatelessWidget {
                                       fontSize: 25,fontWeight: FontWeight.bold),),
                               ),
                               TextComponent(text: S.of(context).free,
-                              textStyle: TextStyle(color: Colors.grey,fontSize: 12),),
+                              textStyle: TextStyle(color: Colors.grey,fontSize: 10),),
                             ],
                           )
                         )],
@@ -114,7 +114,7 @@ class SubscriptionScreen extends StatelessWidget {
                                         fontSize: 25,fontWeight: FontWeight.bold),),
                                 ),
                                 TextComponent(text: S.of(context).free,
-                                  textStyle: const TextStyle(color: Colors.grey,fontSize: 12),),
+                                  textStyle: const TextStyle(color: Colors.grey,fontSize: 10),),
                               ],
                             )
                         )],

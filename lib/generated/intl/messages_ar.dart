@@ -101,7 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "password" : MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "phoneNumber" : MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "play" : MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
-    "popularCenter" : MessageLookupByLibrary.simpleMessage(" مركز شهير"),
+    "popularCenter" : MessageLookupByLibrary.simpleMessage(" أشهر المراكز"),
     "proteina" : MessageLookupByLibrary.simpleMessage("بروتين"),
     "purpose" : MessageLookupByLibrary.simpleMessage("هدف إنشاء الحساب؟"),
     "purpose1" : MessageLookupByLibrary.simpleMessage("متابعة بياناتي الشخصية"),

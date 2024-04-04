@@ -60,7 +60,7 @@ class CaloriesScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: HomeComponent(
-                        valueText: '21/4656.0',
+                        valueText: '21/46.0',
                         text: S.of(context).proteina,
                       ),
                     ),
@@ -69,7 +69,7 @@ class CaloriesScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: HomeComponent(
-                        valueText: '18/435.0',
+                        valueText: '18/45.0',
                         text: S.of(context).carbohydrates,
                       ),
                     ),

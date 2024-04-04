@@ -50,7 +50,7 @@ class ExercisesScreen extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: screenSize.height * 0.3,
+              height: screenSize.height * 0.31,
               child: Stack(
                 children: [
                   Image(image: AssetImage('images/exercises.png'),),

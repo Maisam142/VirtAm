@@ -64,19 +64,19 @@ class MainViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-// void changeLanguage()
-// {
-//   if (_appLocale.languageCode=='en')
-//   {
-//     appLocale=Locale("ar");
-//   }
-//   else
-//   {
-//     appLocale=Locale("en");
-//   }
-//   notifyListeners();
-//
-// }
+void changeLanguage()
+{
+  if (_appLocale?.languageCode=='en')
+  {
+    _appLocale=Locale("ar");
+  }
+  else
+  {
+    _appLocale=Locale("en");
+  }
+  notifyListeners();
+
+}
 }
 
 
