@@ -1,18 +1,37 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../calories_screen/calories_screen.dart';
 
 import '../home_screen/home_screen.dart';
+import '../notification_screen/notification_sceen.dart';
 import '../nutrition_screen/nutrition_screen.dart';
 import '../profile_screen/profile_screen.dart';
 import 'navigation_bar_view_model.dart';
 
-class HomeNavigationBar extends StatelessWidget {
+class HomeNavigationBar extends StatefulWidget {
   const HomeNavigationBar({Key? key}) : super(key: key);
 
   @override
+  State<HomeNavigationBar> createState() => _HomeNavigationBarState();
+}
 
+class _HomeNavigationBarState extends State<HomeNavigationBar> {
+  @override
+void initState() {
+    // TODO: implement initState
+    super.initState();
+    NotificationHelper.initialize();
+    AwesomeNotifications().setListeners(
+      onActionReceivedMethod: NotificationController.onActionReceivedMethod,
+      onNotificationCreatedMethod: NotificationController.onNotificationCreatedMethod,
+      onNotificationDisplayedMethod: NotificationController.onNotificationDisplayedMethod,
+      onDismissActionReceivedMethod: NotificationController.onDismissActionReceivedMethod,
+    );
+
+
+  }
 
   @override
   Widget build(BuildContext context) {

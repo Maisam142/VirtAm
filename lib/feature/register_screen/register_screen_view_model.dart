@@ -38,7 +38,12 @@ class RegisterViewModel extends ChangeNotifier{
   String _selectedPurpose = '';
   String get selectedPurpose => _selectedPurpose;
 
+  bool isPhoneNumberValid = true;
 
+  void validatePhoneNumber(String phoneNumber) {
+    isPhoneNumberValid = phoneNumber.isNotEmpty;
+    notifyListeners();
+  }
 
   void validateFieldsLogin() {
     isEmailValid = emailController.text.isNotEmpty && emailController.text.contains("@");
@@ -146,7 +151,8 @@ class RegisterViewModel extends ChangeNotifier{
           isEmailValid &&
           isPasswordValid &&
           isValidRewritePass &&
-          isValidPhoneNumber;
+          isValidPhoneNumber&&
+          isPhoneNumberValid;
   void isEmptyField(){
     isEmpty = true;
     notifyListeners();

@@ -71,7 +71,6 @@ class RegisterScreen extends StatelessWidget {
                           registerViewModel.updatePhoneNumberValidity(isValid);
                           if (phoneNumber != null) {
                             registerViewModel.updatePhoneNumber(phoneNumber.phoneNumber!);
-
                             registerViewModel.updateCountry(phoneNumber.isoCode!);
                           }
                         },
@@ -88,7 +87,7 @@ class RegisterScreen extends StatelessWidget {
                         textFieldController: TextEditingController(),
                         hintText: S.of(context).phoneNumber,
 
-                        errorMessage: registerViewModel.isValidPhoneNumber
+                        errorMessage: registerViewModel.isValidPhoneNumber && registerViewModel.isPhoneNumberValid
                             ? null
                             : 'Phone number must have at least 8 digits',
                       ),
@@ -339,35 +338,61 @@ class RegisterScreen extends StatelessWidget {
                             registerViewModel.validateFields();
 
                             if (registerViewModel.isFormValid) {
-                              CollectionReference collRef = FirebaseFirestore
-                                  .instance
-                                  .collection('User');
-                              await collRef
-                                  .doc(registerViewModel.emailController.text)
-                                  .set({
-                                'name': registerViewModel.nameController.text,
-                                'email': registerViewModel.emailController.text,
-                                'password' : registerViewModel.passwordController.text,
-                                'number': registerViewModel.phoneNumber,
-                                'selectedPurpose': registerViewModel.selectedPurpose,
-                              });
 
                               try {
-                                UserCredential userCredential =
-                                await auth.createUserWithEmailAndPassword(
-                                    email: registerViewModel.emailController.text,
-                                    password: registerViewModel.passwordController.text);
-                                User? user = userCredential.user;
-                                print('New user created: ${user?.uid}');
-
                                 if (registerViewModel.selectedOption == 1 ||
                                     registerViewModel.selectedOption == 3) {
+                                  UserCredential userCredential =
+                                  await auth.createUserWithEmailAndPassword(
+                                      email: registerViewModel.emailController.text,
+                                      password: registerViewModel.passwordController.text);
+                                  User? user = userCredential.user;
+                                  print('New user created: ${user?.uid}');
+                                  CollectionReference collRef = FirebaseFirestore
+                                      .instance
+                                      .collection('User');
+                                  await collRef
+                                      .doc(registerViewModel.emailController.text)
+                                      .set({
+                                    'name': registerViewModel.nameController.text,
+                                    'email': registerViewModel.emailController.text,
+                                    'password' : registerViewModel.passwordController.text,
+                                    'number': registerViewModel.phoneNumber,
+                                    'selectedPurpose': registerViewModel.selectedPurpose,
+                                  });
                                   Beamer.of(context).beamToNamed(
                                       '/userDataStep1');
                                 } else if (registerViewModel.selectedOption ==
                                     2) {
+                                  UserCredential userCredential =
+                                  await auth.createUserWithEmailAndPassword(
+                                      email: registerViewModel.emailController.text,
+                                      password: registerViewModel.passwordController.text);
+                                  User? user = userCredential.user;
+                                  print('New user created: ${user?.uid}');
+                                  CollectionReference collRef = FirebaseFirestore
+                                      .instance
+                                      .collection('User');
+                                  await collRef
+                                      .doc(registerViewModel.emailController.text)
+                                      .set({
+                                    'name': registerViewModel.nameController.text,
+                                    'email': registerViewModel.emailController.text,
+                                    'password' : registerViewModel.passwordController.text,
+                                    'number': registerViewModel.phoneNumber,
+                                    'selectedPurpose': registerViewModel.selectedPurpose,
+                                  });
                                   Beamer.of(context).beamToNamed('/option2');
                                 } else {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) =>  PopupWidget(
+                                      titleText: S.of(context).choose,
+                                      contentText:
+                                      S.of(context).chooseWhy,
+                                      body: [],
+                                    ),
+                                  );
                                 }
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'email-already-in-use') {

@@ -164,51 +164,8 @@
   "reminderToDrink": "تذكير بشرب الماء",
   "yesterday": "أمس",
 
-  "signWith": "تسجيل الدخول باستخدام معرّف VirtAm الخاص بك",
-  "enterValidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
-  "enterValidPass": "كلمة المرور خاطئة",
-  "forgetPass": "هل نسيت كلمة المرور؟",
-  "or": "أو",
-  "wrongEmailPass": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
-  "rewriteCorrect": "الرجاء إعادة كتابته لتسجيل الدخول بنجاح",
-  "signedAlready": "حسابك في VirtAm الآن هو معرف VirtAm. إذا قمت بتسجيل الدخول إلى التطبيق من قبل، استخدم نفس بيانات الاعتماد هنا. خلاف ذلك",
-
-  "go": " ذهاب",
-  "away" : "اياب",
-  "organizationId" : "رقم المنشأة",
-  "chooseYourStatus" : "لو سمحت, إختر حالتك",
-
-  "ok" : "نعم",
-  "cancel" : "إلغاء",
-  "home": "الصفحة الرئيسية",
-  "profile": "الصفحة الشخصية",
-  "warningMsg": "هل متأكد من انك تريد إلغاء الرحلة؟",
-  "trip" : "الرحلة",
-  "warning" : "تنبيه !",
-  "arrived" : "لقد وصل",
-  "didNotCome" : "لم يأتي",
-  "pickup" : "اصطحاب الطلاب",
-  "wait" : "الرجاء الانتظار ل ٥ دقائق ... ",
-  "done" : "تم",
-
-  "keepYourFaceOnLeft" : "يرجى النظر الى اليسار",
-  "tryLoginWithEmail" : "حاول تسجيل الدخول بالبريد الإلكتروني",
-
-  "organizationIdOrEmail" : "رقم المنشأة او البريد الإلكتروني",
-  "enterYourPassword" : "أدخل كلمة المرور",
-  "keepMeLoggedIn" : "البقاء على تسجيل الدخول",
-  "forgotPassword" : "هل نسيت كلمة المرور؟ ",
-  "clickHere" : "انقر هنا",
-
-
-  "alreadyHaveAnAccount" : "لديك حساب بالفعل؟ ",
-  "enterYourName" : "أدخل الإسم",
-  "enterYourEmail" : "أدخل بريدك الإلكتروني",
-  "retypeYourEmail" : "أعد إدخال بريدك الإلكتروني",
-  "enterYourPhoneNumber" : "أدخل رقم الهاتف",
-  "retypeYourPassword" : "أعد كتابة كلمة المرور",
-  "createAccount": "إنشاء حساب",
-  "privacyPolicyAndTerms": "من خلال المتابعة فإنك تافق على قبول سياسة الخصوصية وشروط الخدمة.",
-  "": ""
+  "choose": "يجب أن تختار !",
+  "chooseWhy": "يجب أن تختارالهدف من انشاء الحساب ..",
+  "done" : "تم"
 
 }

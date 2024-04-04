@@ -6,6 +6,7 @@ import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/circular_component.dart';
@@ -17,7 +18,116 @@ import '../../component/viewall_component.dart';
 import '../../generated/l10n.dart';
 import '../../helper/calories_class.dart';
 import '../../notifications.dart';
+import '../notification_screen/notification_sceen.dart';
 import 'home_screen_view_model.dart';
+
+
+
+
+// class HomeScreen extends StatefulWidget {
+//   const HomeScreen({Key? key});
+//
+//   @override
+//   State<HomeScreen> createState() => _HomeScreenState();
+// }
+// class _HomeScreenState extends State<HomeScreen> {
+//   int dailyStepCount = 0;
+//   int? lastSavedStepCount;
+//
+//   StreamSubscription<StepCount>? _subscription;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     requestPermission();
+//     startListeningToSteps();
+//     getLastSavedStepCount();
+//   }
+//
+//   @override
+//   void dispose() {
+//     _subscription?.cancel();
+//     super.dispose();
+//   }
+//
+//   Future<void> requestPermission() async {
+//     final PermissionStatus status = await Permission.activityRecognition.request();
+//     if (status != PermissionStatus.granted) {
+//       // Handle permission not granted
+//     }
+//   }
+//
+//   void startListeningToSteps() {
+//     _subscription = Pedometer.stepCountStream.listen(
+//           (StepCount event) {
+//         setState(() {
+//           dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
+//           DateTime timeStamp = event.timeStamp;
+//
+//         });
+//         saveDailyStepCount(event.steps);
+//       },
+//       onError: (error) {
+//         print("An error occurred while fetching step count: $error");
+//       },
+//       cancelOnError: true,
+//     );
+//   }
+//
+//
+//   Future<void> getLastSavedStepCount() async {
+//     SharedPreferences prefs = await SharedPreferences.getInstance();
+//     setState(() {
+//       lastSavedStepCount = prefs.getInt('lastSavedStepCount');
+//     });
+//   }
+//
+//   Future<void> saveDailyStepCount(int stepCount) async {
+//     SharedPreferences prefs = await SharedPreferences.getInstance();
+//     await prefs.setInt('lastSavedStepCount', stepCount);
+//   }
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Step Counter'),
+//       ),
+//       body: SingleChildScrollView(
+//         child: Column(
+//           children: [
+//             const SizedBox(height: 48),
+//             Column(
+//               children: [
+//                 const Text(
+//                   'Steps today',
+//                   style: TextStyle(fontSize: 25),
+//                 ),
+//                 Center(
+//                   child: Text(
+//                     '$dailyStepCount',
+//                     style: TextStyle(
+//                       fontSize: 80,
+//                       color: Theme.of(context).primaryColor,
+//                     ),
+//                   ),
+//                 ),
+//                 const Divider(),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//
+//         },
+//         child: const Icon(Icons.add),
+//       ),
+//     );
+//   }
+// }
 
 
 
@@ -139,12 +249,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListeners{
 
   Timer? countdownTimer;
-  Duration myDuration = Duration(hours: DateTime.now().hour-16,minutes: 60-DateTime.now().minute,seconds: 60-DateTime.now().second);
+  Duration myDuration = Duration(hours: 11-DateTime.now().hour,minutes: 60-DateTime.now().minute,seconds: 60-DateTime.now().second);
   bool notFinished = true;
   int? startTimeHour;
   int? startTimeMinute;
   int getSteps = 0;
   int distance =0;
+  int dailyStepCount = 0;
+  int? lastSavedStepCount;
+  bool is12Am = true;
   late StepCalculator calculator = StepCalculator();
   final HealthFactory health = HealthFactory();
   late StreamSubscription<StepCount> _subscription;
@@ -160,14 +273,20 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   @override
   void initState() {
     super.initState();
-    //vm?.init(this);
-    countdownTimer?.isActive;
-
+    startListeningToSteps();
+    getLastSavedStepCount();
+    DateTime now = DateTime.now();
+    if(now.hour == 0 && now.minute == 0 && now.second == 0){
+      is12Am =true ;
+    }
+    if (is12Am = true ) {
+      print('hhhhhhhhhhhhhhhhhhhhhh');
+      is12Am = false;
+    }
     calculator = StepCalculator();
     requestPermission();
     startTimer();
     NotificationHelper.showNotification();
-    DrinkCounter();
   }
 
   @override
@@ -186,12 +305,14 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
       myDuration = Duration(seconds: seconds);
       notFinished = true;
     }
-  setState(() {});
+    setState(() {});
   }
 
   void startTimer() {
     DateTime now = DateTime.now();
-    DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour,now.minute,now.second+1);
+    if(now.hour>=1 && now.hour<=12){
+      DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour,now.minute,now.second+1);
+
     if (now.isAfter(startDateTime)) {
       startDateTime = startDateTime.add(const Duration(days: 1));
     }
@@ -199,24 +320,46 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
 
     countdownTimer = Timer(initialDelay, () {
       countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
-    });
+    });}
   }
   Future<void> requestPermission() async {
     final PermissionStatus status =
-        await Permission.activityRecognition.request();
+    await Permission.activityRecognition.request();
     if (status != PermissionStatus.granted) {
-      return;
+      return startListeningToSteps();
     }
 
+  }
+
+  void startListeningToSteps() {
+    _subscription = Pedometer.stepCountStream.listen(
+          (StepCount event) {
+        setState(() {
+          dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
+
+        });
+        if(is12Am){
+          saveDailyStepCount(event.steps);
+        }
+      },
+      onError: (error) {
+        print("An error occurred while fetching step count: $error");
+      },
+      cancelOnError: true,
+    );
+  }
 
 
-
-
-    _subscription = Pedometer.stepCountStream.listen((StepCount event) {
-      setState(() {
-        getSteps = event.steps;
-      });
+  Future<void> getLastSavedStepCount() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      lastSavedStepCount = prefs.getInt('lastSavedStepCount');
     });
+  }
+
+  Future<void> saveDailyStepCount(int stepCount) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('lastSavedStepCount', stepCount);
   }
 
 
@@ -273,331 +416,331 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
         onWillPop: () async {
           Beamer.of(context).beamToNamed('/homeNavigationBar');
           return false;
-    },
-    child: SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Beamer.of(context).beamToNamed('/settingMenuScreen');
-                  },
-                  icon: const ImageIcon(
-                    AssetImage('images/more.png'),
-                  ),
-                ),
-                const Center(child: LogoComponent()),
-                IconButton(
-                  onPressed: () {
-                    Beamer.of(context).beamToNamed('/notificationScreen');
-                  },
-                  icon: const ImageIcon(
-                    AssetImage('images/notification.png'),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.location_on_rounded,
-                  size: 15,
-                ),
-                TextComponent(
-                  text: S.of(context).locationName,
-                  textStyle: const TextStyle(fontSize: 15),
-                ),
-                const Icon(
-                  Icons.expand_more_sharp,
-                  size: 15,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: screenSize.height * 0.02,
-            ),
-            SizedBox(
-              height: 200,
-              width: 400,
-              child: SingleChildScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                child: CircularComponent(
-                  text1: DateFormat(' MMM d, y').format(DateTime.now(),),
-                  text2: '$getSteps',
-                  text3: S.of(context).stepGoal,
-                )
-              ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: HomeComponent(
-                    valueText: '$calories',
-                    text: S.of(context).calories,
-                    icon: Icons.local_fire_department_outlined,
-                  ),
-                ),
-                SizedBox(
-                  width: screenSize.width * 0.01,
-                ),
-                Expanded(
-                  child: HomeComponent(
-                    valueText: S.of(context).date,
-                    text: S.of(context).time,
-                    icon: Icons.access_time_outlined,
-                  ),
-                ),
-                SizedBox(
-                  width: screenSize.width * 0.01,
-                ),
-                Expanded(
-                  child: HomeComponent(
-                    valueText: '$distance',
-                    text: S.of(context).distance,
-                    icon: Icons.location_on,
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 150,
-                    child: Stack(
-                      children: [
-                        const Image(image: AssetImage('images/fasting.png'),fit: BoxFit.contain,
-                        height: 140,),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                IconButton(
-                                onPressed: () {
-                                  Beamer.of(context).beamToNamed('/fastScreen');
-                                  },
-                                  icon: const Icon(
-                              Icons.navigate_next,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Text(
-                                    S.of(context).duringFast,
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 18),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              homeViewModel.notFinished
-                                  ? '$hour:$minutes:$seconds'
-                                  : 'Time Is Over ... !!  ',
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Container(
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextComponent(text: S.of(context).weightHistory),
-                            IconButton(onPressed: (){
-                              Beamer.of(context).beamToNamed('/weightHistoryScreen');
-                            },
-                                icon: const Icon(Icons.navigate_next))
-                          ],
-                        ),
-                        SfCartesianChart(
-                            margin: EdgeInsets.zero,
-                            series: <CartesianSeries>[
-                              SplineSeries<ChartData, int>(
-                                color: Theme.of(context).primaryColor,
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y,
-                              ),
-                            ]),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Stack(
-              children: [
-                const Image(
-                  image: AssetImage('images/water.png'),
-                  fit: BoxFit.cover,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(25.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      const TextLabelBigComponent(text: '1,290 ml'),
-                      TextComponent(text: S.of(context).remainingMl),
-                      SizedBox(
-                        height: screenSize.height * 0.04,
-                      ),
-                      SizedBox(
-                          width: 100,
-                          height: 25,
-                          child: ButtonComponentContinue(
-                            text: S.of(context).add,
-                            onPress: (){
-                              Beamer.of(context).beamToNamed('/drinkWaterScreen');
-                            },
-                          ),),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
+        },
+        child: SafeArea(
+          child: Scaffold(
+            body: SingleChildScrollView(
+              child: Column(children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextComponent(text: S.of(context).exercise ),
-                    ViewAllComponent(
-                      onPressed: (){
-                        Beamer.of(context).beamToNamed('/exercisesScreen');
-
+                    IconButton(
+                      onPressed: () {
+                        Beamer.of(context).beamToNamed('/settingMenuScreen');
                       },
+                      icon: const ImageIcon(
+                        AssetImage('images/more.png'),
+                      ),
+                    ),
+                    const Center(child: LogoComponent()),
+                    IconButton(
+                      onPressed: () {
+                        Beamer.of(context).beamToNamed('/notificationScreen');
+                      },
+                      icon: const ImageIcon(
+                        AssetImage('images/notification.png'),
+                      ),
                     ),
                   ],
                 ),
-                Card(
-                  color: Theme.of(context).primaryColor,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Expanded(
-                        child: Image(image: AssetImage('images/sport1.png')),
-                      ),
-                      Expanded(
-                        child: Container(
-                          color: Theme.of(context).primaryColor,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: TextComponent(
-                                  text: 'Day 2-Fitness',
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextComponent(
-                                  text: 'Lorem ipsum dolor sit amet',
-                                  textStyle:
-                                      Theme.of(context).textTheme.displaySmall,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                    height: 30,
-                                    width: 110,
-                                    child: ButtonComponentContinue(
-                                      text: S.of(context).play,
-                                      textStyle: const TextStyle(
-                                          fontSize: 12, color: Colors.white),
-                                    )),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.location_on_rounded,
+                      size: 15,
+                    ),
+                    TextComponent(
+                      text: S.of(context).locationName,
+                      textStyle: const TextStyle(fontSize: 15),
+                    ),
+                    const Icon(
+                      Icons.expand_more_sharp,
+                      size: 15,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.02,
+                ),
+                SizedBox(
+                  height: 200,
+                  width: 400,
+                  child: SingleChildScrollView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      child: CircularComponent(
+                        text1: DateFormat(' MMM d, y').format(DateTime.now(),),
+                        text2: '$dailyStepCount',
+                        text3: S.of(context).stepGoal,
+                      )
                   ),
                 ),
-                Card(
-                  color: Theme.of(context).primaryColor,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Expanded(
-                        child: Image(image: AssetImage('images/sport2.png')),
+                Row(
+                  children: [
+                    Expanded(
+                      child: HomeComponent(
+                        valueText: '$calories',
+                        text: S.of(context).calories,
+                        icon: Icons.local_fire_department_outlined,
                       ),
-                      Expanded(
-                        child: Container(
-                          color: Theme.of(context).primaryColor,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: TextComponent(
-                                  text: 'Day 2-Fitness',
+                    ),
+                    SizedBox(
+                      width: screenSize.width * 0.01,
+                    ),
+                    Expanded(
+                      child: HomeComponent(
+                        valueText: S.of(context).date,
+                        text: S.of(context).time,
+                        icon: Icons.access_time_outlined,
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenSize.width * 0.01,
+                    ),
+                    Expanded(
+                      child: HomeComponent(
+                        valueText: '$distance',
+                        text: S.of(context).distance,
+                        icon: Icons.location_on,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 150,
+                        child: Stack(
+                          children: [
+                            const Image(image: AssetImage('images/fasting.png'),fit: BoxFit.contain,
+                              height: 140,),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        Beamer.of(context).beamToNamed('/fastScreen');
+                                      },
+                                      icon: const Icon(
+                                        Icons.navigate_next,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        S.of(context).duringFast,
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 18),
+                                       ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextComponent(
-                                  text: 'Lorem ipsum dolor sit amet',
-                                  textStyle:
-                                      Theme.of(context).textTheme.displaySmall,
+                                Text(
+                                  notFinished? '$hour:$minutes:$seconds':
+                                  'Done',
+                                  style:  TextStyle(
+                                      color: notFinished ? Colors.white:
+                                      Colors.green,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                    height: 30,
-                                    width: 110,
-                                    child: ButtonComponentContinue(
-                                      text: S.of(context).play,
-                                      textStyle: const TextStyle(
-                                          fontSize: 12, color: Colors.white),
-                                    )),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Container(
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextComponent(text: S.of(context).weightHistory),
+                                IconButton(onPressed: (){
+                                  Beamer.of(context).beamToNamed('/weightHistoryScreen');
+                                },
+                                    icon: const Icon(Icons.navigate_next))
+                              ],
+                            ),
+                            SfCartesianChart(
+                                margin: EdgeInsets.zero,
+                                series: <CartesianSeries>[
+                                  SplineSeries<ChartData, int>(
+                                    color: Theme.of(context).primaryColor,
+                                    dataSource: chartData,
+                                    xValueMapper: (ChartData data, _) => data.x,
+                                    yValueMapper: (ChartData data, _) => data.y,
+                                  ),
+                                ]),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+                Stack(
+                  children: [
+                    const Image(
+                      image: AssetImage('images/water.png'),
+                      fit: BoxFit.cover,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          const TextLabelBigComponent(text: '1,290 ml'),
+                          TextComponent(text: S.of(context).remainingMl),
+                          SizedBox(
+                            height: screenSize.height * 0.04,
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 25,
+                            child: ButtonComponentContinue(
+                              text: S.of(context).add,
+                              onPress: (){
+                                Beamer.of(context).beamToNamed('/drinkWaterScreen');
+                              },
+                            ),),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextComponent(text: S.of(context).exercise ),
+                        ViewAllComponent(
+                          onPressed: (){
+                            Beamer.of(context).beamToNamed('/exercisesScreen');
+
+                          },
+                        ),
+                      ],
+                    ),
+                    Card(
+                      color: Theme.of(context).primaryColor,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Expanded(
+                            child: Image(image: AssetImage('images/sport1.png')),
+                          ),
+                          Expanded(
+                            child: Container(
+                              color: Theme.of(context).primaryColor,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: TextComponent(
+                                      text: 'Day 2-Fitness',
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: TextComponent(
+                                      text: 'Lorem ipsum dolor sit amet',
+                                      textStyle:
+                                      Theme.of(context).textTheme.displaySmall,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SizedBox(
+                                        height: 30,
+                                        width: 110,
+                                        child: ButtonComponentContinue(
+                                          text: S.of(context).play,
+                                          textStyle: const TextStyle(
+                                              fontSize: 12, color: Colors.white),
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      color: Theme.of(context).primaryColor,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Expanded(
+                            child: Image(image: AssetImage('images/sport2.png')),
+                          ),
+                          Expanded(
+                            child: Container(
+                              color: Theme.of(context).primaryColor,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: TextComponent(
+                                      text: 'Day 2-Fitness',
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: TextComponent(
+                                      text: 'Lorem ipsum dolor sit amet',
+                                      textStyle:
+                                      Theme.of(context).textTheme.displaySmall,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SizedBox(
+                                        height: 30,
+                                        width: 110,
+                                        child: ButtonComponentContinue(
+                                          text: S.of(context).play,
+                                          textStyle: const TextStyle(
+                                              fontSize: 12, color: Colors.white),
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ]),
             ),
-          ]),
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }
 

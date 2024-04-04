@@ -23,7 +23,7 @@ class CheckBoxComponent extends StatelessWidget{
             onChanged: onChanged,
         ),
         Text(text,
-        style: Theme.of(context).textTheme.labelMedium,),
+        style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),),
               ],
     );
 

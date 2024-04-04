@@ -21,11 +21,11 @@
   "password": "Password",
   "rePassword": "Re-write Password",
   "shouldContain": "password should contain :",
-  "condition1": "one letter at least",
-  "condition2": "one letter at least",
-  "condition3": "one letter at least",
-  "condition4": "one letter at least",
-  "condition5": "one letter at least",
+  "condition1": "At least one letter",
+  "condition2": "At least one uppercase letter",
+  "condition3": "At least one number",
+  "condition4": "At least eight characters",
+  "condition5": "At least one special character",
   "purpose": "The purpose of creating the account?",
   "purpose1": "Follow my personal data",
   "purpose2": "Follow up with my nutrition counselor",
@@ -182,44 +182,10 @@
   "today": "Today",
   "reminderToDrink": "Reminder to drink water",
   "yesterday": "Yesterday",
+  "choose": "You Should Choose !",
+  "chooseWhy": "You Should Choose The Purpose of \n Creating Account ..",
+  "done" : "Done"
 
-  "createNewOne" : "Create New One!",
-  "go": "GO",
-  "away" :"AWAY",
-  "organizationId" : "Organization ID",
-  "chooseYourStatus" : "Choose your status, please",
-
-  "ok" : "OK",
-  "cancel" : "Cancel",
-  "home": "Home",
-  "profile": "Profile",
-  "warningMsg": "Are you sure you want to cancel the trip ?",
-  "trip" : "Trip",
-  "warning" : "Warning !",
-  "arrived" : "Arrived",
-  "didNotCome" : "Didn't come",
-  "pickup" : "Pick up the students",
-  "wait" : "Please wait for 5 minutes...",
-  "done" : "Done",
-
-
-  "keepYourFaceOnLeft" : "Keep Your Face On Left",
-  "tryLoginWithEmail" : "Try Login With Email",
-
-  "organizationIdOrEmail" : "Organization ID or Email",
-  "enterYourPassword" : "Enter your password",
-  "keepMeLoggedIn" : "Keep me logged in",
-  "forgotPassword" : "Forgot Password? ",
-  "clickHere" : "Click Here",
-
-
-  "alreadyHaveAnAccount" : "already have an account?",
-  "enterYourName" : "Enter your name",
-  "enterYourEmail" : "Enter your email",
-  "retypeYourEmail" : "Retype your email",
-  "enterYourPhoneNumber" : "Enter your phone number",
-  "retypeYourPassword" : "Retype your password",
-  "privacyPolicyAndTerms": "By continuing, you agree to accept our Privacy Policy and Terms of Service."
 
 
 }

@@ -26,6 +26,7 @@ import 'feature/login_screen/login_screen_view_model.dart';
 import 'feature/navigation_bar_screen/navigation_bar_screen.dart';
 import 'feature/navigation_bar_screen/navigation_bar_view_model.dart';
 import 'feature/notification_screen/notification_sceen.dart';
+import 'feature/notification_screen/notification_view_model.dart';
 import 'feature/nutrition_screen/nutrition_screen.dart';
 import 'feature/option2_screen/option2_screen.dart';
 import 'feature/option2_screen/option2_view_model.dart';
@@ -38,6 +39,7 @@ import 'feature/setting_menu_screen/about_virtam_screen.dart';
 import 'feature/setting_menu_screen/setting_menu_screen.dart';
 import 'feature/setting_menu_screen/setting_menu_view_model.dart';
 import 'feature/setting_menu_screen/subscription_screen.dart';
+import 'feature/splash_Screen/Splash_Screen.dart';
 import 'feature/step1-10_screens/user_data_step10_screen/user_data_step10_screen.dart';
 import 'feature/step1-10_screens/user_data_step10_screen/user_data_step10_view_model.dart';
 import 'feature/step1-10_screens/user_data_step1_screen/user_data_step1_screen.dart';
@@ -63,7 +65,6 @@ import 'feature/welcome_screen/welcom_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 import 'main_view_model.dart';
-import 'notifications.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -72,13 +73,6 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
-  NotificationHelper.initialize();
-  AwesomeNotifications().setListeners(
-    onActionReceivedMethod: NotificationController.onActionReceivedMethod,
-    onNotificationCreatedMethod: NotificationController.onNotificationCreatedMethod,
-    onNotificationDisplayedMethod: NotificationController.onNotificationDisplayedMethod,
-    onDismissActionReceivedMethod: NotificationController.onDismissActionReceivedMethod,
   );
 
 
@@ -89,7 +83,6 @@ void main() async{
     ChangeNotifierProvider(create: (_) => RegisterViewModel()),
     ChangeNotifierProvider(create: (_) => Option2UserModel()),
     ChangeNotifierProvider(create: (_) => HomeViewModel()),
-    ChangeNotifierProvider(create: (_) => DrinkCounter()),
     ChangeNotifierProvider(create: (_) => UserDataStep1ViewModel()),
     ChangeNotifierProvider(create: (_) => UserDataStep2ViewModel()),
     ChangeNotifierProvider(create: (_) => UserDataStep3ViewModel()),
@@ -106,6 +99,7 @@ void main() async{
     ChangeNotifierProvider(create: (_) => DrinkWaterViewModel()),
     ChangeNotifierProvider(create: (_) => SettingMenuViewModel()),
     ChangeNotifierProvider(create: (_) => ProfileViewModel()),
+    //ChangeNotifierProvider(create: (_) => NotificationViewModel()),
   ],
       child:  MyApp())
   );
@@ -159,7 +153,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const HomeNavigationBar(),
+        '/': (context, state, data) =>  const SplashScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
