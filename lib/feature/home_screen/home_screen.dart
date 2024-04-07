@@ -567,27 +567,30 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
                             Column(
                               children: [
                                 //SizedBox(height:20 ,),
-                                Row(
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        Beamer.of(context).beamToNamed('/fastScreen');
-                                      },
-                                      icon: const Icon(
-                                        Icons.navigate_next,
-                                        color: Colors.white,
-                                        size: 20,
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          Beamer.of(context).beamToNamed('/fastScreen');
+                                        },
+                                        icon: const Icon(
+                                          Icons.navigate_next,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Text(
-                                        S.of(context).duringFast,
-                                        style: const TextStyle(
-                                            color: Colors.white, fontSize: 18),
-                                       ),
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(
+                                          S.of(context).duringFast,
+                                          style: const TextStyle(
+                                              color: Colors.white, fontSize: 18),
+                                         ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Text(
                                   notFinished? '$hour:$minutes:$seconds':
@@ -648,7 +651,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(
-                            height: 40,
+                            height: 20,
                           ),
                           const TextLabelBigComponent(text: '1,290 ml'),
                           TextComponent(text: S.of(context).remainingMl),

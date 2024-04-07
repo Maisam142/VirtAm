@@ -108,7 +108,7 @@ class NutritionScreen extends StatelessWidget {
                                 alignment: Alignment.bottomLeft,
                                 child: Column(
                                   children: [
-                                    SizedBox(height: 90,),
+                                    SizedBox(height: 50,),
                                     Container(
                                       width: 90,
                                       color: Colors.white70.withOpacity(0.2),
@@ -135,14 +135,17 @@ class NutritionScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextLabelComponent(text: S.of(context).popularCenter,),
-                          ViewAllComponent(
-                            onPressed: () {},
-                          ),
-                        ],
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextLabelComponent(text: S.of(context).popularCenter,),
+                            ViewAllComponent(
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
                       ),
                       GridView.builder(
                         shrinkWrap: true,
@@ -226,43 +229,45 @@ class NutritionScreen extends StatelessWidget {
                         itemCount: items.length,
                         itemBuilder: (context, index) {
                           return GridTile(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    print('Tapped on image of ${allItems[index]['subtitle']}');
-                                  },
-                                  child: Image.asset(
-                                    allItems[index]['image'],
-                                    fit: BoxFit.contain,
-                                    // height: screenSize.height * 0.05,
-                                    // width: screenSize.width * 0.2,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      print('Tapped on image of ${allItems[index]['subtitle']}');
+                                    },
+                                    child: Image.asset(
+                                      allItems[index]['image'],
+                                      fit: BoxFit.contain,
+                                      // height: screenSize.height * 0.05,
+                                      // width: screenSize.width * 0.2,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      TextComponent(
-                                        text: allItems[index]['title'],
-                                        textStyle: TextStyle(
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 14.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        TextComponent(
+                                          text: allItems[index]['title'],
+                                          textStyle: TextStyle(
+                                            color: Theme.of(context).primaryColor,
+                                            fontSize: 14.0,
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 4.0),
-                                      TextComponent(
-                                        text: allItems[index]['subtitle'],
-                                        textStyle: TextStyle(
-                                          fontSize: 18.0,
+                                        const SizedBox(height: 4.0),
+                                        TextComponent(
+                                          text: allItems[index]['subtitle'],
+                                          textStyle: TextStyle(
+                                            fontSize: 18.0,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         },

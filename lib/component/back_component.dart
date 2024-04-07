@@ -14,7 +14,7 @@ class BackComponent extends StatelessWidget{
     final Size screenSize = MediaQuery.of(context).size;
 
     return Container(
-      height: screenSize.height * 0.09,
+      height: 58,
       //width: double.infinity,
       child: Column(
         children: [

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:virtam/component/text_component.dart';
 
@@ -25,23 +26,27 @@ class HomeComponent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextLabelComponent(text: valueText),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                color: Theme.of(context).primaryColor,
-                size: 20,
-              ),
-              Center(
-                child: TextComponent(
-                  text: text,
-                  textStyle: TextStyle(
-                    color: Theme.of(context).primaryColor,fontSize: 13,
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  color: Theme.of(context).primaryColor,
+                  size: 20,
+                ),
+                Center(
+                  child: TextComponent(
+                    text: text,
+                    textStyle: TextStyle(
+                      color: Theme.of(context).primaryColor,fontSize: 13,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

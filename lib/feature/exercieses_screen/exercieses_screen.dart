@@ -50,7 +50,7 @@ class ExercisesScreen extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: 250,
+              height: 190,
               width: double.infinity,
               child: Stack(
                 children: [
@@ -62,7 +62,7 @@ class ExercisesScreen extends StatelessWidget {
                       alignment: Alignment.bottomLeft,
                       child: Column(
                         children: [
-                          SizedBox(height: 110,),
+                          SizedBox(height: 80,),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Container(
@@ -88,19 +88,23 @@ class ExercisesScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: screenSize.height * 0.02,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                MaterialButton(onPressed: (){},
-                  child: TextComponent(text: S.of(context).lorem),),
-                MaterialButton(onPressed: (){},
-                  child: TextComponent(text:  S.of(context).lorem),),
-                MaterialButton(
-                  onPressed: (){},
-                  child: TextComponent(text: S.of(context).lorem),),
-                MaterialButton(onPressed: (){},
-                  child: TextComponent(text: S.of(context).fitness),),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MaterialButton(onPressed: (){},
+                    child: TextComponent(text: S.of(context).lorem),),
+                  MaterialButton(onPressed: (){},
+                    child: TextComponent(text:  S.of(context).lorem),),
+                  MaterialButton(
+                    onPressed: (){},
+                    child: TextComponent(text: S.of(context).lorem),),
+                  MaterialButton(onPressed: (){},
+                    child: TextComponent(text: S.of(context).fitness),),
+                ],
+              ),
             ),
             Expanded(
               child: GridView.builder(

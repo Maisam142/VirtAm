@@ -54,7 +54,7 @@ class DrinkWaterScreen extends StatelessWidget {
                       children: [
                         Container(
                             width: double.infinity,
-                            height: screenSize.height * 0.7,
+                            height: 500,
                             child: Image(image: AssetImage('images/personwater.png',),fit: BoxFit.cover,)),
                         Align(
                             alignment: Alignment.centerLeft,
