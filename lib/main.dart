@@ -149,7 +149,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const HomeNavigationBar(),
+        '/': (context, state, data) =>  const SplashScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),

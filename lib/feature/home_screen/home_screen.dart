@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   static int currentMinute = DateTime.now().minute;
   static int currentSecond = DateTime.now().second;
 
-  static int remainingHours = currentHour < 17 ? 17 - currentHour : currentHour - 17;
+  static int remainingHours = currentHour < 23 ? 23 - currentHour : currentHour - 23;
   static int remainingMinutes = 60 - currentMinute;
   static int remainingSeconds = 60 - currentSecond;
 
@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
 
   void startTimer() {
     DateTime now = DateTime.now();
-    if(now.hour>=10 && now.hour<=17){
+    if(now.hour>=10 && now.hour<=23){
       DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour,now.minute,now.second+1);
 
     if (now.isAfter(startDateTime)) {

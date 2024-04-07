@@ -39,7 +39,7 @@ class UserDataScreenStep3 extends StatelessWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  height: 400,
+                  height: 380,
                   child: Column(
                     children: [
                       Container(
@@ -154,7 +154,7 @@ class UserDataScreenStep3 extends StatelessWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  height: 400,
+                  height: 300,
                   child: Column(
                     children: [
                       Container(
