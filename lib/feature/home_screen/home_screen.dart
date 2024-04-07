@@ -17,7 +17,7 @@ import 'package:virtam/component/text_component.dart';
 import '../../component/viewall_component.dart';
 import '../../generated/l10n.dart';
 import '../../helper/calories_class.dart';
-import '../../notifications.dart';
+import 'package:background_fetch/background_fetch.dart';
 import '../notification_screen/notification_sceen.dart';
 import 'home_screen_view_model.dart';
 
@@ -249,7 +249,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListeners{
 
   Timer? countdownTimer;
-  Duration myDuration = Duration(hours: 11-DateTime.now().hour,minutes: 60-DateTime.now().minute,seconds: 60-DateTime.now().second);
+  static int currentHour = DateTime.now().hour;
+  static int currentMinute = DateTime.now().minute;
+  static int currentSecond = DateTime.now().second;
+
+  static int remainingHours = currentHour < 17 ? 17 - currentHour : currentHour - 17;
+  static int remainingMinutes = 60 - currentMinute;
+  static int remainingSeconds = 60 - currentSecond;
+
+  Duration myDuration = Duration(hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds);
   bool notFinished = true;
   int? startTimeHour;
   int? startTimeMinute;
@@ -257,7 +265,8 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   int distance =0;
   int dailyStepCount = 0;
   int? lastSavedStepCount;
-  bool is12Am = true;
+  int currentDay = DateTime.now().day;
+  int? savedDay ;
   late StepCalculator calculator = StepCalculator();
   final HealthFactory health = HealthFactory();
   late StreamSubscription<StepCount> _subscription;
@@ -274,9 +283,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   void initState() {
     super.initState();
     startListeningToSteps();
-    DateTime now = DateTime.now();
-      getLastSavedStepCount();
-
+    getLastSavedDayAndStepCount();
     calculator = StepCalculator();
     requestPermission();
     startTimer();
@@ -289,6 +296,31 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
     super.dispose();
   }
 
+  // void initPlatformState() {
+  //   BackgroundFetch.configure(
+  //     BackgroundFetchConfig(
+  //       minimumFetchInterval: 1,
+  //       stopOnTerminate: false,
+  //       startOnBoot: true,
+  //       enableHeadless: true,
+  //       requiresBatteryNotLow: false,
+  //       requiresCharging: false,
+  //       requiresStorageNotLow: false,
+  //       requiresDeviceIdle: false,
+  //       requiredNetworkType: NetworkType.NONE,
+  //     ),
+  //         (String taskId) async {
+  //       print('[BackgroundFetch] Task executed: $taskId');
+  //       DateTime now = DateTime.now();
+  //       print('Current time--------------------------------------------------------------: $now');
+  //       BackgroundFetch.finish(taskId);
+  //     },
+  //         (String taskId) async {
+  //       print('[BackgroundFetch] Task timeout: $taskId');
+  //       BackgroundFetch.finish(taskId);
+  //     },
+  //   );
+  // }
   void setCountDown() {
     const reduceSecondsBy = 1;
     final seconds = myDuration.inSeconds - reduceSecondsBy;
@@ -304,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
 
   void startTimer() {
     DateTime now = DateTime.now();
-    if(now.hour>=13 && now.hour<=12){
+    if(now.hour>=10 && now.hour<=17){
       DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour,now.minute,now.second+1);
 
     if (now.isAfter(startDateTime)) {
@@ -315,7 +347,8 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
     countdownTimer = Timer(initialDelay, () {
       countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
     });}else{
-      notFinished = false;
+      notFinished=false;
+
     }
   }
   Future<void> requestPermission() async {
@@ -332,7 +365,6 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
           (StepCount event) {
         setState(() {
           dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
-
         });
           saveDailyStepCount(event.steps);
       },
@@ -348,13 +380,33 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       lastSavedStepCount = prefs.getInt('lastSavedStepCount');
+      savedDay = DateTime.now().day;
+      prefs.setInt('savedDay', savedDay!);
+      print("$savedDay -------------=================================------");
     });
   }
+  Future<void> getLastSavedDayAndStepCount() async { // Updated method signature
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      savedDay = prefs.getInt('savedDay');
+      lastSavedStepCount = prefs.getInt('lastSavedStepCount'); // Retrieve last saved step count
+      print('$savedDay --------------------');
+      print('$currentDay ------------------------------------------------------------------');
+    });
 
+    if ( savedDay != currentDay) {
+      getLastSavedStepCount();
+      print('*************************************************');
+
+    }
+  }
   Future<void> saveDailyStepCount(int stepCount) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('lastSavedStepCount', stepCount);
+
   }
+
+
 
 
   // Future<void> fetchStepData() async {
@@ -539,7 +591,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
                                 ),
                                 Text(
                                   notFinished? '$hour:$minutes:$seconds':
-                                  'Done',
+                                  '12:00:00',
                                   style:  TextStyle(
                                       color: notFinished ? Colors.white:
                                       Colors.green,
@@ -627,7 +679,6 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
                         ViewAllComponent(
                           onPressed: (){
                             Beamer.of(context).beamToNamed('/exercisesScreen');
-                            print('${is12Am} -----------------------------------------------------------------------');
 
                           },
                         ),

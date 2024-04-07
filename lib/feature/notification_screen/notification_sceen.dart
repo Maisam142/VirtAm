@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../component/back_component.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -88,6 +91,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
       child: Scaffold(
         body: Column(
           children: <Widget>[
+            BackComponent(
+              text: 'Notifications',
+              onPressed: (){
+                Beamer.of(context).beamBack();
+              },
+            ),
+
             Expanded(
               child: ListView.builder(
                 itemCount: notifications.length,
@@ -163,7 +173,7 @@ class NotificationHelper {
         displayOnBackground: true,
       ),
       schedule: NotificationInterval(
-        interval: 2 * 60,
+        interval: 10 * 60,
         timeZone: 'UTC',
         preciseAlarm: true,
         repeats: true,

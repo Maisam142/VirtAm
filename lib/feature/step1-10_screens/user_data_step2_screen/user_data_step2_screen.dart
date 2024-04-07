@@ -45,7 +45,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                     children: [
                       Container(
                         color: Colors.white,
-                        height: screenSize.height * 0.15,
+                        height: 100,
                         child: Column(
                           children: [
                             Padding(

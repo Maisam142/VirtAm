@@ -50,10 +50,12 @@ class ExercisesScreen extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: screenSize.height * 0.31,
+              height: 250,
+              width: double.infinity,
               child: Stack(
                 children: [
-                  Image(image: AssetImage('images/exercises.png'),),
+                  Image(image: AssetImage('images/exercises.png'),
+                  fit: BoxFit.contain,),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Align(
@@ -77,7 +79,7 @@ class ExercisesScreen extends StatelessWidget {
                           Align(
                             alignment: Alignment.bottomLeft,
                             child: TextLabelComponent(text: 'Day 01-Fitness ',textStyle: TextStyle(color: Colors.white,
-                                fontSize: 45),),),
+                                fontSize: 40),),),
                         ],
                       ),
                     ),

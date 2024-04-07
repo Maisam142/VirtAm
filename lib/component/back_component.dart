@@ -18,7 +18,7 @@ class BackComponent extends StatelessWidget{
       //width: double.infinity,
       child: Column(
         children: [
-          SizedBox(height: screenSize.height * 0.02,),
+          SizedBox(height: screenSize.height * 0.015,),
           Align(
             alignment: Alignment.centerLeft,
             child: Row(

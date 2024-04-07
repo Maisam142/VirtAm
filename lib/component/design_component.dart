@@ -37,13 +37,13 @@ class DesignComponent extends StatelessWidget{
              image: const AssetImage('images/img_1.png',),
              fit: BoxFit.fill,
              width: screenSize .width * 0.6,
-             height: screenSize .height * 6,
+             height: screenSize .height * 75,
            ),
          ),
          Align(
              alignment: Alignment.bottomLeft,
              child: Padding(
-               padding:  const EdgeInsets.all(15.0),
+               padding:  const EdgeInsets.all(10.0),
                child: Column(
                  mainAxisAlignment: MainAxisAlignment.end,
                  children: [

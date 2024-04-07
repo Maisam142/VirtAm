@@ -98,22 +98,25 @@ class RegisterScreen extends StatelessWidget {
                             width: double.infinity,
                             height: 40,
                             color: Colors.grey.shade200,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  registerViewModel.selectedOption == 0 ? S.of(context).purpose   :
-                                 ' ${registerViewModel.selectedPurpose}',
-                                  style:  const TextStyle(color: Colors.black,fontSize: 14,),
-                                ),
-                                const SizedBox(width: 15,),
-                                IconButton(
-                                  onPressed: () {
-                                    Beamer.of(context).beamToNamed('/purposeScreen');
-                                  },
-                                  icon: const Icon(Icons.expand_more),
-                                ),
-                              ],
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    registerViewModel.selectedOption == 0 ? S.of(context).purpose   :
+                                   ' ${registerViewModel.selectedPurpose}',
+                                    style:  const TextStyle(color: Colors.black,fontSize: 14,),
+                                  ),
+                                  const SizedBox(width: 15,),
+                                  IconButton(
+                                    onPressed: () {
+                                      Beamer.of(context).beamToNamed('/purposeScreen');
+                                    },
+                                    icon: const Icon(Icons.expand_more),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],

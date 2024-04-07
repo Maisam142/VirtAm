@@ -13,18 +13,21 @@ class CheckBoxComponent extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          key: key,
-          //tristate: true,
-          checkColor: Colors.white,
-            value: value,
-            onChanged: onChanged,
-        ),
-        Text(text,
-        style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),),
-              ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          Checkbox(
+            key: key,
+            //tristate: true,
+            checkColor: Colors.white,
+              value: value,
+              onChanged: onChanged,
+          ),
+          Text(text,
+          style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),),
+                ],
+      ),
     );
 
   }}

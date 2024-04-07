@@ -100,7 +100,7 @@ class NutritionScreen extends StatelessWidget {
                               'images/nutrition.png',
                               fit: BoxFit.fill,
                               width: screenSize.width,
-                              height: screenSize.height * 0.3,
+                              height: 250,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(15.0),
@@ -108,11 +108,12 @@ class NutritionScreen extends StatelessWidget {
                                 alignment: Alignment.bottomLeft,
                                 child: Column(
                                   children: [
-                                    SizedBox(height: 100,),
+                                    SizedBox(height: 90,),
                                     Container(
                                       width: 90,
                                       color: Colors.white70.withOpacity(0.2),
                                       child: const Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Icon(Icons.local_fire_department, color: Colors.white, size: 15),
                                           TextComponent(text: '7:00 - 8:00', textStyle: TextStyle(color: Colors.white)),
@@ -120,7 +121,7 @@ class NutritionScreen extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(height: 4),
-                                    const TextComponent(text: 'Day 01-Fitness', textStyle: TextStyle(color: Colors.white, fontSize: 40)),
+                                    const TextComponent(text: 'Day 01-Fitness', textStyle: TextStyle(color: Colors.white, fontSize: 35)),
                                   ],
                                 ),
                               ),

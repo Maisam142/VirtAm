@@ -16,7 +16,7 @@ class MealsComponent extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: screenSize.height * 0.13,
+      height: 95,
       color: Colors.white,
       child: Column(
         children: [
