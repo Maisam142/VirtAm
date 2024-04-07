@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:logger_util/logger_util.dart';
@@ -15,6 +16,9 @@ class HomeViewModel extends ChangeNotifier {
   // }
 
   // UserDataStep9ViewModel?vm;
+  TextEditingController startFastController = TextEditingController();
+  TextEditingController endFastController = TextEditingController();
+  TextEditingController timeFastController = TextEditingController();
 
   late String timeString;
   int initSteps = 0;

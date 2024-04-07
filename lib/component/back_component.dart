@@ -13,18 +13,18 @@ class BackComponent extends StatelessWidget{
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
 
-    return Container(
-      height: 58,
+    return SizedBox(
+      height: 60,
       //width: double.infinity,
       child: Column(
         children: [
-          SizedBox(height: screenSize.height * 0.015,),
+          const SizedBox(height: 10,),
           Align(
             alignment: Alignment.centerLeft,
             child: Row(
               children: [
                 IconButton(onPressed: onPressed,
-                  icon: Icon(Icons.arrow_back_ios_new),),
+                  icon: const Icon(Icons.arrow_back_ios_new),),
                 TextComponent(text: text,
                   textStyle: Theme.of(context).textTheme.bodyMedium,),
               ],

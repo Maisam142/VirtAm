@@ -50,7 +50,7 @@ class ExercisesScreen extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: 190,
+              height: 250,
               width: double.infinity,
               child: Stack(
                 children: [

@@ -1,7 +1,9 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/home_component.dart';
+import 'package:virtam/feature/home_screen/home_screen_view_model.dart';
 
 import '../../component/back_component.dart';
 import '../../component/circular_component.dart';
@@ -12,6 +14,13 @@ class FastScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fastViewModel = Provider.of<HomeViewModel>(context);
+
+    int startFast = int.tryParse(fastViewModel.startFastController.text) ?? 0;
+    int endFast = int.tryParse(fastViewModel.endFastController.text) ?? 0;
+
+    int hours = endFast - startFast;
+    //]fastViewModel.timeFastController.text = hours as String;
     final Size screenSize = MediaQuery.of(context).size;
     return WillPopScope(
         onWillPop: () async {
@@ -33,7 +42,7 @@ class FastScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                       physics: NeverScrollableScrollPhysics(),
                       child: CircularComponent(
-                        text1: S.of(context).hours,
+                        text1:  '$hours ${S.of(context).hours}',
                         text3: S.of(context).remainingTime,
                       ),
                   ),
@@ -41,16 +50,18 @@ class FastScreen extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: HomeComponent(
-                        valueText: '5:00',
+                      child: HomeFastComponent(
+                        valueText: fastViewModel.startFastController.text,
                         text: S.of(context).start,
+                        controller: fastViewModel.startFastController,
                       ),
                     ),
                     const SizedBox(width: 10,),
                     Expanded(
-                      child: HomeComponent(
-                        valueText: '7:00',
+                      child: HomeFastComponent(
+                        valueText: fastViewModel.endFastController.text,
                         text: S.of(context).end,
+                        controller: fastViewModel.endFastController,
                       ),
                     ),
                   ],

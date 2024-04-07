@@ -76,7 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "habitSetting" : MessageLookupByLibrary.simpleMessage("إعدادات العادات"),
     "hasAllergic" : MessageLookupByLibrary.simpleMessage("هل لديه حساسية لـ:"),
     "height" : MessageLookupByLibrary.simpleMessage("طولك؟"),
-    "hours" : MessageLookupByLibrary.simpleMessage("10 ساعات"),
+    "hours" : MessageLookupByLibrary.simpleMessage(" ساعات"),
     "instructions" : MessageLookupByLibrary.simpleMessage("تعليمات متى تصوم"),
     "ironCheck" : MessageLookupByLibrary.simpleMessage("متى كانت آخر مرة قمت بفحص الحديد؟"),
     "ironDeficiency" : MessageLookupByLibrary.simpleMessage("هل لديه/لديها نقص في الحديد؟"),

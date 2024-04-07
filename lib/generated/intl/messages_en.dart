@@ -80,7 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "habitSetting" : MessageLookupByLibrary.simpleMessage("   Habit Settings"),
     "hasAllergic" : MessageLookupByLibrary.simpleMessage("Is he allergic to : "),
     "height" : MessageLookupByLibrary.simpleMessage("Height ?"),
-    "hours" : MessageLookupByLibrary.simpleMessage("10 Hours"),
+    "hours" : MessageLookupByLibrary.simpleMessage(" Hours"),
     "instructions" : MessageLookupByLibrary.simpleMessage("Instructions for when to fast"),
     "ironCheck" : MessageLookupByLibrary.simpleMessage("When did you last check the iron?"),
     "ironDeficiency" : MessageLookupByLibrary.simpleMessage("Does he/she have an iron deficiency?"),

@@ -1227,10 +1227,10 @@ class S {
     );
   }
 
-  /// `10 Hours`
+  /// ` Hours`
   String get hours {
     return Intl.message(
-      '10 Hours',
+      ' Hours',
       name: 'hours',
       desc: '',
       args: [],

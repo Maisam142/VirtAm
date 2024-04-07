@@ -22,221 +22,6 @@ import '../notification_screen/notification_sceen.dart';
 import 'home_screen_view_model.dart';
 
 
-
-
-// class HomeScreen extends StatefulWidget {
-//   const HomeScreen({Key? key});
-//
-//   @override
-//   State<HomeScreen> createState() => _HomeScreenState();
-// }
-// class _HomeScreenState extends State<HomeScreen> {
-//   int dailyStepCount = 0;
-//   int? lastSavedStepCount;
-//
-//   StreamSubscription<StepCount>? _subscription;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     requestPermission();
-//     startListeningToSteps();
-//     getLastSavedStepCount();
-//   }
-//
-//   @override
-//   void dispose() {
-//     _subscription?.cancel();
-//     super.dispose();
-//   }
-//
-//   Future<void> requestPermission() async {
-//     final PermissionStatus status = await Permission.activityRecognition.request();
-//     if (status != PermissionStatus.granted) {
-//       // Handle permission not granted
-//     }
-//   }
-//
-//   void startListeningToSteps() {
-//     _subscription = Pedometer.stepCountStream.listen(
-//           (StepCount event) {
-//         setState(() {
-//           dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
-//           DateTime timeStamp = event.timeStamp;
-//
-//         });
-//         saveDailyStepCount(event.steps);
-//       },
-//       onError: (error) {
-//         print("An error occurred while fetching step count: $error");
-//       },
-//       cancelOnError: true,
-//     );
-//   }
-//
-//
-//   Future<void> getLastSavedStepCount() async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     setState(() {
-//       lastSavedStepCount = prefs.getInt('lastSavedStepCount');
-//     });
-//   }
-//
-//   Future<void> saveDailyStepCount(int stepCount) async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     await prefs.setInt('lastSavedStepCount', stepCount);
-//   }
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Step Counter'),
-//       ),
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: [
-//             const SizedBox(height: 48),
-//             Column(
-//               children: [
-//                 const Text(
-//                   'Steps today',
-//                   style: TextStyle(fontSize: 25),
-//                 ),
-//                 Center(
-//                   child: Text(
-//                     '$dailyStepCount',
-//                     style: TextStyle(
-//                       fontSize: 80,
-//                       color: Theme.of(context).primaryColor,
-//                     ),
-//                   ),
-//                 ),
-//                 const Divider(),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () {
-//
-//         },
-//         child: const Icon(Icons.add),
-//       ),
-//     );
-//   }
-// }
-
-
-
-
-// class HomeScreen extends StatefulWidget {
-//   const HomeScreen({Key? key});
-//
-//   @override
-//   State<HomeScreen> createState() => _HomeScreenState();
-// }
-// class _HomeScreenState extends State<HomeScreen> {
-//   int dailyStepCount = 0;
-//   int? lastSavedStepCount;
-//
-//   StreamSubscription<StepCount>? _subscription;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     requestPermission();
-//     startListeningToSteps();
-//     getLastSavedStepCount();
-//   }
-//
-//   @override
-//   void dispose() {
-//     _subscription?.cancel();
-//     super.dispose();
-//   }
-//
-//   Future<void> requestPermission() async {
-//     final PermissionStatus status = await Permission.activityRecognition.request();
-//     if (status != PermissionStatus.granted) {
-//       // Handle permission not granted
-//     }
-//   }
-//
-//   void startListeningToSteps() {
-//     _subscription = Pedometer.stepCountStream.listen(
-//           (StepCount event) {
-//         setState(() {
-//           dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
-//           DateTime timeStamp = event.timeStamp;
-//
-//         });
-//         saveDailyStepCount(event.steps);
-//       },
-//       onError: (error) {
-//         print("An error occurred while fetching step count: $error");
-//       },
-//       cancelOnError: true,
-//     );
-//   }
-//
-//
-//   Future<void> getLastSavedStepCount() async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     setState(() {
-//       lastSavedStepCount = prefs.getInt('lastSavedStepCount');
-//     });
-//   }
-//
-//   Future<void> saveDailyStepCount(int stepCount) async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     await prefs.setInt('lastSavedStepCount', stepCount);
-//   }
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Step Counter'),
-//       ),
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: [
-//             const SizedBox(height: 48),
-//             Column(
-//               children: [
-//                 const Text(
-//                   'Steps today',
-//                   style: TextStyle(fontSize: 25),
-//                 ),
-//                 Center(
-//                   child: Text(
-//                     '$dailyStepCount',
-//                     style: TextStyle(
-//                       fontSize: 80,
-//                       color: Theme.of(context).primaryColor,
-//                     ),
-//                   ),
-//                 ),
-//                 const Divider(),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () {
-//
-//         },
-//         child: const Icon(Icons.add),
-//       ),
-//     );
-//   }
-// }
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
@@ -283,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   void initState() {
     super.initState();
     startListeningToSteps();
-    getLastSavedDayAndStepCount();
+    getLastSavedStepCount();
     calculator = StepCalculator();
     requestPermission();
     startTimer();
@@ -367,6 +152,9 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
           dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
         });
           saveDailyStepCount(event.steps);
+          print('${event.steps} -------------------------------***********************************************');
+          print('${dailyStepCount} -------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+          print('${lastSavedStepCount} -------------------------------###########################################');
       },
       onError: (error) {
         print("An error occurred while fetching step count: $error");
@@ -385,25 +173,24 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
       print("$savedDay -------------=================================------");
     });
   }
-  Future<void> getLastSavedDayAndStepCount() async { // Updated method signature
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      savedDay = prefs.getInt('savedDay');
-      lastSavedStepCount = prefs.getInt('lastSavedStepCount'); // Retrieve last saved step count
-      print('$savedDay --------------------');
-      print('$currentDay ------------------------------------------------------------------');
-    });
+  // Future<void> getLastSavedDayAndStepCount() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     savedDay = prefs.getInt('savedDay');
+  //     lastSavedStepCount = prefs.getInt('lastSavedStepCount') ?? 0;
+  //     print('$savedDay --------------------');
+  //     print('$currentDay ------------------------------------------------------------------');
+  //   });
+  //
+  // }
 
-    if ( savedDay != currentDay) {
-      getLastSavedStepCount();
-      print('*************************************************');
-
-    }
-  }
   Future<void> saveDailyStepCount(int stepCount) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('lastSavedStepCount', stepCount);
-
+    if (savedDay !=  7 || lastSavedStepCount == null) {
+      prefs.setInt('savedDay', currentDay);
+      print('*************************************************');
+      await prefs.setInt('lastSavedStepCount', stepCount);
+    }
   }
 
 
@@ -574,6 +361,8 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
                                       IconButton(
                                         onPressed: () {
                                           Beamer.of(context).beamToNamed('/fastScreen');
+                                          print('${dailyStepCount} -------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+                                          print('${lastSavedStepCount} -------------------------------###########################################');
                                         },
                                         icon: const Icon(
                                           Icons.navigate_next,
