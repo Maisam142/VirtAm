@@ -186,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
 
   Future<void> saveDailyStepCount(int stepCount) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (savedDay !=  7 || lastSavedStepCount == null) {
+    if (savedDay !=  currentDay  || lastSavedStepCount == null) {
       prefs.setInt('savedDay', currentDay);
       print('*************************************************');
       await prefs.setInt('lastSavedStepCount', stepCount);

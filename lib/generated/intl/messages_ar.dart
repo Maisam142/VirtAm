@@ -56,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "done" : MessageLookupByLibrary.simpleMessage("تم"),
     "dontKnow" : MessageLookupByLibrary.simpleMessage("لا أعلم"),
     "drinkWater" : MessageLookupByLibrary.simpleMessage("اشرب الماء"),
-    "duringFast" : MessageLookupByLibrary.simpleMessage("خلال الصوم، يُسمح فقط بشرب الماء."),
+    "duringFast" : MessageLookupByLibrary.simpleMessage("خلال الصوم، يُسمح فقط \nبشرب الماء."),
     "eggs" : MessageLookupByLibrary.simpleMessage("البيض"),
     "email" : MessageLookupByLibrary.simpleMessage("عنوان البريد الإلكتروني"),
     "employeeWorker" : MessageLookupByLibrary.simpleMessage("هل أنت موظف / عامل؟"),
