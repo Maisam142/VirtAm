@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:virtam/component/text_component.dart';
 
 class HomeComponent extends StatelessWidget {
@@ -105,3 +106,52 @@ class HomeFastComponent extends StatelessWidget {
     );
   }
 }
+
+class HomeAdminComponent extends StatelessWidget {
+  final String? valueText;
+  final String? text;
+  final String? icon;
+  final Function()? onPressed;
+
+  const HomeAdminComponent({
+    Key? key,
+    this.text,
+    this.valueText,
+    this.icon,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ImageIcon(
+                AssetImage(icon!),
+                color: Theme.of(context).primaryColor,
+                size: 25,
+              ),
+              const SizedBox(width: 5),
+              IconButton(
+                onPressed:
+                  onPressed,
+                  icon: Icon(
+                    Icons.navigate_next,
+                    color: Colors.grey,
+                    size: 20,
+                  ), ),
+            ],
+          ),
+          SizedBox(height: 20,),
+          Text( valueText!,style: TextStyle(fontSize: 12),),
+        ],
+      ),
+    );
+  }
+}
+

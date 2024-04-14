@@ -18,6 +18,7 @@ import 'package:background_fetch/background_fetch.dart';
 import '../../../component/viewall_component.dart';
 import '../../../generated/l10n.dart';
 import '../../../helper/calories_class.dart';
+import '../../../helper/weight_class.dart';
 import '../notification_screen/notification_sceen.dart';
 import 'home_screen_view_model.dart';
 
@@ -582,11 +583,4 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
           ),
         ));
   }
-}
-
-class ChartData {
-  ChartData(this.x, this.y);
-
-  final int x;
-  final double y;
 }

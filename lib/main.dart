@@ -59,6 +59,10 @@ import 'package:virtam/user/feature/step1-10_screens/user_data_step9_screen/user
 import 'package:virtam/user/feature/weight_history_screen/weight_history_screen.dart';
 import 'package:virtam/user/feature/welcome_screen/welcom_screen.dart';
 
+import 'admin_feature/admin/add_daily_meals_screen/add_daily_meals_screen.dart';
+import 'admin_feature/admin/home_admin_screen/home_admin_screen.dart';
+import 'admin_feature/admin/members_screen/members_screen.dart';
+import 'admin_feature/virtam_admin/virtam_admin_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 import 'main_view_model.dart';
@@ -148,7 +152,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const SplashScreen(),
+        '/': (context, state, data) =>  const HomeAdminScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -182,6 +186,10 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/profileScreen': (context, state, data) =>  const ProfileScreen(),
         '/homeScreen': (context, state, data) =>  const HomeScreen(),
         '/nutritionScreen': (context, state, data) =>  const NutritionScreen(),
+        //--------------------------------------------------------------------------------------------------------
+        '/homeAdminScreen': (context, state, data) =>  const HomeAdminScreen(),
+        '/addDailyMealsScreen': (context, state, data) =>  const AddDailyMealsScreen(),
+        '/membersScreen': (context, state, data) =>  const MembersScreen(),
       },
     ).call,
   );
