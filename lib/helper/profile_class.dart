@@ -4,7 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../feature/register_screen/register_screen_view_model.dart';
+import '../user/feature/register_screen/register_screen_view_model.dart';
+
 
 
 class StoreDate {
