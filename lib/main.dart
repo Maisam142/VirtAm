@@ -60,8 +60,19 @@ import 'package:virtam/user/feature/weight_history_screen/weight_history_screen.
 import 'package:virtam/user/feature/welcome_screen/welcom_screen.dart';
 
 import 'admin_feature/admin/add_daily_meals_screen/add_daily_meals_screen.dart';
+import 'admin_feature/admin/add_exercise_screen/add_exercise_screen.dart';
+import 'admin_feature/admin/admin_members_screen/admin_members_details_screen.dart';
+import 'admin_feature/admin/admin_members_screen/admin_members_screen.dart';
 import 'admin_feature/admin/home_admin_screen/home_admin_screen.dart';
 import 'admin_feature/admin/members_screen/members_screen.dart';
+import 'admin_feature/admin/send_notification_screen/send_notification_screen.dart';
+import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/add_admin_screen.dart';
+import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_members_tomasterAdmin.dart';
+import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_members_tomasterAdmin_details.dart';
+import 'admin_feature/master_admin/home_masterAdmin_screen/home_masterAdmin_screen.dart';
+
+import 'admin_feature/master_admin/members_toadmins_screen/members_toadmin_details_screen.dart';
+import 'admin_feature/master_admin/members_toadmins_screen/members_toadmin_screen.dart';
 import 'admin_feature/virtam_admin/virtam_admin_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
@@ -152,7 +163,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const HomeAdminScreen(),
+        '/': (context, state, data) =>  AddAdminScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -190,6 +201,16 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/homeAdminScreen': (context, state, data) =>  const HomeAdminScreen(),
         '/addDailyMealsScreen': (context, state, data) =>  const AddDailyMealsScreen(),
         '/membersScreen': (context, state, data) =>  const MembersScreen(),
+        '/adminUserDetailsScreen': (context, state, data) =>  AdminUserDetailsScreen(memberData: {},),
+        '/adminMembersScreen': (context, state, data) =>  const AdminMembersScreen(),
+        '/sendNotificationScreen': (context, state, data) =>  const SendNotificationScreen(),
+        '/addExerciseScreen': (context, state, data) =>  const AddExerciseScreen(),
+        '/homeMasterAdminScreen': (context, state, data) =>  const HomeMasterAdminScreen(),
+        '/userDetailsToAdminScreen': (context, state, data) =>  UserDetailsToAdminScreen(memberData: {},),
+        '/membersToAdminsScreen': (context, state, data) =>  const MembersToAdminsScreen(),
+        '/adminMembersToMasterScreen': (context, state, data) =>  const AdminMembersToMasterScreen(),
+        '/adminUserToMasterDetailsScreen': (context, state, data) =>  AdminUserToMasterDetailsScreen(memberData: {}),
+        '/addAdminScreen': (context, state, data) =>  AddAdminScreen(),
       },
     ).call,
   );

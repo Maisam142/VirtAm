@@ -12,8 +12,8 @@ import '../../../helper/weight_class.dart';
 
 
 
-class HomeAdminScreen extends StatelessWidget {
-  const HomeAdminScreen({super.key});
+class HomeMasterAdminScreen extends StatelessWidget {
+  const HomeMasterAdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,6 @@ class HomeAdminScreen extends StatelessWidget {
 
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 100.0,left: 25.0,right: 25.0),
                         child: Container(
@@ -111,55 +110,51 @@ class HomeAdminScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                        const SizedBox(height: 20,),
+                        Container(
+                          color: Colors.white,
+                          height: 200,
+                          width: double.infinity,
+                          child: Column(
                             children: [
-                              TextLabelComponent(text: 'Member activity',textStyle: TextStyle(fontSize: 25),),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const TextLabelComponent(text : 'Counter'),
+                                    Text('Mar-Jan 2022',style: TextStyle(color: Theme.of(context).primaryColor),),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 50,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Theme.of(context).primaryColor,
+                                    radius: 35,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.grey.shade300,
+                                      radius: 30,
+                                    ),
+                                  ),
+                                  CircleAvatar(
+                                    backgroundColor: Theme.of(context).primaryColor,
+                                    radius: 35,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.grey.shade300,
+                                      radius: 30,
+                                    ),
+                                  ),
+                                ],
+                              )
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 100,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: HomeAdminComponent(
-                                    icon: 'images/notification.png',
-                                    valueText: 'Send Notification',
-                                    onPressed: (){},
-
-                                  )),
-                              SizedBox(
-                                width: screenSize.width * 0.01,
-                              ),
-                              Expanded(
-                                  child: HomeAdminComponent(
-                                    icon: 'images/apple.png',
-                                    valueText: 'Add daily meals',
-                                    onPressed: (){
-                                      Beamer.of(context).beamToNamed('/addDailyMealsScreen');
-                                    },
-
-                                  )),
-                              SizedBox(
-                                width: screenSize.width * 0.01,
-                              ),
-                              Expanded(
-                                  child: HomeAdminComponent(
-                                    icon: 'images/exer.png',
-                                    valueText: 'Add exercise',
-                                    onPressed: (){},
-
-                                  )),
-                            ],
-                          ),
-                        )
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),

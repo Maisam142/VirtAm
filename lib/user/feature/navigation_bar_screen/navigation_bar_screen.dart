@@ -20,7 +20,6 @@ class HomeNavigationBar extends StatefulWidget {
 class _HomeNavigationBarState extends State<HomeNavigationBar> {
   @override
 void initState() {
-    // TODO: implement initState
     super.initState();
     NotificationHelper.initialize();
     AwesomeNotifications().setListeners(
@@ -60,7 +59,7 @@ void initState() {
                 size: 30,
           ),
           type: BottomNavigationBarType.fixed,
-          items:  <BottomNavigationBarItem>[
+          items:  const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: ImageIcon(AssetImage('images/home.png')),
               label: ''
