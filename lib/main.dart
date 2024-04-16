@@ -64,6 +64,7 @@ import 'admin_feature/admin/add_exercise_screen/add_exercise_screen.dart';
 import 'admin_feature/admin/admin_members_screen/admin_members_details_screen.dart';
 import 'admin_feature/admin/admin_members_screen/admin_members_screen.dart';
 import 'admin_feature/admin/home_admin_screen/home_admin_screen.dart';
+import 'admin_feature/admin/members_screen/members_details_screen.dart';
 import 'admin_feature/admin/members_screen/members_screen.dart';
 import 'admin_feature/admin/send_notification_screen/send_notification_screen.dart';
 import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/add_admin_screen.dart';
@@ -71,6 +72,8 @@ import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_memb
 import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_members_tomasterAdmin_details.dart';
 import 'admin_feature/master_admin/home_masterAdmin_screen/home_masterAdmin_screen.dart';
 
+import 'admin_feature/master_admin/masterAdmin_profile_screen/masterAdmin_profile_screen.dart';
+import 'admin_feature/master_admin/masterAdmin_profile_screen/subscription_toAdmin_screen.dart';
 import 'admin_feature/master_admin/members_toadmins_screen/members_toadmin_details_screen.dart';
 import 'admin_feature/master_admin/members_toadmins_screen/members_toadmin_screen.dart';
 import 'admin_feature/virtam_admin/virtam_admin_screen.dart';
@@ -163,7 +166,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  AddAdminScreen(),
+        '/': (context, state, data) =>  const SplashScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -205,12 +208,15 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/adminMembersScreen': (context, state, data) =>  const AdminMembersScreen(),
         '/sendNotificationScreen': (context, state, data) =>  const SendNotificationScreen(),
         '/addExerciseScreen': (context, state, data) =>  const AddExerciseScreen(),
+        '/userDetailsScreen': (context, state, data) =>   UserDetailsScreen(memberData: {},),
         '/homeMasterAdminScreen': (context, state, data) =>  const HomeMasterAdminScreen(),
         '/userDetailsToAdminScreen': (context, state, data) =>  UserDetailsToAdminScreen(memberData: {},),
         '/membersToAdminsScreen': (context, state, data) =>  const MembersToAdminsScreen(),
         '/adminMembersToMasterScreen': (context, state, data) =>  const AdminMembersToMasterScreen(),
         '/adminUserToMasterDetailsScreen': (context, state, data) =>  AdminUserToMasterDetailsScreen(memberData: {}),
-        '/addAdminScreen': (context, state, data) =>  AddAdminScreen(),
+        '/addAdminScreen': (context, state, data) =>  const AddAdminScreen(),
+        '/masterAdminProfileScreen': (context, state, data) =>  const MasterAdminProfileScreen(),
+        '/subscriptionToAdminScreen': (context, state, data) =>  const SubscriptionToAdminScreen(),
       },
     ).call,
   );
