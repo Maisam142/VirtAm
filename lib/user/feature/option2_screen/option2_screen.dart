@@ -90,9 +90,9 @@ class Option2Screen extends StatelessWidget {
                             };
                             await FirebaseFirestore.instance
                                 .collection('User')
-                                .doc(registerViewModel.nameController.text)
+                                .doc(registerViewModel.emailController.text.toLowerCase())
                                 .update(additionalData);
-                            Beamer.of(context).beamToNamed('/userDataStep9');
+                            Beamer.of(context).beamToNamed('/homeNavigationBar');
                           },
                         ),
                       ),

@@ -353,7 +353,7 @@ class RegisterScreen extends StatelessWidget {
                                       .instance
                                       .collection('User');
                                   await collRef
-                                      .doc(registerViewModel.emailController.text)
+                                      .doc(registerViewModel.emailController.text.toLowerCase())
                                       .set({
                                     'name': registerViewModel.nameController.text,
                                     'email': registerViewModel.emailController.text,
@@ -375,15 +375,15 @@ class RegisterScreen extends StatelessWidget {
                                       .instance
                                       .collection('User');
                                   await collRef
-                                      .doc(registerViewModel.emailController.text)
+                                      .doc(registerViewModel.emailController.text.toLowerCase())
                                       .set({
                                     'name': registerViewModel.nameController.text,
-                                    'email': registerViewModel.emailController.text,
+                                    'email': registerViewModel.emailController.text.toLowerCase(),
                                     'password' : registerViewModel.passwordController.text,
                                     'number': registerViewModel.phoneNumber,
                                     'selectedPurpose': registerViewModel.selectedPurpose,
                                   });
-                                  Beamer.of(context).beamToNamed('/option2');
+                                  Beamer.of(context).beamToNamed('/option2Screen');
                                 } else {
                                   showDialog(
                                     context: context,

@@ -43,7 +43,7 @@ void initState() {
         builder: (context, provider, _) {
           return IndexedStack(
             index: provider.selectedIndex,
-            children: const [
+            children:  [
               HomeScreen(),
               CaloriesScreen(),
               NutritionScreen(),

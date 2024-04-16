@@ -6,12 +6,14 @@ import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/design_component.dart';
 import 'package:virtam/component/form_component.dart';
 import 'package:virtam/component/text_component.dart';
+import 'package:virtam/user/feature/navigation_bar_screen/navigation_bar_screen.dart';
 
 import '../../../component/back_component.dart';
 import '../../../component/popup_component.dart';
 import '../../../generated/l10n.dart';
 
 
+import '../profile_screen/profile_screen.dart';
 import '../register_screen/register_screen_view_model.dart';
 import 'login_screen_view_model.dart';
 
@@ -108,8 +110,12 @@ class LoginForm extends StatelessWidget {
                                 final user = userCredential.user;
                                 //print('User signed in: ${user?.uid}');
 
-                                Beamer.of(context).beamToNamed('/homeNavigationBar');
-                              } catch (e) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeNavigationBar(),
+                                  ),
+                                );                              } catch (e) {
                                 print('Error logging in: $e');
                                 showDialog(
                                   context: context,

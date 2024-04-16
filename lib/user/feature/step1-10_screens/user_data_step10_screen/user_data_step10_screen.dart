@@ -108,7 +108,7 @@ class UserDataScreenStep10 extends StatelessWidget {
                               };
                               await FirebaseFirestore.instance
                                   .collection('User')
-                                  .doc(registerViewModel.emailController.text)
+                                  .doc(registerViewModel.emailController.text.toLowerCase())
                                   .update(additionalData);
                               Beamer.of(context).beamToNamed('/homeNavigationBar');
                             },

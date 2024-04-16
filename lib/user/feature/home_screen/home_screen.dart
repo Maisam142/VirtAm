@@ -117,8 +117,10 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
       myDuration = Duration(seconds: seconds);
       notFinished = true;
     }
-    setState(() {});
-  }
+    if (mounted) {
+      setState(() {});
+    }
+   }
 
   void startTimer() {
     DateTime now = DateTime.now();

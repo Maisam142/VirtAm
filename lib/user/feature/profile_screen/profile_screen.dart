@@ -54,13 +54,13 @@ class ProfileScreenContent extends StatelessWidget {
             builder: (_, snapshot) {
               if (snapshot.hasError) return Text('Error = ${snapshot.error}');
               if (snapshot.hasData && snapshot.data!.exists) {
-                final data = snapshot.data!.data();
+                final data = snapshot.data?.data();
 
-                final originalName = data?['name'];
-                final originalEmail = data?['email'];
-                final originalNumber = data?['number'];
-                final imageUrl = data?['imageLink'];
-                final wakeupTime = data?['wakeup time'];
+                final originalName = data!['name'];
+                final originalEmail = data['email'];
+                final originalNumber = data['number'];
+                final imageUrl = data['imageLink'];
+                final wakeupTime = data['wakeup time'];
 
                 return SingleChildScrollView(
                   child: Column(
@@ -139,14 +139,14 @@ class ProfileScreenContent extends StatelessWidget {
                               isoCode:
                               registerViewModel.selectedCountry),
                           textFieldController: TextEditingController(),
-                          hintText: '  $originalNumber',
+                          hintText: '  ${originalNumber}',
                           // Disable phone number field
                           isEnabled: false,
                         ),
                       ),
                       FormComponent(
                         hintText: S.of(context).password  + '. . . . . . . . . ',
-                        obscureText: registerViewModel.isObscure,
+                        obscureText: true,
                         controller: registerViewModel.passwordController,
                       ),
                       SizedBox(
@@ -169,8 +169,8 @@ class ProfileScreenContent extends StatelessWidget {
 
                             Map<String, dynamic> updatedData = {};
 
-                            if (registerViewModel.nameController.text !=
-                                originalName) {
+                            if (registerViewModel.nameController.text.isNotEmpty
+                                ) {
                               updatedData['name'] =
                                   registerViewModel.nameController.text;
                             }
@@ -188,7 +188,7 @@ class ProfileScreenContent extends StatelessWidget {
 
                             await FirebaseFirestore.instance
                                 .collection('User')
-                                .doc(registerViewModel.emailController.text)
+                                .doc(registerViewModel.emailController.text.toLowerCase())
                                 .update(updatedData);
                             print(profileProvider.selectedImage);
                             ScaffoldMessenger.of(context).showSnackBar(
