@@ -46,9 +46,9 @@ class UserDetailsScreen extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 90,
                       backgroundColor: Colors.white,
-                      child: memberData['imageUrl'] != null
+                      child: memberData['imageLink'] != null
                           ? CircleAvatar(
-                        backgroundImage: NetworkImage(memberData['imageUrl']),
+                        backgroundImage: NetworkImage(memberData['imageLink']),
                         radius: 88,
                       )
                           : const CircleAvatar(

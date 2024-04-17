@@ -1,6 +1,8 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:virtam/component/back_component.dart';
+import 'package:virtam/user/feature/register_screen/register_screen_view_model.dart';
 
 import '../../../component/back_component.dart';
 import '../../../component/feild_component.dart';
@@ -14,6 +16,8 @@ class SettingMenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final RegisterViewModel registerViewModel =
+    Provider.of<RegisterViewModel>(context);
     return WillPopScope(
       onWillPop: () async {
         Beamer.of(context).beamToNamed('/homeNavigationBar');
@@ -30,7 +34,7 @@ class SettingMenuScreen extends StatelessWidget {
                       BackComponent(
                         text: S.of(context).settings,
                         onPressed: () {
-                          Beamer.of(context).beamBack();
+                          Beamer.of(context).beamToNamed('/homeNavigationBar');
                         },
                       ),
                       const SizedBox(height: 40),
@@ -75,7 +79,10 @@ class SettingMenuScreen extends StatelessWidget {
                         ],
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          registerViewModel.logOut();
+                          Beamer.of(context).beamToNamed('/welcomeScreen');
+                        },
                         icon: Icon(Icons.login),
                       ),
                     ],

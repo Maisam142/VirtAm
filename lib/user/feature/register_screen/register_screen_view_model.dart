@@ -40,6 +40,12 @@ class RegisterViewModel extends ChangeNotifier{
 
   bool isPhoneNumberValid = true;
 
+  void logOut(){
+    emailController.text = '';
+    passwordController.text = '';
+    notifyListeners();
+  }
+
   void validatePhoneNumber(String phoneNumber) {
     isPhoneNumberValid = phoneNumber.isNotEmpty;
     notifyListeners();

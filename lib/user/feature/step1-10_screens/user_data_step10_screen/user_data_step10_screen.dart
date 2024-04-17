@@ -89,7 +89,7 @@ class UserDataScreenStep10 extends StatelessWidget {
                             builder: (context, provider, _) => CupertinoDatePicker(
                               initialDateTime: provider.selectedDate,
                               mode: CupertinoDatePickerMode.time,
-                              use24hFormat: true,
+                              use24hFormat: false,
                               onDateTimeChanged: (DateTime newTime) {
                                 provider.selectedDate = newTime;
                               },
@@ -103,14 +103,16 @@ class UserDataScreenStep10 extends StatelessWidget {
                           child: ButtonComponentContinue(
                             text: S.of(context).next,
                             onPress: () async {
+                              String period = userDataModel.selectedDate.hour < 12 ? 'AM' : 'PM';
+
                               Map<String, dynamic> additionalData = {
-                                'bed time': '${userDataModel.selectedDate.hour}:${userDataModel.selectedDate.minute}',
+                                'bed time': '${userDataModel.selectedDate.hour}:${userDataModel.selectedDate.minute} $period',
                               };
                               await FirebaseFirestore.instance
                                   .collection('User')
                                   .doc(registerViewModel.emailController.text.toLowerCase())
                                   .update(additionalData);
-                              Beamer.of(context).beamToNamed('/homeNavigationBar');
+                              Beamer.of(context).beamToNamed('/fastTimeScreen');
                             },
                           ),
                         ),

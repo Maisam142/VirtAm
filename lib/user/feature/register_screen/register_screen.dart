@@ -362,7 +362,7 @@ class RegisterScreen extends StatelessWidget {
                                     'selectedPurpose': registerViewModel.selectedPurpose,
                                   });
                                   Beamer.of(context).beamToNamed(
-                                      '/userDataStep1');
+                                      '/fastTimeScreen');
                                 } else if (registerViewModel.selectedOption ==
                                     2) {
                                   UserCredential userCredential =

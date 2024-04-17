@@ -151,12 +151,12 @@ class UserDataScreenStep5 extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 SizedBox(
-                  height: 300,
+                  height: 280,
                   child: Column(
                     children: [
                       Container(
                         color: Colors.white,
-                        height: 120,
+                        height: 100,
                         child: Column(
                           children: [
                             Padding(

@@ -160,7 +160,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                     children: [
                       Container(
                         color: Colors.white,
-                        height: 120,
+                        height: 100,
                         child: Column(
                           children: [
                             Padding(

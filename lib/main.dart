@@ -15,6 +15,10 @@ import 'package:virtam/user/feature/drink_water_screen/drink_water_view_model.da
 import 'package:virtam/user/feature/exercieses_screen/exercieses_screen.dart';
 import 'package:virtam/user/feature/fast_screen/break_fast_screen.dart';
 import 'package:virtam/user/feature/fast_screen/fast_screen.dart';
+import 'package:virtam/user/feature/fast_screen/fast_time_edit_screen/fast_time_edit_screen.dart';
+import 'package:virtam/user/feature/fast_screen/fast_time_edit_screen/fast_time_edit_view_model.dart';
+import 'package:virtam/user/feature/fast_time_screen/fast_time_screen.dart';
+import 'package:virtam/user/feature/fast_time_screen/fast_time_view_model.dart';
 import 'package:virtam/user/feature/home_screen/home_screen.dart';
 import 'package:virtam/user/feature/home_screen/home_screen_view_model.dart';
 import 'package:virtam/user/feature/location_screen/location_screen_view_model.dart';
@@ -112,6 +116,8 @@ void main() async{
     ChangeNotifierProvider(create: (_) => DrinkWaterViewModel()),
     ChangeNotifierProvider(create: (_) => SettingMenuViewModel()),
     ChangeNotifierProvider(create: (_) => ProfileViewModel()),
+    ChangeNotifierProvider(create: (_) => FastTimeViewModel()),
+    ChangeNotifierProvider(create: (_) => FastTimeEditViewModel()),
     //ChangeNotifierProvider(create: (_) => NotificationViewModel()),
   ],
       child:  MyApp())
@@ -166,7 +172,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const LoginScreen(),
+        '/': (context, state, data) =>  const SplashScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
@@ -199,6 +205,8 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/subscriptionScreen': (context, state, data) =>  const SubscriptionScreen(),
         //'/profileScreen': (context, state, data) =>   ProfileScreen(),
         '/homeScreen': (context, state, data) =>  const HomeScreen(),
+        '/fastTimeEditScreen': (context, state, data) =>  const FastTimeEditScreen(),
+        '/fastTimeScreen': (context, state, data) =>  const FastTimeScreen(),
         '/nutritionScreen': (context, state, data) =>  const NutritionScreen(),
         //--------------------------------------------------------------------------------------------------------
         '/homeAdminScreen': (context, state, data) =>  const HomeAdminScreen(),
