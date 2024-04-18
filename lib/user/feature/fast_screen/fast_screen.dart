@@ -44,8 +44,6 @@ class FastScreen extends StatelessWidget {
                 final startFastTimeShow = data!['startFastTime'];
                 final endFastTimeShow = data['endFastTime'];
 
-                int startFastShow = int.tryParse(startFastTimeShow) ?? 0;
-                int endFastShow = int.tryParse(endFastTimeShow) ?? 0;
                 //--------------------------------------------------------------------
                 final startFastTime = parseTimeString(data['startFastTime']);
                 final endFastTime = parseTimeString(data['endFastTime']);
@@ -55,15 +53,11 @@ class FastScreen extends StatelessWidget {
 
                 final endHour = endFastTime.hour;
                 final endMinute = endFastTime.minute;
+                final hourDifference = endFastTime.difference(startFastTime).inHours;
 
                 print('Start fasting time: $startHour:$startMinute');
                 print('End fasting time: $endHour:$endMinute');
-                final hour = endHour > startHour
-                    ? endHour - startHour
-                    : startHour - endHour;
-                final minute = endMinute > startMinute
-                    ? endMinute - startMinute
-                    : startMinute - endMinute;
+
 
                 return SingleChildScrollView(
                   child: Column(children: [
@@ -78,7 +72,7 @@ class FastScreen extends StatelessWidget {
                       child: SingleChildScrollView(
                         physics: const NeverScrollableScrollPhysics(),
                         child: CircularComponent(
-                          text1: '$hour ${S.of(context).hours}',
+                          text1: '$hourDifference ${S.of(context).hours}',
                           text3: S.of(context).remainingTime,
                         ),
                       ),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:beamer/beamer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
 import 'package:pedometer/pedometer.dart';
@@ -18,32 +19,73 @@ import 'package:background_fetch/background_fetch.dart';
 import '../../../component/viewall_component.dart';
 import '../../../generated/l10n.dart';
 import '../../../helper/calories_class.dart';
+import '../../../helper/fasting.dart';
 import '../../../helper/weight_class.dart';
 import '../notification_screen/notification_sceen.dart';
+import '../register_screen/register_screen_view_model.dart';
 import 'home_screen_view_model.dart';
 
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    super.key,
+  @override
+  Widget build(BuildContext context) {
+    final RegisterViewModel registerViewModel =
+    Provider.of<RegisterViewModel>(context);
+    return Scaffold(
+      body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+    stream: FirebaseFirestore.instance
+        .collection('User')
+        .doc(registerViewModel.emailController.text.toLowerCase())
+        .snapshots(),
+    builder: (_, snapshot) {
+      if (snapshot.hasError) return Text('Error = ${snapshot.error}');
+      if (snapshot.hasData && snapshot.data!.exists) {
+        final data = snapshot.data?.data();
+        final startFastTimeShow = data!['startFastTime'];
+        final endFastTimeShow = data['endFastTime'];
+
+        //--------------------------------------------------------------------
+        final startFastTime = parseTimeString(data['startFastTime']);
+        final endFastTime = parseTimeString(data['endFastTime']);
+
+        final startHour = startFastTime.hour;
+        final startMinute = startFastTime.minute;
+
+        final endHour = endFastTime.hour;
+        final endMinute = endFastTime.minute;
+        final hourDifference = endFastTime.difference(startFastTime).inHours;
+
+        print('Start fasting time: $startHour:$startMinute');
+        print('End fasting time: $endHour:$endMinute');
+        print('Total fasting time: $hourDifference');
+        return HomeScreenContent(startHour:startHour,endHour:endHour,hourDifference:hourDifference);
+      }
+      return Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,));
+    },
+    ),
+
+    );
+  }
+}
+
+class HomeScreenContent extends StatefulWidget {
+  final int startHour;
+  final int endHour;
+  final int hourDifference;
+  const HomeScreenContent({
+    super.key, required this.startHour, required this.endHour, required this.hourDifference,
   });
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenContent> createState() => _HomeScreenContentState();
 }
 
-class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListeners{
+class _HomeScreenContentState extends State<HomeScreenContent> implements HomeViewModelListeners{
 
-  Timer? countdownTimer;
-  static int currentHour = DateTime.now().hour;
-  static int currentMinute = DateTime.now().minute;
-  static int currentSecond = DateTime.now().second;
-
-  static int remainingHours = currentHour < 23 ? 23 - currentHour : currentHour - 23;
-  static int remainingMinutes = 60 - currentMinute;
-  static int remainingSeconds = 60 - currentSecond;
-
-  Duration myDuration = Duration(hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds);
+  late int remainingHours;
+  late Duration myDuration;
+  late Timer? countdownTimer;
   bool notFinished = true;
   int? startTimeHour;
   int? startTimeMinute;
@@ -53,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   int? lastSavedStepCount;
   int currentDay = DateTime.now().day;
   int? savedDay ;
+
   late StepCalculator calculator = StepCalculator();
   final HealthFactory health = HealthFactory();
   late StreamSubscription<StepCount> _subscription;
@@ -68,6 +111,10 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   @override
   void initState() {
     super.initState();
+    print(widget.startHour);
+    print(widget.endHour);
+    print(widget.hourDifference);
+    calculateTimer();
     startListeningToSteps();
     getLastSavedStepCount();
     calculator = StepCalculator();
@@ -107,6 +154,20 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
   //     },
   //   );
   // }
+
+  void calculateTimer() {
+    int currentHour = DateTime.now().hour;
+    int currentMinute = DateTime.now().minute;
+    int currentSecond = DateTime.now().second;
+    int totalTime = widget.endHour;
+    remainingHours = currentHour < totalTime ? totalTime-1 - currentHour : currentHour - totalTime-1;
+    int remainingMinutes = 60 - currentMinute;
+    int remainingSeconds = 60 - currentSecond;
+    myDuration = Duration(hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds);
+  }
+
+
+
   void setCountDown() {
     const reduceSecondsBy = 1;
     final seconds = myDuration.inSeconds - reduceSecondsBy;
@@ -120,25 +181,28 @@ class _HomeScreenState extends State<HomeScreen> implements HomeViewModelListene
     if (mounted) {
       setState(() {});
     }
-   }
+  }
 
   void startTimer() {
     DateTime now = DateTime.now();
-    if(now.hour>=10 && now.hour<=23){
-      DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour,now.minute,now.second+1);
+    if (now.hour >= widget.startHour && now.hour <= widget.endHour) {
+      DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour, now.minute, now.second + 1);
 
-    if (now.isAfter(startDateTime)) {
-      startDateTime = startDateTime.add(const Duration(days: 1));
-    }
-    Duration initialDelay = startDateTime.difference(now);
+      if (now.isAfter(startDateTime)) {
+        startDateTime = startDateTime.add(const Duration(days: 1));
+      }
+      Duration initialDelay = startDateTime.difference(now);
 
-    countdownTimer = Timer(initialDelay, () {
-      countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
-    });}else{
-      notFinished=false;
-
+      countdownTimer = Timer(initialDelay, () {
+        countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+      });
+    } else {
+      notFinished = false;
+      setState(() {
+      });
     }
   }
+
   Future<void> requestPermission() async {
     final PermissionStatus status =
     await Permission.activityRecognition.request();

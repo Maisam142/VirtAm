@@ -25,7 +25,7 @@ class FastTimeScreen extends StatelessWidget {
     Provider.of<RegisterViewModel>(context);
     return  WillPopScope(
       onWillPop: () async {
-        Beamer.of(context).beamToNamed('/userDataStep8');
+        Beamer.of(context).beamToNamed('/userDataStep10');
         return false;
       },
       child: SafeArea(
