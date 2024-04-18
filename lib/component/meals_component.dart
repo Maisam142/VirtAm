@@ -7,7 +7,7 @@ class MealsComponent extends StatelessWidget {
   final ImageProvider? mealTypeImage;
   final String? text;
   final ImageProvider? image;
-  final Function? onPressedIcon;
+  final Function()? onPressedIcon;
   const MealsComponent({super.key, this.mealTypeText, this.text, this.image, this.mealTypeImage, this.onPressedIcon});
 
   @override
@@ -43,9 +43,8 @@ class MealsComponent extends StatelessWidget {
                     ),
                   ],
                 ),
-                IconButton(onPressed: (){
-                  onPressedIcon;
-                },
+                IconButton(onPressed:
+                  onPressedIcon,
                   icon: Icon(Icons.add_box,size: 30,color: Colors.black,),),
 
               ],

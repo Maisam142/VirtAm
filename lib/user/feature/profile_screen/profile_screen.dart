@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ProfileViewModel(),
-      child: ProfileScreenContent(),
+      child: const ProfileScreenContent(),
     );
   }
 }
@@ -203,7 +203,7 @@ class ProfileScreenContent extends StatelessWidget {
                   ),
                 );
               }
-              return const Center(child: CircularProgressIndicator());
+              return  Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,));
             },
           ),
         ),

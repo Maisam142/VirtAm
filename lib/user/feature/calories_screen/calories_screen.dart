@@ -1,12 +1,17 @@
 import 'package:beamer/beamer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:virtam/component/meals_component.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../../../component/circular_component.dart';
 import '../../../component/home_component.dart';
 import '../../../generated/l10n.dart';
+import '../../../helper/profile_class.dart';
+import '../register_screen/register_screen_view_model.dart';
+import 'calories_view_model.dart';
 
 
 
@@ -16,6 +21,10 @@ class CaloriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final caloriesProvider = Provider.of<CaloriesViewModel>(context);
+    final RegisterViewModel registerViewModel =
+    Provider.of<RegisterViewModel>(context);
+
     final Size screenSize = MediaQuery.of(context).size;
     return WillPopScope(
         onWillPop: () async {
@@ -92,14 +101,19 @@ class CaloriesScreen extends StatelessWidget {
                       mealTypeImage: const AssetImage('images/breakfast.png'),
                       mealTypeText: S.of(context).addBreakFast,
                       text: S.of(context).recommended,
-                      onPressedIcon: (){},
+                      onPressedIcon: (){
+                        caloriesProvider.pickImage(context);
+                      },
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/lunch.png'),
                       mealTypeText: S.of(context).addLunch,
                       text: S.of(context).recommended,
-                      onPressedIcon: (){},
+                      onPressedIcon: (){
+                        caloriesProvider.pickImage(context);
+
+                      },
 
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
@@ -107,14 +121,20 @@ class CaloriesScreen extends StatelessWidget {
                       mealTypeImage: const AssetImage('images/dinner.png'),
                       mealTypeText: S.of(context).addDinner,
                       text: S.of(context).recommended,
-                      onPressedIcon: (){},
+                      onPressedIcon: () async{
+                        caloriesProvider.pickImage(context);
+
+                      },
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/snack.png'),
                       mealTypeText: S.of(context).addSnack,
                       text: S.of(context).recommended,
-                      onPressedIcon: (){},
+                      onPressedIcon: (){
+                        caloriesProvider.pickImage(context);
+
+                      },
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                   ],

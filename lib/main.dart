@@ -8,6 +8,7 @@ import 'package:virtam/styles/style.dart';
 import 'package:virtam/user/feature/add_location_screen/add_location_view_model.dart';
 import 'package:virtam/user/feature/calories_screen/calories_screen.dart';
 import 'package:virtam/user/feature/calories_screen/calories_setting_screen.dart';
+import 'package:virtam/user/feature/calories_screen/calories_view_model.dart';
 import 'package:virtam/user/feature/drink_water_screen/add_target_screen.dart';
 import 'package:virtam/user/feature/drink_water_screen/drink_water_screen.dart';
 import 'package:virtam/user/feature/drink_water_screen/drink_water_settings_screen.dart';
@@ -118,6 +119,7 @@ void main() async{
     ChangeNotifierProvider(create: (_) => ProfileViewModel()),
     ChangeNotifierProvider(create: (_) => FastTimeViewModel()),
     ChangeNotifierProvider(create: (_) => FastTimeEditViewModel()),
+    ChangeNotifierProvider(create: (_) => CaloriesViewModel()),
     //ChangeNotifierProvider(create: (_) => NotificationViewModel()),
   ],
       child:  MyApp())
