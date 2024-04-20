@@ -13,6 +13,7 @@ import '../../../component/popup_component.dart';
 import '../../../generated/l10n.dart';
 
 
+import '../forget_screen/forget_screen.dart';
 import '../profile_screen/profile_screen.dart';
 import '../register_screen/register_screen_view_model.dart';
 import 'login_screen_view_model.dart';
@@ -87,7 +88,11 @@ class LoginForm extends StatelessWidget {
                     Align(
                       alignment: Alignment.topRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () async{
+                          await FirebaseAuth.instance.sendPasswordResetEmail(email: viewModel.emailController.text.trim());
+
+
+                        },
                         child: Text(
                           S.of(context).forgetPass,
                           style: Theme.of(context).textTheme.labelSmall,

@@ -8,9 +8,9 @@ import '../../../component/design_component.dart';
 import '../../../component/form_component.dart';
 import 'forget_screen_view_model.dart';
 
-class ForgetPassword extends StatelessWidget {
-
-  const ForgetPassword({super.key});
+class ForgetPasswordScreen extends StatelessWidget {
+  final String email;
+  const ForgetPasswordScreen({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {

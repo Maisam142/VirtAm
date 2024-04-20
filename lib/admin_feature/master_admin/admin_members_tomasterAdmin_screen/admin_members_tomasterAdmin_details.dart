@@ -1,4 +1,6 @@
 import 'package:beamer/beamer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -6,6 +8,7 @@ import 'package:virtam/component/text_component.dart';
 
 import '../../../component/button_component.dart';
 import '../../../component/design_component.dart';
+import '../../../component/popup_component.dart';
 import '../../../helper/weight_class.dart';
 
 class AdminUserToMasterDetailsScreen extends StatelessWidget {
@@ -24,7 +27,7 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.of(context).pop();
+        Beamer.of(context).beamToNamed('/adminMembersToMasterScreen');
         return false;
       },
       child: SafeArea(
@@ -39,7 +42,7 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
                     children: [
                       DesignComponent3(
                           onPressed:(){
-                            Navigator.of(context).pop();
+                            Beamer.of(context).beamToNamed('/adminMembersToMasterScreen');
                           }
                       ),
                       Align(
@@ -47,9 +50,9 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
                         child: CircleAvatar(
                           radius: 90,
                           backgroundColor: Colors.white,
-                          child: memberData['imageUrl'] != null
+                          child: memberData['imageLink'] != null
                               ? CircleAvatar(
-                            backgroundImage: NetworkImage(memberData['imageUrl']),
+                            backgroundImage: NetworkImage(memberData['imageLink']),
                             radius: 88,
                           )
                               : const CircleAvatar(
@@ -115,7 +118,63 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 20,),
-                      const ButtonComponent(text: 'Delete Admin',textStyle: TextStyle(color: Colors.white,fontSize: 15),)
+                      ButtonComponent(text: 'Delete Admin',textStyle: TextStyle(color: Colors.white,fontSize: 15),
+                        onPress: ()  {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return PopupWidget(
+                                  titleText: 'Delete Admin',
+                                  contentText: 'Are You Sure !',
+                                  body: [
+                                    Row(
+                                      mainAxisAlignment:MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          style: ButtonStyle(
+                                            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
+                                          ),
+                                          onPressed: (){
+
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('Cancel',style: TextStyle(fontSize: 12,color: Colors.black),),),
+                                        const SizedBox(width: 10,),
+                                        ElevatedButton(onPressed: ()async{
+                                          try {
+                                            print('Member email: ${memberData['email']}');
+                                            String emailLowerCase = memberData['email'].toLowerCase();
+
+                                            await FirebaseFirestore.instance
+                                                .collection('Admin')
+                                                .doc(emailLowerCase)
+                                                .delete();
+                                            FirebaseAuth auth = FirebaseAuth.instance;
+                                            await auth.currentUser!.delete();
+
+                                            Beamer.of(context).beamToNamed('/adminMembersToMasterScreen');
+
+                                          } catch (e) {
+                                            print('Navigation Error: $e');
+                                          }
+
+                                        },
+                                            style: ButtonStyle(
+                                              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                              minimumSize: MaterialStateProperty.all<Size>(Size(120, 40)),
+
+                                            ),
+                                            child: const Text('Delete',style: TextStyle(fontSize: 15,color: Colors.black),)),
+
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              });
+
+                        },
+
+                      )
 
                     ],
                   ),

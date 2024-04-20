@@ -20,6 +20,7 @@ import 'package:virtam/user/feature/fast_screen/fast_time_edit_screen/fast_time_
 import 'package:virtam/user/feature/fast_screen/fast_time_edit_screen/fast_time_edit_view_model.dart';
 import 'package:virtam/user/feature/fast_time_screen/fast_time_screen.dart';
 import 'package:virtam/user/feature/fast_time_screen/fast_time_view_model.dart';
+import 'package:virtam/user/feature/forget_screen/forget_screen.dart';
 import 'package:virtam/user/feature/home_screen/home_screen.dart';
 import 'package:virtam/user/feature/home_screen/home_screen_view_model.dart';
 import 'package:virtam/user/feature/location_screen/location_screen_view_model.dart';
@@ -174,9 +175,10 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const SplashScreen(),
+        '/': (context, state, data) =>  const LoginScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
+        '/forgetPasswordScreen': (context, state, data) => const ForgetPasswordScreen(email: '',),
         '/registerScreen': (context, state, data) => const RegisterScreen(),
         '/homeNavigationBar': (context, state, data) => const HomeNavigationBar(),
         '/option2Screen': (context, state, data) => const Option2Screen(),

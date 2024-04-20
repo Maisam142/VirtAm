@@ -360,6 +360,8 @@ class RegisterScreen extends StatelessWidget {
                                     'password' : registerViewModel.passwordController.text,
                                     'number': registerViewModel.phoneNumber,
                                     'selectedPurpose': registerViewModel.selectedPurpose,
+                                    'startFastTime': '00:00 AM',
+                                    'endFastTime': '00:00 PM',
                                   });
                                   Beamer.of(context).beamToNamed(
                                       '/fastTimeScreen');

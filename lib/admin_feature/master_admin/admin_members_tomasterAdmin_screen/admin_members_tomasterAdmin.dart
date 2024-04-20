@@ -67,9 +67,9 @@ class AdminMembersToMasterScreen extends StatelessWidget {
                                               CircleAvatar(
                                                 radius: 30,
                                                 backgroundColor: Colors.white,
-                                                child: memberData['imageUrl'] != null
+                                                child: memberData['imageLink'] != null
                                                     ? CircleAvatar(
-                                                  backgroundImage: NetworkImage(memberData['imageUrl']),
+                                                  backgroundImage: NetworkImage(memberData['imageLink']),
                                                   radius: 20,
                                                 )
                                                     : const CircleAvatar(
