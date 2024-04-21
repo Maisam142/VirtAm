@@ -35,7 +35,7 @@ class FastTimeScreen extends StatelessWidget {
             child: Column(
               children: [
                 OptionTopComponent(
-                  text: 'Fast Time',
+                  text: S.of(context).fastTime ,
                   onPressed: () {
                     Beamer.of(context).beamBack();
                   },
@@ -58,7 +58,7 @@ class FastTimeScreen extends StatelessWidget {
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: TextComponent(
-                                    text: 'when did you start fasting ?',
+                                    text: S.of(context).whenStartFast,
                                     textStyle:
                                     Theme.of(context).textTheme.labelMedium,
                                   ),
@@ -103,7 +103,7 @@ class FastTimeScreen extends StatelessWidget {
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: TextComponent(
-                                    text: 'when did you end fasting ?',
+                                    text: S.of(context).whenEndFast,
                                     textStyle:
                                     Theme.of(context).textTheme.labelMedium,
                                   ),

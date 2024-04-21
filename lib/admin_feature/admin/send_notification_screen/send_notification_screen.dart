@@ -5,6 +5,7 @@ import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../../../component/form_component.dart';
+import '../../../generated/l10n.dart';
 
 class SendNotificationScreen extends StatelessWidget {
   const SendNotificationScreen({super.key});
@@ -23,7 +24,7 @@ class SendNotificationScreen extends StatelessWidget {
             child: Column(
               children: [
                 BackComponent(
-                  text: 'Send Notification',
+                  text: S.of(context).sendNotification,
                 ),
 
                 Padding(
@@ -33,7 +34,7 @@ class SendNotificationScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          TextComponent(text: ' The center send reminder\n  notification for members:',
+                          TextComponent(text: S.of(context).centerSendNotification,
                           textStyle: TextStyle(fontSize: 20
                           ),),
                         ],
@@ -44,10 +45,10 @@ class SendNotificationScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             FormComponent(
-                              hintText: 'Notification Text: ',
+                              hintText: S.of(context).notificationText,
                             ),
                             FormComponent(
-                              hintText: 'Select Members ',
+                              hintText: S.of(context).selectMembers,
                             ),
                           ],
                         ),
@@ -58,7 +59,7 @@ class SendNotificationScreen extends StatelessWidget {
                         width: double.infinity,
                       ),
                       SizedBox(height: 20,),
-                      ButtonComponentContinue(text: 'Send')
+                      ButtonComponentContinue(text: S.of(context).send)
                     ],
                   ),
                 ),

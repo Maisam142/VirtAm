@@ -92,7 +92,7 @@ class Option2Screen extends StatelessWidget {
                                 .collection('User')
                                 .doc(registerViewModel.emailController.text.toLowerCase())
                                 .update(additionalData);
-                            Beamer.of(context).beamToNamed('/homeNavigationBar');
+                            Beamer.of(context).beamToNamed('/fastTimeScreen');
                           },
                         ),
                       ),

@@ -4,6 +4,7 @@ import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../../../component/form_component.dart';
+import '../../../generated/l10n.dart';
 
 class AddDailyMealsScreen extends StatelessWidget {
   const AddDailyMealsScreen({super.key});
@@ -23,7 +24,7 @@ class AddDailyMealsScreen extends StatelessWidget {
             onPressed: (){
               Beamer.of(context).beamToNamed('/homeAdminScreen');
             },
-            text: 'Add Daily Meals',
+            text: S.of(context).addDailyMeal,
           ),
           Column(
             children: [
@@ -32,10 +33,10 @@ class AddDailyMealsScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 50,
                 color: Colors.white,
-                child: const Row(
+                child:  Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Center(child: TextComponent(text: '    Add daily meals for your Members :',)),
+                    Center(child: TextComponent(text: S.of(context).addDailyMealForMembers,)),
                   ],
                 ),
               ),
@@ -47,28 +48,28 @@ class AddDailyMealsScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       FormComponent(
-                      hintText: 'Meal Name',
+                      hintText: S.of(context).mealName,
                       ),
                       FormComponent(
-                        hintText: 'Add First Type',
+                        hintText: S.of(context).addFirstType,
                       ),
                       FormComponent(
-                        hintText: 'Describe First Type',),
+                        hintText: S.of(context).describeFirstType,),
                       Container(
                         height: 200,
                         width: double.infinity,
                         color: Colors.grey.shade400,
                       ),
                       FormComponent(
-                        hintText: 'Select Members',
+                        hintText: S.of(context).selectMembers,
                       ),
                       ElevatedButton(
 
                         onPressed: (){},
-                          child: const Row(
+                          child: Row(
                             children: [
-                              Icon(Icons.add_box,color: Colors.black,size: 25,),
-                              TextComponent(text: '  Add Second Type'),
+                              const Icon(Icons.add_box,color: Colors.black,size: 25,),
+                              TextComponent(text: S.of(context).addSecondType),
                             ],
                           ),),
 

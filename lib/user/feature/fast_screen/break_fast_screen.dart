@@ -34,7 +34,7 @@ class BreakFastScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Instructions to break fast ',
+                        S.of(context).breakFastInstructions,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,

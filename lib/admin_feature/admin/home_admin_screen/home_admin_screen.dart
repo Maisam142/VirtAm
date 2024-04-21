@@ -8,6 +8,7 @@ import 'package:virtam/component/home_component.dart';
 import 'package:virtam/component/viewall_component.dart';
 
 import '../../../component/text_component.dart';
+import '../../../generated/l10n.dart';
 import '../../../helper/weight_class.dart';
 
 
@@ -67,7 +68,7 @@ class HomeAdminScreen extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const TextComponent(text: 'Number of Members'),
+                                      TextComponent(text: S.of(context).numberOfMembers),
                                       ViewAllComponent(
                                         onPressed: (){
                                           Beamer.of(context).beamToNamed('/membersScreen');
@@ -104,19 +105,21 @@ class HomeAdminScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const TextLabelComponent(text: '  Admins',textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                              TextLabelComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                               ViewAllComponent(
-                                onPressed: (){},
+                                onPressed: (){
+                                  Beamer.of(context).beamToNamed('/adminMembersScreen');
+                                },
                               ),
                             ],
                           ),
                         ),
-                        const Padding(
+                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              TextLabelComponent(text: 'Member activity',textStyle: TextStyle(fontSize: 25),),
+                              TextLabelComponent(text: S.of(context).memberActivity,textStyle: TextStyle(fontSize: 25),),
                             ],
                           ),
                         ),
@@ -127,7 +130,7 @@ class HomeAdminScreen extends StatelessWidget {
                               Expanded(
                                   child: HomeAdminComponent(
                                     icon: 'images/notification.png',
-                                    valueText: 'Send Notification',
+                                    valueText: S.of(context).sendNotification,
                                     onPressed: (){},
 
                                   )),
@@ -137,7 +140,7 @@ class HomeAdminScreen extends StatelessWidget {
                               Expanded(
                                   child: HomeAdminComponent(
                                     icon: 'images/apple.png',
-                                    valueText: 'Add daily meals',
+                                    valueText: S.of(context).addDailyMeal,
                                     onPressed: (){
                                       Beamer.of(context).beamToNamed('/addDailyMealsScreen');
                                     },
@@ -149,8 +152,10 @@ class HomeAdminScreen extends StatelessWidget {
                               Expanded(
                                   child: HomeAdminComponent(
                                     icon: 'images/exer.png',
-                                    valueText: 'Add exercise',
-                                    onPressed: (){},
+                                    valueText: S.of(context).addExercise,
+                                    onPressed: (){
+
+                                    },
 
                                   )),
                             ],

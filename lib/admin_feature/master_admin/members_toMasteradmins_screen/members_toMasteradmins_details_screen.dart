@@ -9,9 +9,10 @@ import 'package:virtam/component/text_component.dart';
 
 import '../../../component/design_component.dart';
 import '../../../component/popup_component.dart';
+import '../../../generated/l10n.dart';
 import '../../../helper/weight_class.dart';
 
-class UserDetailsToAdminScreen extends StatelessWidget {
+class MemberDetailsToMasterAdminScreen extends StatelessWidget {
   final Map<String, dynamic> memberData;
   final List<ChartData> chartData = [
     ChartData(80, 1),
@@ -21,13 +22,13 @@ class UserDetailsToAdminScreen extends StatelessWidget {
     ChartData(55, 5)
   ];
 
-  UserDetailsToAdminScreen({super.key, required this.memberData});
+  MemberDetailsToMasterAdminScreen({super.key, required this.memberData});
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.of(context).pop();
+        Navigator.pop(context);
         return false;
       },
       child: SafeArea(
@@ -41,7 +42,7 @@ class UserDetailsToAdminScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       DesignComponent3(onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.pop(context);
                       }),
                       Align(
                         alignment: Alignment.bottomCenter,
@@ -75,8 +76,8 @@ class UserDetailsToAdminScreen extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            const Text(
-                              '  Full Name:  ',
+                            Text(
+                              S.of(context).fullName,
                               style: TextStyle(color: Colors.grey),
                             ),
                             TextComponent(text: memberData['name']),
@@ -92,8 +93,8 @@ class UserDetailsToAdminScreen extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            const Text(
-                              '  Email Adress:  ',
+                            Text(
+                              S.of(context).email,
                               style: TextStyle(color: Colors.grey),
                             ),
                             TextComponent(text: memberData['email']),
@@ -126,8 +127,8 @@ class UserDetailsToAdminScreen extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            const Text(
-                              '  Admin Name:  ',
+                            Text(
+                              S.of(context).adminName,
                               style: TextStyle(color: Colors.grey),
                             ),
                             TextComponent(text: memberData['name']),
@@ -146,8 +147,8 @@ class UserDetailsToAdminScreen extends StatelessWidget {
                               height: 50,
                               child: Row(
                                 children: [
-                                  const Text(
-                                    '  Weight Before:  ',
+                                  Text(
+                                    S.of(context).weightBefore,
                                     style: TextStyle(color: Colors.grey),
                                   ),
                                   TextComponent(
@@ -166,8 +167,8 @@ class UserDetailsToAdminScreen extends StatelessWidget {
                               height: 50,
                               child: Row(
                                 children: [
-                                  const Text(
-                                    '  Weight After:  ',
+                                  Text(
+                                    S.of(context).weightAfter,
                                     style: TextStyle(color: Colors.grey),
                                   ),
                                   TextComponent(
@@ -198,15 +199,15 @@ class UserDetailsToAdminScreen extends StatelessWidget {
                         height: 20,
                       ),
                       ButtonComponent(
-                        text: 'Delete Member',
+                        text: S.of(context).deleteMember,
                         textStyle: TextStyle(color: Colors.white, fontSize: 15),
                         onPress: ()  {
                           showDialog(
                               context: context,
                               builder: (context) {
                                 return PopupWidget(
-                                  titleText: 'Delete Member',
-                                  contentText: 'Are You Sure !',
+                                  titleText: S.of(context).deleteMember,
+                                  contentText: S.of(context).areYouSure,
                                   body: [
                                     Row(
                                       mainAxisAlignment:MainAxisAlignment.center,
@@ -218,25 +219,21 @@ class UserDetailsToAdminScreen extends StatelessWidget {
                                             onPressed: (){
                                               Navigator.pop(context);
                                             },
-                                            child: const Text('Cancel',style: TextStyle(fontSize: 12,color: Colors.black),),),
+                                            child: Text(S.of(context).cancel,style: TextStyle(fontSize: 12,color: Colors.black),),),
                                         const SizedBox(width: 10,),
-                                        ElevatedButton(onPressed: ()async{
-                                          try {
+                                        ElevatedButton(
+                                            onPressed: ()async{
                                             print('Member email: ${memberData['email']}');
                                             String emailLowerCase = memberData['email'].toLowerCase();
 
-                                            await FirebaseFirestore.instance
-                                                .collection('User')
-                                                .doc(emailLowerCase)
-                                                .delete();
+                                               // await FirebaseFirestore.instance
+                                               //    .collection('User')
+                                               //    .doc(emailLowerCase)
+                                               //    .delete();
                                             FirebaseAuth auth = FirebaseAuth.instance;
                                             await auth.currentUser!.delete();
 
-                                            Beamer.of(context).beamToNamed('/membersToAdminsScreen');
-
-                                          } catch (e) {
-                                            print('Navigation Error: $e');
-                                          }
+                                            Beamer.of(context).beamBack();
 
                                         },
                                             style: ButtonStyle(

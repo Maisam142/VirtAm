@@ -114,13 +114,17 @@ class LoginForm extends StatelessWidget {
                                 );
                                 final user = userCredential.user;
                                 //print('User signed in: ${user?.uid}');
+                                if(viewModel.emailController.text == 'masteradmin123@gmail.com' &&
+                                    viewModel.passwordController.text == 'MasterAdmin12345*' ){
+                                  Beamer.of(context).beamToNamed('/homeMasterAdminScreen');
+                                }else if (viewModel.emailController.text == 'admin1@gmail.com' &&
+                                    viewModel.passwordController.text == 'Admin112345*' ){
+                                  Beamer.of(context).beamToNamed('/homeAdminScreen');
 
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeNavigationBar(),
-                                  ),
-                                );                              } catch (e) {
+                                }else {
+                                  Beamer.of(context).beamToNamed('/homeNavigationBar');
+                                }
+                              } catch (e) {
                                 print('Error logging in: $e');
                                 showDialog(
                                   context: context,

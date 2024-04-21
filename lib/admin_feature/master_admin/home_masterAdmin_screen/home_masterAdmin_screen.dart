@@ -8,6 +8,7 @@ import 'package:virtam/component/home_component.dart';
 import 'package:virtam/component/viewall_component.dart';
 
 import '../../../component/text_component.dart';
+import '../../../generated/l10n.dart';
 import '../../../helper/weight_class.dart';
 
 
@@ -66,10 +67,10 @@ class HomeMasterAdminScreen extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const TextComponent(text: 'Number of Members'),
+                                      TextComponent(text: S.of(context).numberOfMembers),
                                       ViewAllComponent(
                                         onPressed: (){
-                                          Beamer.of(context).beamToNamed('/membersScreen');
+                                          Beamer.of(context).beamToNamed('/membersToMasterAdminsScreen');
                                         },
                                       ),
                                     ],
@@ -103,9 +104,12 @@ class HomeMasterAdminScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const TextLabelComponent(text: '  Admins',textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                              TextLabelComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                               ViewAllComponent(
-                                onPressed: (){},
+                                onPressed: (){
+                                  Beamer.of(context).beamToNamed('/adminMembersToMasterScreen');
+
+                                },
                               ),
                             ],
                           ),
@@ -122,7 +126,7 @@ class HomeMasterAdminScreen extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const TextLabelComponent(text : 'Counter'),
+                                    TextLabelComponent(text : S.of(context).counter),
                                     Text('Mar-Jan 2022',style: TextStyle(color: Theme.of(context).primaryColor),),
                                   ],
                                 ),

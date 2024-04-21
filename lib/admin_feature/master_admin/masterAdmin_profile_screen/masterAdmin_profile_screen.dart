@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../component/design_component.dart';
 import '../../../component/text_component.dart';
+import '../../../generated/l10n.dart';
 
 class MasterAdminProfileScreen extends StatelessWidget {
   const MasterAdminProfileScreen({super.key});
@@ -33,7 +34,7 @@ class MasterAdminProfileScreen extends StatelessWidget {
                     alignment: Alignment.topRight,
                     child: TextButton(onPressed: (){
                       Beamer.of(context).beamToNamed('/subscriptionToAdminScreen');
-                    }, child:  TextComponent(text: 'Edit Subscription',
+                    }, child:  TextComponent(text: S.of(context).editSubscription,
                       textStyle: Theme.of(context).textTheme.labelSmall ,),),),
                 const Align(
                   alignment: Alignment.bottomCenter,
@@ -62,7 +63,7 @@ class MasterAdminProfileScreen extends StatelessWidget {
                   height: 50,
                   child: Row(
                     children: [
-                      const Text('  Center Name:  ',style: TextStyle(color: Colors.grey),),
+                      Text(S.of(context).centerName,style: TextStyle(color: Colors.grey),),
                       TextComponent(text: 'name' ),
                     ],
                   ),
@@ -75,7 +76,7 @@ class MasterAdminProfileScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('  Description:  ', style: TextStyle(color: Colors.grey)),
+                      Text(S.of(context).describe, style: TextStyle(color: Colors.grey)),
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 8),

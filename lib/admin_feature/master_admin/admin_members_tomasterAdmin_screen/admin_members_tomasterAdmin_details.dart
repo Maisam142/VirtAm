@@ -9,6 +9,7 @@ import 'package:virtam/component/text_component.dart';
 import '../../../component/button_component.dart';
 import '../../../component/design_component.dart';
 import '../../../component/popup_component.dart';
+import '../../../generated/l10n.dart';
 import '../../../helper/weight_class.dart';
 
 class AdminUserToMasterDetailsScreen extends StatelessWidget {
@@ -27,7 +28,7 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Beamer.of(context).beamToNamed('/adminMembersToMasterScreen');
+        Navigator.pop(context);
         return false;
       },
       child: SafeArea(
@@ -42,7 +43,8 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
                     children: [
                       DesignComponent3(
                           onPressed:(){
-                            Beamer.of(context).beamToNamed('/adminMembersToMasterScreen');
+                            //Beamer.of(context).beamBack();
+                             Navigator.pop(context);
                           }
                       ),
                       Align(
@@ -77,7 +79,7 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            const Text('  Full Name:  ',style: TextStyle(color: Colors.grey),),
+                            Text(S.of(context).fullName,style: TextStyle(color: Colors.grey),),
                             TextComponent(text: memberData['name'] ),
                           ],
                         ),
@@ -89,7 +91,7 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            const Text('  Email Adress:  ',style: TextStyle(color: Colors.grey),),
+                            Text(S.of(context).email,style: TextStyle(color: Colors.grey),),
                             TextComponent(text: memberData['email'] ),
                           ],
                         ),
@@ -111,21 +113,21 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
                         color: Colors.grey.shade200,
                         width: double.infinity,
                         height: 50,
-                        child: const Row(
+                        child: Row(
                           children: [
-                            Text('  Member Numbers',style: TextStyle(color: Colors.grey )),
+                            Text(S.of(context).memberNumber,style: TextStyle(color: Colors.grey )),
                           ],
                         ),
                       ),
                       const SizedBox(height: 20,),
-                      ButtonComponent(text: 'Delete Admin',textStyle: TextStyle(color: Colors.white,fontSize: 15),
+                      ButtonComponent(text: S.of(context).deleteAdmin,textStyle: TextStyle(color: Colors.white,fontSize: 15),
                         onPress: ()  {
                           showDialog(
                               context: context,
                               builder: (context) {
                                 return PopupWidget(
-                                  titleText: 'Delete Admin',
-                                  contentText: 'Are You Sure !',
+                                  titleText: S.of(context).deleteAdmin,
+                                  contentText: S.of(context).areYouSure,
                                   body: [
                                     Row(
                                       mainAxisAlignment:MainAxisAlignment.center,
@@ -138,7 +140,7 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
 
                                             Navigator.pop(context);
                                           },
-                                          child: const Text('Cancel',style: TextStyle(fontSize: 12,color: Colors.black),),),
+                                          child:  Text(S.of(context).cancel,style: TextStyle(fontSize: 12,color: Colors.black),),),
                                         const SizedBox(width: 10,),
                                         ElevatedButton(onPressed: ()async{
                                           try {
@@ -149,11 +151,10 @@ class AdminUserToMasterDetailsScreen extends StatelessWidget {
                                                 .collection('Admin')
                                                 .doc(emailLowerCase)
                                                 .delete();
-                                            FirebaseAuth auth = FirebaseAuth.instance;
-                                            await auth.currentUser!.delete();
+                                            // FirebaseAuth auth = FirebaseAuth.instance;
+                                            // await auth.currentUser!.delete();
 
-                                            Beamer.of(context).beamToNamed('/adminMembersToMasterScreen');
-
+                                            Beamer.of(context).beamBack();
                                           } catch (e) {
                                             print('Navigation Error: $e');
                                           }

@@ -117,20 +117,20 @@ class S {
     );
   }
 
-  /// `Full Name`
+  /// `  Full Name  :`
   String get fullName {
     return Intl.message(
-      'Full Name',
+      '  Full Name  :',
       name: 'fullName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Email Address`
+  /// `  Email Address  :`
   String get email {
     return Intl.message(
-      'Email Address',
+      '  Email Address  :',
       name: 'email',
       desc: '',
       args: [],
@@ -1492,6 +1492,386 @@ class S {
     return Intl.message(
       'Done',
       name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fast Time`
+  String get fastTime {
+    return Intl.message(
+      'Fast Time',
+      name: 'fastTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When did you start fasting ?`
+  String get whenStartFast {
+    return Intl.message(
+      'When did you start fasting ?',
+      name: 'whenStartFast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When did you end fasting ?`
+  String get whenEndFast {
+    return Intl.message(
+      'When did you end fasting ?',
+      name: 'whenEndFast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Breaking Fasting`
+  String get breakingFast {
+    return Intl.message(
+      ' Breaking Fasting',
+      name: 'breakingFast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instructions to break fast`
+  String get breakFastInstructions {
+    return Intl.message(
+      'Instructions to break fast',
+      name: 'breakFastInstructions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Fast Time`
+  String get editFastTime {
+    return Intl.message(
+      'Edit Fast Time',
+      name: 'editFastTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Daily Meals`
+  String get addDailyMeal {
+    return Intl.message(
+      'Add Daily Meals',
+      name: 'addDailyMeal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `    Add daily meals for your Members :`
+  String get addDailyMealForMembers {
+    return Intl.message(
+      '    Add daily meals for your Members :',
+      name: 'addDailyMealForMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meal Name`
+  String get mealName {
+    return Intl.message(
+      'Meal Name',
+      name: 'mealName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add First Type`
+  String get addFirstType {
+    return Intl.message(
+      'Add First Type',
+      name: 'addFirstType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Describe First Type`
+  String get describeFirstType {
+    return Intl.message(
+      'Describe First Type',
+      name: 'describeFirstType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Members`
+  String get selectMembers {
+    return Intl.message(
+      'Select Members',
+      name: 'selectMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `  Add Second Type`
+  String get addSecondType {
+    return Intl.message(
+      '  Add Second Type',
+      name: 'addSecondType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Exercise`
+  String get addExercise {
+    return Intl.message(
+      'Add Exercise',
+      name: 'addExercise',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `    The center send exercise members:`
+  String get sendExercise {
+    return Intl.message(
+      '    The center send exercise members:',
+      name: 'sendExercise',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exercise Name: `
+  String get exerciseName {
+    return Intl.message(
+      'Exercise Name: ',
+      name: 'exerciseName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member Number`
+  String get memberNumber {
+    return Intl.message(
+      'Member Number',
+      name: 'memberNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Members`
+  String get allMembers {
+    return Intl.message(
+      'All Members',
+      name: 'allMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of Members`
+  String get numberOfMembers {
+    return Intl.message(
+      'Number of Members',
+      name: 'numberOfMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `  Admins`
+  String get admins {
+    return Intl.message(
+      '  Admins',
+      name: 'admins',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member Activity`
+  String get memberActivity {
+    return Intl.message(
+      'Member Activity',
+      name: 'memberActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Notification`
+  String get sendNotification {
+    return Intl.message(
+      'Send Notification',
+      name: 'sendNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amin Name`
+  String get adminName {
+    return Intl.message(
+      'Amin Name',
+      name: 'adminName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `  Weight Before:  `
+  String get weightBefore {
+    return Intl.message(
+      '  Weight Before:  ',
+      name: 'weightBefore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `  Weight After:  `
+  String get weightAfter {
+    return Intl.message(
+      '  Weight After:  ',
+      name: 'weightAfter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` The center send reminder\n  notification for members:`
+  String get centerSendNotification {
+    return Intl.message(
+      ' The center send reminder\n  notification for members:',
+      name: 'centerSendNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `send`
+  String get send {
+    return Intl.message(
+      'send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification Text: `
+  String get notificationText {
+    return Intl.message(
+      'Notification Text: ',
+      name: 'notificationText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Admin`
+  String get addNewAdmin {
+    return Intl.message(
+      'Add New Admin',
+      name: 'addNewAdmin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `  The center includes 3 admin to\n   supervise its members:`
+  String get adminInclude {
+    return Intl.message(
+      '  The center includes 3 admin to\n   supervise its members:',
+      name: 'adminInclude',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Admin`
+  String get deleteAdmin {
+    return Intl.message(
+      'Delete Admin',
+      name: 'deleteAdmin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are You Sure !`
+  String get areYouSure {
+    return Intl.message(
+      'Are You Sure !',
+      name: 'areYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Counter`
+  String get counter {
+    return Intl.message(
+      'Counter',
+      name: 'counter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Subscription`
+  String get editSubscription {
+    return Intl.message(
+      'Edit Subscription',
+      name: 'editSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `  Center Name:  `
+  String get centerName {
+    return Intl.message(
+      '  Center Name:  ',
+      name: 'centerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `  Description:  `
+  String get describe {
+    return Intl.message(
+      '  Description:  ',
+      name: 'describe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Member`
+  String get deleteMember {
+    return Intl.message(
+      'Delete Member',
+      name: 'deleteMember',
       desc: '',
       args: [],
     );

@@ -364,7 +364,7 @@ class RegisterScreen extends StatelessWidget {
                                     'endFastTime': '00:00 PM',
                                   });
                                   Beamer.of(context).beamToNamed(
-                                      '/fastTimeScreen');
+                                      '/userDataStep1');
                                 } else if (registerViewModel.selectedOption ==
                                     2) {
                                   UserCredential userCredential =

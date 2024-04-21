@@ -13,8 +13,8 @@
 
 
 
-  "fullName": "Full Name",
-  "email": "Email Address",
+  "fullName": "  Full Name  :",
+  "email": "  Email Address  :",
   "existEmail": "Email Already Exists",
   "errorExistEmail": "The email address you provided is already registered. Please use a different email address.",
   "phoneNumber": "Phone Number",
@@ -184,7 +184,65 @@
   "yesterday": "Yesterday",
   "choose": "You Should Choose !",
   "chooseWhy": "You Should Choose The Purpose of \n Creating Account ..",
-  "done" : "Done"
+  "done" : "Done",
+
+
+  "fastTime": "Fast Time",
+  "whenStartFast": "When did you start fasting ?",
+  "whenEndFast": "When did you end fasting ?",
+  "breakingFast": " Breaking Fasting",
+  "breakFastInstructions": "Instructions to break fast",
+  "editFastTime": "Edit Fast Time",
+
+
+
+
+
+  "addDailyMeal": "Add Daily Meals",
+  "addDailyMealForMembers": "    Add daily meals for your Members :",
+  "mealName": "Meal Name",
+  "addFirstType": "Add First Type",
+  "describeFirstType": "Describe First Type",
+  "selectMembers": "Select Members",
+  "addSecondType": "  Add Second Type",
+
+
+
+  "addExercise": "Add Exercise",
+  "sendExercise": "    The center send exercise members:",
+  "exerciseName": "Exercise Name: ",
+  "memberNumber": "Member Number",
+
+
+  "allMembers": "All Members",
+  "numberOfMembers": "Number of Members",
+  "admins": "  Admins",
+  "memberActivity": "Member Activity",
+  "sendNotification": "Send Notification",
+  "adminName": "Amin Name",
+  "weightBefore": "  Weight Before:  ",
+  "weightAfter": "  Weight After:  ",
+
+
+  "centerSendNotification": " The center send reminder\n  notification for members:",
+  "send": "send",
+  "notificationText": "Notification Text: ",
+
+
+
+
+  "addNewAdmin": "Add New Admin",
+  "adminInclude": "  The center includes 3 admin to\n   supervise its members:",
+
+  "deleteAdmin": "Delete Admin",
+  "areYouSure": "Are You Sure !",
+  "cancel": "Cancel",
+
+  "counter": "Counter",
+  "editSubscription": "Edit Subscription",
+  "centerName": "  Center Name:  ",
+  "describe": "  Description:  ",
+  "deleteMember": "Delete Member"
 
 
 

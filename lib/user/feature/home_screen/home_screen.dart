@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
 
         final endHour = endFastTime.hour;
         final endMinute = endFastTime.minute;
-        final hourDifference = endFastTime.difference(startFastTime).inHours;
+        final hourDifference = endFastTime.hour > startFastTime.hour ? endFastTime.difference(startFastTime).inHours : startFastTime.difference(endFastTime).inHours;
 
         print('Start fasting time: $startHour:$startMinute');
         print('End fasting time: $endHour:$endMinute');

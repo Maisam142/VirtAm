@@ -5,6 +5,7 @@ import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../../../component/form_component.dart';
+import '../../../generated/l10n.dart';
 
 class AddExerciseScreen extends StatelessWidget {
   const AddExerciseScreen({super.key});
@@ -22,19 +23,19 @@ class AddExerciseScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                const BackComponent(
-                  text: 'Add Exercise',
+                BackComponent(
+                  text: S.of(context).addExercise,
                 ),
 
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     children: [
-                      const Row(
+                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          TextComponent(text: '    The center send exercise members:',
-                            textStyle: TextStyle(fontSize: 20
+                          TextComponent(text: S.of(context).sendExercise,
+                            textStyle: const TextStyle(fontSize: 20
                             ),),
                         ],
                       ),
@@ -44,10 +45,10 @@ class AddExerciseScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             FormComponent(
-                              hintText: 'Exercise Name: ',
+                              hintText: S.of(context).exerciseName,
                             ),
                             FormComponent(
-                              hintText: 'Select Members ',
+                              hintText: S.of(context).selectMembers,
                             ),
                           ],
                         ),
@@ -57,8 +58,8 @@ class AddExerciseScreen extends StatelessWidget {
                         height: 200,
                         width: double.infinity,
                       ),
-                      SizedBox(height: 20,),
-                      const ButtonComponentContinue(text: 'Add')
+                      const SizedBox(height: 20,),
+                       ButtonComponentContinue(text: S.of(context).add)
                     ],
                   ),
                 ),

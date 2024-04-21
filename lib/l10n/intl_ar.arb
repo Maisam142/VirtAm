@@ -171,5 +171,77 @@
   "chooseWhy": "يجب أن تختارالهدف من انشاء الحساب ..",
   "done" : "تم",
   "or" : "أو",
-  "createAccount": "انشاء حساب"
+  "createAccount": "انشاء حساب",
+
+
+
+  "fastTime": "وقت الصيام",
+  "whenStartFast": "متى بدأت الصيام؟",
+  "whenEndFast": "متى انتهيت من الصيام؟",
+  "breakingFast": "كسر الصيام",
+  "breakFastInstructions": " تعليمات كسر الصيام ",
+  "editFastTime": "تعديل وقت الصيام ",
+
+
+
+
+
+
+  "addDailyMeal": "إضافة وجبات يومية",
+  "addDailyMealForMembers": "إضافة وجبات يومية لأعضائك:",
+  "mealName": "اسم الوجبة",
+  "addFirstType": "إضافة النوع الأول",
+  "describeFirstType": "وصف النوع الأول",
+  "selectMembers": "اختيار الأعضاء",
+  "addSecondType": "إضافة النوع الثاني",
+
+
+  "addExercise": "إضافة تمرين",
+  "sendExercise": "المركز يرسل تمارين للأعضاء:",
+  "exerciseName": "اسم التمرين: ",
+  "memberNumber": "رقم العضو",
+
+
+  "allMembers": "جميع الأعضاء",
+  "numberOfMembers": "عدد الأعضاء",
+  "admins": "المشرفون",
+  "memberActivity": "نشاط الأعضاء",
+  "sendNotification": "إرسال إشعار",
+  "adminName": "اسم المشرف",
+  "weightBefore": "الوزن قبل: ",
+  "weightAfter": "الوزن بعد: ",
+
+
+  "centerSendNotification": "يُرسل المركز تذكيرًا\nإشعارًا للأعضاء:",
+  "send": "إرسال",
+  "notificationText": "نص الإشعار: ",
+
+
+  "addNewAdmin": "إضافة مشرف جديد",
+  "adminInclude": "يتضمن المركز 3 مشرفين للإشراف على أعضائه:",
+  "deleteAdmin": "حذف المشرف",
+  "areYouSure": "هل أنت متأكد!",
+  "cancel": "إلغاء",
+
+
+  "counter": "عداد",
+  "editSubscription": "تعديل الاشتراك",
+  "centerName": "اسم المركز: ",
+  "describe": "الوصف: ",
+  "deleteMember": "حذف العضو"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

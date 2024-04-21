@@ -5,16 +5,17 @@ import 'package:flutter/widgets.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../../../component/back_component.dart';
-import 'members_toadmin_details_screen.dart';
+import '../../../generated/l10n.dart';
+import 'members_toMasteradmins_details_screen.dart';
 
-class MembersToAdminsScreen extends StatelessWidget {
-  const MembersToAdminsScreen();
+class MembersToMasterAdminsScreen extends StatelessWidget {
+  const MembersToMasterAdminsScreen();
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Beamer.of(context).beamToNamed('/homeAdminScreen');
+        Beamer.of(context).beamToNamed('/homeMasterAdminScreen');
         return false;
       },
       child: SafeArea(
@@ -24,9 +25,9 @@ class MembersToAdminsScreen extends StatelessWidget {
               children: [
                 BackComponent(
                   onPressed: () {
-                    Beamer.of(context).beamToNamed('/homeAdminScreen');
+                    Beamer.of(context).beamToNamed('/homeMasterAdminScreen');
                   },
-                  text: 'All Members',
+                  text: S.of(context).allMembers,
                 ),
                 SingleChildScrollView(
                   child: Column(
@@ -50,7 +51,7 @@ class MembersToAdminsScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => UserDetailsToAdminScreen(memberData: memberData),
+                                        builder: (context) => MemberDetailsToMasterAdminScreen(memberData: memberData),
                                       ),
                                     );
                                   },

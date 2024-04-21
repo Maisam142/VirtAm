@@ -5,6 +5,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../../../component/design_component.dart';
+import '../../../generated/l10n.dart';
 import '../../../helper/weight_class.dart';
 
 class AdminUserDetailsScreen extends StatelessWidget {
@@ -73,7 +74,7 @@ class AdminUserDetailsScreen extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            const Text('  Full Name:  ',style: TextStyle(color: Colors.grey),),
+                            Text(S.of(context).fullName,style: TextStyle(color: Colors.grey),),
                             TextComponent(text: memberData['name'] ),
                           ],
                         ),
@@ -85,7 +86,7 @@ class AdminUserDetailsScreen extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            const Text('  Email Adress:  ',style: TextStyle(color: Colors.grey),),
+                            Text(S.of(context).email,style: TextStyle(color: Colors.grey),),
                             TextComponent(text: memberData['email'] ),
                           ],
                         ),
@@ -107,9 +108,9 @@ class AdminUserDetailsScreen extends StatelessWidget {
                         color: Colors.grey.shade200,
                         width: double.infinity,
                         height: 50,
-                        child: const Row(
+                        child: Row(
                           children: [
-                            Text('  Member Numbers',style: TextStyle(color: Colors.grey )),
+                            Text(S.of(context).memberNumber,style: TextStyle(color: Colors.grey )),
                           ],
                         ),
                       ),

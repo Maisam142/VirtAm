@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:virtam/component/text_component.dart';
 
 import '../../../component/back_component.dart';
+import '../../../generated/l10n.dart';
 import 'admin_members_details_screen.dart';
 
 class AdminMembersScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class AdminMembersScreen extends StatelessWidget {
                   onPressed: () {
                     Beamer.of(context).beamToNamed('/homeAdminScreen');
                   },
-                  text: 'All Members',
+                  text: S.of(context).allMembers,
                 ),
                 SingleChildScrollView(
                   child: Column(
@@ -83,7 +84,7 @@ class AdminMembersScreen extends StatelessWidget {
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   TextComponent(text: memberData['name']),
-                                                  const TextComponent(text: 'Admin',textStyle: TextStyle(fontSize: 12,color: Colors.grey),),
+                                                  TextComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 12,color: Colors.grey),),
 
                                                 ],
                                               ),

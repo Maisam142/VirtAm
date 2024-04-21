@@ -3,6 +3,7 @@ import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/button_component.dart';
 
 import '../../../component/text_component.dart';
+import '../../../generated/l10n.dart';
 
 class AddAdminScreen extends StatelessWidget {
   const AddAdminScreen({super.key});
@@ -20,7 +21,7 @@ class AddAdminScreen extends StatelessWidget {
         body: SingleChildScrollView(
         child: Column(
         children: [
-          BackComponent(text: 'Add New Admin',),
+          BackComponent(text: S.of(context).addNewAdmin,),
 
           Padding(
             padding: const EdgeInsets.all(10.0),
@@ -29,7 +30,7 @@ class AddAdminScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text('  The center includes 3 admin to\n   supervise its members:'),
+                    Text(S.of(context).adminInclude),
                   ],
                 ),
                 SizedBox(height: 5,),
@@ -44,7 +45,7 @@ class AddAdminScreen extends StatelessWidget {
                         height: 50,
                         child: Row(
                           children: [
-                            const Text('  Admin Name: ',style: TextStyle(color: Colors.grey),),
+                            Text(S.of(context).adminName,style: TextStyle(color: Colors.grey),),
                           ],
                         ),
                       ),
@@ -55,7 +56,7 @@ class AddAdminScreen extends StatelessWidget {
                         width: double.infinity,
                       ),
                       SizedBox(height: 20,),
-                      ButtonComponentContinue(text: 'Add')
+                      ButtonComponentContinue(text: S.of(context).add)
                     ],
                   ),
                 ),
