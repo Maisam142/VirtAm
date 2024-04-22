@@ -26,7 +26,7 @@ class UserDataScreenStep5 extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Theme.of(context).focusColor,
+          //backgroundColor: Theme.of(context).focusColor,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -51,7 +51,7 @@ class UserDataScreenStep5 extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: TextComponent(
                                   text: S.of(context).vitaminDChecked,
-                                  textStyle: Theme.of(context).textTheme.labelMedium,
+                                  textStyle: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             ),
@@ -165,7 +165,7 @@ class UserDataScreenStep5 extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: TextComponent(
                                   text: S.of(context).vitaminDDeficiency,
-                                  textStyle: Theme.of(context).textTheme.labelMedium,
+                                  textStyle: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             ),

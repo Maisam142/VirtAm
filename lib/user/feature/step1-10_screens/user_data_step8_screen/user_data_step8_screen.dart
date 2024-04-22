@@ -27,7 +27,7 @@ class UserDataScreenStep8 extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Theme.of(context).focusColor,
+        //  backgroundColor: Theme.of(context).focusColor,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -52,7 +52,7 @@ class UserDataScreenStep8 extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: TextComponent(
                                   text: S.of(context).employeeWorker,
-                                  textStyle: Theme.of(context).textTheme.labelMedium,
+                                  textStyle: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             ),

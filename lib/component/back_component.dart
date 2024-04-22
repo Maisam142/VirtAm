@@ -24,9 +24,9 @@ class BackComponent extends StatelessWidget{
             child: Row(
               children: [
                 IconButton(onPressed: onPressed,
-                  icon: const Icon(Icons.arrow_back_ios_new),),
+                  icon: const Icon(Icons.arrow_back_ios_new,color: Colors.grey,),),
                 TextComponent(text: text,
-                  textStyle: Theme.of(context).textTheme.bodyMedium,),
+                  textStyle: Theme.of(context).textTheme.labelMedium,),
               ],
             ),
           ),

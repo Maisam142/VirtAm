@@ -111,7 +111,7 @@ class NutritionScreen extends StatelessWidget {
                                 alignment: Alignment.bottomLeft,
                                 child: Column(
                                   children: [
-                                    SizedBox(height: 50,),
+                                    SizedBox(height: 140,),
                                     Container(
                                       width: 90,
                                       color: Colors.white70.withOpacity(0.2),
@@ -143,8 +143,9 @@ class NutritionScreen extends StatelessWidget {
                         child: Row(
                           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextLabelComponent(text: S.of(context).popularCenter,),
-                            SizedBox(width: 80,),
+                            TextLabelComponent(text: S.of(context).popularCenter,
+                            textStyle: Theme.of(context).textTheme.bodyLarge),
+                            const SizedBox(width: 80,),
                             ViewAllComponent(
                               onPressed: () {},
                             ),
@@ -153,8 +154,8 @@ class NutritionScreen extends StatelessWidget {
                       ),
                       GridView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           mainAxisSpacing: 10.0,
                           crossAxisSpacing: 10.0,
@@ -189,12 +190,10 @@ class NutritionScreen extends StatelessWidget {
                                             fontSize: 14.0,
                                           ),
                                         ),
-                                        SizedBox(height: 4.0),
+                                        const SizedBox(height: 4.0),
                                         TextComponent(
                                           text: items[index]['subtitle'],
-                                          textStyle: TextStyle(
-                                            fontSize: 18.0,
-                                          ),
+                                            textStyle: Theme.of(context).textTheme.labelMedium
                                         ),
                                       ],
                                     ),
@@ -215,7 +214,8 @@ class NutritionScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TextLabelComponent(text: S.of(context).allCenter,),
+                          TextLabelComponent(text: S.of(context).allCenter,
+                    textStyle: Theme.of(context).textTheme.bodyLarge),
                           ViewAllComponent(
                             onPressed: () {},
                           ),
@@ -263,9 +263,7 @@ class NutritionScreen extends StatelessWidget {
                                         const SizedBox(height: 4.0),
                                         TextComponent(
                                           text: allItems[index]['subtitle'],
-                                          textStyle: TextStyle(
-                                            fontSize: 18.0,
-                                          ),
+                                          textStyle: Theme.of(context).textTheme.labelMedium
                                         ),
                                       ],
                                     ),

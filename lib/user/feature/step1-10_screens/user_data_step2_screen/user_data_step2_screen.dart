@@ -27,7 +27,7 @@ class UserDataScreenStep2 extends StatelessWidget {
         return false;
       },
       child: SafeArea(child: Scaffold(
-        backgroundColor: Theme.of(context).focusColor,
+        //backgroundColor: Theme.of(context).focusColor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -53,7 +53,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                               child: Align(
                                   alignment: Alignment.topLeft,
                                   child: TextComponent(text: S.of(context).hasAllergic,
-                                  textStyle: Theme.of(context).textTheme.labelMedium,),),
+                                  textStyle: Theme.of(context).textTheme.bodyMedium,),),
                             ),
                             RadioListTile(
                               title: Row(
@@ -63,7 +63,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                                     height: 40,
                                     child: Image(image: AssetImage('images/eggs.png'),),),
                                   SizedBox(width: screenSize.width * 0.02,),
-                                  Text(S.of(context).eggs),
+                                  TextComponent(text:S.of(context).eggs),
                                 ],
                               ),
                               value: 1,
@@ -93,7 +93,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                                 height: 40,
                                 child: Image(image: AssetImage('images/milk.png'),),),
                               SizedBox(width: screenSize.width * 0.02,),
-                              Text(S.of(context).milk),
+                              TextComponent(text:S.of(context).milk),
                             ],
                           ),
                           value: 2,
@@ -120,7 +120,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                                 height: 40,
                                 child: Image(image: AssetImage('images/fish.png'),),),
                               SizedBox(width: screenSize.width * 0.02,),
-                              Text(S.of(context).fish),
+                              TextComponent(text:S.of(context).fish),
                             ],
                           ),
                           value: 3,

@@ -26,7 +26,7 @@ class Option2Screen extends StatelessWidget {
     Provider.of<RegisterViewModel>(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).focusColor,
+        //backgroundColor: Theme.of(context).focusColor,
         body: SingleChildScrollView(
           child: Column(
             children: [

@@ -27,7 +27,7 @@ class UserDataScreenStep3 extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Theme.of(context).focusColor,
+          //backgroundColor: Theme.of(context).focusColor,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -54,7 +54,7 @@ class UserDataScreenStep3 extends StatelessWidget {
                                 child: TextComponent(
                                   text: S.of(context).thyroidCheckedTime,
                                   textStyle:
-                                  Theme.of(context).textTheme.labelMedium,
+                                  Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             ),
@@ -169,7 +169,7 @@ class UserDataScreenStep3 extends StatelessWidget {
                                 child: TextComponent(
                                   text: S.of(context).thyroidProblems,
                                   textStyle:
-                                  Theme.of(context).textTheme.labelMedium,
+                                  Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             ),

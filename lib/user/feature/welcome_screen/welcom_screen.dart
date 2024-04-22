@@ -52,24 +52,29 @@ class WelcomeScreen extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.bottomLeft,
                                   child: TextLabelComponent(text: 'Lorem ipsum dolor sit',
+                                    textStyle: Theme.of(context).textTheme.bodyLarge,
                                   ),),
                                 Align(
                                   alignment: Alignment.bottomLeft,
-                                  child: TextLabelComponent(text: 'amet consectetur.',),
+                                  child:
+
+                                  TextLabelComponent(text: 'amet consectetur.',
+                                    textStyle: Theme.of(context).textTheme.bodyLarge,
+                                  ),
                                 ),
                               ]),
-                          const Column(
+                          Column(
                               children: [
                                 Align(
                                     alignment: Alignment.centerLeft,
                                     child: TextComponent(text: 'Lorem ipsum dolor sit  amet consectetur',
-                                      textStyle: TextStyle(fontSize: 12),),
+                                      textStyle: Theme.of(context).textTheme.bodySmall,),
                                 ),
-                                Padding(padding: EdgeInsets.only(top: 0.1)),
+                                const Padding(padding: EdgeInsets.only(top: 0.1)),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: TextComponent(text: 'Lorem ipsumconsectetur.',
-                                  textStyle: TextStyle(fontSize: 12),),
+                                    textStyle: Theme.of(context).textTheme.bodySmall,),
                                 ),
                               ]),
                         ],
@@ -90,6 +95,7 @@ class WelcomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 25.0,left: 25.0),
                         child: ButtonComponent(
                           text: S.of(context).createAccount,
+                          textStyle: TextStyle(color: Colors.white , fontSize: 15,),
                           customColor: Colors.white60,
                           onPress: (){
                             Beamer.of(context).beamToNamed('/registerScreen');

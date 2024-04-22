@@ -29,7 +29,7 @@ class UserDataScreenStep9 extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Theme.of(context).focusColor,
+         // backgroundColor: Theme.of(context).focusColor,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -59,7 +59,7 @@ class UserDataScreenStep9 extends StatelessWidget {
                                   child: TextComponent(
                                     text: S.of(context).wakeUp,
                                     textStyle:
-                                    Theme.of(context).textTheme.labelMedium,
+                                    Theme.of(context).textTheme.bodyMedium,
                                   ),
                                 ),
                               ),

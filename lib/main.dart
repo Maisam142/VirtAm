@@ -210,7 +210,6 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/homeScreen': (context, state, data) =>  const HomeScreen(),
         '/fastTimeEditScreen': (context, state, data) =>  const FastTimeEditScreen(),
         '/fastTimeScreen': (context, state, data) =>  const FastTimeScreen(),
-        '/nutritionScreen': (context, state, data) =>  const NutritionScreen(),
         //--------------------------------------------------------------------------------------------------------
         '/homeAdminScreen': (context, state, data) =>  const HomeAdminScreen(),
         '/addDailyMealsScreen': (context, state, data) =>  const AddDailyMealsScreen(),

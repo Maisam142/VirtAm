@@ -28,7 +28,7 @@ class UserDataScreenStep4 extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Theme.of(context).focusColor,
+          //backgroundColor: Theme.of(context).focusColor,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -54,7 +54,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: TextComponent(
                                   text: S.of(context).ironCheck,
-                                  textStyle: Theme.of(context).textTheme.labelMedium,
+                                  textStyle: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             ),
@@ -169,7 +169,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: TextComponent(
                                   text: S.of(context).ironDeficiency,
-                                  textStyle: Theme.of(context).textTheme.labelMedium,
+                                  textStyle: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             ),

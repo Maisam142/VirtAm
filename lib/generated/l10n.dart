@@ -247,10 +247,10 @@ class S {
     );
   }
 
-  /// `The purpose of creating the account?`
+  /// `  The purpose of creating the account?`
   String get purpose {
     return Intl.message(
-      'The purpose of creating the account?',
+      '  The purpose of creating the account?',
       name: 'purpose',
       desc: '',
       args: [],
@@ -417,50 +417,50 @@ class S {
     );
   }
 
-  /// `age ?`
+  /// ` age ?`
   String get age {
     return Intl.message(
-      'age ?',
+      ' age ?',
       name: 'age',
       desc: '',
       args: [],
     );
   }
 
-  /// `Years`
+  /// ` Years`
   String get years {
     return Intl.message(
-      'Years',
+      ' Years',
       name: 'years',
       desc: '',
       args: [],
     );
   }
 
-  /// `Weight ?`
+  /// ` Weight ?`
   String get weight {
     return Intl.message(
-      'Weight ?',
+      ' Weight ?',
       name: 'weight',
       desc: '',
       args: [],
     );
   }
 
-  /// `Kg`
+  /// ` Kg`
   String get kg {
     return Intl.message(
-      'Kg',
+      ' Kg',
       name: 'kg',
       desc: '',
       args: [],
     );
   }
 
-  /// `Height ?`
+  /// ` Height ?`
   String get height {
     return Intl.message(
-      'Height ?',
+      ' Height ?',
       name: 'height',
       desc: '',
       args: [],

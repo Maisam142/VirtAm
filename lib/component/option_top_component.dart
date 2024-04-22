@@ -29,7 +29,7 @@ class OptionTopComponent extends StatelessWidget{
                   IconButton(onPressed: onPressed,
                     icon: Icon(Icons.arrow_back_ios_new),),
                   TextComponent(text: text,
-                    textStyle: Theme.of(context).textTheme.bodyMedium,),
+                    textStyle: Theme.of(context).textTheme.titleSmall,),
                 ],
               ),
             ),

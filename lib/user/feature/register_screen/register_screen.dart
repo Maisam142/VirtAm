@@ -324,9 +324,11 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       CheckBoxComponent(
                         text: S.of(context).agree,
+
                         value: registerViewModel.isTermsChecked,
                         onChanged: (value) {
                           registerViewModel.updateTermsChecked(value!);
+
                         },
                       ),
                       SizedBox(height: screenSize.height * 0.01),

@@ -43,19 +43,19 @@ class SubscriptionScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
                     children: [
-                      const Align(
+                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('  Lorem ipsum dolor sit amet consectetur. ',style: TextStyle(fontSize: 15),),),
+                        child: Text('  Lorem ipsum dolor sit amet consectetur. ',style:Theme.of(context).textTheme.labelMedium),),
                       SizedBox(height: screenSize.height * 0.02,),
-                      const Align(
+                      Align(
                         alignment: Alignment.centerLeft,
                         child: Text('  Lorem ipsum dolor sit amet consectetur.\n   Gravida purus pellentesque . ',
-                          style: TextStyle(fontSize: 15),),),
+                          style: Theme.of(context).textTheme.labelMedium),),
                       SizedBox(height: screenSize.height * 0.02,),
-                      const Align(
+                      Align(
                         alignment: Alignment.centerLeft,
                         child: Text('  Gravida purus pellentesque egestas auctor urna\n   vel sit. ',
-                          style: TextStyle(fontSize: 15),),),
+                            style:Theme.of(context).textTheme.labelMedium),),
 
                     ],
                   ),

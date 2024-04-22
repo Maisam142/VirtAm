@@ -93,15 +93,15 @@ class DesignComponent2 extends StatelessWidget{
           ),
 
           Align(
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.center,
               child: Padding(
                 padding:  const EdgeInsets.all(15.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextComponent(text: text,
-                      textStyle: Theme.of(context).textTheme.labelLarge,),
-                    TextComponent(text: smallText, textStyle: Theme.of(context).textTheme.titleSmall,),
+                      textStyle: Theme.of(context).textTheme.labelMedium,),
+                    TextComponent(text: smallText, textStyle: Theme.of(context).textTheme.labelMedium,),
                   ],
                 ),
               )),

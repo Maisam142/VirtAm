@@ -63,7 +63,7 @@ class ExercisesScreen extends StatelessWidget {
                       alignment: Alignment.bottomLeft,
                       child: Column(
                         children: [
-                          SizedBox(height: 80,),
+                          SizedBox(height: 120,),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Container(
@@ -109,7 +109,7 @@ class ExercisesScreen extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 10.0,
@@ -132,12 +132,9 @@ class ExercisesScreen extends StatelessWidget {
                           child: Center(
                             child: Column(
                               children: [
-                                Text(
-                                  items[index]['title'],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16.0,
-                                  ),
+                                TextComponent(
+                                  text: items[index]['title'],
+
                                 ),
                                 SizedBox(height: 4.0),
                                 Text(

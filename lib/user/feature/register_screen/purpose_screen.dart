@@ -41,7 +41,7 @@ class PurposeScreen extends StatelessWidget {
                       title: Align(
                           alignment: Alignment.centerLeft,
 
-                          child: TextComponent(text:S.of(context).purpose1,)),
+                          child: TextComponent(text:S.of(context).purpose1,textStyle: Theme.of(context).textTheme.titleMedium,),),
                       value: 1,
                       onChanged: (int? value) {
                         if (value != null) {
@@ -58,7 +58,7 @@ class PurposeScreen extends StatelessWidget {
                       title: Align(
                         alignment: Alignment.centerLeft,
 
-                        child: TextComponent(text:S.of(context).purpose2,),),
+                        child: TextComponent(text:S.of(context).purpose2,textStyle: Theme.of(context).textTheme.titleMedium,),),
                       value: 2,
                       onChanged: (int? value) {
                         if (value != null) {
@@ -76,7 +76,7 @@ class PurposeScreen extends StatelessWidget {
                       title: Align(
                         alignment: Alignment.centerLeft,
 
-                        child: TextComponent(text:S.of(context).purpose3,),),
+                        child: TextComponent(text:S.of(context).purpose3,textStyle: Theme.of(context).textTheme.titleMedium,),),
                       value: 3,
                       onChanged: (int? value) {
                         if (value != null) {

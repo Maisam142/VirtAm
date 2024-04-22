@@ -18,51 +18,140 @@ class ThemeApp {
     fontWeight: FontWeight.normal,
     fontSize: 14.0,
   );
+  ///-------------------------------------------------
+  static const TextStyle darkThemeTitleMedium = TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.normal,
+    fontSize: 14.0,
+  );
+  //-----------------------------------------------------------------------------------------------
   static const TextStyle headlineSmall = TextStyle(
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.normal,
     fontSize: 8.0,
   );
+  ///-------------------------------------------------
+  static const TextStyle darkHeadlineSmall = TextStyle(
+    color: black,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.normal,
+    fontSize: 8.0,
+  );
+
+  //-----------------------------------------------------------------------------------------------
   static const TextStyle labelMedium =  TextStyle(
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
     fontSize: 14.0,
   );
-
+  ///-------------------------------------------------
+  static const TextStyle darkThemLabelMedium =  TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 14.0,
+  );
+  //-----------------------------------------------------------------------------------------------
   static const TextStyle displayLarge =  TextStyle(
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
     fontSize: 44.0,
   );
+  ///-------------------------------------------------
+  static const TextStyle darkDisplayLarge =  TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 44.0,
+  );
+
+  //-----------------------------------------------------------------------------------------------
   static const TextStyle titleSmall = TextStyle(
     color: white,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
     fontSize: 14.0,
   );
+  ///-------------------------------------------------
+  static const TextStyle darkThemeTitleSmall = TextStyle(
+    color: black,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 14.0,
+  );
+
+  //-----------------------------------------------------------------------------------------------
   static const TextStyle labelLarge= TextStyle(
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 25.0,
+    fontSize: 27.0,
 
   );
+  ///-------------------------------------------------
+  static const TextStyle darkThemeLabelLarge= TextStyle(
+    color: black,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 27.0,
+
+  );
+
+  //-----------------------------------------------------------------------------------------------
+  static const TextStyle bodyLarge= TextStyle(
+    color: black,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 27.0,
+
+  );
+  ///-------------------------------------------------
+  static const TextStyle darkThemeBodyLarge= TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 27.0,
+
+  );
+
+  //-----------------------------------------------------------------------------------------------
   static const TextStyle  bodyMedium = TextStyle(
     color: black,
     fontFamily: 'Almarai',
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.bold,
     fontSize: 16.0,
 
   );
+  ///-------------------------------------------------
+
+  static const TextStyle darkThemeBodyMedium = TextStyle(
+    color: black,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 16.0,
+
+  );
+
+  //-----------------------------------------------------------------------------------------------
   static const TextStyle  bodySmall = TextStyle(
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.normal,
     fontSize: 12.0,
   );
+  ///-------------------------------------------------
+
+  static const TextStyle darkThemeBodySmall = TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.normal,
+    fontSize: 12.0,
+  );
+  //-----------------------------------------------------------------------------------------------
 
   static const TextStyle  displaySmall = TextStyle(
     color: white,
@@ -70,6 +159,15 @@ class ThemeApp {
     fontWeight: FontWeight.normal,
     fontSize: 12.0,
   );
+  ///-------------------------------------------------
+  static const TextStyle  darkThemeDisplaySmall = TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.normal,
+    fontSize: 12.0,
+  );
+
+  //-----------------------------------------------------------------------------------------------
   static const TextStyle labelSmall = TextStyle(
     fontFamily: 'Almarai',
     fontWeight: FontWeight.normal,
@@ -78,77 +176,7 @@ class ThemeApp {
     color: black,
 
   );
-  static const TextStyle displayMedium = TextStyle(
-    color: white,
-    fontFamily: 'Almarai',
-    fontWeight: FontWeight.bold,
-    fontSize: 22.0,
-  );
-
-
-//--------------------------------------------------------------------------------
-
-  static const TextStyle darkThemeTitleMedium = TextStyle(
-    color: white,
-    fontFamily: 'Almarai',
-    fontWeight: FontWeight.normal,
-    fontSize: 14.0,
-  );
-  static const TextStyle darkHeadlineSmall = TextStyle(
-    color: white,
-    fontFamily: 'Almarai',
-    fontWeight: FontWeight.normal,
-    fontSize: 8.0,
-  );
-
-  static const TextStyle darkThemLabelMedium =  TextStyle(
-  color: white,
-  fontFamily: 'Almarai',
-  fontWeight: FontWeight.bold,
-  fontSize: 14.0,
-  );
-  static const TextStyle darkDisplayLarge =  TextStyle(
-    color: white,
-    fontFamily: 'Almarai',
-    fontWeight: FontWeight.bold,
-    fontSize: 18.0,
-  );
-
-  static const TextStyle darkThemeTitleSmall = TextStyle(
-    color: black,
-    fontFamily: 'Almarai',
-    fontWeight: FontWeight.bold,
-    fontSize: 14.0,
-  );
-
-  static const TextStyle darkThemeLabelLarge= TextStyle(
-  color: white,
-  fontFamily: 'Almarai',
-  fontWeight: FontWeight.bold,
-  fontSize: 27.0,
-
-  );
-  static const TextStyle darkThemeBodyMedium = TextStyle(
-  color: black,
-  fontFamily: 'Almarai',
-  fontWeight: FontWeight.normal,
-  fontSize: 16.0,
-
-  );
-  static const TextStyle darkThemeBodySmall = TextStyle(
-  color: white,
-  fontFamily: 'Almarai',
-  fontWeight: FontWeight.normal,
-  fontSize: 12.0,
-  );
-
-  static const TextStyle  darkThemeDisplaySmall = TextStyle(
-    color: white,
-    fontFamily: 'Almarai',
-    fontWeight: FontWeight.normal,
-    fontSize: 12.0,
-  );
-
+  ///-------------------------------------------------
   static const TextStyle darkThemeLabelSmall = TextStyle(
     color: white,
     fontFamily: 'Almarai',
@@ -158,12 +186,38 @@ class ThemeApp {
 
   );
 
-  static const TextStyle darkThemeDisplayMedium = TextStyle(
-  color: black,
-  fontFamily: 'Almarai',
-  fontWeight: FontWeight.bold,
-  fontSize: 17.0,
+  //-----------------------------------------------------------------------------------------------
+  static const TextStyle displayMedium = TextStyle(
+    color: white,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 22.0,
   );
+  ///-------------------------------------------------
+
+  static const TextStyle darkThemeDisplayMedium = TextStyle(
+    color: black,
+    fontFamily: 'Almarai',
+    fontWeight: FontWeight.bold,
+    fontSize: 17.0,
+  );
+
+  //-----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -212,6 +266,7 @@ class ThemeApp {
       displayMedium: displayMedium,
       displayLarge: displayLarge,
       headlineSmall: headlineSmall,
+      bodyLarge: bodyLarge,
     ),
     appBarTheme: AppBarTheme(
       elevation: 0,
@@ -239,6 +294,7 @@ class ThemeApp {
       displayMedium: darkThemeDisplayMedium,
       displayLarge: darkDisplayLarge,
       headlineSmall: darkHeadlineSmall,
+      bodyLarge: darkThemeBodyLarge
     ),
     elevatedButtonTheme: elevatedButtonTheme,
     scaffoldBackgroundColor: backGroundColor,

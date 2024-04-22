@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/text_component.dart';
 import '../../../generated/l10n.dart';
 
@@ -33,12 +34,10 @@ class WeightHistoryScreen extends StatelessWidget {
               padding: const EdgeInsets.all(5.0),
               child: Row(
                 children: [
-                  IconButton(
-                      onPressed: (){
-                        Beamer.of(context).beamBack();
-                      },
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded),),
-                  TextComponent(text: S.of(context).wightHistory),
+                  BackComponent(text: 'Name-Weight History',
+                  onPressed: (){
+                    Beamer.of(context).beamBack();
+                  },)
                 ],
               ),
             ),
