@@ -364,6 +364,8 @@ class RegisterScreen extends StatelessWidget {
                                     'selectedPurpose': registerViewModel.selectedPurpose,
                                     'startFastTime': '00:00 AM',
                                     'endFastTime': '00:00 PM',
+                                    'weight' : '50',
+                                    'waterTarget': '150'
                                   });
                                   Beamer.of(context).beamToNamed(
                                       '/userDataStep1');
@@ -386,6 +388,9 @@ class RegisterScreen extends StatelessWidget {
                                     'password' : registerViewModel.passwordController.text,
                                     'number': registerViewModel.phoneNumber,
                                     'selectedPurpose': registerViewModel.selectedPurpose,
+                                    'startFastTime': '00:00 AM',
+                                    'endFastTime': '00:00 PM',
+                                    'weight' : '00'
                                   });
                                   Beamer.of(context).beamToNamed('/option2Screen');
                                 } else {

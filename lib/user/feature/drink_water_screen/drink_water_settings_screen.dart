@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/text_component.dart';
+import 'package:virtam/user/feature/drink_water_screen/add_target_screen.dart';
 
 import '../../../component/feild_component.dart';
 import '../../../generated/l10n.dart';
@@ -27,19 +28,39 @@ class DrinkSettingScreen extends StatelessWidget {
               },
             ),
             const SizedBox(height: 40,),
-            FieldComponent(
-              onPressed: (){
-
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddTargetScreen(),
+                  ),
+                );
               },
-              text: S.of(context).waterGoal,
+              child: FieldComponent(
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddTargetScreen(),
+                    ),
+                  );
+                },
+                text: S.of(context).waterGoal,
+              ),
             ),
 
             SizedBox(height: 10,),
-            FieldComponent(
-              onPressed: (){
+            GestureDetector(
+              onTap: () {
 
               },
-              text: S.of(context).habitSetting,
+              child: FieldComponent(
+                onPressed: (){
+
+                },
+                text: S.of(context).habitSetting,
+              ),
             ),
 
           ],

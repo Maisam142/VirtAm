@@ -111,7 +111,7 @@ class NutritionScreen extends StatelessWidget {
                                 alignment: Alignment.bottomLeft,
                                 child: Column(
                                   children: [
-                                    SizedBox(height: 140,),
+                                    SizedBox(height: 120,),
                                     Container(
                                       width: 90,
                                       color: Colors.white70.withOpacity(0.2),

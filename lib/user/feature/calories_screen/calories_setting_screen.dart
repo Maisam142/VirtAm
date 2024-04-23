@@ -29,16 +29,24 @@ class CaloriesSettingScreen extends StatelessWidget {
               },
             ),
             const SizedBox(height: 40,),
-            FieldComponent(
-              onPressed: (){
-
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => UserDetailsScreen(memberData: memberData),
+                //   ),
+                // );
               },
-              text: S.of(context).caloriesGoal,
+              child: FieldComponent(
+                onPressed: (){
+                },
+                text: S.of(context).caloriesGoal,
+              ),
             ),
             SizedBox(height: 10,),
             FieldComponent(
               onPressed: (){
-
               },
               text: S.of(context).mealNum,
             ),

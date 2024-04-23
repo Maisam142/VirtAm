@@ -71,7 +71,7 @@ class ThemeApp {
 
   //-----------------------------------------------------------------------------------------------
   static const TextStyle titleSmall = TextStyle(
-    color: white,
+    color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
     fontSize: 14.0,
@@ -199,7 +199,7 @@ class ThemeApp {
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 17.0,
+    fontSize: 22.0,
   );
 
   //-----------------------------------------------------------------------------------------------

@@ -1007,11 +1007,21 @@ class S {
     );
   }
 
-  /// `Remaining: 2000`
-  String get remaining200 {
+  /// `Remaining: `
+  String get remainingml {
     return Intl.message(
-      'Remaining: 2000',
-      name: 'remaining200',
+      'Remaining: ',
+      name: 'remainingml',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ml`
+  String get ml {
+    return Intl.message(
+      'ml',
+      name: 'ml',
       desc: '',
       args: [],
     );

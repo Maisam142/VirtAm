@@ -66,11 +66,12 @@ class DesignComponent2 extends StatelessWidget{
   final String? text;
   final String? smallText;
   final Function()? onPressed;
-
+  final TextStyle? textStyle;
+  final TextStyle? smalltextStyle;
   const DesignComponent2({super.key,
     this.text,
     this.smallText,
-    this.onPressed
+    this.onPressed, this.textStyle, this.smalltextStyle
   });
 
   @override
@@ -100,8 +101,8 @@ class DesignComponent2 extends StatelessWidget{
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextComponent(text: text,
-                      textStyle: Theme.of(context).textTheme.labelMedium,),
-                    TextComponent(text: smallText, textStyle: Theme.of(context).textTheme.labelMedium,),
+                      textStyle: textStyle ?? Theme.of(context).textTheme.labelMedium,),
+                    TextComponent(text: smallText, textStyle: smalltextStyle ?? Theme.of(context).textTheme.labelMedium,),
                   ],
                 ),
               )),

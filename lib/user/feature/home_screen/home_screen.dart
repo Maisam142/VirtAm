@@ -44,6 +44,8 @@ class HomeScreen extends StatelessWidget {
         final data = snapshot.data?.data();
         final startFastTimeShow = data!['startFastTime'];
         final endFastTimeShow = data['endFastTime'];
+        final weightData = data['weight'];
+        final waterTarget = data['waterTarget'];
 
         //--------------------------------------------------------------------
         final startFastTime = parseTimeString(data['startFastTime']);
@@ -59,7 +61,7 @@ class HomeScreen extends StatelessWidget {
         print('Start fasting time: $startHour:$startMinute');
         print('End fasting time: $endHour:$endMinute');
         print('Total fasting time: $hourDifference');
-        return HomeScreenContent(startHour:startHour,endHour:endHour,hourDifference:hourDifference);
+        return HomeScreenContent(startHour:startHour,endHour:endHour,hourDifference:hourDifference, weight: weightData,waterTarget:waterTarget);
       }
       return Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,));
     },
@@ -73,8 +75,10 @@ class HomeScreenContent extends StatefulWidget {
   final int startHour;
   final int endHour;
   final int hourDifference;
+  final String waterTarget;
+  final double weight;
   const HomeScreenContent({
-    super.key, required this.startHour, required this.endHour, required this.hourDifference,
+    super.key, required this.startHour, required this.endHour, required this.hourDifference, required this.weight, required this.waterTarget,
   });
 
   @override
@@ -240,16 +244,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
       print("$currentDay -------------=================================------");
     });
   }
-  // Future<void> getLastSavedDayAndStepCount() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     savedDay = prefs.getInt('savedDay');
-  //     lastSavedStepCount = prefs.getInt('lastSavedStepCount') ?? 0;
-  //     print('$savedDay --------------------');
-  //     print('$currentDay ------------------------------------------------------------------');
-  //   });
-  //
-  // }
+
 
   Future<void> saveDailyStepCount(int stepCount) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -293,11 +288,9 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   @override
   Widget build(BuildContext context) {
     String strDigits(int n) => n.toString().padLeft(2, '0');
-    // final UserDataStep9ViewModel userDataModel =
-    // Provider.of<UserDataStep9ViewModel>(context);
-    //
-    // final RegisterViewModel registerViewModel =
-    // Provider.of<RegisterViewModel>(context);
+    final water = int.parse(widget.waterTarget);
+
+    final int waterRemaining = water - 0 ;
     final HomeViewModel homeViewModel =
     Provider.of<HomeViewModel>(context);
     final Size screenSize = MediaQuery.of(context).size;
@@ -309,10 +302,11 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     double calories = calculator.calculateCalories(
       isMetric: true,
       isRunning: false,
-      bodyWeight: 100.0,
+      bodyWeight: widget.weight,
       stepLength: 170.0,
-      stepCount: getSteps,
+      stepCount: dailyStepCount,
     );
+    var cal = calories.toString();
     return WillPopScope(
         onWillPop: () async {
           Beamer.of(context).beamToNamed('/homeNavigationBar');
@@ -380,7 +374,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                   children: [
                     Expanded(
                       child: HomeComponent(
-                        valueText: '$calories',
+                        valueText: cal.substring(0,6),
                         text: S.of(context).calories,
                         icon: Icons.local_fire_department_outlined,
                       ),
@@ -451,7 +445,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                                 ),
                                 Text(
                                   notFinished? '$hour:$minutes:$seconds':
-                                  '12:00:00',
+                                  '--:--:--',
                                   style:  TextStyle(
                                       color: notFinished ? Colors.white:
                                       Colors.green,
@@ -511,7 +505,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                             height: 20,
                           ),
                           const TextLabelBigComponent(text: '1,290 ml'),
-                          TextComponent(text: S.of(context).remainingMl),
+                          TextComponent(text: '${S.of(context).remainingml} $water ${S.of(context).ml} '),
                           SizedBox(
                             height: screenSize.height * 0.04,
                           ),

@@ -114,7 +114,8 @@
 
   "CalorieCalc": "Calorie calculator",
   "remaining": "Remaining",
-  "remaining200": "Remaining: 2000",
+  "remainingml": "Remaining: ",
+  "ml": "ml",
   "proteina": "Proteina",
   "carbohydrates": "Carbohydrates",
   "fast": "Fats",

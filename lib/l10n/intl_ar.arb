@@ -101,7 +101,8 @@
 
   "CalorieCalc": "حاسب السعرات الحرارية",
   "remaining": "المتبقي",
-  "remaining200": "المتبقي: 2000",
+  "ml": "مل",
+  "remainingml": "المتبقي: ",
   "proteina": "بروتين",
   "carbohydrates": "الكربوهيدرات",
   "fast": "دهون",
