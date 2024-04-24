@@ -9,31 +9,35 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../component/back_component.dart';
 import '../../../generated/l10n.dart';
 
+class NotificationScreen extends StatelessWidget {
+  List<Map<String, String>> notifications = [];
 
-class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({super.key});
+   NotificationScreen({super.key,required this.notifications});
 
   @override
-  _NotificationScreenState createState() => _NotificationScreenState();
+  Widget build(BuildContext context) {
+    return NotificationScreenContent(notifications: notifications,);
+  }
 }
 
-class _NotificationScreenState extends State<NotificationScreen> {
-  late Timer waterTimer;
-  late Timer fastTimer;
-
+class NotificationScreenContent extends StatefulWidget {
   List<Map<String, String>> notifications = [];
+
+   NotificationScreenContent({super.key,required this.notifications});
+
+  @override
+  _NotificationScreenContentState createState() => _NotificationScreenContentState();
+}
+
+class _NotificationScreenContentState extends State<NotificationScreenContent> {
 
   @override
   void initState() {
     super.initState();
     _loadNotifications();
-    waterTimer = Timer.periodic(const Duration(hours: 1), (timer) {
-      addWaterNotification();
-    });
-    fastTimer = Timer.periodic(const Duration(minutes: 3), (timer) {
-      addFastNotification();
-    });
+
   }
+  List<Map<String, String>> notifications = [];
 
   Future<void> _loadNotifications() async {
     final prefs = await SharedPreferences.getInstance();
@@ -42,50 +46,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
       setState(() {
         notifications = savedNotifications
             .map((jsonString) =>
-                Map<String, String>.from(jsonDecode(jsonString)))
+        Map<String, String>.from(jsonDecode(jsonString)))
             .toList();
       });
     }
   }
 
-  Future<void> _saveNotifications() async {
-    final prefs = await SharedPreferences.getInstance();
-    final List<String> jsonNotifications = notifications.map((notification) {
-      return jsonEncode(notification);
-    }).toList();
-    await prefs.setStringList('notifications', jsonNotifications);
-  }
-
-  void addWaterNotification() {
-    setState(() {
-      final waterNotification = {
-        'title': 'Drink Water',
-        'body': 'Reminder to drink water',
-        'time': DateTime.now().toString().substring(11, 16),
-      };
-      notifications.add(waterNotification);
-      _saveNotifications();
-    });
-  }
-
-  void addFastNotification() {
-    setState(() {
-      final fastNotification = {
-        'title': 'Start Fasting',
-        'body': 'Reminder to start Fasting',
-        'time': DateTime.now().toString().substring(11, 16),
-      };
-      notifications.add(fastNotification);
-      _saveNotifications();
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    waterTimer.cancel();
-    fastTimer.cancel();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +63,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
             BackComponent(
               text: 'Notifications',
               onPressed: (){
-                Beamer.of(context).beamBack();
+                Navigator.pop(context);
+                //Beamer.of(context).beamToNamed('/homeNavigationBar');
               },
             ),
 
@@ -159,11 +126,31 @@ class NotificationHelper {
           channelKey: 'basic_channel',
           channelName: 'Basic notifications',
           channelDescription: 'Notification channel for basic tests',
-          defaultColor: Color(0xFF9D50DD),
+          defaultColor: const Color(0xFF9D50DD),
           ledColor: Colors.white,
         ),
       ],
     );
+  }
+  static List<Map<String, String>> notifications = [];
+
+
+  static Future<void>  _saveNotifications() async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> jsonNotifications = notifications.map((notification) {
+      return jsonEncode(notification);
+    }).toList();
+    await prefs.setStringList('notifications', jsonNotifications);
+  }
+
+  static Future<void>  addWaterNotification() async {
+      final waterNotification = {
+        'title': 'Drink Water',
+        'body': 'Reminder to drink water',
+        'time': DateTime.now().toString().substring(11, 16),
+      };
+      notifications.add(waterNotification);
+      _saveNotifications();
   }
 
   static Future<void> showNotification() async {
@@ -176,7 +163,7 @@ class NotificationHelper {
         displayOnBackground: true,
       ),
       schedule: NotificationInterval(
-        interval: 10 * 60,
+        interval: 2 * 60,
         timeZone: 'UTC',
         preciseAlarm: true,
         repeats: true,
@@ -192,6 +179,15 @@ class NotificationHelper {
         ),
       ],
     );
+  }
+
+  static Future<void> addFastNotification() async {
+      final fastNotification = {
+        'title': 'Start Fasting',
+        'body': 'Reminder to start Fasting',
+        'time': DateTime.now().toString().substring(11, 16),
+      };
+      notifications.add(fastNotification);
   }
 
 }

@@ -53,7 +53,17 @@ class FastScreen extends StatelessWidget {
 
                 final endHour = endFastTime.hour;
                 final endMinute = endFastTime.minute;
-                final hourDifference = endFastTime.hour > startFastTime.hour ? endFastTime.difference(startFastTime).inHours : startFastTime.difference(endFastTime).inHours;
+
+                int hourDifference;
+                if (endHour > startHour) {
+                  hourDifference = endHour - startHour;
+                } else if (endHour < startHour) {
+                  hourDifference = 24 - startHour + endHour;
+                } else {
+                  hourDifference = 0;
+                }
+
+                print('Hour Difference: $hourDifference');
 
                 print('Start fasting time: $startHour:$startMinute');
                 print('End fasting time: $endHour:$endMinute');

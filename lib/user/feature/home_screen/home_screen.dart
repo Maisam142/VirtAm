@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:beamer/beamer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -52,15 +53,29 @@ class HomeScreen extends StatelessWidget {
         final endFastTime = parseTimeString(data['endFastTime']);
 
         final startHour = startFastTime.hour;
-        final startMinute = startFastTime.minute;
-
         final endHour = endFastTime.hour;
-        final endMinute = endFastTime.minute;
-        final hourDifference = endFastTime.hour > startFastTime.hour ? endFastTime.difference(startFastTime).inHours : startFastTime.difference(endFastTime).inHours;
 
-        print('Start fasting time: $startHour:$startMinute');
-        print('End fasting time: $endHour:$endMinute');
-        print('Total fasting time: $hourDifference');
+        print(startHour);
+        print(startFastTime);
+        print(startFastTimeShow);
+        print(endHour);
+        print(endFastTime);
+        print(endFastTimeShow);
+
+        int hourDifference;
+        if (endHour > startHour) {
+          hourDifference = endHour - startHour;
+        } else if (endHour < startHour) {
+          // If end hour is less than start hour, consider it as a difference spanning midnight
+          hourDifference = 24 - startHour + endHour;
+        } else {
+          // If start hour and end hour are equal, the difference is 0
+          hourDifference = 0;
+        }
+
+        print('Hour Difference: $hourDifference');
+
+
         return HomeScreenContent(startHour:startHour,endHour:endHour,hourDifference:hourDifference, weight: weightData,waterTarget:waterTarget);
       }
       return Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,));
@@ -91,8 +106,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   late Duration myDuration;
   late Timer? countdownTimer;
   bool notFinished = true;
-  int? startTimeHour;
-  int? startTimeMinute;
+  int? endTimeHour;
   int getSteps = 0;
   int distance =0;
   int dailyStepCount = 0;
@@ -111,13 +125,47 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     ChartData(55, 5)
   ];
   HomeViewModel?vm;
+  late Timer waterTimer;
+  late Timer fastTimer;
 
+  List<Map<String, String>> notifications = NotificationHelper.notifications;
+
+
+  // Future<void> _saveNotifications() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final List<String> jsonNotifications = notifications.map((notification) {
+  //     return jsonEncode(notification);
+  //   }).toList();
+  //   await prefs.setStringList('notifications', jsonNotifications);
+  // }
+  //
+  // void addWaterNotification() {
+  //   setState(() {
+  //     final waterNotification = {
+  //       'title': 'Drink Water',
+  //       'body': 'Reminder to drink water',
+  //       'time': DateTime.now().toString().substring(11, 16),
+  //     };
+  //     notifications.add(waterNotification);
+  //     _saveNotifications();
+  //   });
+  // }
+  //
+  // void addFastNotification() {
+  //   setState(() {
+  //     final fastNotification = {
+  //       'title': 'Start Fasting',
+  //       'body': 'Reminder to start Fasting',
+  //       'time': DateTime.now().toString().substring(11, 16),
+  //     };
+  //     notifications.add(fastNotification);
+  //     _saveNotifications();
+  //   });
+  // }
   @override
   void initState() {
     super.initState();
-    print(widget.startHour);
-    print(widget.endHour);
-    print(widget.hourDifference);
+    print(notFinished);
     calculateTimer();
     startListeningToSteps();
     getLastSavedStepCount();
@@ -125,6 +173,14 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     requestPermission();
     startTimer();
     NotificationHelper.showNotification();
+    NotificationHelper.addWaterNotification();
+    NotificationHelper.addFastNotification();
+    // waterTimer = Timer.periodic(const Duration(hours: 1), (timer) {
+    //   addWaterNotification();
+    // });
+    // fastTimer = Timer.periodic(const Duration(minutes: 2), (timer) {
+    //   addFastNotification();
+    // });
   }
 
   @override
@@ -133,41 +189,27 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     super.dispose();
   }
 
-  // void initPlatformState() {
-  //   BackgroundFetch.configure(
-  //     BackgroundFetchConfig(
-  //       minimumFetchInterval: 1,
-  //       stopOnTerminate: false,
-  //       startOnBoot: true,
-  //       enableHeadless: true,
-  //       requiresBatteryNotLow: false,
-  //       requiresCharging: false,
-  //       requiresStorageNotLow: false,
-  //       requiresDeviceIdle: false,
-  //       requiredNetworkType: NetworkType.NONE,
-  //     ),
-  //         (String taskId) async {
-  //       print('[BackgroundFetch] Task executed: $taskId');
-  //       DateTime now = DateTime.now();
-  //       print('Current time--------------------------------------------------------------: $now');
-  //       BackgroundFetch.finish(taskId);
-  //     },
-  //         (String taskId) async {
-  //       print('[BackgroundFetch] Task timeout: $taskId');
-  //       BackgroundFetch.finish(taskId);
-  //     },
-  //   );
-  // }
 
   void calculateTimer() {
     int currentHour = DateTime.now().hour;
     int currentMinute = DateTime.now().minute;
     int currentSecond = DateTime.now().second;
-    int totalTime = widget.endHour;
-    remainingHours = currentHour < totalTime ? totalTime-1 - currentHour : currentHour - totalTime-1;
+    int totalTime;
+    if (widget.endHour > widget.startHour) {
+      totalTime = widget.endHour - widget.startHour;
+    } else {
+      totalTime = 24 - widget.startHour + widget.endHour;
+    }
+
+    int remainingHours;
+    if (widget.endHour > currentHour) {
+      remainingHours = widget.endHour - currentHour;
+    } else {
+      remainingHours = 24 - currentHour + widget.endHour;
+    }
     int remainingMinutes = 60 - currentMinute;
     int remainingSeconds = 60 - currentSecond;
-    myDuration = Duration(hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds);
+    myDuration = Duration(hours: remainingHours-1, minutes: remainingMinutes, seconds: remainingSeconds);
   }
 
 
@@ -188,8 +230,13 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   }
 
   void startTimer() {
+    if (widget.endHour < widget.startHour) {
+      endTimeHour = 24 - (widget.startHour + widget.endHour);
+    }else{
+      endTimeHour= widget.endHour;
+    }
     DateTime now = DateTime.now();
-    if (now.hour >= widget.startHour && now.hour <= widget.endHour) {
+    if (now.hour >= widget.startHour || now.hour <= endTimeHour!) {
       DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour, now.minute, now.second + 1);
 
       if (now.isAfter(startDateTime)) {
@@ -259,31 +306,6 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
 
 
 
-  // Future<void> fetchStepData() async {
-  //   var permissions = [
-  //     HealthDataAccess.READ,
-  //   ];
-  //
-  //   bool requested = await health
-  //       .requestAuthorization([HealthDataType.STEPS,], permissions: permissions);
-  //   if (!requested) {
-  //     // Handle authorization not granted
-  //     print("Authorization not granted - error in authorization");
-  //     return;
-  //   }
-  //
-  //   final now = DateTime.now();
-  //   final midnight = DateTime(now.year, now.month, now.day);
-  //
-  //   try {
-  //     int? steps = await health.getTotalStepsInInterval(midnight, now);
-  //     setState(() {
-  //       getSteps = steps ?? 0;
-  //     });
-  //   } catch (error) {
-  //     print("Error fetching step count: $error");
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -330,7 +352,12 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                     const Center(child: LogoComponent()),
                     IconButton(
                       onPressed: () {
-                        Beamer.of(context).beamToNamed('/notificationScreen');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NotificationScreen(notifications: notifications,),
+                          ),
+                        );
                       },
                       icon: const ImageIcon(
                         AssetImage('images/notification.png'),
@@ -423,9 +450,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                                       IconButton(
                                         onPressed: () {
                                           Beamer.of(context).beamToNamed('/fastScreen');
-                                          print('${dailyStepCount} -------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-                                          print('${lastSavedStepCount} -------------------------------###########################################');
-                                        },
+                                         },
                                         icon: const Icon(
                                           Icons.navigate_next,
                                           color: Colors.white,
