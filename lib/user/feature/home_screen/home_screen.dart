@@ -55,21 +55,19 @@ class HomeScreen extends StatelessWidget {
         final startHour = startFastTime.hour;
         final endHour = endFastTime.hour;
 
-        print(startHour);
-        print(startFastTime);
-        print(startFastTimeShow);
-        print(endHour);
-        print(endFastTime);
-        print(endFastTimeShow);
+        // print(startHour);
+        // print(startFastTime);
+        // print(startFastTimeShow);
+        // print(endHour);
+        // print(endFastTime);
+        // print(endFastTimeShow);
 
         int hourDifference;
         if (endHour > startHour) {
           hourDifference = endHour - startHour;
         } else if (endHour < startHour) {
-          // If end hour is less than start hour, consider it as a difference spanning midnight
           hourDifference = 24 - startHour + endHour;
         } else {
-          // If start hour and end hour are equal, the difference is 0
           hourDifference = 0;
         }
 
@@ -128,40 +126,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   late Timer waterTimer;
   late Timer fastTimer;
 
-  List<Map<String, String>> notifications = NotificationHelper.notifications;
-
-
-  // Future<void> _saveNotifications() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final List<String> jsonNotifications = notifications.map((notification) {
-  //     return jsonEncode(notification);
-  //   }).toList();
-  //   await prefs.setStringList('notifications', jsonNotifications);
-  // }
-  //
-  // void addWaterNotification() {
-  //   setState(() {
-  //     final waterNotification = {
-  //       'title': 'Drink Water',
-  //       'body': 'Reminder to drink water',
-  //       'time': DateTime.now().toString().substring(11, 16),
-  //     };
-  //     notifications.add(waterNotification);
-  //     _saveNotifications();
-  //   });
-  // }
-  //
-  // void addFastNotification() {
-  //   setState(() {
-  //     final fastNotification = {
-  //       'title': 'Start Fasting',
-  //       'body': 'Reminder to start Fasting',
-  //       'time': DateTime.now().toString().substring(11, 16),
-  //     };
-  //     notifications.add(fastNotification);
-  //     _saveNotifications();
-  //   });
-  // }
+  List<Map<String, String>> notifications = [];
   @override
   void initState() {
     super.initState();
@@ -172,16 +137,51 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     calculator = StepCalculator();
     requestPermission();
     startTimer();
-    NotificationHelper.showNotification();
-    NotificationHelper.addWaterNotification();
-    NotificationHelper.addFastNotification();
+    NotificationHelper.showNotification().then((value) {
+      addWaterNotification();
+    });
+
     // waterTimer = Timer.periodic(const Duration(hours: 1), (timer) {
     //   addWaterNotification();
     // });
-    // fastTimer = Timer.periodic(const Duration(minutes: 2), (timer) {
-    //   addFastNotification();
-    // });
+    fastTimer = Timer.periodic(const Duration(minutes: 2), (timer) {
+      addFastNotification();
+    });
   }
+
+
+  Future<void> _saveNotifications() async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> jsonNotifications = notifications.map((notification) {
+      return jsonEncode(notification);
+    }).toList();
+    await prefs.setStringList('notifications', jsonNotifications);
+  }
+
+  void addWaterNotification() {
+    setState(() {
+      final waterNotification = {
+        'title': 'Drink Water',
+        'body': 'Reminder to drink water',
+        'time': DateTime.now().toString().substring(11, 16),
+      };
+      notifications.add(waterNotification);
+      _saveNotifications();
+    });
+  }
+
+  void addFastNotification() {
+    setState(() {
+      final fastNotification = {
+        'title': 'Start Fasting',
+        'body': 'Reminder to start Fasting',
+        'time': DateTime.now().toString().substring(11, 16),
+      };
+      notifications.add(fastNotification);
+      _saveNotifications();
+    });
+  }
+
 
   @override
   void dispose() {

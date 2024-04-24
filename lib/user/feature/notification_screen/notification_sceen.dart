@@ -132,27 +132,6 @@ class NotificationHelper {
       ],
     );
   }
-  static List<Map<String, String>> notifications = [];
-
-
-  static Future<void>  _saveNotifications() async {
-    final prefs = await SharedPreferences.getInstance();
-    final List<String> jsonNotifications = notifications.map((notification) {
-      return jsonEncode(notification);
-    }).toList();
-    await prefs.setStringList('notifications', jsonNotifications);
-  }
-
-  static Future<void>  addWaterNotification() async {
-      final waterNotification = {
-        'title': 'Drink Water',
-        'body': 'Reminder to drink water',
-        'time': DateTime.now().toString().substring(11, 16),
-      };
-      notifications.add(waterNotification);
-      _saveNotifications();
-  }
-
   static Future<void> showNotification() async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -181,13 +160,7 @@ class NotificationHelper {
     );
   }
 
-  static Future<void> addFastNotification() async {
-      final fastNotification = {
-        'title': 'Start Fasting',
-        'body': 'Reminder to start Fasting',
-        'time': DateTime.now().toString().substring(11, 16),
-      };
-      notifications.add(fastNotification);
-  }
+
+
 
 }
