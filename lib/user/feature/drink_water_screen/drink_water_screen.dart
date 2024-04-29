@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../component/back_component.dart';
 import '../../../component/text_component.dart';
 import '../../../generated/l10n.dart';
+import '../notification_screen/notification_sceen.dart';
 import '../register_screen/register_screen_view_model.dart';
 
 class DrinkWaterScreen extends StatelessWidget {
@@ -37,14 +38,31 @@ class DrinkWaterScreen extends StatelessWidget {
   }
 }
 
-class DrinkWaterScreenContent extends StatelessWidget {
+class DrinkWaterScreenContent extends StatefulWidget {
   const DrinkWaterScreenContent({super.key, required this.waterTarget});
   final String waterTarget;
 
   @override
+  State<DrinkWaterScreenContent> createState() => _DrinkWaterScreenContentState();
+}
+
+class _DrinkWaterScreenContentState extends State<DrinkWaterScreenContent> {
+  int waterCounter = 0;
+
+  Future<void> getCounterData() async {
+    int retrievedCounter = await NotificationController.getCounter();
+    setState(() {
+      waterCounter = retrievedCounter;
+    });
+  }
+  @override
+  void initState() {
+    getCounterData();
+  }
+  @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    final water = int.parse(waterTarget);
+    final water = int.parse(widget.waterTarget);
 
     final int waterRemaining = water - 0 ;
 
@@ -83,7 +101,7 @@ class DrinkWaterScreenContent extends StatelessWidget {
                 Column(
                   children: [
                     Text('${S.of(context).remainingml} $waterRemaining ${S.of(context).ml}',style: const TextStyle(fontSize: 13,color: Colors.grey, fontWeight: FontWeight.bold),),
-                    const TextLabelComponent(text: '1,290 ml',textStyle: TextStyle(color: Colors.black,fontSize: 40,fontWeight: FontWeight.bold),),
+                    TextLabelComponent(text: '$waterCounter ${S.of(context).ml}',textStyle: const TextStyle(color: Colors.black,fontSize: 40,fontWeight: FontWeight.bold),),
                     SizedBox(height: screenSize.height * 0.09,),
                     Stack(
                       children: [

@@ -101,10 +101,14 @@ class _NotificationScreenContentState extends State<NotificationScreenContent> {
 
 class NotificationController {
   static int counter = 0;
+  static int? savedDay ;
+  static int currentDay = DateTime.now().day;
   static int waterCounter = 0;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
   static RegisterViewModel? registerViewModel;
   static DateTime dateTime = DateTime.now();
+  static RegisterViewModel?vm;
+
 
 
 
@@ -131,24 +135,39 @@ class NotificationController {
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
     if (receivedAction.buttonKeyPressed == 'drink_now') {
-      increaseCounter();
+      saveCounter();
+      getCounter();
+
     }
   }
-  Future<void> saveCounter() async {
+
+
+  static Future<void> saveCounter() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('waterCounter',counter);
+    if (savedDay !=  30) {
+      savedDay = DateTime.now().day;
+      counter = 100;
+      await prefs.setInt('waterCounter', counter);
+      await prefs.setInt('savedDayWater', savedDay!);
+    }else{
+      counter= counter+100;
+      await prefs.setInt('waterCounter', counter);
+
+
+    }
+
   }
-  Future<void> getCounter() async {
+
+  static Future<int> getCounter() async {
     final prefs = await SharedPreferences.getInstance();
-    waterCounter = prefs.getInt('waterCounter')!;
+    counter = prefs.getInt('waterCounter') ?? 0;
+    savedDay = prefs.getInt('savedDayWater');
+
+
+    print("Counter retrieved: $counter");
+    print("savedDay retrieved: $savedDay");
+    return counter;
   }
-
-
-  static void increaseCounter() {
-    counter++;
-    print("Counter increased: $counter");
-  }
-
 }
 
 class NotificationHelper {

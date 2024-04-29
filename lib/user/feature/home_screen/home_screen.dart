@@ -31,6 +31,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime dateTime = DateTime.now();
+
+    Future<void> getCounterData() async {
+      int retrievedCounter = await NotificationController.getCounter();
+    }
     final RegisterViewModel registerViewModel =
     Provider.of<RegisterViewModel>(context);
     return Scaffold(
@@ -47,8 +52,9 @@ class HomeScreen extends StatelessWidget {
         final endFastTimeShow = data['endFastTime'];
         final weightData = data['weight'];
         final waterTarget = data['waterTarget'];
+        final waterCounter = data['waterCounter ${dateTime.day}:${dateTime.month}:${dateTime.year} '] ?? 1000;
 
-        //--------------------------------------------------------------------
+      //--------------------------------------------------------------------
         final startFastTime = parseTimeString(data['startFastTime']);
         final endFastTime = parseTimeString(data['endFastTime']);
 
@@ -74,7 +80,7 @@ class HomeScreen extends StatelessWidget {
         print('Hour Difference: $hourDifference');
 
 
-        return HomeScreenContent(startHour:startHour,endHour:endHour,hourDifference:hourDifference, weight: weightData,waterTarget:waterTarget);
+        return HomeScreenContent(startHour:startHour,endHour:endHour,hourDifference:hourDifference, weight: weightData,waterTarget:waterTarget,waterCounter:waterCounter);
       }
       return Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,));
     },
@@ -87,11 +93,12 @@ class HomeScreen extends StatelessWidget {
 class HomeScreenContent extends StatefulWidget {
   final int startHour;
   final int endHour;
+  final int waterCounter;
   final int hourDifference;
   final String waterTarget;
   final double weight;
   const HomeScreenContent({
-    super.key, required this.startHour, required this.endHour, required this.hourDifference, required this.weight, required this.waterTarget,
+    super.key, required this.startHour, required this.endHour, required this.hourDifference, required this.weight, required this.waterTarget, required this.waterCounter,
   });
 
   @override
@@ -111,6 +118,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   int? lastSavedStepCount;
   int currentDay = DateTime.now().day;
   int? savedDay ;
+  int waterCounter = 0;
 
   late StepCalculator calculator = StepCalculator();
   final HealthFactory health = HealthFactory();
@@ -137,6 +145,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     calculator = StepCalculator();
     requestPermission();
     startTimer();
+    getCounterData();
     NotificationHelper.showNotification().then((value) {
       addWaterNotification();
     });
@@ -211,7 +220,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     if (seconds <= 0) {
       countdownTimer!.cancel();
       notFinished = false;
-      setState(() {}); // Update the UI
+      setState(() {});
     } else {
       myDuration = Duration(seconds: seconds);
       notFinished = true;
@@ -221,7 +230,12 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     }
   }
 
-
+  Future<void> getCounterData() async {
+    int retrievedCounter = await NotificationController.getCounter();
+    setState(() {
+      waterCounter = retrievedCounter;
+    });
+  }
   void startTimer() {
     if (DateTime.now().hour >= widget.startHour || DateTime.now().hour < widget.endHour) {
       DateTime startDateTime = DateTime.now().add(const Duration(seconds: 1));
@@ -294,13 +308,14 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     String strDigits(int n) => n.toString().padLeft(2, '0');
     final water = int.parse(widget.waterTarget);
 
-    final int waterRemaining = water - 0 ;
+    //final int waterRemaining = water - 0 ;
     final HomeViewModel homeViewModel =
     Provider.of<HomeViewModel>(context);
     final Size screenSize = MediaQuery.of(context).size;
     final hour = strDigits(myDuration.inHours.remainder(60));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
+    String counterText = waterCounter.toString();
 
 
     double calories = calculator.calculateCalories(
@@ -511,7 +526,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                           const SizedBox(
                             height: 20,
                           ),
-                          const TextLabelBigComponent(text: '1,290 ml'),
+                          TextLabelBigComponent(text: '$waterCounter ${S.of(context).ml}' ),
                           TextComponent(text: '${S.of(context).remainingml} $water ${S.of(context).ml} '),
                           SizedBox(
                             height: screenSize.height * 0.04,
