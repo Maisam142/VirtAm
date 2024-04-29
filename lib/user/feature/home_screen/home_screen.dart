@@ -144,9 +144,9 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     // waterTimer = Timer.periodic(const Duration(hours: 1), (timer) {
     //   addWaterNotification();
     // });
-    fastTimer = Timer.periodic(const Duration(minutes: 2), (timer) {
-      addFastNotification();
-    });
+    // fastTimer = Timer.periodic(const Duration(minutes: 2), (timer) {
+    //   addFastNotification();
+    // });
   }
 
 
@@ -194,20 +194,11 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     int currentHour = DateTime.now().hour;
     int currentMinute = DateTime.now().minute;
     int currentSecond = DateTime.now().second;
-    int totalTime;
-    if (widget.endHour > widget.startHour) {
-      totalTime = widget.endHour - widget.startHour;
-    } else {
-      totalTime = 24 - widget.startHour + widget.endHour;
-    }
 
-    int remainingHours;
-    if (widget.endHour > currentHour) {
-      remainingHours = widget.endHour - currentHour;
-    } else {
-      remainingHours = 24 - currentHour + widget.endHour;
-    }
-    int remainingMinutes = 60 - currentMinute;
+
+
+    int remainingHours = currentHour> widget.endHour ?   currentHour-widget.endHour : widget.endHour-currentHour;
+    int remainingMinutes = 59 - currentMinute;
     int remainingSeconds = 60 - currentSecond;
     myDuration = Duration(hours: remainingHours-1, minutes: remainingMinutes, seconds: remainingSeconds);
   }
@@ -220,37 +211,28 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     if (seconds <= 0) {
       countdownTimer!.cancel();
       notFinished = false;
+      setState(() {}); // Update the UI
     } else {
       myDuration = Duration(seconds: seconds);
       notFinished = true;
-    }
-    if (mounted) {
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     }
   }
 
-  void startTimer() {
-    if (widget.endHour < widget.startHour) {
-      endTimeHour = 24 - (widget.startHour + widget.endHour);
-    }else{
-      endTimeHour= widget.endHour;
-    }
-    DateTime now = DateTime.now();
-    if (now.hour >= widget.startHour || now.hour <= endTimeHour!) {
-      DateTime startDateTime = DateTime(now.year, now.month, now.day, now.hour, now.minute, now.second + 1);
 
-      if (now.isAfter(startDateTime)) {
-        startDateTime = startDateTime.add(const Duration(days: 1));
-      }
-      Duration initialDelay = startDateTime.difference(now);
+  void startTimer() {
+    if (DateTime.now().hour >= widget.startHour || DateTime.now().hour < widget.endHour) {
+      DateTime startDateTime = DateTime.now().add(const Duration(seconds: 1));
+      Duration initialDelay = startDateTime.difference(DateTime.now());
 
       countdownTimer = Timer(initialDelay, () {
         countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
       });
     } else {
       notFinished = false;
-      setState(() {
-      });
+      setState(() {});
     }
   }
 

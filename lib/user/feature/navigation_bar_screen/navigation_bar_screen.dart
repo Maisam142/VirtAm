@@ -21,6 +21,7 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
   @override
 void initState() {
     super.initState();
+
     NotificationHelper.initialize();
     AwesomeNotifications().setListeners(
       onActionReceivedMethod: NotificationController.onActionReceivedMethod,

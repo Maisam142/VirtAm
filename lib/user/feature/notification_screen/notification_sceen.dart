@@ -2,12 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:beamer/beamer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
 import '../../../component/back_component.dart';
 import '../../../generated/l10n.dart';
+import '../register_screen/register_screen_view_model.dart';
 
 class NotificationScreen extends StatelessWidget {
   List<Map<String, String>> notifications = [];
@@ -97,24 +100,55 @@ class _NotificationScreenContentState extends State<NotificationScreenContent> {
 }
 
 class NotificationController {
+  static int counter = 0;
+  static int waterCounter = 0;
+  static FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  static RegisterViewModel? registerViewModel;
+  static DateTime dateTime = DateTime.now();
+
+
+
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {
+    // Implement notification creation logic if needed
   }
 
   @pragma("vm:entry-point")
   static Future<void> onNotificationDisplayedMethod(
-      ReceivedNotification receivedNotification) async {}
+      ReceivedNotification receivedNotification) async {
+    // Implement notification display logic if needed
+  }
 
   @pragma("vm:entry-point")
   static Future<void> onDismissActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
+      ReceivedAction receivedAction) async {
+    // Implement action dismissal logic if needed
+  }
+
 
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction)async {
-
+      ReceivedAction receivedAction) async {
+    if (receivedAction.buttonKeyPressed == 'drink_now') {
+      increaseCounter();
+    }
   }
+  Future<void> saveCounter() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('waterCounter',counter);
+  }
+  Future<void> getCounter() async {
+    final prefs = await SharedPreferences.getInstance();
+    waterCounter = prefs.getInt('waterCounter')!;
+  }
+
+
+  static void increaseCounter() {
+    counter++;
+    print("Counter increased: $counter");
+  }
+
 }
 
 class NotificationHelper {
