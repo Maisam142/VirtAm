@@ -64,7 +64,7 @@ class _DrinkWaterScreenContentState extends State<DrinkWaterScreenContent> {
     final Size screenSize = MediaQuery.of(context).size;
     final water = int.parse(widget.waterTarget);
 
-    final int waterRemaining = water - 0 ;
+    final int waterRemaining = water - waterCounter ;
 
     return WillPopScope(
         onWillPop: () async {

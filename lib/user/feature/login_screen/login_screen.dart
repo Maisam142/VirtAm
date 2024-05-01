@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences package
 import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/design_component.dart';
 import 'package:virtam/component/form_component.dart';
@@ -12,16 +13,13 @@ import '../../../component/back_component.dart';
 import '../../../component/popup_component.dart';
 import '../../../generated/l10n.dart';
 
-
 import '../forget_screen/forget_screen.dart';
 import '../profile_screen/profile_screen.dart';
 import '../register_screen/register_screen_view_model.dart';
 import 'login_screen_view_model.dart';
 
-
-
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+  const LoginForm({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,32 +52,38 @@ class LoginForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              DesignComponent(text: S.of(context).signWith,
-              textStyle: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
-              //SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              DesignComponent(
+                text: S.of(context).signWith,
+                textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
                   children: [
                     FormComponent(
-                      // prefixIcon: const Icon(Icons.person, size: 20),
                       hintText: S.of(context).email,
                       controller: viewModel.emailController,
                       errorText: viewModel.isEmailValid
                           ? null
                           : S.of(context).enterValidEmail,
                     ),
-
                     FormComponent(
-                      // prefixIcon: const Icon(Icons.password, size: 20),
                       hintText: S.of(context).password,
                       controller: viewModel.passwordController,
                       obscureText: viewModel.isObscure,
-                      suffixIcon: IconButton(onPressed: (){
-                        viewModel.visibilityPass();
-                      },
-                          icon: Icon( viewModel.isObscure ? Icons.visibility_off : Icons.visibility,
-                          )
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          viewModel.visibilityPass();
+                        },
+                        icon: Icon(
+                          viewModel.isObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
                       ),
                       errorText: viewModel.isPasswordValid
                           ? null
@@ -88,10 +92,10 @@ class LoginForm extends StatelessWidget {
                     Align(
                       alignment: Alignment.topRight,
                       child: TextButton(
-                        onPressed: () async{
-                          await FirebaseAuth.instance.sendPasswordResetEmail(email: viewModel.emailController.text.trim());
-
-
+                        onPressed: () async {
+                          await FirebaseAuth.instance.sendPasswordResetEmail(
+                            email: viewModel.emailController.text.trim(),
+                          );
                         },
                         child: Text(
                           S.of(context).forgetPass,
@@ -108,21 +112,37 @@ class LoginForm extends StatelessWidget {
                             viewModel.validateFieldsLogin();
                             if (viewModel.isFormValidLogin) {
                               try {
-                                final userCredential = await auth.signInWithEmailAndPassword(
+                                final userCredential =
+                                await auth.signInWithEmailAndPassword(
                                   email: viewModel.emailController.text,
                                   password: viewModel.passwordController.text,
                                 );
                                 final user = userCredential.user;
-                                //print('User signed in: ${user?.uid}');
-                                if(viewModel.emailController.text == 'masteradmin123@gmail.com' &&
-                                    viewModel.passwordController.text == 'MasterAdmin12345*' ){
-                                  Beamer.of(context).beamToNamed('/homeMasterAdminScreen');
-                                }else if (viewModel.emailController.text == 'admin1@gmail.com' &&
-                                    viewModel.passwordController.text == 'Admin112345*' ){
-                                  Beamer.of(context).beamToNamed('/homeAdminScreen');
+                                if (viewModel.emailController.text ==
+                                    'masteradmin123@gmail.com' &&
+                                    viewModel.passwordController.text ==
+                                        'MasterAdmin12345*' ||
+                                    viewModel.emailController.text ==
+                                        'admin1@gmail.com' &&
+                                        viewModel.passwordController.text ==
+                                            'Admin112345*') {
+                                  // Save authentication status using shared preferences
 
-                                }else {
-                                  Beamer.of(context).beamToNamed('/homeNavigationBar');
+                                  if (viewModel.emailController.text ==
+                                      'masteradmin123@gmail.com') {
+                                    Beamer.of(context)
+                                        .beamToNamed('/homeMasterAdminScreen');
+                                  } else {
+                                    Beamer.of(context)
+                                        .beamToNamed('/homeAdminScreen');
+                                  }
+                                } else {
+                                  final prefs =
+                                  await SharedPreferences.getInstance();
+                                  prefs.setBool('isLoggedIn', true);
+                                  prefs.setString('email', viewModel.emailController.text);
+                                  Beamer.of(context)
+                                      .beamToNamed('/homeNavigationBar');
                                 }
                               } catch (e) {
                                 print('Error logging in: $e');
@@ -131,37 +151,39 @@ class LoginForm extends StatelessWidget {
                                   builder: (context) => PopupWidget(
                                     titleText: S.of(context).wrongEmailPass,
                                     contentText: S.of(context).rewriteCorrect,
-                                        body: [],
+                                    body: [],
                                   ),
-                                );                              }
+                                );
+                              }
                             }
                           },
                         ),
                         SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                         TextComponent(
                           textStyle: Theme.of(context).textTheme.bodySmall,
-                          text: S.of(context).signedAlready,),
+                          text: S.of(context).signedAlready,
+                        ),
                         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                        TextComponent(text: S.of(context).or, textStyle: Theme.of(context).textTheme.titleMedium,),
+                        TextComponent(
+                          text: S.of(context).or,
+                          textStyle: Theme.of(context).textTheme.titleMedium,
+                        ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 25.0,left: 25.0),
+                          padding: const EdgeInsets.only(right: 25.0, left: 25.0),
                           child: ButtonComponent(
                             text: S.of(context).createAccount,
                             textStyle: Theme.of(context).textTheme.titleMedium,
                             customColor: Colors.white60,
-                            onPress: (){
+                            onPress: () {
                               Beamer.of(context).beamToNamed('/registerScreen');
-
                             },
                           ),
                         ),
-
                       ],
                     ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),

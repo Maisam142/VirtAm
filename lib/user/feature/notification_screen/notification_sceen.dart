@@ -101,7 +101,8 @@ class _NotificationScreenContentState extends State<NotificationScreenContent> {
 
 class NotificationController {
   static int counter = 0;
-  static int? savedDay ;
+  static int savedDay = 0;
+  static int ?savedDayWater;
   static int currentDay = DateTime.now().day;
   static int waterCounter = 0;
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;
@@ -144,12 +145,21 @@ class NotificationController {
 
   static Future<void> saveCounter() async {
     final prefs = await SharedPreferences.getInstance();
-    if (savedDay !=  30) {
-      savedDay = DateTime.now().day;
+    if (savedDay !=  currentDay) {
+      savedDay = currentDay;
+      //savedDayWater = currentDay;
+      // print('$currentDay -------------------------------------------------------------------------------------------------');
+      // print('$savedDay -------------------------------------------------------------------------------------------------');
       counter = 100;
-      await prefs.setInt('waterCounter', counter);
-      await prefs.setInt('savedDayWater', savedDay!);
+       prefs.setInt('waterCounter', counter);
+       prefs.setInt('savedDayWater', savedDay);
+       //prefs.setInt('savedWater', savedDayWater!);
+      // print('$currentDay -----------------------#########################--------------------------------------------------------------------------');
+      // print('$savedDay -----------------------#########################-----------------------------------------------');
+      // print('$savedDayWater -----------------------#########################------------------------------------------------------');
     }else{
+      //print('++++++++++++++++================================================');
+
       counter= counter+100;
       await prefs.setInt('waterCounter', counter);
 
@@ -161,11 +171,18 @@ class NotificationController {
   static Future<int> getCounter() async {
     final prefs = await SharedPreferences.getInstance();
     counter = prefs.getInt('waterCounter') ?? 0;
-    savedDay = prefs.getInt('savedDayWater');
+    savedDay = prefs.getInt('savedDayWater') ?? 0;
+    //savedDayWater = prefs.getInt('savedWater') ;
 
 
     print("Counter retrieved: $counter");
     print("savedDay retrieved: $savedDay");
+    //print("savedDayWater retrieved: $savedDayWater");
+
+    // print('$currentDay ***************************************************************');
+    // print('$savedDay ***************************************************************');
+    // print('$savedDayWater ***************************************************************');
+
     return counter;
   }
 }
