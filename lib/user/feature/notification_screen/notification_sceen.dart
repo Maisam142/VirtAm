@@ -34,13 +34,13 @@ class NotificationScreenContent extends StatefulWidget {
 
 class _NotificationScreenContentState extends State<NotificationScreenContent> {
 
+  List<Map<String, String>> ?notifications;
+
   @override
   void initState() {
     super.initState();
     _loadNotifications();
-
   }
-  List<Map<String, String>> notifications = [];
 
   Future<void> _loadNotifications() async {
     final prefs = await SharedPreferences.getInstance();
@@ -48,13 +48,11 @@ class _NotificationScreenContentState extends State<NotificationScreenContent> {
     if (savedNotifications != null) {
       setState(() {
         notifications = savedNotifications
-            .map((jsonString) =>
-        Map<String, String>.from(jsonDecode(jsonString)))
+            .map((jsonString) => Map<String, String>.from(jsonDecode(jsonString)))
             .toList();
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +71,9 @@ class _NotificationScreenContentState extends State<NotificationScreenContent> {
 
             Expanded(
               child: ListView.builder(
-                itemCount: notifications.length,
+                itemCount: notifications!.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final reversedIndex = notifications.length - index - 1;
+                  final reversedIndex = notifications!.length - index - 1;
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ListTile(
@@ -84,9 +82,9 @@ class _NotificationScreenContentState extends State<NotificationScreenContent> {
                         width: 50,
                         height: 50,
                       ),
-                      title: Text(notifications[reversedIndex]['title']!),
-                      subtitle: Text(notifications[reversedIndex]['body']!),
-                      trailing: Text(notifications[reversedIndex]['time']!),
+                      title: Text(notifications![reversedIndex]['title']!),
+                      subtitle: Text(notifications![reversedIndex]['body']!),
+                      trailing: Text(notifications![reversedIndex]['time']!),
                     ),
                   );
                 },
@@ -109,20 +107,48 @@ class NotificationController {
   static RegisterViewModel? registerViewModel;
   static DateTime dateTime = DateTime.now();
   static RegisterViewModel?vm;
+  static List<Map<String, String>> notifications = [];
 
+  static Future<void> addWaterNotification() async {
+    final waterNotification = {
+      'title': 'Drink Water',
+      'body': 'Reminder to drink water',
+      'time': DateTime.now().toString().substring(11, 16),
+    };
+    notifications.add(waterNotification);
+    await _saveNotifications();
+  }
+
+  static Future<void> _saveNotifications() async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> jsonNotifications = notifications
+        .map((notification) => jsonEncode(notification))
+        .toList();
+    await prefs.setStringList('notifications', jsonNotifications);
+  }
+
+  static Future<void> loadNotifications() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedNotifications = prefs.getStringList('notifications');
+    if (savedNotifications != null) {
+      notifications = savedNotifications
+          .map((jsonString) => Map<String, String>.from(jsonDecode(jsonString)))
+          .toList();
+    }
+  }
 
 
 
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {
-    // Implement notification creation logic if needed
-  }
+    //await addWaterNotification();
 
+  }
   @pragma("vm:entry-point")
   static Future<void> onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
-    // Implement notification display logic if needed
+    await addWaterNotification();
   }
 
   @pragma("vm:entry-point")
@@ -212,7 +238,7 @@ class NotificationHelper {
         displayOnBackground: true,
       ),
       schedule: NotificationInterval(
-        interval: 2 * 60,
+        interval: 1 * 60,
         timeZone: 'UTC',
         preciseAlarm: true,
         repeats: true,

@@ -146,9 +146,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     requestPermission();
     startTimer();
     getCounterData();
-    NotificationHelper.showNotification().then((value) {
-      addWaterNotification();
-    });
+    NotificationHelper.showNotification();
 
     // waterTimer = Timer.periodic(const Duration(hours: 1), (timer) {
     //   addWaterNotification();
@@ -159,37 +157,21 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   }
 
 
-  Future<void> _saveNotifications() async {
-    final prefs = await SharedPreferences.getInstance();
-    final List<String> jsonNotifications = notifications.map((notification) {
-      return jsonEncode(notification);
-    }).toList();
-    await prefs.setStringList('notifications', jsonNotifications);
-  }
 
-  void addWaterNotification() {
-    setState(() {
-      final waterNotification = {
-        'title': 'Drink Water',
-        'body': 'Reminder to drink water',
-        'time': DateTime.now().toString().substring(11, 16),
-      };
-      notifications.add(waterNotification);
-      _saveNotifications();
-    });
-  }
 
-  void addFastNotification() {
-    setState(() {
-      final fastNotification = {
-        'title': 'Start Fasting',
-        'body': 'Reminder to start Fasting',
-        'time': DateTime.now().toString().substring(11, 16),
-      };
-      notifications.add(fastNotification);
-      _saveNotifications();
-    });
-  }
+
+
+  // void addFastNotification() {
+  //   setState(() {
+  //     final fastNotification = {
+  //       'title': 'Start Fasting',
+  //       'body': 'Reminder to start Fasting',
+  //       'time': DateTime.now().toString().substring(11, 16),
+  //     };
+  //     notifications.add(fastNotification);
+  //     _saveNotifications();
+  //   });
+  // }
 
 
   @override
