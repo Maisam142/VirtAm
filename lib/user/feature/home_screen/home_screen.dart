@@ -134,7 +134,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   late Timer waterTimer;
   late Timer fastTimer;
 
-  List<Map<String, String>> notifications = [];
+  //List<Map<String, String>> notifications = [];
   @override
   void initState() {
     super.initState();
@@ -219,7 +219,15 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     });
   }
   void startTimer() {
-    if (DateTime.now().hour >= widget.startHour || DateTime.now().hour < widget.endHour) {
+    int endHour;
+    if (widget.endHour > widget.startHour) {
+      endHour = widget.endHour ;
+    } else if (widget.endHour < widget.startHour) {
+      endHour = 24 - widget.endHour;
+    } else {
+      endHour = 0;
+    }
+    if (DateTime.now().hour >= widget.startHour && DateTime.now().hour < endHour) {
       DateTime startDateTime = DateTime.now().add(const Duration(seconds: 1));
       Duration initialDelay = startDateTime.difference(DateTime.now());
 
@@ -334,7 +342,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NotificationScreen(notifications: notifications,),
+                            builder: (context) => NotificationScreen(),
                           ),
                         );
                       },

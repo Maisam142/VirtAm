@@ -204,7 +204,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/aboutVirtAmScreen': (context, state, data) =>  const AboutVirtAmScreen(),
         '/caloriesSettingScreen': (context, state, data) =>  const CaloriesSettingScreen(),
         '/caloriesScreen': (context, state, data) =>  const CaloriesScreen(),
-        '/notificationScreen': (context, state, data) =>   NotificationScreen(notifications: [],),
+        '/notificationScreen': (context, state, data) =>   NotificationScreen(),
         '/subscriptionScreen': (context, state, data) =>  const SubscriptionScreen(),
         //'/profileScreen': (context, state, data) =>   ProfileScreen(),
         '/homeScreen': (context, state, data) =>  const HomeScreen(),

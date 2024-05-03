@@ -13,20 +13,18 @@ import '../../../generated/l10n.dart';
 import '../register_screen/register_screen_view_model.dart';
 
 class NotificationScreen extends StatelessWidget {
-  List<Map<String, String>> notifications = [];
 
-   NotificationScreen({super.key,required this.notifications});
+   NotificationScreen({super.key,});
 
   @override
   Widget build(BuildContext context) {
-    return NotificationScreenContent(notifications: notifications,);
+    return NotificationScreenContent();
   }
 }
 
 class NotificationScreenContent extends StatefulWidget {
-  List<Map<String, String>> notifications = [];
 
-   NotificationScreenContent({super.key,required this.notifications});
+   NotificationScreenContent({super.key,});
 
   @override
   _NotificationScreenContentState createState() => _NotificationScreenContentState();
@@ -127,15 +125,15 @@ class NotificationController {
     await prefs.setStringList('notifications', jsonNotifications);
   }
 
-  static Future<void> loadNotifications() async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedNotifications = prefs.getStringList('notifications');
-    if (savedNotifications != null) {
-      notifications = savedNotifications
-          .map((jsonString) => Map<String, String>.from(jsonDecode(jsonString)))
-          .toList();
-    }
-  }
+  // static Future<void> loadNotifications() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final savedNotifications = prefs.getStringList('notifications');
+  //   if (savedNotifications != null) {
+  //     notifications = savedNotifications
+  //         .map((jsonString) => Map<String, String>.from(jsonDecode(jsonString)))
+  //         .toList();
+  //   }
+  // }
 
 
 
