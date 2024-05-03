@@ -223,10 +223,11 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     if (widget.endHour > widget.startHour) {
       endHour = widget.endHour ;
     } else if (widget.endHour < widget.startHour) {
-      endHour = 24 - widget.endHour;
+      endHour = widget.endHour + 24;
     } else {
       endHour = 0;
     }
+    print(endHour);
     if (DateTime.now().hour >= widget.startHour && DateTime.now().hour < endHour) {
       DateTime startDateTime = DateTime.now().add(const Duration(seconds: 1));
       Duration initialDelay = startDateTime.difference(DateTime.now());
