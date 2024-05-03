@@ -236,7 +236,7 @@ class NotificationHelper {
         displayOnBackground: true,
       ),
       schedule: NotificationInterval(
-        interval: 1 * 60,
+        interval: 1 ,
         timeZone: 'UTC',
         preciseAlarm: true,
         repeats: true,
