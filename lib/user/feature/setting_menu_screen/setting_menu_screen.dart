@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:virtam/component/back_component.dart';
 import 'package:virtam/user/feature/register_screen/register_screen_view_model.dart';
 
@@ -79,7 +80,11 @@ class SettingMenuScreen extends StatelessWidget {
                         ],
                       ),
                       IconButton(
-                        onPressed: () {
+                        onPressed: () async{
+                          final prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setBool('isLoggedIn', false);
+
                           registerViewModel.logOut();
                           Beamer.of(context).beamToNamed('/welcomeScreen');
                         },
