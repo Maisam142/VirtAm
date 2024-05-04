@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,53 +40,61 @@ void initState() {
 
 
 
-    return Scaffold(
-      body: Consumer<NavigationBarViewModel>(
-        builder: (context, provider, _) {
-          return IndexedStack(
-            index: provider.selectedIndex,
-            children:  [
-              HomeScreen(),
-              CaloriesScreen(),
-              NutritionScreen(),
-              ProfileScreen()
+    return WillPopScope(
+        onWillPop: () async {
+      //Beamer.of(context).beamToNamed('/homeNavigationBar');
+
+      return false;
+    },
+    child:  SafeArea(
+      child: Scaffold(
+        body: Consumer<NavigationBarViewModel>(
+          builder: (context, provider, _) {
+            return IndexedStack(
+              index: provider.selectedIndex,
+              children:  [
+                HomeScreen(),
+                CaloriesScreen(),
+                NutritionScreen(),
+                ProfileScreen()
+              ],
+            );
+          },
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+         // backgroundColor: Colors.white,
+            selectedIconTheme: IconThemeData(
+              color: Theme.of(context).primaryColor,
+                  size: 30,
+            ),
+            type: BottomNavigationBarType.fixed,
+            items:  const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('images/home.png')),
+                label: ''
+              ),
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('images/calories.png')),
+                  label: ''
+              ),
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('images/apple.png')),
+                  label: ''
+
+              ),
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('images/person.png')),
+                  label: ''
+
+              ),
             ],
-          );
-        },
+            currentIndex: navigate.selectedIndex,
+            onTap: (index)
+            {
+              navigate.navigate(index);
+            }
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-       // backgroundColor: Colors.white,
-          selectedIconTheme: IconThemeData(
-            color: Theme.of(context).primaryColor,
-                size: 30,
-          ),
-          type: BottomNavigationBarType.fixed,
-          items:  const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('images/home.png')),
-              label: ''
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('images/calories.png')),
-                label: ''
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('images/apple.png')),
-                label: ''
-
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('images/person.png')),
-                label: ''
-
-            ),
-          ],
-          currentIndex: navigate.selectedIndex,
-          onTap: (index)
-          {
-            navigate.navigate(index);
-          }
-      ),
-    );
+    ));
   }
 }

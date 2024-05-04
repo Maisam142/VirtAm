@@ -89,7 +89,7 @@ class _CaloriesScreenContentState extends State<CaloriesScreenContent> {
         onWillPop: () async {
       //Beamer.of(context).beamToNamed('/homeNavigationBar');
 
-      return true;
+          return false;
     },
     child: SafeArea(
         child: Scaffold(

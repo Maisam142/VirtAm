@@ -41,7 +41,7 @@ class ProfileScreenContent extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        Beamer.of(context).beamToNamed('/profileScreen');
+        // Beamer.of(context).beamToNamed('/profileScreen');
         return false;
       },
       child: SafeArea(

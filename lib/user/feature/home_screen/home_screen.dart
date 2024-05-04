@@ -327,7 +327,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     return WillPopScope(
         onWillPop: () async {
           // Beamer.of(context).beamToNamed('/homeNavigationBar');
-          return true;
+          return false;
         },
         child: SafeArea(
           child: Scaffold(
