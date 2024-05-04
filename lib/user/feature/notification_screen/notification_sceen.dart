@@ -32,7 +32,7 @@ class NotificationScreenContent extends StatefulWidget {
 
 class _NotificationScreenContentState extends State<NotificationScreenContent> {
 
-  List<Map<String, String>> ?notifications;
+  List<Map<String, String>> notifications=[];
 
   @override
   void initState() {
@@ -69,9 +69,9 @@ class _NotificationScreenContentState extends State<NotificationScreenContent> {
 
             Expanded(
               child: ListView.builder(
-                itemCount: notifications!.length,
+                itemCount: notifications.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  final reversedIndex = notifications!.length - index - 1;
+                  final reversedIndex = notifications.length - index - 1;
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ListTile(
@@ -80,9 +80,9 @@ class _NotificationScreenContentState extends State<NotificationScreenContent> {
                         width: 50,
                         height: 50,
                       ),
-                      title: Text(notifications![reversedIndex]['title']!),
-                      subtitle: Text(notifications![reversedIndex]['body']!),
-                      trailing: Text(notifications![reversedIndex]['time']!),
+                      title: Text(notifications[reversedIndex]['title']!),
+                      subtitle: Text(notifications[reversedIndex]['body']!),
+                      trailing: Text(notifications[reversedIndex]['time']!),
                     ),
                   );
                 },
@@ -236,7 +236,7 @@ class NotificationHelper {
         displayOnBackground: true,
       ),
       schedule: NotificationInterval(
-        interval: 1 ,
+        interval: 50 * 100 ,
         timeZone: 'UTC',
         preciseAlarm: true,
         repeats: true,

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:beamer/beamer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:virtam/component/meals_component.dart';
 import 'package:virtam/component/text_component.dart';
-
 import '../../../component/circular_component.dart';
 import '../../../component/home_component.dart';
 import '../../../generated/l10n.dart';
@@ -89,9 +87,9 @@ class _CaloriesScreenContentState extends State<CaloriesScreenContent> {
     final Size screenSize = MediaQuery.of(context).size;
     return WillPopScope(
         onWillPop: () async {
-      Beamer.of(context).beamToNamed('/homeNavigationBar');
+      //Beamer.of(context).beamToNamed('/homeNavigationBar');
 
-      return false;
+      return true;
     },
     child: SafeArea(
         child: Scaffold(

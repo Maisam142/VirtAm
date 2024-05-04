@@ -44,9 +44,10 @@ class NutritionScreen extends StatelessWidget {
 
     return WillPopScope(
         onWillPop: () async {
-      Beamer.of(context).beamToNamed('/homeNavigationBar');
-      return false;
-    },
+          //Beamer.of(context).beamToNamed('/homeNavigationBar');
+
+          return true;
+        },
     child:SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -124,7 +125,7 @@ class NutritionScreen extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(height: 4),
-                                    const TextComponent(text: 'Day 01-Fitness', textStyle: TextStyle(color: Colors.white, fontSize: 35)),
+                                    const TextComponent(text: 'Day 01-Fitness', textStyle: TextStyle(color: Colors.white, fontSize: 30)),
                                   ],
                                 ),
                               ),

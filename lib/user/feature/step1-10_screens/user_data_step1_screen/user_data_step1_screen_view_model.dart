@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class UserDataStep1ViewModel extends ChangeNotifier {
-  int _selectedValueAge = 0;
+  int _selectedValueAge = 18;
   int get selectedValueAge => _selectedValueAge;
 
-  double _selectedValueWeight = 0.0;
+  double _selectedValueWeight = 50.0;
   double get selectedValueWeight => _selectedValueWeight;
 
-  double _selectedValueHeight = 0.0;
+  double _selectedValueHeight = 150.0;
   double get selectedValueHeight => _selectedValueHeight;
 
   void setSelectedValueAge(int value) {

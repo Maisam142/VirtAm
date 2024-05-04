@@ -423,11 +423,11 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                       padding: const EdgeInsets.all(20.0),
                       child: SizedBox(
                         width: double.infinity,
-                        height: 150,
+                        height: 130,
                         child: Stack(
                           children: [
-                            const Image(image: AssetImage('images/fasting.png'),fit: BoxFit.fill,
-                              height: 140,),
+                            const Image(image: AssetImage('images/fasting.png'),fit: BoxFit.cover,
+                              height: 150,),
                             Column(
                               children: [
                                 //SizedBox(height:20 ,),
