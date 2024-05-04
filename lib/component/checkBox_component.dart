@@ -19,6 +19,15 @@ class CheckBoxComponent extends StatelessWidget{
         children: [
           Checkbox(
             key: key,
+            hoverColor: Colors.black,
+            fillColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.selected)) {
+                  return Theme.of(context).primaryColor;
+                }
+                return Colors.transparent;
+              },
+            ),
             //tristate: true,
             checkColor: Colors.white,
               value: value,

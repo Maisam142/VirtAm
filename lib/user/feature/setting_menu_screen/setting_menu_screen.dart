@@ -66,7 +66,7 @@ class SettingMenuScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                color: Colors.white,
+                color:  Theme.of(context).secondaryHeaderColor,
                 width: double.infinity,
                 height: 70,
                 child: Padding(

@@ -46,30 +46,28 @@ class UserDataScreenStep1 extends StatelessWidget {
                       },
                     ),
                     Container(
-                      height: 200, // Adjusted height
-                      color: Colors.white,
+                      height: 200,
+                      color: Theme.of(context).secondaryHeaderColor,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 25.0, bottom: 25.0, left: 15.5),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Row(
-                                  children: [
-                                    TextComponent(
-                                      text: S.of(context).whatIsYour,
-                                      textStyle: Theme.of(context).textTheme.bodyMedium,
-                                    ),
-                                    TextLabelComponent(text: S.of(context).age),
-                                  ],
-                                ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextComponent(
+                                    text: S.of(context).whatIsYour,
+                                    textStyle: Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                  TextLabelComponent(text: S.of(context).age),
+                                ],
                               ),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(' ${model.selectedValueAge}'),
+                                Text(' ${model.selectedValueAge}',style: Theme.of(context).textTheme.titleSmall,),
                                 TextComponent(
                                   text: S.of(context).years,
                                   textStyle: Theme.of(context).textTheme.headlineSmall,
@@ -90,10 +88,12 @@ class UserDataScreenStep1 extends StatelessWidget {
                                     child: Container(
                                       width: 50.0,
                                       height: 150.0,
+                                      color: Theme.of(context).secondaryHeaderColor,
+
                                       alignment: Alignment.center,
-                                      child: Text(
-                                        value.toStringAsFixed(1),
-                                        style: TextStyle(
+                                      child: TextComponent(
+                                        text:value.toStringAsFixed(1),
+                                        textStyle: TextStyle(
                                           fontSize: 16.0,
                                           color: value == model.selectedValueAge
                                               ? Theme.of(context).primaryColor
@@ -112,24 +112,22 @@ class UserDataScreenStep1 extends StatelessWidget {
                     ),
                     SizedBox(height: 10), // Adjusted height
                     Container(
-                      height: 200, // Adjusted height
-                      color: Colors.white,
+                      height: 200,
+                      color: Theme.of(context).secondaryHeaderColor,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 25.0, bottom: 25.0, left: 15.5),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Row(
-                                  children: [
-                                    TextComponent(
-                                      text: S.of(context).whatIsYour,
-                                      textStyle: Theme.of(context).textTheme.bodyMedium,
-                                    ),
-                                    TextLabelComponent(text: S.of(context).weight),
-                                  ],
-                                ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextComponent(
+                                    text: S.of(context).whatIsYour,
+                                    textStyle: Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                  TextLabelComponent(text: S.of(context).weight),
+                                ],
                               ),
                             ),
                             Row(
@@ -156,6 +154,8 @@ class UserDataScreenStep1 extends StatelessWidget {
                                     child: Container(
                                       width: 50.0,
                                       height: 150.0,
+                                      color: Theme.of(context).secondaryHeaderColor,
+
                                       alignment: Alignment.center,
                                       child: Text(
                                         value.toStringAsFixed(1),
@@ -176,26 +176,24 @@ class UserDataScreenStep1 extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10), // Adjusted height
+                    SizedBox(height: 10),
                     Container(
-                      height: 200, // Adjusted height
-                      color: Colors.white,
+                      height: 200,
+                      color: Theme.of(context).secondaryHeaderColor,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 25.0, bottom: 25.0, left: 15.5),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Row(
-                                  children: [
-                                    TextComponent(
-                                      text: S.of(context).whatIsYour,
-                                      textStyle: TextStyle(color: Colors.black),
-                                    ),
-                                    TextLabelComponent(text: S.of(context).height),
-                                  ],
-                                ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextComponent(
+                                    text: S.of(context).whatIsYour,
+                                    textStyle: Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                  TextLabelComponent(text: S.of(context).height),
+                                ],
                               ),
                             ),
                             Row(
@@ -222,6 +220,8 @@ class UserDataScreenStep1 extends StatelessWidget {
                                     child: Container(
                                       width: 50.0,
                                       height: 150.0,
+                                      color: Theme.of(context).secondaryHeaderColor,
+
                                       alignment: Alignment.center,
                                       child: Text(
                                         value.toStringAsFixed(1),

@@ -35,63 +35,89 @@ class PurposeScreen extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: 300,
-                child: Column(
-                  children: [
-                    RadioListTile(
-                      title: Align(
-                          alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.zero,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0,),
+                        child: Container(
+                          color: Theme.of(context).secondaryHeaderColor,
+                          child: RadioListTile(
+                            title: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextComponent(text:S.of(context).purpose1,textStyle: Theme.of(context).textTheme.titleMedium,),
+                              ],
+                            ),
+                            value: 1,
+                            onChanged: (int? value) {
+                              if (value != null) {
+                                userDataModel.updateSelectedOption(value);
+                                userDataModel.updateSelectedPurpose('Follow my personal data.');
+                              }
+                            },
+                            activeColor: Theme.of(context).primaryColor,
+                            groupValue: userDataModel.selectedOption,
+                            controlAffinity: ListTileControlAffinity.trailing,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0,),
+                        child: Container(
+                          color: Theme.of(context).secondaryHeaderColor,
+                          child: RadioListTile(
+                            title: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
 
-                          child: TextComponent(text:S.of(context).purpose1,textStyle: Theme.of(context).textTheme.titleMedium,),),
-                      value: 1,
-                      onChanged: (int? value) {
-                        if (value != null) {
-                          userDataModel.updateSelectedOption(value);
-                          userDataModel.updateSelectedPurpose('Follow my personal data.');
+                              children: [
+                                TextComponent(text:S.of(context).purpose2,textStyle: Theme.of(context).textTheme.titleMedium,),
+                              ],
+                            ),
+                            value: 2,
+                            onChanged: (int? value) {
+                              if (value != null) {
+                                userDataModel.updateSelectedOption(value);
+                                userDataModel.updateSelectedPurpose('Follow up with my nutrition counselor.');
+                              }
+                            },
+                            activeColor: Theme.of(context).primaryColor,
+                            groupValue: userDataModel.selectedOption,
+                            controlAffinity: ListTileControlAffinity.trailing,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Container(
+                          color: Theme.of(context).secondaryHeaderColor,
+                          child: RadioListTile(
+                            title: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
 
-                        }
-                      },
-                      activeColor: Theme.of(context).primaryColor,
-                      groupValue: userDataModel.selectedOption,
-                      controlAffinity: ListTileControlAffinity.trailing,
-                    ),
-                    RadioListTile(
-                      title: Align(
-                        alignment: Alignment.centerLeft,
-
-                        child: TextComponent(text:S.of(context).purpose2,textStyle: Theme.of(context).textTheme.titleMedium,),),
-                      value: 2,
-                      onChanged: (int? value) {
-                        if (value != null) {
-                          userDataModel.updateSelectedOption(value);
-                          userDataModel.updateSelectedPurpose('Follow up with my nutrition counselor.');
-
-                        }
-                      },
-                      activeColor: Theme.of(context).primaryColor,
-                      groupValue: userDataModel.selectedOption,
-                      controlAffinity: ListTileControlAffinity.trailing,
-                    ),
-
-                    RadioListTile(
-                      title: Align(
-                        alignment: Alignment.centerLeft,
-
-                        child: TextComponent(text:S.of(context).purpose3,textStyle: Theme.of(context).textTheme.titleMedium,),),
-                      value: 3,
-                      onChanged: (int? value) {
-                        if (value != null) {
-                          userDataModel.updateSelectedOption(value);
-                          userDataModel.updateSelectedPurpose('Find a nutrition counselor in my area');
-
-                        }
-                      },
-                      activeColor: Theme.of(context).primaryColor,
-                      groupValue: userDataModel.selectedOption,
-                      controlAffinity: ListTileControlAffinity.trailing,
-                    ),
-
-                  ],
+                              children: [
+                                TextComponent(text:S.of(context).purpose3,textStyle: Theme.of(context).textTheme.titleMedium,),
+                              ],
+                            ),
+                            value: 3,
+                            onChanged: (int? value) {
+                              if (value != null) {
+                                userDataModel.updateSelectedOption(value);
+                                userDataModel.updateSelectedPurpose('Find a nutrition counselor in my area');
+                              }
+                            },
+                            activeColor: Theme.of(context).primaryColor,
+                            groupValue: userDataModel.selectedOption,
+                            controlAffinity: ListTileControlAffinity.trailing,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),

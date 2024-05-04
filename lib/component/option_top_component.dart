@@ -15,7 +15,7 @@ class OptionTopComponent extends StatelessWidget{
     final Size screenSize = MediaQuery.of(context).size;
 
     return Container(
-      color: Colors.grey.shade100,
+      color: Theme.of(context).canvasColor,
       height: screenSize.height * 0.13,
       width: double.infinity,
       child:  SingleChildScrollView(
@@ -27,7 +27,7 @@ class OptionTopComponent extends StatelessWidget{
               child: Row(
                 children: [
                   IconButton(onPressed: onPressed,
-                    icon: Icon(Icons.arrow_back_ios_new),),
+                    icon: Icon(Icons.arrow_back_ios_new,color: Colors.grey.shade300,),),
                   TextComponent(text: text,
                     textStyle: Theme.of(context).textTheme.titleSmall,),
                 ],

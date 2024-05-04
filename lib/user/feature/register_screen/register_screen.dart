@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
@@ -82,12 +83,18 @@ class RegisterScreen extends StatelessWidget {
                         ignoreBlank: false,
 
                         autoValidateMode: AutovalidateMode.onUserInteraction,
-                        selectorTextStyle: const TextStyle(color: Colors.black),
-                        textStyle: const TextStyle(color: Colors.black),
+                        selectorTextStyle: Theme.of(context).textTheme.labelMedium,
+                        textStyle:Theme.of(context).textTheme.labelMedium,
                         initialValue:
                             PhoneNumber(isoCode: registerViewModel.selectedCountry),
                         textFieldController: TextEditingController(),
                         hintText: S.of(context).phoneNumber,
+                        inputDecoration: InputDecoration(
+                          hintStyle: Theme.of(context).textTheme.labelMedium,
+                          //labelText: S.of(context).phoneNumber,
+                          hintText: S.of(context).phoneNumber,
+                        ),
+
 
                         errorMessage: registerViewModel.isValidPhoneNumber && registerViewModel.isPhoneNumberValid
                             ? null
@@ -99,15 +106,15 @@ class RegisterScreen extends StatelessWidget {
                           Container(
                             width: double.infinity,
                             height: 40,
-                            color: Colors.grey.shade200,
+                            color: Theme.of(context).secondaryHeaderColor,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   registerViewModel.selectedOption == 0 ? S.of(context).purpose   :
                                  ' ${registerViewModel.selectedPurpose}',
-                                  style:  const TextStyle(color: Colors.black,fontSize: 14,),
-                                ),
+                                  style:  Theme.of(context).textTheme.labelMedium),
+
                                 IconButton(
                                   onPressed: () {
                                     Beamer.of(context).beamToNamed('/purposeScreen');
@@ -322,14 +329,22 @@ class RegisterScreen extends StatelessWidget {
                             ? null
                             : " Not Match",
                       ),
-                      CheckBoxComponent(
-                        text: S.of(context).agree,
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CheckBoxComponent(
+                              text: S.of(context).agree,
 
-                        value: registerViewModel.isTermsChecked,
-                        onChanged: (value) {
-                          registerViewModel.updateTermsChecked(value!);
+                              value: registerViewModel.isTermsChecked,
+                              onChanged: (value) {
+                                registerViewModel.updateTermsChecked(value!);
 
-                        },
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: screenSize.height * 0.01),
                       Consumer<RegisterViewModel>(

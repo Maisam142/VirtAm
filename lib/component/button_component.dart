@@ -69,12 +69,12 @@ class ButtonComponentContinue extends StatelessWidget {
           ),
         ).merge(
           ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(customColor ?? Colors.black),
+            backgroundColor: MaterialStateProperty.all(customColor ?? Theme.of(context).focusColor),
           ),
         ),
         child: Text(
           text,
-          style: textStyle ?? TextStyle(color: Colors.white, fontSize: 14,),
+          style: textStyle ?? const TextStyle(color: Colors.white, fontSize: 14,),
         ),
       ),
     );

@@ -17,7 +17,7 @@ class MealsComponent extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 95,
-      color: Colors.white,
+      color: Theme.of(context).secondaryHeaderColor,
       child: Column(
         children: [
           Padding(
@@ -37,15 +37,20 @@ class MealsComponent extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        TextComponent(text: mealTypeText,textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
-                        Text(text!, style: TextStyle(fontSize: 12,color: Colors.grey),),
+                        TextComponent(text: mealTypeText,textStyle: Theme.of(context).textTheme.labelLarge,),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(text!, style: TextStyle(fontSize: 12,color: Theme.of(context).hoverColor),),
+                          ],
+                        ),
                       ],
                     ),
                   ],
                 ),
                 IconButton(onPressed:
                   onPressedIcon,
-                  icon: Icon(Icons.add_box,size: 30,color: Colors.black,),),
+                  icon: Icon(Icons.add_box,size: 30,color:  Theme.of(context).dialogBackgroundColor),),
 
               ],
             ),

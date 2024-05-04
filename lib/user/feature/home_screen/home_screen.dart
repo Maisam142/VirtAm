@@ -186,12 +186,19 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     int currentMinute = DateTime.now().minute;
     int currentSecond = DateTime.now().second;
 
-
+    int hourDifference;
+    if (widget.endHour > widget.startHour) {
+      hourDifference = widget.endHour - widget.startHour;
+    } else if (widget.endHour < widget.startHour) {
+      hourDifference = 24 - widget.startHour + widget.endHour;
+    } else {
+      hourDifference = 0;
+    }
 
     int remainingHours = currentHour> widget.endHour ?   currentHour-widget.endHour : widget.endHour-currentHour;
     int remainingMinutes = 59 - currentMinute;
     int remainingSeconds = 60 - currentSecond;
-    myDuration = Duration(hours: remainingHours-1, minutes: remainingMinutes, seconds: remainingSeconds);
+    myDuration = Duration(hours: hourDifference-1, minutes: remainingMinutes, seconds: remainingSeconds);
   }
 
 
@@ -319,8 +326,8 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     var cal = calories.toString();
     return WillPopScope(
         onWillPop: () async {
-          Beamer.of(context).beamToNamed('/homeNavigationBar');
-          return false;
+          // Beamer.of(context).beamToNamed('/homeNavigationBar');
+          return true;
         },
         child: SafeArea(
           child: Scaffold(
@@ -356,17 +363,19 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
+                     Icon(
                       Icons.location_on_rounded,
                       size: 15,
+                       color: Theme.of(context).focusColor,
                     ),
                     TextComponent(
                       text: S.of(context).locationName,
                       textStyle: const TextStyle(fontSize: 15),
                     ),
-                    const Icon(
+                     Icon(
                       Icons.expand_more_sharp,
-                      size: 15,
+                       color: Theme.of(context).focusColor,
+                       size: 15,
                     ),
                   ],
                 ),
@@ -471,34 +480,31 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                      child: Container(
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextComponent(text: S.of(context).weightHistory),
-                                IconButton(onPressed: (){
-                                  Beamer.of(context).beamToNamed('/weightHistoryScreen');
-                                },
-                                    icon: const Icon(Icons.navigate_next))
-                              ],
-                            ),
-                            SfCartesianChart(
-                                margin: EdgeInsets.zero,
-                                series: <CartesianSeries>[
-                                  SplineSeries<ChartData, int>(
-                                    color: Theme.of(context).primaryColor,
-                                    dataSource: chartData,
-                                    xValueMapper: (ChartData data, _) => data.x,
-                                    yValueMapper: (ChartData data, _) => data.y,
-                                  ),
-                                ]),
-                          ],
-                        ),
+                    Container(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextComponent(text: S.of(context).weightHistory),
+                              IconButton(onPressed: (){
+                                Beamer.of(context).beamToNamed('/weightHistoryScreen');
+                              },
+                                  icon: const Icon(Icons.navigate_next))
+                            ],
+                          ),
+                          SfCartesianChart(
+                              margin: EdgeInsets.zero,
+                              series: <CartesianSeries>[
+                                SplineSeries<ChartData, int>(
+                                  color: Theme.of(context).primaryColor,
+                                  dataSource: chartData,
+                                  xValueMapper: (ChartData data, _) => data.x,
+                                  yValueMapper: (ChartData data, _) => data.y,
+                                ),
+                              ]),
+                        ],
                       ),
                     ),
                   ],
@@ -515,10 +521,13 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
-                          TextLabelBigComponent(text: '$waterCounter ${S.of(context).ml}' ),
-                          TextComponent(text: '${S.of(context).remainingml} $water ${S.of(context).ml} '),
+                          TextLabelBigComponent(text: '$waterCounter ${S.of(context).ml}',
+                            textStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 25),),
+
+                          TextComponent(text: '${S.of(context).remainingml} $water ${S.of(context).ml} ',
+                          textStyle: TextStyle(color: Colors.black),),
                           SizedBox(
                             height: screenSize.height * 0.04,
                           ),

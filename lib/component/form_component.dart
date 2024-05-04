@@ -65,12 +65,12 @@ class FormComponent extends StatelessWidget {
           icon: icon,
           isDense: isDense,
           filled: filled,
-          fillColor: Colors.grey.shade100,
+          fillColor: Theme.of(context).secondaryHeaderColor,
           hintText: hintText,
           errorText: errorText,
 
           counterText: "",
-          hintStyle: TextStyle(fontSize: 15,color: Colors.black),
+          hintStyle: Theme.of(context).textTheme.labelMedium,
           border: InputBorder.none,
 
             focusedBorder: OutlineInputBorder(

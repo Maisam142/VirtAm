@@ -45,21 +45,25 @@ class Option2Screen extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: TextComponent(
-                                  text: S.of(context).nutritionName,
-                                  textStyle:
-                                  Theme.of(context).textTheme.labelMedium,
-                                ),
+                              padding: const EdgeInsets.all(5.0),
+                              child: Row(
+                                //mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextComponent(
+                                    text: S.of(context).nutritionName,
+                                    textStyle:
+                                    Theme.of(context).textTheme.labelMedium,
+                                  ),
+                                ],
                               ),
                             ),
+                            SizedBox(height: 10,),
                             const Expanded(
                               child: Image(
                                 image: AssetImage('images/worker.png'),
@@ -71,12 +75,10 @@ class Option2Screen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: screenSize.height * 0.02 ,),
-                    Container(
-                        color: Colors.white,
-                        child:  FormComponent(
-                          hintText: S.of(context).consultantName,
-                          controller: userDataModel.companyNameController,
-                        ),),
+                    FormComponent(
+                      hintText: S.of(context).consultantName,
+                      controller: userDataModel.companyNameController,
+                    ),
 
                     SizedBox(height: screenSize.height * 0.1 ,),
                     SizedBox(

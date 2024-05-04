@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ThemeApp {
   static const Color primaryColor = Color(0xfffe504f);
-  static  const Color secondColor =  Colors.white12;
+  static const  Color secondColor =  Colors.white54;
+  static  const Color secondColorDark =  Colors.white54;
   static const Color white =  Colors.white;
   static const Color black =  Colors.black;
   static const Color orange =  Colors.orangeAccent;
@@ -34,7 +35,7 @@ class ThemeApp {
   );
   ///-------------------------------------------------
   static const TextStyle darkHeadlineSmall = TextStyle(
-    color: black,
+    color: white,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.normal,
     fontSize: 8.0,
@@ -45,14 +46,14 @@ class ThemeApp {
     color: black,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 14.0,
+    fontSize: 16.0,
   );
   ///-------------------------------------------------
   static const TextStyle darkThemLabelMedium =  TextStyle(
     color: white,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
-    fontSize: 14.0,
+    fontSize: 16.0,
   );
   //-----------------------------------------------------------------------------------------------
   static const TextStyle displayLarge =  TextStyle(
@@ -78,7 +79,7 @@ class ThemeApp {
   );
   ///-------------------------------------------------
   static const TextStyle darkThemeTitleSmall = TextStyle(
-    color: black,
+    color: white,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
     fontSize: 14.0,
@@ -94,7 +95,7 @@ class ThemeApp {
   );
   ///-------------------------------------------------
   static const TextStyle darkThemeLabelLarge= TextStyle(
-    color: black,
+    color: white,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
     fontSize: 27.0,
@@ -129,7 +130,7 @@ class ThemeApp {
   ///-------------------------------------------------
 
   static const TextStyle darkThemeBodyMedium = TextStyle(
-    color: black,
+    color: white,
     fontFamily: 'Almarai',
     fontWeight: FontWeight.bold,
     fontSize: 16.0,
@@ -234,7 +235,7 @@ class ThemeApp {
   unselectedIconTheme: IconThemeData(color: unselectedColor, size: 25),
   unselectedItemColor: unselectedColor,
   selectedItemColor: selectedColor,
-  backgroundColor: secondColor,
+  backgroundColor: white,
   );
   static  InputDecorationTheme inputDecorationTheme =  InputDecorationTheme(
   contentPadding:  const EdgeInsets.all(10),
@@ -243,15 +244,19 @@ class ThemeApp {
   borderRadius: BorderRadius.circular(10),
   borderSide: const BorderSide(
   width: 3,
-  color: Color(0xffBE543D),
+  color: white,
   style: BorderStyle.solid,
   ),
   ),
   );
 
   static final ThemeData light = ThemeData.light().copyWith(
-    focusColor: backGroundColor2 ,
+    focusColor: black ,
     primaryColor: primaryColor,
+    secondaryHeaderColor: white,
+    hoverColor: unselectedColor,
+    dialogBackgroundColor: black ,
+
     canvasColor: backGroundColor,
     primaryColorDark: secondColor.withOpacity(0.4),
     textTheme: const TextTheme(
@@ -281,7 +286,10 @@ class ThemeApp {
   static final ThemeData dark = ThemeData.light().copyWith(
     primaryColor: primaryColor,
     canvasColor: backGroundColor,
-    primaryColorDark: secondColor,
+    focusColor: backGroundColor,
+    hoverColor: secondColor,
+    dialogBackgroundColor: secondColorDark ,
+    secondaryHeaderColor: secondColorDark,
     textTheme: const TextTheme(
       titleSmall: darkThemeTitleSmall,
       titleMedium: darkThemeTitleMedium,
@@ -303,7 +311,7 @@ class ThemeApp {
       //backgroundColor: secondColor,
     ),
     bottomNavigationBarTheme: bottomNavigationBarTheme.copyWith(
-      backgroundColor: Colors.black26,
+      backgroundColor: secondColorDark.withOpacity(0.4),
 
     ),
 

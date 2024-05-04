@@ -49,7 +49,7 @@ class UserDataScreenStep10 extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: Container(
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -66,7 +66,7 @@ class UserDataScreenStep10 extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Image(
-                                  image: AssetImage('images/sleep.png'),
+                                  image: AssetImage('images/sleeping.png'),
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -84,7 +84,7 @@ class UserDataScreenStep10 extends StatelessWidget {
                             MediaQuery.of(context).viewInsets.bottom ,
                             top: MediaQuery.of(context).viewInsets.bottom ,
                           ),
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           child: Consumer<UserDataStep9ViewModel>(
                             builder: (context, provider, _) => CupertinoDatePicker(
                               initialDateTime: provider.selectedDate,

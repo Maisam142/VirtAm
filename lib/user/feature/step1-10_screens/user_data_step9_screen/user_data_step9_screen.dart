@@ -42,13 +42,15 @@ class UserDataScreenStep9 extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   height: screenSize.height * 0.8,
+
                   child: Column(
+
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Expanded(
                         flex: 3,
                         child: Container(
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -83,9 +85,10 @@ class UserDataScreenStep9 extends StatelessWidget {
                             MediaQuery.of(context).viewInsets.bottom ,
                             top: MediaQuery.of(context).viewInsets.bottom ,
                           ),
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           child: Consumer<UserDataStep9ViewModel>(
                             builder: (context, provider, _) => CupertinoDatePicker(
+
                               initialDateTime: provider.selectedDate,
                               mode: CupertinoDatePickerMode.time,
                               use24hFormat: false,

@@ -18,7 +18,8 @@ class HomeComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).secondaryHeaderColor,
+      height: 100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

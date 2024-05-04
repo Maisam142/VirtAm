@@ -38,11 +38,11 @@ class UserDataScreenStep7 extends StatelessWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  height: 500, // Fixed height value
+                  height: 500,
                   child: Column(
                     children: [
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         child: Column(
                           children: [
                             Padding(
@@ -57,7 +57,9 @@ class UserDataScreenStep7 extends StatelessWidget {
                             ),
                             Container(
                               width: double.infinity,
-                              height: 300, // Fixed height value
+                              color: Theme.of(context).secondaryHeaderColor,
+
+                              height: 300,
                               child: Image(image: AssetImage('images/worker.png')),
                             ),
                             RadioListTile(
@@ -81,8 +83,8 @@ class UserDataScreenStep7 extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Container(
-                        color: Colors.white,
-                        height: 70, // Fixed height value
+                        color: Theme.of(context).secondaryHeaderColor,
+                        height: 70,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
                           child: RadioListTile(

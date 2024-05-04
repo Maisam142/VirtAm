@@ -11,7 +11,7 @@ class FieldComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color:  Theme.of(context).secondaryHeaderColor,
       width: double.infinity,
       height: 70,
       child: Padding(
@@ -27,7 +27,8 @@ class FieldComponent extends StatelessWidget {
             ),
             IconButton(
                 onPressed: onPressed,
-                icon: Icon(Icons.navigate_next_sharp),),
+                icon: Icon(Icons.navigate_next_sharp,       color:  Theme.of(context).focusColor,
+                ),),
           ],
         ),
       ),

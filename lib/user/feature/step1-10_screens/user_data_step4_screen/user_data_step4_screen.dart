@@ -44,7 +44,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 100,
                         child: Column(
                           children: [
@@ -79,7 +79,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 70,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
@@ -103,7 +103,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 70,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
@@ -127,7 +127,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 80,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
@@ -159,7 +159,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 100,
                         child: Column(
                           children: [
@@ -194,7 +194,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 70,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
@@ -218,7 +218,7 @@ class UserDataScreenStep4 extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 70,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),

@@ -93,10 +93,11 @@ class DesignComponent2 extends StatelessWidget{
                   color: Colors.white,)),
           ),
 
-          Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding:  const EdgeInsets.all(15.0),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:  const EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -105,7 +106,9 @@ class DesignComponent2 extends StatelessWidget{
                     TextComponent(text: smallText, textStyle: smalltextStyle ?? Theme.of(context).textTheme.labelMedium,),
                   ],
                 ),
-              )),
+              ),
+            ],
+          ),
         ],
       ),
     );

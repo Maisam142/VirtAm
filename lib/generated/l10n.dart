@@ -117,20 +117,20 @@ class S {
     );
   }
 
-  /// `  Full Name  :`
+  /// `  Full Name  `
   String get fullName {
     return Intl.message(
-      '  Full Name  :',
+      '  Full Name  ',
       name: 'fullName',
       desc: '',
       args: [],
     );
   }
 
-  /// `  Email Address  :`
+  /// ` Email Address  `
   String get email {
     return Intl.message(
-      '  Email Address  :',
+      ' Email Address  ',
       name: 'email',
       desc: '',
       args: [],

@@ -92,7 +92,7 @@ class FastScreen extends StatelessWidget {
                         Expanded(
                           child: Container(
                             height: 80,
-                            color: Colors.white,
+                            color:  Theme.of(context).secondaryHeaderColor,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -112,7 +112,7 @@ class FastScreen extends StatelessWidget {
                         Expanded(
                           child: Container(
                             height: 80,
-                            color: Colors.white,
+                            color:  Theme.of(context).secondaryHeaderColor,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

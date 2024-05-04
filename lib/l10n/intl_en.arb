@@ -13,8 +13,8 @@
 
 
 
-  "fullName": "  Full Name  :",
-  "email": "  Email Address  :",
+  "fullName": "  Full Name  ",
+  "email": " Email Address  ",
   "existEmail": "Email Already Exists",
   "errorExistEmail": "The email address you provided is already registered. Please use a different email address.",
   "phoneNumber": "Phone Number",

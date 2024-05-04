@@ -44,7 +44,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 100,
                         child: Column(
                           children: [
@@ -83,7 +83,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                       ),
                       SizedBox(height: screenSize.height * 0.01,),
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: screenSize.height * 0.08,
                         child: RadioListTile(
                           title: Row(
@@ -110,7 +110,7 @@ class UserDataScreenStep2 extends StatelessWidget {
                       ),
                       SizedBox(height: screenSize.height * 0.01,),
                       Container(
-                        color: Colors.white,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: screenSize.height * 0.08,
                         child: RadioListTile(
                           title: Row(

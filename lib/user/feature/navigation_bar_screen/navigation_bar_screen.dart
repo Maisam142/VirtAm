@@ -54,7 +54,7 @@ void initState() {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+       // backgroundColor: Colors.white,
           selectedIconTheme: IconThemeData(
             color: Theme.of(context).primaryColor,
                 size: 30,
