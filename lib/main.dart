@@ -174,7 +174,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) =>  const SplashScreen(),
+        '/': (context, state, data) => const  AddExerciseScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/forgetPasswordScreen': (context, state, data) => const ForgetPasswordScreen(email: '',),
@@ -214,11 +214,11 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/homeAdminScreen': (context, state, data) =>  const HomeAdminScreen(),
         '/addDailyMealsScreen': (context, state, data) =>  const AddDailyMealsScreen(),
         '/membersScreen': (context, state, data) =>  const MembersScreen(),
-        '/adminUserDetailsScreen': (context, state, data) =>  AdminUserDetailsScreen(memberData: {},),
+        '/userDetailsScreen': (context, state, data) =>   UserDetailsScreen(memberData: {},),
         '/adminMembersScreen': (context, state, data) =>  const AdminMembersScreen(),
+        '/adminUserDetailsScreen': (context, state, data) =>  AdminUserDetailsScreen(memberData: {},),
         '/sendNotificationScreen': (context, state, data) =>  const SendNotificationScreen(),
         '/addExerciseScreen': (context, state, data) =>  const AddExerciseScreen(),
-        '/userDetailsScreen': (context, state, data) =>   UserDetailsScreen(memberData: {},),
         //***************************************************************************************************************
         '/homeMasterAdminScreen': (context, state, data) =>  const HomeMasterAdminScreen(),
         '/membersToMasterAdminsScreen': (context, state, data) =>  const MembersToMasterAdminsScreen(),

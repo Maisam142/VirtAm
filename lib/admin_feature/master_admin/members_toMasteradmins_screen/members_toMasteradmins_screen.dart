@@ -58,16 +58,18 @@ class MembersToMasterAdminsScreen extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(2.0),
                                     child: Container(
-                                      color: Colors.white,
+                                      color: Theme.of(context).secondaryHeaderColor,
                                       height: 80,
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
+                                            //crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
+                                              SizedBox(width: 5,),
                                               CircleAvatar(
-                                                radius: 30,
-                                                backgroundColor: Colors.white,
+                                                radius: 21,
+                                                backgroundColor: Theme.of(context).hoverColor,
                                                 child: memberData['imageLink'] != null
                                                     ? CircleAvatar(
                                                   backgroundImage: NetworkImage(memberData['imageLink']),
@@ -80,11 +82,14 @@ class MembersToMasterAdminsScreen extends StatelessWidget {
                                                   radius: 20,
                                                 ),
                                               ),
+                                              SizedBox(width: 10,),
                                               Column(
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   TextComponent(text: memberData['name']),
-                                                  const TextComponent(text: '2 years subscription',textStyle: TextStyle(fontSize: 12,color: Colors.grey),),
+                                                  TextComponent(text: '2 years subscription',
+                                                    textStyle: TextStyle(fontSize: 12,      color: Theme.of(context).hoverColor,
+                                                    ),),
 
                                                 ],
                                               ),

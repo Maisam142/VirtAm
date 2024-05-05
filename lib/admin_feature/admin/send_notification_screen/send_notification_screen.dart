@@ -19,7 +19,7 @@ class SendNotificationScreen extends StatelessWidget {
         },
         child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          // backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -35,7 +35,7 @@ class SendNotificationScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TextComponent(text: S.of(context).centerSendNotification,
-                          textStyle: TextStyle(fontSize: 20
+                          textStyle: const TextStyle(fontSize: 20
                           ),),
                         ],
                       ),
@@ -54,7 +54,7 @@ class SendNotificationScreen extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        color: Colors.grey.shade400,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 200,
                         width: double.infinity,
                       ),

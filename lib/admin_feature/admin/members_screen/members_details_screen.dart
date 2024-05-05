@@ -69,48 +69,48 @@ class UserDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    color: Colors.grey.shade200,
+                    color: Theme.of(context).secondaryHeaderColor,
                     width: double.infinity,
                     height: 50,
                     child: Row(
                       children: [
-                        Text(S.of(context).fullName,style: TextStyle(color: Colors.grey),),
+                        Text(S.of(context).fullName,style: TextStyle(color: Theme.of(context).hoverColor),),
                         TextComponent(text: memberData['name'] ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 15,),
                   Container(
-                    color: Colors.grey.shade200,
+                    color: Theme.of(context).secondaryHeaderColor,
                     width: double.infinity,
                     height: 50,
                     child: Row(
                       children: [
-                        Text(S.of(context).email,style: TextStyle(color: Colors.grey),),
+                        Text(S.of(context).email,style: TextStyle(color: Theme.of(context).hoverColor),),
                         TextComponent(text: memberData['email'] ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 15,),
                   Container(
-                    color: Colors.grey.shade200,
+                    color: Theme.of(context).secondaryHeaderColor,
                     width: double.infinity,
                     height: 50,
                     child: Row(
                       children: [
-                        const Text('  00962  ',style: TextStyle(color: Colors.grey),),
+                        Text(S.of(context).phoneNumber,style: TextStyle(color: Theme.of(context).hoverColor),),
                         TextComponent(text: memberData['number'] ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 15,),
                   Container(
-                    color: Colors.grey.shade200,
+                    color: Theme.of(context).secondaryHeaderColor,
                     width: double.infinity,
                     height: 50,
                     child: Row(
                       children: [
-                        Text(S.of(context).adminName,style: TextStyle(color: Colors.grey),),
+                        Text(S.of(context).adminName,style: TextStyle(color: Theme.of(context).hoverColor),),
                         TextComponent(text: memberData['name'] ),
                       ],
                     ),
@@ -120,12 +120,12 @@ class UserDetailsScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Container(
-                          color: Colors.grey.shade200,
+                          color: Theme.of(context).secondaryHeaderColor,
                           width: double.infinity,
                           height: 50,
                           child: Row(
                             children: [
-                              Text(S.of(context).weightBefore,style: TextStyle(color: Colors.grey),),
+                              Text(S.of(context).weightBefore,style: TextStyle(color: Theme.of(context).hoverColor),),
                               TextComponent(text: '${memberData['weight']}' ?? '0' ),
                             ],
                           ),
@@ -134,12 +134,12 @@ class UserDetailsScreen extends StatelessWidget {
                       const SizedBox(width: 10,),
                       Expanded(
                         child: Container(
-                          color: Colors.grey.shade200,
+                          color: Theme.of(context).secondaryHeaderColor,
                           width: double.infinity,
                           height: 50,
                           child: Row(
                             children: [
-                              Text(S.of(context).weightAfter,style: TextStyle(color: Colors.grey),),
+                              Text(S.of(context).weightAfter,style: TextStyle(color: Theme.of(context).hoverColor),),
                               TextComponent(text: '${memberData['weight']}' ??'0' ),
                             ],
                           ),
@@ -150,7 +150,7 @@ class UserDetailsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 15,),
                   Container(
-                    color: Colors.white,
+                    color: Theme.of(context).secondaryHeaderColor,
                     child: SfCartesianChart(
                         margin: EdgeInsets.zero,
                         series: <CartesianSeries>[

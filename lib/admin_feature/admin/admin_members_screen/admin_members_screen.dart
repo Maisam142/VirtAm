@@ -33,7 +33,7 @@ class AdminMembersScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance.collection('Admin').snapshots(),
+                        stream: FirebaseFirestore.instance.collection('User').snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
                             return const Center(child: CircularProgressIndicator());
@@ -58,16 +58,17 @@ class AdminMembersScreen extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(2.0),
                                     child: Container(
-                                      color: Colors.white,
+                                      color: Theme.of(context).secondaryHeaderColor,
                                       height: 80,
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
+                                              SizedBox(width: 5,),
                                               CircleAvatar(
-                                                radius: 30,
-                                                backgroundColor: Colors.white,
+                                                radius: 21,
+                                                backgroundColor: Theme.of(context).secondaryHeaderColor,
                                                 child: memberData['imageUrl'] != null
                                                     ? CircleAvatar(
                                                   backgroundImage: NetworkImage(memberData['imageUrl']),
@@ -80,11 +81,12 @@ class AdminMembersScreen extends StatelessWidget {
                                                   radius: 20,
                                                 ),
                                               ),
+                                              SizedBox(width: 10,),
                                               Column(
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   TextComponent(text: memberData['name']),
-                                                  TextComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 12,color: Colors.grey),),
+                                                  TextComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 12,color: Theme.of(context).hoverColor),),
 
                                                 ],
                                               ),
@@ -92,7 +94,7 @@ class AdminMembersScreen extends StatelessWidget {
                                           ),
                                           IconButton(
                                             onPressed: (){},
-                                            icon: const Icon(Icons.navigate_next_rounded,color: Colors.grey,),
+                                            icon: Icon(Icons.navigate_next_rounded,color: Theme.of(context).hoverColor,),
                                           )
                                         ],
                                       ),

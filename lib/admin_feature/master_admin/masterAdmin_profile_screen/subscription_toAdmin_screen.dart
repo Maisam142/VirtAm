@@ -23,9 +23,10 @@ class SubscriptionToAdminScreen extends StatelessWidget {
           Beamer.of(context).beamToNamed('/settingMenuScreen');
           return false;
         },
-        child:SafeArea(child: Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
+        child:SafeArea(
+            child: Scaffold(
+              body: SingleChildScrollView(
+                child: Column(
               children: [
                 BackComponent(
                   text: '',
@@ -63,7 +64,7 @@ class SubscriptionToAdminScreen extends StatelessWidget {
                 const SizedBox(height: 20,),
 
                 Container(
-                  color: Colors.white,
+                  color: Theme.of(context).secondaryHeaderColor,
                   height: screenSize.height * 0.1,
                   child: RadioListTile(
                     title: Row(
@@ -79,7 +80,7 @@ class SubscriptionToAdminScreen extends StatelessWidget {
                                         fontSize: 25,fontWeight: FontWeight.bold),),
                                 ),
                                 TextComponent(text: S.of(context).free,
-                                  textStyle: TextStyle(color: Colors.grey,fontSize: 10),),
+                                  textStyle: TextStyle(color: Theme.of(context).hoverColor,fontSize: 10),),
                               ],
                             )
                         )],
@@ -98,7 +99,7 @@ class SubscriptionToAdminScreen extends StatelessWidget {
                 ),
                 SizedBox(height: screenSize.height * 0.01,),
                 Container(
-                  color: Colors.white,
+                  color: Theme.of(context).secondaryHeaderColor,
                   height: screenSize.height * 0.1,
                   child: RadioListTile(
                     title: Row(
@@ -114,7 +115,7 @@ class SubscriptionToAdminScreen extends StatelessWidget {
                                         fontSize: 25,fontWeight: FontWeight.bold),),
                                 ),
                                 TextComponent(text: S.of(context).free,
-                                  textStyle: const TextStyle(color: Colors.grey,fontSize: 10),),
+                                  textStyle:  TextStyle(color: Theme.of(context).hoverColor,fontSize: 10),),
                               ],
                             )
                         )],

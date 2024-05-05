@@ -56,12 +56,12 @@ class HomeMasterAdminScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 100.0,left: 25.0,right: 25.0),
                         child: Container(
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           height: 350,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                             child: Container(
-                              color: Colors.white,
+                              color: Theme.of(context).secondaryHeaderColor,
                               child: Column(
                                 children: [
                                   Row(
@@ -100,7 +100,7 @@ class HomeMasterAdminScreen extends StatelessWidget {
                         Container(
                           width: double.infinity ,
                           height: 75,
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -116,7 +116,7 @@ class HomeMasterAdminScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 20,),
                         Container(
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           height: 200,
                           width: double.infinity,
                           child: Column(

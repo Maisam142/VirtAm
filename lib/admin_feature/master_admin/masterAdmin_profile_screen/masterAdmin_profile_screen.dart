@@ -36,11 +36,11 @@ class MasterAdminProfileScreen extends StatelessWidget {
                       Beamer.of(context).beamToNamed('/subscriptionToAdminScreen');
                     }, child:  TextComponent(text: S.of(context).editSubscription,
                       textStyle: Theme.of(context).textTheme.labelSmall ,),),),
-                const Align(
+                Align(
                   alignment: Alignment.bottomCenter,
                   child: CircleAvatar(
                     radius: 90,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).secondaryHeaderColor,
                     child:  CircleAvatar(
                       backgroundImage: NetworkImage(
                         'https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png',
@@ -58,25 +58,29 @@ class MasterAdminProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  color: Colors.grey.shade200,
+                  color: Theme.of(context).secondaryHeaderColor,
                   width: double.infinity,
                   height: 50,
                   child: Row(
                     children: [
-                      Text(S.of(context).centerName,style: TextStyle(color: Colors.grey),),
-                      TextComponent(text: 'name' ),
+                      Text(S.of(context).centerName,
+                        style: TextStyle(color: Theme.of(context).hoverColor,
+                      ),),
+                      const TextComponent(text: 'name' ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 15,),
                 Container(
-                  color: Colors.grey.shade200,
+                  color: Theme.of(context).secondaryHeaderColor,
                   width: double.infinity,
                   height: 100,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(S.of(context).describe, style: TextStyle(color: Colors.grey)),
+                      Text(S.of(context).describe,
+                          style: TextStyle(color: Theme.of(context).hoverColor,
+                      )),
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 8),
@@ -94,35 +98,41 @@ class MasterAdminProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 15,),
                 Container(
-                  color: Colors.grey.shade200,
+                  color: Theme.of(context).secondaryHeaderColor,
                   width: double.infinity,
                   height: 50,
                   child: Row(
                     children: [
-                      const Text('  Subscription Price:  ',style: TextStyle(color: Colors.grey),),
+                      Text('  Subscription Price:  ',
+                        style: TextStyle(color: Theme.of(context).hoverColor,
+                      ),),
                       TextComponent(text: '99 JOD/Month' ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 15,),
                 Container(
-                  color: Colors.grey.shade200,
+                  color: Theme.of(context).secondaryHeaderColor,
                   width: double.infinity,
                   height: 50,
                   child: Row(
                     children: [
-                      const Text('  00962  ',style: TextStyle(color: Colors.grey),),
+                      Text(S.of(context).phoneNumber,
+                    style: TextStyle(color: Theme.of(context).hoverColor,
+        ),),
                       TextComponent(text: 'number' ),
                     ],
                   ),
                 ),
                 Container(
-                  color: Colors.grey.shade200,
+                  color: Theme.of(context).secondaryHeaderColor,
                   width: double.infinity,
                   height: 50,
                   child: Row(
                     children: [
-                      const Text('  Location Link:  ',style: TextStyle(color: Colors.grey),),
+                      Text('  Location Link:  ',
+                        style: TextStyle(color: Theme.of(context).hoverColor,
+                      ),),
                       TextComponent(text: 'adfkcklfdjslkfhahflahs;l' ),
                     ],
                   ),
@@ -130,14 +140,14 @@ class MasterAdminProfileScreen extends StatelessWidget {
                 const SizedBox(height: 15,),
 
                 Container(
-                  color: Colors.grey.shade300,
+                  color: Theme.of(context).secondaryHeaderColor,
                   height: 200,
                   width: double.infinity,
                 ),
                 const SizedBox(height: 15,),
 
                 Container(
-                  color: Colors.grey.shade300,
+                  color: Theme.of(context).secondaryHeaderColor,
                   height: 200,
                   width: double.infinity,
                 ),

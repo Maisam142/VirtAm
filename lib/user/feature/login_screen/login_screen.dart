@@ -54,7 +54,7 @@ class LoginForm extends StatelessWidget {
             children: [
               DesignComponent(
                 text: S.of(context).signWith,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

@@ -17,7 +17,7 @@ class AddAdminScreen extends StatelessWidget {
         },
         child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          //backgroundColor: Colors.white,
         body: SingleChildScrollView(
         child: Column(
         children: [
@@ -40,18 +40,18 @@ class AddAdminScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        color: Colors.grey.shade200,
+                        color: Theme.of(context).secondaryHeaderColor,
                         width: double.infinity,
                         height: 50,
                         child: Row(
                           children: [
-                            Text(S.of(context).adminName,style: TextStyle(color: Colors.grey),),
+                            Text(S.of(context).adminName,style: TextStyle(color:Theme.of(context).hoverColor),),
                           ],
                         ),
                       ),
                       SizedBox(height: 20,),
                       Container(
-                        color: Colors.grey.shade300,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 200,
                         width: double.infinity,
                       ),

@@ -110,14 +110,14 @@ class ProfileScreenContent extends StatelessWidget {
                         height: screenSize.height * 0.02,
                       ),
                       FormComponent(
-                        hintText: S.of(context).fullName +   '  $originalName',
+                        hintText: '${S.of(context).fullName}  $originalName',
                         controller: registerViewModel.nameController,
                       ),
                       SizedBox(
                         height: screenSize.height * 0.02,
                       ),
                       FormComponent(
-                        hintText: S.of(context).email  +  '  $originalEmail',
+                        hintText: '${S.of(context).email}  $originalEmail',
                         controller: registerViewModel.emailController,
                         // Disable email field
                         enabled: false,
@@ -139,13 +139,13 @@ class ProfileScreenContent extends StatelessWidget {
                               isoCode:
                               registerViewModel.selectedCountry),
                           textFieldController: TextEditingController(),
-                          hintText: '  ${originalNumber}',
+                          hintText: '  $originalNumber',
                           // Disable phone number field
                           isEnabled: false,
                         ),
                       ),
                       FormComponent(
-                        hintText: S.of(context).password  + '. . . . . . . . . ',
+                        hintText: '${S.of(context).password}. . . . . . . . . ',
                         obscureText: true,
                         controller: registerViewModel.passwordController,
                       ),

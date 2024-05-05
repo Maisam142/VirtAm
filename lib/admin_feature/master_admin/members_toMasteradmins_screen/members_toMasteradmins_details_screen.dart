@@ -48,7 +48,7 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: CircleAvatar(
                           radius: 90,
-                          backgroundColor: Colors.white,
+                          backgroundColor:Theme.of(context).hoverColor,
                           child: memberData['imageLink'] != null
                               ? CircleAvatar(
                                   backgroundImage:
@@ -71,14 +71,15 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        color: Colors.grey.shade200,
+                        color:Theme.of(context).secondaryHeaderColor,
                         width: double.infinity,
                         height: 50,
                         child: Row(
                           children: [
                             Text(
                               S.of(context).fullName,
-                              style: TextStyle(color: Colors.grey),
+                              style: TextStyle(color: Theme.of(context).hoverColor,
+                              ),
                             ),
                             TextComponent(text: memberData['name']),
                           ],
@@ -88,14 +89,15 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                         height: 15,
                       ),
                       Container(
-                        color: Colors.grey.shade200,
+                        color:Theme.of(context).secondaryHeaderColor,
                         width: double.infinity,
                         height: 50,
                         child: Row(
                           children: [
                             Text(
                               S.of(context).email,
-                              style: TextStyle(color: Colors.grey),
+                              style: TextStyle(color: Theme.of(context).hoverColor,
+                              ),
                             ),
                             TextComponent(text: memberData['email']),
                           ],
@@ -105,14 +107,15 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                         height: 15,
                       ),
                       Container(
-                        color: Colors.grey.shade200,
+                        color:Theme.of(context).secondaryHeaderColor,
                         width: double.infinity,
                         height: 50,
                         child: Row(
                           children: [
-                            const Text(
-                              '  00962  ',
-                              style: TextStyle(color: Colors.grey),
+                            Text(
+                              S.of(context).phoneNumber,
+                              style: TextStyle(color: Theme.of(context).hoverColor,
+                              ),
                             ),
                             TextComponent(text: memberData['number']),
                           ],
@@ -122,14 +125,15 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                         height: 15,
                       ),
                       Container(
-                        color: Colors.grey.shade200,
+                        color:Theme.of(context).secondaryHeaderColor,
                         width: double.infinity,
                         height: 50,
                         child: Row(
                           children: [
                             Text(
                               S.of(context).adminName,
-                              style: TextStyle(color: Colors.grey),
+                              style: TextStyle(color: Theme.of(context).hoverColor,
+                              ),
                             ),
                             TextComponent(text: memberData['name']),
                           ],
@@ -142,14 +146,15 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Container(
-                              color: Colors.grey.shade200,
+                              color:Theme.of(context).secondaryHeaderColor,
                               width: double.infinity,
                               height: 50,
                               child: Row(
                                 children: [
                                   Text(
                                     S.of(context).weightBefore,
-                                    style: TextStyle(color: Colors.grey),
+                                    style: TextStyle(color: Theme.of(context).hoverColor,
+                                    ),
                                   ),
                                   TextComponent(
                                       text: '${memberData['weight']}' ?? '0'),
@@ -162,14 +167,15 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                           ),
                           Expanded(
                             child: Container(
-                              color: Colors.grey.shade200,
+                              color:Theme.of(context).secondaryHeaderColor,
                               width: double.infinity,
                               height: 50,
                               child: Row(
                                 children: [
                                   Text(
                                     S.of(context).weightAfter,
-                                    style: TextStyle(color: Colors.grey),
+                                    style: TextStyle(color: Theme.of(context).hoverColor,
+                                    ),
                                   ),
                                   TextComponent(
                                       text: '${memberData['weight']}' ?? '0'),
@@ -183,7 +189,7 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                         height: 15,
                       ),
                       Container(
-                        color: Colors.white,
+                        //color:Theme.of(context).secondaryHeaderColor,
                         child: SfCartesianChart(
                             margin: EdgeInsets.zero,
                             series: <CartesianSeries>[
@@ -232,6 +238,7 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                                                //    .delete();
                                             FirebaseAuth auth = FirebaseAuth.instance;
                                             await auth.currentUser!.delete();
+                                            print('----------${auth.currentUser} ------------------');
 
                                             Beamer.of(context).beamBack();
 

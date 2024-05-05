@@ -58,7 +58,7 @@ class AdminMembersToMasterScreen extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(2.0),
                                     child: Container(
-                                      color: Colors.white,
+                                      color: Theme.of(context).secondaryHeaderColor,
                                       height: 80,
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +84,7 @@ class AdminMembersToMasterScreen extends StatelessWidget {
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   TextComponent(text: memberData['name']),
-                                                  TextComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 12,color: Colors.grey),),
+                                                  TextComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 12,color:Theme.of(context).hoverColor),),
 
                                                 ],
                                               ),

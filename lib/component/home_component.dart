@@ -125,7 +125,7 @@ class HomeAdminComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).secondaryHeaderColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -143,7 +143,7 @@ class HomeAdminComponent extends StatelessWidget {
                   onPressed,
                   icon: Icon(
                     Icons.navigate_next,
-                    color: Colors.grey,
+                    color: Theme.of(context).hoverColor,
                     size: 20,
                   ), ),
             ],

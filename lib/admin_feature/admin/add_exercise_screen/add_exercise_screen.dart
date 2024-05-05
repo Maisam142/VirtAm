@@ -19,7 +19,7 @@ class AddExerciseScreen extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          //backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -35,8 +35,7 @@ class AddExerciseScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TextComponent(text: S.of(context).sendExercise,
-                            textStyle: const TextStyle(fontSize: 20
-                            ),),
+                            ),
                         ],
                       ),
                       const Image(image: AssetImage('images/add_exercise.png'),),
@@ -54,7 +53,7 @@ class AddExerciseScreen extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        color: Colors.grey.shade400,
+                        color: Theme.of(context).secondaryHeaderColor,
                         height: 200,
                         width: double.infinity,
                       ),

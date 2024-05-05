@@ -157,20 +157,20 @@ class S {
     );
   }
 
-  /// `Phone Number`
+  /// ` Phone Number  `
   String get phoneNumber {
     return Intl.message(
-      'Phone Number',
+      ' Phone Number  ',
       name: 'phoneNumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password`
+  /// ` Password`
   String get password {
     return Intl.message(
-      'Password',
+      ' Password',
       name: 'password',
       desc: '',
       args: [],
@@ -1727,10 +1727,10 @@ class S {
     );
   }
 
-  /// `Amin Name`
+  /// ` Admin Name  `
   String get adminName {
     return Intl.message(
-      'Amin Name',
+      ' Admin Name  ',
       name: 'adminName',
       desc: '',
       args: [],
