@@ -187,10 +187,10 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     int currentSecond = DateTime.now().second;
 
     int hourDifference;
-    if (widget.endHour > widget.startHour) {
-      hourDifference = widget.endHour - widget.startHour;
-    } else if (widget.endHour < widget.startHour) {
-      hourDifference = 24 - widget.startHour + widget.endHour;
+    if (widget.endHour > currentHour) {
+      hourDifference = widget.endHour - currentHour;
+    } else if (widget.endHour < currentHour) {
+      hourDifference = 24 - currentHour + widget.endHour;
     } else {
       hourDifference = 0;
     }
