@@ -25,6 +25,9 @@ class SendNotificationScreen extends StatelessWidget {
               children: [
                 BackComponent(
                   text: S.of(context).sendNotification,
+                  onPressed: (){
+                    Beamer.of(context).beamBack();
+                  },
                 ),
 
                 Padding(

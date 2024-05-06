@@ -25,6 +25,9 @@ class AddExerciseScreen extends StatelessWidget {
               children: [
                 BackComponent(
                   text: S.of(context).addExercise,
+                  onPressed: (){
+                    Beamer.of(context).beamBack();
+                  },
                 ),
 
                 Padding(

@@ -42,15 +42,17 @@ class HomeAdminScreen extends StatelessWidget {
                       const DesignComponent(),
                       const Padding(
                         padding: EdgeInsets.all(15.0),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png',
+                        child: Row(
+                          //crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png',
+                              ),
+                              radius: 20,
                             ),
-                            radius: 20,
-                          ),
-
+                          ],
                         ),
                       ),
 
@@ -105,7 +107,7 @@ class HomeAdminScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TextLabelComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                              TextLabelComponent(text: S.of(context).admins,textStyle: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                               ViewAllComponent(
                                 onPressed: (){
                                   Beamer.of(context).beamToNamed('/adminMembersScreen');
@@ -131,11 +133,13 @@ class HomeAdminScreen extends StatelessWidget {
                                   child: HomeAdminComponent(
                                     icon: 'images/notification.png',
                                     valueText: S.of(context).sendNotification,
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      Beamer.of(context).beamToNamed('/sendNotificationScreen');
+                                    },
 
                                   )),
                               SizedBox(
-                                width: screenSize.width * 0.01,
+                                width: screenSize.width * 0.03,
                               ),
                               Expanded(
                                   child: HomeAdminComponent(
@@ -147,14 +151,14 @@ class HomeAdminScreen extends StatelessWidget {
 
                                   )),
                               SizedBox(
-                                width: screenSize.width * 0.01,
+                                width: screenSize.width * 0.03,
                               ),
                               Expanded(
                                   child: HomeAdminComponent(
                                     icon: 'images/exer.png',
                                     valueText: S.of(context).addExercise,
                                     onPressed: (){
-
+                                      Beamer.of(context).beamToNamed('/addExerciseScreen');
                                     },
 
                                   )),

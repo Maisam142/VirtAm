@@ -33,10 +33,12 @@ class AdminMembersScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance.collection('User').snapshots(),
+                        stream: FirebaseFirestore.instance.collection('Admin').snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
-                            return const Center(child: CircularProgressIndicator());
+                            return  Center(child: Center(child: CircularProgressIndicator(
+                              color: Theme.of(context).primaryColor,
+                            )));
                           } else if (snapshot.hasError) {
                             return Text('Error: ${snapshot.error}');
                           } else {

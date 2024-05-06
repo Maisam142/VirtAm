@@ -42,15 +42,17 @@ class HomeMasterAdminScreen extends StatelessWidget {
                       const DesignComponent(),
                       const Padding(
                         padding: EdgeInsets.all(15.0),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png',
+                        child: Row(
+                          //crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                'https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png',
+                              ),
+                              radius: 20,
                             ),
-                            radius: 20,
-                          ),
-
+                          ],
                         ),
                       ),
                       Padding(
