@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "last6Months" : MessageLookupByLibrary.simpleMessage("آخر 6 أشهر"),
     "lessThan90Days" : MessageLookupByLibrary.simpleMessage("أقل من 90 يومًا"),
     "locationName" : MessageLookupByLibrary.simpleMessage("  اسم الموقع  "),
+    "logOut" : MessageLookupByLibrary.simpleMessage("  تسجيل خروج"),
     "login" : MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "lorem" : MessageLookupByLibrary.simpleMessage("لوريم"),
     "mealName" : MessageLookupByLibrary.simpleMessage("اسم الوجبة"),

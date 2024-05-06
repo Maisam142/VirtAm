@@ -76,7 +76,7 @@ class SettingMenuScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          TextComponent(text: '  Logout'),
+                          TextComponent(text: S.of(context).logOut),
                         ],
                       ),
                       IconButton(
@@ -88,7 +88,7 @@ class SettingMenuScreen extends StatelessWidget {
                           registerViewModel.logOut();
                           Beamer.of(context).beamToNamed('/welcomeScreen');
                         },
-                        icon: Icon(Icons.login),
+                        icon: const Icon(Icons.login),
                       ),
                     ],
                   ),

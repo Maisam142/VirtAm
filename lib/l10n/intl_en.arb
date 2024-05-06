@@ -243,8 +243,8 @@
   "editSubscription": "Edit Subscription",
   "centerName": "  Center Name:  ",
   "describe": "  Description:  ",
-  "deleteMember": "Delete Member"
-
+  "deleteMember": "Delete Member",
+  "logOut": "  Logout"
 
 
 }

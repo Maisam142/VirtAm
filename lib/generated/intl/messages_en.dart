@@ -114,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "last6Months" : MessageLookupByLibrary.simpleMessage("last 6 months"),
     "lessThan90Days" : MessageLookupByLibrary.simpleMessage("Less than 90 days"),
     "locationName" : MessageLookupByLibrary.simpleMessage("  Location Name  "),
+    "logOut" : MessageLookupByLibrary.simpleMessage("  Logout"),
     "login" : MessageLookupByLibrary.simpleMessage("Login"),
     "lorem" : MessageLookupByLibrary.simpleMessage("Lorem"),
     "mealName" : MessageLookupByLibrary.simpleMessage("Meal Name"),
