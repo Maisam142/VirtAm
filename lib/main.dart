@@ -84,6 +84,7 @@ import 'admin_feature/master_admin/members_toMasteradmins_screen/members_toMaste
 import 'admin_feature/virtam_admin/virtam_admin_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
+import 'home.dart';
 import 'main_view_model.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
