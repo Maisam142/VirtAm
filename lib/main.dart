@@ -70,6 +70,9 @@ import 'admin_feature/admin/add_exercise_screen/add_exercise_screen.dart';
 import 'admin_feature/admin/admin_members_screen/admin_members_details_screen.dart';
 import 'admin_feature/admin/admin_members_screen/admin_members_screen.dart';
 import 'admin_feature/admin/home_admin_screen/home_admin_screen.dart';
+import 'admin_feature/admin/meals_Images_to_admin_screen/meals_Images_to_admin_screen.dart';
+import 'admin_feature/admin/meals_Images_to_admin_screen/meals_iamges_to_admin_view_model.dart';
+import 'admin_feature/admin/meals_members_calories_screen/meals_members_calories_screen.dart';
 import 'admin_feature/admin/members_screen/members_details_screen.dart';
 import 'admin_feature/admin/members_screen/members_screen.dart';
 import 'admin_feature/admin/send_notification_screen/send_notification_screen.dart';
@@ -121,6 +124,7 @@ void main() async{
     ChangeNotifierProvider(create: (_) => FastTimeViewModel()),
     ChangeNotifierProvider(create: (_) => FastTimeEditViewModel()),
     ChangeNotifierProvider(create: (_) => CaloriesViewModel()),
+    ChangeNotifierProvider(create: (_) => MealsImagesToAdmin()),
     //ChangeNotifierProvider(create: (_) => NotificationViewModel()),
   ],
       child:  const MyApp())
@@ -175,7 +179,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) => const  SplashScreen(),
+        '/': (context, state, data) => const  HomeAdminScreen(),
         '/welcomeScreen': (context, state, data) => const WelcomeScreen(),
         '/loginScreen': (context, state, data) => const LoginScreen(),
         '/forgetPasswordScreen': (context, state, data) => const ForgetPasswordScreen(email: '',),
@@ -215,6 +219,8 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/homeAdminScreen': (context, state, data) =>  const HomeAdminScreen(),
         '/addDailyMealsScreen': (context, state, data) =>  const AddDailyMealsScreen(),
         '/membersScreen': (context, state, data) =>  const MembersScreen(),
+        '/mealsMembersCalories': (context, state, data) =>  const MealsMembersCaloriesContent(),
+        '/mealsImagesToAdmin': (context, state, data) =>  const MealsImagesToAdminScreen(memberData: {},),
         '/userDetailsScreen': (context, state, data) =>   UserDetailsScreen(memberData: {},),
         '/adminMembersScreen': (context, state, data) =>  const AdminMembersScreen(),
         '/adminUserDetailsScreen': (context, state, data) =>  AdminUserDetailsScreen(memberData: {},),

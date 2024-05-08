@@ -116,6 +116,23 @@ class HomeAdminScreen extends StatelessWidget {
                             ],
                           ),
                         ),
+                        SizedBox(height: 10,),
+                        Container(
+                          width: double.infinity ,
+                          height: 75,
+                          color: Theme.of(context).secondaryHeaderColor,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextLabelComponent(text: ' Meals Calories',textStyle: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                              ViewAllComponent(
+                                onPressed: (){
+                                  Beamer.of(context).beamToNamed('/mealsMembersCalories');
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
                          Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Row(

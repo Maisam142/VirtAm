@@ -161,7 +161,7 @@ class ProfileScreenContent extends StatelessWidget {
                             if (profileProvider.selectedImage != null) {
                               imageUrl = await StoreDate()
                                   .uploadImageToStorage(
-                                registerViewModel.nameController.text,
+                                originalName,
                                 profileProvider.selectedImage!,
                                 context,
                               );

@@ -160,40 +160,117 @@ class _CaloriesScreenContentState extends State<CaloriesScreenContent> {
                       mealTypeImage: const AssetImage('images/breakfast.png'),
                       mealTypeText: S.of(context).addBreakFast,
                       text: S.of(context).recommended,
-                      onPressedIcon: (){
-                        caloriesProvider.pickImage(context);
+                      onPressedIcon: () async {
+                        String imageUrl = '';
+                        await caloriesProvider.pickImage(context);
+                        if (caloriesProvider.selectedImage != null) {
+                          imageUrl = await StoreDate().uploadImageToStorage(
+                            'BreakFast',
+                            caloriesProvider.selectedImage!,
+                            context,
+                          );
+                          Map<String, dynamic> updatedData = {};
+                          if (imageUrl.isNotEmpty) {
+                            updatedData['breakfast'] = imageUrl;
+                          }
+
+                          await FirebaseFirestore.instance
+                              .collection('User')
+                              .doc(registerViewModel.emailController.text.toLowerCase())
+                              .update(updatedData);
+
+                        } else {
+                          print('No image selected.');
+                        }
                       },
+
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/lunch.png'),
                       mealTypeText: S.of(context).addLunch,
                       text: S.of(context).recommended,
-                      onPressedIcon: (){
-                        caloriesProvider.pickImage(context);
+                      onPressedIcon: () async {
+                        String imageUrl = '';
+                        await caloriesProvider.pickImage(context);
+                        if (caloriesProvider.selectedImage != null) {
+                          imageUrl = await StoreDate().uploadImageToStorage(
+                            'lunch}',
+                            caloriesProvider.selectedImage!,
+                            context,
+                          );
+                          Map<String, dynamic> updatedData = {};
+                          if (imageUrl.isNotEmpty) {
+                            updatedData['lunch'] = imageUrl;
+                          }
 
+                          await FirebaseFirestore.instance
+                              .collection('User')
+                              .doc(registerViewModel.emailController.text.toLowerCase())
+                              .update(updatedData);
+
+                        } else {
+                          print('No image selected.');
+                        }
                       },
-
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/dinner.png'),
                       mealTypeText: S.of(context).addDinner,
                       text: S.of(context).recommended,
-                      onPressedIcon: () async{
-                        caloriesProvider.pickImage(context);
+                      onPressedIcon: () async {
+                        String imageUrl = '';
+                        await caloriesProvider.pickImage(context);
+                        if (caloriesProvider.selectedImage != null) {
+                          imageUrl = await StoreDate().uploadImageToStorage(
+                            'dinner',
+                            caloriesProvider.selectedImage!,
+                            context,
+                          );
+                          Map<String, dynamic> updatedData = {};
+                            updatedData['dinner'] = imageUrl;
 
+                          await FirebaseFirestore.instance
+                              .collection('User')
+                              .doc(registerViewModel.emailController.text.toLowerCase())
+                              .update(updatedData);
+
+                        } else {
+                          print('No image selected.');
+                        }
                       },
+
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/snack.png'),
                       mealTypeText: S.of(context).addSnack,
                       text: S.of(context).recommended,
-                      onPressedIcon: (){
-                        caloriesProvider.pickImage(context);
+                      onPressedIcon: () async {
+                        String imageUrl = '';
+                        await caloriesProvider.pickImage(context);
+                        if (caloriesProvider.selectedImage != null) {
+                          imageUrl = await StoreDate().uploadImageToStorage(
+                            'snack',
+                            caloriesProvider.selectedImage!,
+                            context,
+                          );
+                          Map<String, dynamic> updatedData = {};
+                          if (imageUrl.isNotEmpty) {
+                            updatedData['breakfast'] = imageUrl;
+                          }
 
+                          await FirebaseFirestore.instance
+                              .collection('User')
+                              .doc(registerViewModel.emailController.text.toLowerCase())
+                              .update(updatedData);
+
+                        } else {
+                          print('No image selected.');
+                        }
                       },
+
                     ),
                     SizedBox(height: screenSize.height * 0.02,),
                   ],
