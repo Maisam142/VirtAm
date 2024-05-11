@@ -36,10 +36,13 @@ class CaloriesScreen extends StatelessWidget {
             final data = snapshot.data?.data();
 
             final weightData = data?['weight'];
-
+            final breakfastRec = data?['breakfastComment'];
+            final lunchRec = data?['lunchComment'];
+            final dinnerRec = data?['dinnerComment'];
+            final snackRec = data?['snackComment'];
             //--------------------------------------------------------------------
 
-            return CaloriesScreenContent( weight: weightData,);
+            return CaloriesScreenContent( weight: weightData, breakfastRec: breakfastRec, lunchRec: lunchRec, dinnerRec: dinnerRec, snackRec: snackRec,);
           }
           return Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor,));
         },
@@ -50,8 +53,12 @@ class CaloriesScreen extends StatelessWidget {
 }
 
 class CaloriesScreenContent extends StatefulWidget {
-  CaloriesScreenContent({super.key, required this.weight});
+  CaloriesScreenContent({super.key, required this.weight, required this.breakfastRec, required this.lunchRec, required this.dinnerRec, required this.snackRec});
   final double weight;
+  final String breakfastRec;
+  final String lunchRec;
+  final String dinnerRec;
+  final String snackRec;
 
   @override
   State<CaloriesScreenContent> createState() => _CaloriesScreenContentState();
@@ -159,7 +166,7 @@ class _CaloriesScreenContentState extends State<CaloriesScreenContent> {
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/breakfast.png'),
                       mealTypeText: S.of(context).addBreakFast,
-                      text: S.of(context).recommended,
+                      text: '${S.of(context).recommended} ${widget.breakfastRec ?? ''}',
                       onPressedIcon: () async {
                         String imageUrl = '';
                         await caloriesProvider.pickImage(context);
@@ -189,7 +196,7 @@ class _CaloriesScreenContentState extends State<CaloriesScreenContent> {
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/lunch.png'),
                       mealTypeText: S.of(context).addLunch,
-                      text: S.of(context).recommended,
+                      text: '${S.of(context).recommended} ${widget.lunchRec ?? ''}',
                       onPressedIcon: () async {
                         String imageUrl = '';
                         await caloriesProvider.pickImage(context);
@@ -218,7 +225,7 @@ class _CaloriesScreenContentState extends State<CaloriesScreenContent> {
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/dinner.png'),
                       mealTypeText: S.of(context).addDinner,
-                      text: S.of(context).recommended,
+                      text: '${S.of(context).recommended} ${widget.dinnerRec ?? ''}',
                       onPressedIcon: () async {
                         String imageUrl = '';
                         await caloriesProvider.pickImage(context);
@@ -246,7 +253,7 @@ class _CaloriesScreenContentState extends State<CaloriesScreenContent> {
                     MealsComponent(
                       mealTypeImage: const AssetImage('images/snack.png'),
                       mealTypeText: S.of(context).addSnack,
-                      text: S.of(context).recommended,
+                      text: '${S.of(context).recommended} ${widget.snackRec ?? ''}',
                       onPressedIcon: () async {
                         String imageUrl = '';
                         await caloriesProvider.pickImage(context);

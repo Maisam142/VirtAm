@@ -1067,10 +1067,10 @@ class S {
     );
   }
 
-  /// ` recommended .767-1024`
+  /// ` recommended .`
   String get recommended {
     return Intl.message(
-      ' recommended .767-1024',
+      ' recommended .',
       name: 'recommended',
       desc: '',
       args: [],

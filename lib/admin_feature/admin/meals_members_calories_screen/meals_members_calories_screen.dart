@@ -131,7 +131,6 @@ class _MealsMembersCaloriesContentState extends State<MealsMembersCaloriesConten
                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                     children: [
                                                       TextComponent(text: memberData['name']),
-                                                      TextComponent(text: S.of(context).admins,textStyle: TextStyle(fontSize: 12,color: Theme.of(context).hoverColor),),
 
                                                     ],
                                                   ),

@@ -145,7 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "purpose2" : MessageLookupByLibrary.simpleMessage("Follow up with my nutrition counselor"),
     "purpose3" : MessageLookupByLibrary.simpleMessage("Find a nutrition counselor in my area"),
     "rePassword" : MessageLookupByLibrary.simpleMessage("Re-write Password"),
-    "recommended" : MessageLookupByLibrary.simpleMessage(" recommended .767-1024"),
+    "recommended" : MessageLookupByLibrary.simpleMessage(" recommended ."),
     "remaining" : MessageLookupByLibrary.simpleMessage("Remaining"),
     "remainingMl" : MessageLookupByLibrary.simpleMessage("remaining 603 ml"),
     "remainingTime" : MessageLookupByLibrary.simpleMessage("remaining: 13:00 h"),
