@@ -48,10 +48,10 @@ class HomeScreen extends StatelessWidget {
       if (snapshot.hasError) return Text('Error = ${snapshot.error}');
       if (snapshot.hasData && snapshot.data!.exists) {
         final data = snapshot.data?.data();
-        final startFastTimeShow = data!['startFastTime'];
-        final endFastTimeShow = data['endFastTime'];
-        final weightData = data['weight'];
-        final waterTarget = data['waterTarget'];
+        final startFastTimeShow = data!['startFastTime'] ?? '';
+        final endFastTimeShow = data['endFastTime'] ?? '';
+        final weightData = data['weight'] ?? '' ;
+        final waterTarget = data['waterTarget'] ?? '';
         final waterCounter = data['waterCounter ${dateTime.day}:${dateTime.month}:${dateTime.year} '] ?? 1000;
 
       //--------------------------------------------------------------------

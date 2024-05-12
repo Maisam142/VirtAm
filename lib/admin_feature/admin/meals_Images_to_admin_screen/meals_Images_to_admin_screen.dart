@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/text_component.dart';
-import 'package:virtam/user/feature/register_screen/register_screen_view_model.dart';
-
 import '../../../component/back_component.dart';
 import '../../../component/form_component.dart';
 import '../../../generated/l10n.dart';
-import 'meals_iamges_to_admin_view_model.dart';
 
 class MealsImagesToAdminScreen extends StatelessWidget {
   final Map<String, dynamic> memberData;
@@ -39,8 +36,7 @@ class MealsImagesToAdminScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    buildMealSection(
-                        context, 'Breakfast', memberData['breakfast'],breakfastController),
+                    buildMealSection(context, 'Breakfast', memberData['breakfast'],breakfastController),
                     buildMealSection(context, 'Lunch', memberData['lunch'],lunchController),
                     buildMealSection(context, 'Dinner', memberData['dinner'],dinnerController),
                     buildMealSection(context, 'Snack', memberData['snack'],snackController),
@@ -61,10 +57,13 @@ class MealsImagesToAdminScreen extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 8),
-          TextLabelComponent(text: mealName),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextLabelComponent(text: mealName),
+          ),
           SizedBox(
             width: double.infinity,
-            height: 200,
+            height: 500,
             child: imageUrl != null && imageUrl.isNotEmpty
                 ? Image.network(imageUrl)
                 : const Center(child: Text('Image not available')),
@@ -87,6 +86,7 @@ class MealsImagesToAdminScreen extends StatelessWidget {
 
               Map<String, dynamic> initialData = {
                 '${mealName.toLowerCase()}Comment': calorieValue,
+                mealName.toLowerCase(): ''
               };
               await FirebaseFirestore.instance
                   .collection('User')
@@ -95,6 +95,8 @@ class MealsImagesToAdminScreen extends StatelessWidget {
             },
 
           ),),
+          const SizedBox(height: 8),
+
         ],
       ),
     );

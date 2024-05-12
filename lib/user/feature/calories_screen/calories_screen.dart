@@ -35,11 +35,11 @@ class CaloriesScreen extends StatelessWidget {
           if (snapshot.hasData && snapshot.data!.exists) {
             final data = snapshot.data?.data();
 
-            final weightData = data?['weight'];
-            final breakfastRec = data?['breakfastComment'];
-            final lunchRec = data?['lunchComment'];
-            final dinnerRec = data?['dinnerComment'];
-            final snackRec = data?['snackComment'];
+            final weightData = data?['weight'] ?? '----';
+            final breakfastRec = data?['breakfastComment'] ?? '----';
+            final lunchRec = data?['lunchComment'] ?? '----';
+            final dinnerRec = data?['dinnerComment'] ?? '----';
+            final snackRec = data?['snackComment'] ?? '----';
             //--------------------------------------------------------------------
 
             return CaloriesScreenContent( weight: weightData, breakfastRec: breakfastRec, lunchRec: lunchRec, dinnerRec: dinnerRec, snackRec: snackRec,);
