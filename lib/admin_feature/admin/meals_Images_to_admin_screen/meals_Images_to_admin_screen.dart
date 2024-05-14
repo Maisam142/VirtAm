@@ -36,10 +36,10 @@ class MealsImagesToAdminScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    buildMealSection(context, 'Breakfast', memberData['breakfast'],breakfastController),
-                    buildMealSection(context, 'Lunch', memberData['lunch'],lunchController),
-                    buildMealSection(context, 'Dinner', memberData['dinner'],dinnerController),
-                    buildMealSection(context, 'Snack', memberData['snack'],snackController),
+                    buildMealSection(context, 'Breakfast', memberData['breakfast'],breakfastController,memberData['breakfastComment']??''),
+                    buildMealSection(context, 'Lunch', memberData['lunch'],lunchController,memberData['lunchComment']?? ''),
+                    buildMealSection(context, 'Dinner', memberData['dinner'],dinnerController,memberData['dinnerComment']?? ''),
+                    buildMealSection(context, 'Snack', memberData['snack'],snackController,memberData['snackComment']?? ''),
                   ],
                 ),
               ],
@@ -51,7 +51,7 @@ class MealsImagesToAdminScreen extends StatelessWidget {
   }
 
   Widget buildMealSection(
-      BuildContext context, String mealName, String? imageUrl,controller) {
+      BuildContext context, String mealName, String? imageUrl,controller,imageComment) {
     return Card(
       color: Theme.of(context).secondaryHeaderColor,
       child: Column(
@@ -63,18 +63,20 @@ class MealsImagesToAdminScreen extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            height: 500,
+            height: 300,
             child: imageUrl != null && imageUrl.isNotEmpty
                 ? Image.network(imageUrl)
-                : const Center(child: Text('Image not available')),
+                : const Image(image: AssetImage('images/check.png')),
           ),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FormComponent(
+            child: imageUrl != null && imageUrl.isNotEmpty
+            ?FormComponent(
               controller: controller,
               hintText: 'calories:',
-            ),
+            ):
+                Text('$imageComment' )
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
