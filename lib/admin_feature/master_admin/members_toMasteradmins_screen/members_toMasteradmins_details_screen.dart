@@ -225,7 +225,7 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                                             onPressed: (){
                                               Navigator.pop(context);
                                             },
-                                            child: Text(S.of(context).cancel,style: TextStyle(fontSize: 12,color: Colors.black),),),
+                                            child: Text(S.of(context).cancel,style: const TextStyle(fontSize: 12,color: Colors.black),),),
                                         const SizedBox(width: 10,),
                                         ElevatedButton(
                                             onPressed: ()async{
@@ -237,12 +237,13 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                                                //    .doc(emailLowerCase)
                                                //    .delete();
                                             FirebaseAuth auth = FirebaseAuth.instance;
-                                            await auth.currentUser!.delete();
+
+                                            User? userToDelete = (await auth.userChanges().firstWhere((user) => user!.email!.trim() ==emailLowerCase));
+                                            userToDelete!.delete();
                                             print('----------${auth.currentUser} ------------------');
 
                                             Beamer.of(context).beamBack();
-
-                                        },
+                                            },
                                             style: ButtonStyle(
                                               backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                                               minimumSize: MaterialStateProperty.all<Size>(Size(120, 40)),

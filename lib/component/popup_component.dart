@@ -23,6 +23,7 @@ class PopupWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       title:  TextComponent (text: titleText,textStyle: textStyle ?? Theme.of(context).textTheme.titleMedium,),
       content: TextComponent (text:contentText,textStyle: textStyle ?? Theme.of(context).textTheme.bodySmall,),
         insetPadding: const EdgeInsets.all(10),

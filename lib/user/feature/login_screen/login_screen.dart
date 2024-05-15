@@ -111,45 +111,48 @@ class LoginForm extends StatelessWidget {
                           text: S.of(context).signIn,
                           onPress: () async {
                             viewModel.validateFieldsLogin();
-                            DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('User').doc( viewModel.emailController.text).get();
-                            DocumentSnapshot adminDoc = await FirebaseFirestore.instance.collection('admin').doc( viewModel.emailController.text).get();
-                            DocumentSnapshot masterAdminDoc = await FirebaseFirestore.instance.collection('masterAdmin').doc( viewModel.emailController.text).get();
 
                             if (viewModel.isFormValidLogin) {
                               try {
-                                final userCredential =
-                                await auth.signInWithEmailAndPassword(
+                                final userCredential = await auth.signInWithEmailAndPassword(
                                   email: viewModel.emailController.text,
                                   password: viewModel.passwordController.text,
                                 );
-                                if (adminDoc.exists){
-                                  Beamer.of(context)
-                                      .beamToNamed('/homeAdminScreen');}
-                                   else if(userDoc.exists) {
-                                  final prefs =
-                                  await SharedPreferences.getInstance();
+
+                                // Check if user exists in any collection
+                                DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('User').doc(viewModel.emailController.text).get();
+                                DocumentSnapshot adminDoc = await FirebaseFirestore.instance.collection('admin').doc(viewModel.emailController.text).get();
+                                DocumentSnapshot masterAdminDoc = await FirebaseFirestore.instance.collection('masterAdmin').doc(viewModel.emailController.text).get();
+
+                                if (adminDoc.exists) {
+                                  Beamer.of(context).beamToNamed('/homeAdminScreen');
+                                } else if (userDoc.exists) {
+                                  final prefs = await SharedPreferences.getInstance();
                                   prefs.setBool('isLoggedIn', true);
                                   prefs.setString('email', viewModel.emailController.text);
-
-                                  Beamer.of(context)
-                                      .beamToNamed('/homeNavigationBar');
-                                }
-                                   else if(masterAdminDoc.exists) {
-                                  // final prefs =
-                                  // await SharedPreferences.getInstance();
-                                  // prefs.setBool('isLoggedIn', true);
-                                  // prefs.setString('email', viewModel.emailController.text);
-
-                                  Beamer.of(context)
-                                      .beamToNamed('/homeMasterAdminScreen');
+                                  Beamer.of(context).beamToNamed('/homeNavigationBar');
+                                } else if (masterAdminDoc.exists) {
+                                  // You might want to add specific logic for master admin
+                                  Beamer.of(context).beamToNamed('/homeMasterAdminScreen');
+                                } else {
+                                  // User not found in any collection
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => PopupWidget(
+                                      titleText: S.of(context).wrongEmailPass,
+                                      contentText: S.of(context).rewriteCorrect,
+                                      body: [],
+                                    ),
+                                  );
                                 }
                               } catch (e) {
                                 print('Error logging in: $e');
+                                // Handle login error
                                 showDialog(
                                   context: context,
                                   builder: (context) => PopupWidget(
-                                    titleText: S.of(context).wrongEmailPass,
-                                    contentText: S.of(context).rewriteCorrect,
+                                    titleText: 'Login Error',
+                                    contentText: 'An error occurred during login. Please try again later.',
                                     body: [],
                                   ),
                                 );
