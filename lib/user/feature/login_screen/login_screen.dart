@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -110,6 +111,10 @@ class LoginForm extends StatelessWidget {
                           text: S.of(context).signIn,
                           onPress: () async {
                             viewModel.validateFieldsLogin();
+                            DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('User').doc( viewModel.emailController.text).get();
+                            DocumentSnapshot adminDoc = await FirebaseFirestore.instance.collection('admin').doc( viewModel.emailController.text).get();
+                            DocumentSnapshot masterAdminDoc = await FirebaseFirestore.instance.collection('masterAdmin').doc( viewModel.emailController.text).get();
+
                             if (viewModel.isFormValidLogin) {
                               try {
                                 final userCredential =
@@ -117,32 +122,26 @@ class LoginForm extends StatelessWidget {
                                   email: viewModel.emailController.text,
                                   password: viewModel.passwordController.text,
                                 );
-                                final user = userCredential.user;
-                                if (viewModel.emailController.text ==
-                                    'masteradmin123@gmail.com' &&
-                                    viewModel.passwordController.text ==
-                                        'MasterAdmin12345*' ||
-                                    viewModel.emailController.text ==
-                                        'admin1@gmail.com' &&
-                                        viewModel.passwordController.text ==
-                                            'Admin112345*') {
-                                  // Save authentication status using shared preferences
-
-                                  if (viewModel.emailController.text ==
-                                      'masteradmin123@gmail.com') {
-                                    Beamer.of(context)
-                                        .beamToNamed('/homeMasterAdminScreen');
-                                  } else {
-                                    Beamer.of(context)
-                                        .beamToNamed('/homeAdminScreen');
-                                  }
-                                } else {
+                                if (adminDoc.exists){
+                                  Beamer.of(context)
+                                      .beamToNamed('/homeAdminScreen');}
+                                   else if(userDoc.exists) {
                                   final prefs =
                                   await SharedPreferences.getInstance();
                                   prefs.setBool('isLoggedIn', true);
                                   prefs.setString('email', viewModel.emailController.text);
+
                                   Beamer.of(context)
                                       .beamToNamed('/homeNavigationBar');
+                                }
+                                   else if(masterAdminDoc.exists) {
+                                  // final prefs =
+                                  // await SharedPreferences.getInstance();
+                                  // prefs.setBool('isLoggedIn', true);
+                                  // prefs.setString('email', viewModel.emailController.text);
+
+                                  Beamer.of(context)
+                                      .beamToNamed('/homeMasterAdminScreen');
                                 }
                               } catch (e) {
                                 print('Error logging in: $e');
