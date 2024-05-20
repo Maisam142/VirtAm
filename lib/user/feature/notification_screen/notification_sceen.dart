@@ -236,7 +236,7 @@ class NotificationHelper {
         displayOnBackground: true,
       ),
       schedule: NotificationInterval(
-        interval: 59 * 100 ,
+        interval: 2 * 100 ,
         timeZone: 'UTC',
         preciseAlarm: true,
         repeats: true,
@@ -245,6 +245,33 @@ class NotificationHelper {
         NotificationActionButton(
           key: 'drink_now',
           label: 'Drink Now',
+        ),
+        NotificationActionButton(
+          key: 'dismiss',
+          label: 'Dismiss',
+        ),
+      ],
+    );
+  }
+  static Future<void> showNotificationFast() async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 20,
+        channelKey: 'basic_channel',
+        title: 'Start Fasting',
+        body: 'Remember to Start Fasting',
+        displayOnBackground: true,
+      ),
+      schedule: NotificationInterval(
+        interval: 1 * 100 ,
+        timeZone: 'UTC',
+        preciseAlarm: true,
+        repeats: false,
+      ),
+      actionButtons: [
+        NotificationActionButton(
+          key: 'oki',
+          label: 'Oki',
         ),
         NotificationActionButton(
           key: 'dismiss',

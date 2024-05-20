@@ -1896,6 +1896,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Please fill in all fields`
+  String get fillAllFields {
+    return Intl.message(
+      'Please fill in all fields',
+      name: 'fillAllFields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification sent successfully`
+  String get notificationSent {
+    return Intl.message(
+      'Notification sent successfully',
+      name: 'notificationSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to send notification`
+  String get notificationFailed {
+    return Intl.message(
+      'Failed to send notification',
+      name: 'notificationFailed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

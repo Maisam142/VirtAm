@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:virtam/component/back_component.dart';
 import 'package:virtam/component/button_component.dart';
@@ -7,14 +8,34 @@ import 'package:virtam/component/text_component.dart';
 import '../../../component/form_component.dart';
 import '../../../generated/l10n.dart';
 
-class AddExerciseScreen extends StatelessWidget {
+class AddExerciseScreen extends StatefulWidget {
   const AddExerciseScreen({super.key});
 
   @override
+  State<AddExerciseScreen> createState() => _AddExerciseScreenState();
+}
+
+class _AddExerciseScreenState extends State<AddExerciseScreen> {
+  String? selectedUser;
+  List<String> users = [];
+  Future<void> fetchUsers() async {
+    final snapshot = await FirebaseFirestore.instance.collection('User').get();
+    setState(() {
+      users = snapshot.docs.map((doc) => doc['name'].toString()).toList();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
+  @override
   Widget build(BuildContext context) {
+
     return WillPopScope(
       onWillPop: () async {
-        Beamer.of(context).beamToNamed('/profileScreen');
+        Beamer.of(context).beamToNamed('/homeAdminScreen');
         return false;
       },
       child: SafeArea(
@@ -49,9 +70,25 @@ class AddExerciseScreen extends StatelessWidget {
                             FormComponent(
                               hintText: S.of(context).exerciseName,
                             ),
-                            FormComponent(
-                              hintText: S.of(context).selectMembers,
+                            DropdownButtonFormField<String>(
+                              hint: Text(S.of(context).selectMembers),
+                              value: selectedUser,
+                              dropdownColor: Theme.of(context).secondaryHeaderColor,
+
+                              items: users.map((String user) {
+                                return DropdownMenuItem<String>(
+                                  value: user,
+                                  child: Text(user),
+
+                                );
+                              }).toList(),
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedUser = newValue;
+                                });
+                              },
                             ),
+
                           ],
                         ),
                       ),

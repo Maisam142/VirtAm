@@ -244,7 +244,13 @@
   "centerName": "  Center Name:  ",
   "describe": "  Description:  ",
   "deleteMember": "Delete Member",
-  "logOut": "  Logout"
+  "logOut": "  Logout",
 
 
+
+
+  "fillAllFields": "Please fill in all fields",
+  "notificationSent": "Notification sent successfully",
+  "notificationFailed": "Failed to send notification"
 }
+

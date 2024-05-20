@@ -230,20 +230,11 @@
   "centerName": "اسم المركز: ",
   "describe": "الوصف: ",
   "deleteMember": "حذف العضو",
-  "logOut": "  تسجيل خروج"
+  "logOut": "  تسجيل خروج",
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+  "fillAllFields": "يرجى ملء جميع الحقول",
+  "notificationSent": "تم إرسال الإشعار بنجاح",
+  "notificationFailed": "فشل في إرسال الإشعار"
 }

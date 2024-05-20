@@ -237,11 +237,14 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     print(endHour);
     if (DateTime.now().hour >= widget.startHour && DateTime.now().hour < endHour) {
       DateTime startDateTime = DateTime.now().add(const Duration(seconds: 1));
+
       Duration initialDelay = startDateTime.difference(DateTime.now());
 
       countdownTimer = Timer(initialDelay, () {
         countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
       });
+      NotificationHelper.showNotificationFast();
+
     } else {
       notFinished = false;
       setState(() {});
