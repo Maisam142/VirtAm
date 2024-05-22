@@ -36,6 +36,7 @@
   "enterValidEmail": "Please enter a valid email ",
   "enterValidPass": "Wrong Password ",
   "forgetPass": "Forgot the password? ",
+  "resetPass": "Reset Password",
   "or": "OR",
   "wrongEmailPass": "Wrong Email Or Password",
   "rewriteCorrect": "Please rewrite it to login Successfully ",

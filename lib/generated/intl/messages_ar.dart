@@ -152,6 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "remainingTime" : MessageLookupByLibrary.simpleMessage("الوقت المتبقي: 13:00 ساعة"),
     "remainingml" : MessageLookupByLibrary.simpleMessage("المتبقي: "),
     "reminderToDrink" : MessageLookupByLibrary.simpleMessage("تذكير بشرب الماء"),
+    "resetPass" : MessageLookupByLibrary.simpleMessage("استرجاع كلمةالسر"),
     "search" : MessageLookupByLibrary.simpleMessage(" بحث"),
     "selectLanguage" : MessageLookupByLibrary.simpleMessage("اختيار اللغة"),
     "selectMembers" : MessageLookupByLibrary.simpleMessage("اختيار الأعضاء"),

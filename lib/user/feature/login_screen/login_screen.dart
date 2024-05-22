@@ -94,9 +94,7 @@ class LoginForm extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: TextButton(
                         onPressed: () async {
-                          await FirebaseAuth.instance.sendPasswordResetEmail(
-                            email: viewModel.emailController.text.trim(),
-                          );
+                          Beamer.of(context).beamToNamed('/forgetScreen');
                         },
                         child: Text(
                           S.of(context).forgetPass,

@@ -154,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "remainingTime" : MessageLookupByLibrary.simpleMessage("remaining: 13:00 h"),
     "remainingml" : MessageLookupByLibrary.simpleMessage("Remaining: "),
     "reminderToDrink" : MessageLookupByLibrary.simpleMessage("Reminder to drink water"),
+    "resetPass" : MessageLookupByLibrary.simpleMessage("Reset Password"),
     "rewriteCorrect" : MessageLookupByLibrary.simpleMessage("Please rewrite it to login Successfully "),
     "search" : MessageLookupByLibrary.simpleMessage(" Search"),
     "selectLanguage" : MessageLookupByLibrary.simpleMessage("Select Language"),

@@ -347,6 +347,16 @@ class S {
     );
   }
 
+  /// `Reset Password`
+  String get resetPass {
+    return Intl.message(
+      'Reset Password',
+      name: 'resetPass',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `OR`
   String get or {
     return Intl.message(
