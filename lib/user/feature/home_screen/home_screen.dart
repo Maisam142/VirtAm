@@ -119,6 +119,8 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   int currentDay = DateTime.now().day;
   int? savedDay ;
   int waterCounter = 0;
+  late Timer midnightTimer;
+
 
   late StepCalculator calculator = StepCalculator();
   final HealthFactory health = HealthFactory();
@@ -138,49 +140,83 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
   @override
   void initState() {
     super.initState();
+    currentDay = DateTime.now().day;
     print(notFinished);
     calculateTimer();
-    startListeningToSteps();
     getLastSavedStepCount();
+    startListeningToSteps();
+    scheduleMidnightReset();
     calculator = StepCalculator();
     requestPermission();
     startTimer();
     getCounterData();
     NotificationHelper.showNotification();
 
-    // waterTimer = Timer.periodic(const Duration(hours: 1), (timer) {
-    //   addWaterNotification();
-    // });
-    // fastTimer = Timer.periodic(const Duration(minutes: 2), (timer) {
-    //   addFastNotification();
-    // });
+
   }
-
-
-
-
-
-
-  // void addFastNotification() {
-  //   setState(() {
-  //     final fastNotification = {
-  //       'title': 'Start Fasting',
-  //       'body': 'Reminder to start Fasting',
-  //       'time': DateTime.now().toString().substring(11, 16),
-  //     };
-  //     notifications.add(fastNotification);
-  //     _saveNotifications();
-  //   });
-  // }
 
 
   @override
   void dispose() {
     _subscription.cancel();
+    midnightTimer.cancel();
     super.dispose();
   }
 
+  void scheduleMidnightReset() {
+    final now = DateTime.now();
+    final midnight = DateTime(now.year, now.month, now.day + 1);
+    final durationUntilMidnight = midnight.difference(now);
+    // final prefs = await SharedPreferences.getInstance();
 
+    midnightTimer = Timer(durationUntilMidnight, () {
+      setState(() {
+        dailyStepCount = 0;
+        lastSavedStepCount = null;
+        currentDay = DateTime.now().day;
+
+      });
+      // Reschedule the midnight reset
+      scheduleMidnightReset();
+    });
+  }
+
+  void startListeningToSteps() {
+    _subscription = Pedometer.stepCountStream.listen(
+          (StepCount event) async {
+        final prefs = await SharedPreferences.getInstance();
+        final savedDay = prefs.getInt('savedDay');
+        final currentDay = DateTime.now().day;
+
+        if (savedDay != currentDay || lastSavedStepCount == null) {
+          prefs.setInt('savedDay', currentDay);
+          prefs.setInt('lastSavedStepCount', event.steps);
+          setState(() {
+            lastSavedStepCount = event.steps;
+            dailyStepCount = 0;
+          });
+        } else {
+          setState(() {
+            dailyStepCount = event.steps - (lastSavedStepCount ?? event.steps);
+          });
+        }
+      },
+      onError: (error) {
+        print("An error occurred while fetching step count: $error");
+      },
+      cancelOnError: true,
+    );
+  }
+
+  Future<void> getLastSavedStepCount() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      lastSavedStepCount = prefs.getInt('lastSavedStepCount');
+      savedDay = prefs.getInt('savedDay');
+      print("$savedDay -------------=================================------");
+      print("$currentDay -------------=================================------");
+    });
+  }
   void calculateTimer() {
     int currentHour = DateTime.now().hour;
     int currentMinute = DateTime.now().minute;
@@ -260,45 +296,53 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
 
   }
 
-  void startListeningToSteps() {
-    _subscription = Pedometer.stepCountStream.listen(
-          (StepCount event) {
-        setState(() {
-          dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
-        });
-          saveDailyStepCount(event.steps);
-          print('${event.steps} -------------------------------***********************************************');
-          print('${dailyStepCount} -------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-          print('${lastSavedStepCount} -------------------------------###########################################');
-      },
-      onError: (error) {
-        print("An error occurred while fetching step count: $error");
-      },
-      cancelOnError: true,
-    );
-  }
+  // void startListeningToSteps() {
+  //   _subscription = Pedometer.stepCountStream.listen(
+  //         (StepCount event) async {
+  //       setState(() {
+  //         dailyStepCount = (event.steps - (lastSavedStepCount ?? event.steps));
+  //       });
+  //       SharedPreferences prefs =  await SharedPreferences.getInstance();
+  //       if (savedDay !=  currentDay  || lastSavedStepCount == null) {
+  //         savedDay = DateTime.now().day;
+  //         prefs.setInt('savedDay', savedDay!);
+  //         print('*************************************************');
+  //          await prefs.setInt('lastSavedStepCount', event.steps);
+  //       }
+  //         print('${event.steps} -------------------------------***********************************************');
+  //         print('${dailyStepCount} -------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+  //         print('${lastSavedStepCount} -------------------------------###########################################');
+  //         // print('${savedDay}----------------------------------------------------------------------------------');
+  //         // print('${currentDay}&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
+  //     },
+  //     onError: (error) {
+  //       print("An error occurred while fetching step count: $error");
+  //     },
+  //     cancelOnError: true,
+  //   );
+  // }
+  //
+  //
+  // Future<void> getLastSavedStepCount() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     lastSavedStepCount = prefs.getInt('lastSavedStepCount');
+  //     savedDay = prefs.getInt('savedDay');
+  //     print("$savedDay -------------=================================------");
+  //     print("$currentDay -------------=================================------");
+  //   });
+  // }
+  //
 
-
-  Future<void> getLastSavedStepCount() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      lastSavedStepCount = prefs.getInt('lastSavedStepCount');
-      savedDay = prefs.getInt('savedDay');
-      print("$savedDay -------------=================================------");
-      print("$currentDay -------------=================================------");
-    });
-  }
-
-
-  Future<void> saveDailyStepCount(int stepCount) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (savedDay !=  currentDay  || lastSavedStepCount == null) {
-      savedDay = DateTime.now().day;
-      prefs.setInt('savedDay', savedDay!);
-      print('*************************************************');
-      await prefs.setInt('lastSavedStepCount', stepCount);
-    }
-  }
+  // Future<void> saveDailyStepCount(int stepCount) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   if (savedDay !=  currentDay  || lastSavedStepCount == null) {
+  //     savedDay = DateTime.now().day;
+  //     prefs.setInt('savedDay', savedDay!);
+  //     print('*************************************************');
+  //     await prefs.setInt('lastSavedStepCount', stepCount);
+  //   }
+  // }
 
 
 
@@ -309,14 +353,12 @@ class _HomeScreenContentState extends State<HomeScreenContent> implements HomeVi
     String strDigits(int n) => n.toString().padLeft(2, '0');
     final water = int.parse(widget.waterTarget);
 
-    //final int waterRemaining = water - 0 ;
     final HomeViewModel homeViewModel =
     Provider.of<HomeViewModel>(context);
     final Size screenSize = MediaQuery.of(context).size;
     final hour = strDigits(myDuration.inHours.remainder(60));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
-    String counterText = waterCounter.toString();
 
 
     double calories = calculator.calculateCalories(

@@ -24,23 +24,26 @@ class HomeComponent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextLabelComponent(text: valueText),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                color: Theme.of(context).primaryColor,
-                size: 20,
-              ),
-              SizedBox(width: 5),
-              TextComponent(
-                text: text,
-                textStyle: TextStyle(
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
                   color: Theme.of(context).primaryColor,
-                  fontSize: 13,
+                  size: 20,
                 ),
-              ),
-            ],
+                SizedBox(width: 5),
+                TextComponent(
+                  text: text,
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 13,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
