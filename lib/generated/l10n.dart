@@ -1027,20 +1027,20 @@ class S {
     );
   }
 
-  /// `Proteina`
+  /// `Protein`
   String get proteina {
     return Intl.message(
-      'Proteina',
+      'Protein',
       name: 'proteina',
       desc: '',
       args: [],
     );
   }
 
-  /// `Carbohydrates`
+  /// `Carb`
   String get carbohydrates {
     return Intl.message(
-      'Carbohydrates',
+      'Carb',
       name: 'carbohydrates',
       desc: '',
       args: [],

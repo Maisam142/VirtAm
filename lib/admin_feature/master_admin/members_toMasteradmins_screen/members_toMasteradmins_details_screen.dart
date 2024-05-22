@@ -232,15 +232,15 @@ class MemberDetailsToMasterAdminScreen extends StatelessWidget {
                                             print('Member email: ${memberData['email']}');
                                             String emailLowerCase = memberData['email'].toLowerCase();
 
-                                               // await FirebaseFirestore.instance
-                                               //    .collection('User')
-                                               //    .doc(emailLowerCase)
-                                               //    .delete();
-                                            FirebaseAuth auth = FirebaseAuth.instance;
-
-                                            User? userToDelete = (await auth.userChanges().firstWhere((user) => user!.email!.trim() ==emailLowerCase));
-                                            userToDelete!.delete();
-                                            print('----------${auth.currentUser} ------------------');
+                                               await FirebaseFirestore.instance
+                                                  .collection('User')
+                                                  .doc(emailLowerCase)
+                                                  .delete();
+                                            // FirebaseAuth auth = FirebaseAuth.instance;
+                                            //
+                                            // User? userToDelete = (await auth.userChanges().firstWhere((user) => user!.email!.trim() ==emailLowerCase));
+                                            // userToDelete!.delete();
+                                            // print('----------${auth.currentUser} ------------------');
 
                                             Beamer.of(context).beamBack();
                                             },

@@ -129,31 +129,33 @@ class HomeAdminComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).secondaryHeaderColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ImageIcon(
-                AssetImage(icon!),
-                color: Theme.of(context).primaryColor,
-                size: 25,
-              ),
-              const SizedBox(width: 5),
-              IconButton(
-                onPressed:
-                  onPressed,
-                  icon: Icon(
-                    Icons.navigate_next,
-                    color: Theme.of(context).hoverColor,
-                    size: 20,
-                  ), ),
-            ],
-          ),
-          SizedBox(height: 20,),
-          Text( valueText!,style: TextStyle(fontSize: 12),),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ImageIcon(
+                  AssetImage(icon!),
+                  color: Theme.of(context).primaryColor,
+                  size: 25,
+                ),
+                const SizedBox(width: 5),
+                IconButton(
+                  onPressed:
+                    onPressed,
+                    icon: Icon(
+                      Icons.navigate_next,
+                      color: Theme.of(context).hoverColor,
+                      size: 20,
+                    ), ),
+              ],
+            ),
+            SizedBox(height: 20,),
+            Text( valueText!,style: TextStyle(fontSize: 12),),
+          ],
+        ),
       ),
     );
   }

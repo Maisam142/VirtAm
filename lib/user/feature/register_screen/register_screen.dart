@@ -107,21 +107,24 @@ class RegisterScreen extends StatelessWidget {
                             width: double.infinity,
                             height: 40,
                             color: Theme.of(context).secondaryHeaderColor,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  registerViewModel.selectedOption == 0 ? S.of(context).purpose   :
-                                 ' ${registerViewModel.selectedPurpose}',
-                                  style:  Theme.of(context).textTheme.labelMedium),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    registerViewModel.selectedOption == 0 ? S.of(context).purpose   :
+                                   ' ${registerViewModel.selectedPurpose}',
+                                    style:  Theme.of(context).textTheme.labelMedium),
 
-                                IconButton(
-                                  onPressed: () {
-                                    Beamer.of(context).beamToNamed('/purposeScreen');
-                                  },
-                                  icon: const Icon(Icons.expand_more),
-                                ),
-                              ],
+                                  IconButton(
+                                    onPressed: () {
+                                      Beamer.of(context).beamToNamed('/purposeScreen');
+                                    },
+                                    icon: const Icon(Icons.expand_more),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
