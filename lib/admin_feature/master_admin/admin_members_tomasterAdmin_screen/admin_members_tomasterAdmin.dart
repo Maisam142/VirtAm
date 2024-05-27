@@ -1,5 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:virtam/component/text_component.dart';
@@ -33,7 +34,7 @@ class AdminMembersToMasterScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance.collection('Admin').snapshots(),
+                        stream: FirebaseFirestore.instance.collection('admin').snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
                             return Center(child: CircularProgressIndicator(
@@ -95,7 +96,7 @@ class AdminMembersToMasterScreen extends StatelessWidget {
                                           IconButton(
                                             onPressed: (){},
                                             icon: const Icon(Icons.navigate_next_rounded,color: Colors.grey,),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -105,6 +106,25 @@ class AdminMembersToMasterScreen extends StatelessWidget {
                             );
                           }
                         },
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          Beamer.of(context).beamToNamed('/addAdminScreen');
+                        },
+                        child: Container(
+                          color: Theme.of(context).secondaryHeaderColor,
+                          height: 50,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.add_box,color: Colors.black,),
+                                const SizedBox(width: 5,),
+                                TextComponent(text: S.of(context).addNewAdmin)
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

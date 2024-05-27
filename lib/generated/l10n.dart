@@ -337,6 +337,16 @@ class S {
     );
   }
 
+  /// `Please enter your Full Name `
+  String get enterValidName {
+    return Intl.message(
+      'Please enter your Full Name ',
+      name: 'enterValidName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Forgot the password? `
   String get forgetPass {
     return Intl.message(
@@ -352,6 +362,36 @@ class S {
     return Intl.message(
       'Reset Password',
       name: 'resetPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not Match`
+  String get notMatch {
+    return Intl.message(
+      'Not Match',
+      name: 'notMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long`
+  String get passMust {
+    return Intl.message(
+      'Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long',
+      name: 'passMust',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number must have at least 8 digits`
+  String get phoneMust {
+    return Intl.message(
+      'Phone number must have at least 8 digits',
+      name: 'phoneMust',
       desc: '',
       args: [],
     );

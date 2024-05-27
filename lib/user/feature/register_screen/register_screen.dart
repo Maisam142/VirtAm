@@ -53,7 +53,7 @@ class RegisterScreen extends StatelessWidget {
 
                         errorText: registerViewModel.isNameValid
                             ? null
-                            : 'Please enter your Full Name ',
+                            : S.of(context).enterValidName,
                       ),
                       SizedBox(height: screenSize.height * 0.02,),
                       FormComponent(
@@ -65,7 +65,7 @@ class RegisterScreen extends StatelessWidget {
                         textInputType: TextInputType.emailAddress,
                         errorText: registerViewModel.isEmailValid
                             ? null
-                            : 'Please enter a valid email ',
+                            : S.of(context).enterValidEmail,
                       ),
                       SizedBox(height: screenSize.height * 0.02,),
                       InternationalPhoneNumberInput(
@@ -98,7 +98,7 @@ class RegisterScreen extends StatelessWidget {
 
                         errorMessage: registerViewModel.isValidPhoneNumber && registerViewModel.isPhoneNumberValid
                             ? null
-                            : 'Phone number must have at least 8 digits',
+                            : S.of(context).phoneMust,
                       ),
                       SizedBox(height: screenSize.height * 0.02,),
                       Column(
@@ -307,7 +307,7 @@ class RegisterScreen extends StatelessWidget {
                               },
                               errorText: registerViewModel.isPasswordValid
                                   ? null
-                                  : "Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long",
+                                  : S.of(context).passMust,
                             ),
                           ],
                         ),
@@ -328,9 +328,8 @@ class RegisterScreen extends StatelessWidget {
                                   ? Icons.visibility_off
                                   : Icons.visibility,
                             )),
-                        errorText: registerViewModel.isValidRewritePass
-                            ? null
-                            : " Not Match",
+                        errorText: registerViewModel.isValidRewritePass ? null : S.of(context).notMatch,
+
                       ),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,

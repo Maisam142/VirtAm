@@ -111,6 +111,26 @@ class MembersToMasterAdminsScreen extends StatelessWidget {
                           }
                         },
                       ),
+                      GestureDetector(
+                        onTap: (){
+                          //Beamer.of(context).beamToNamed('/addAdminScreen');
+                        },
+                        child: Container(
+                          color: Theme.of(context).secondaryHeaderColor,
+                          height: 50,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.add_box,color: Colors.black,),
+                                const SizedBox(width: 5,),
+                                TextComponent(text: S.of(context).add)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
                     ],
                   ),
                 ),

@@ -79,6 +79,7 @@ import 'admin_feature/admin/send_notification_screen/send_notification_screen.da
 import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/add_admin_screen.dart';
 import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_members_tomasterAdmin.dart';
 import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_members_tomasterAdmin_details.dart';
+import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_members_view_model.dart';
 import 'admin_feature/master_admin/home_masterAdmin_screen/home_masterAdmin_screen.dart';
 import 'admin_feature/master_admin/masterAdmin_profile_screen/masterAdmin_profile_screen.dart';
 import 'admin_feature/master_admin/masterAdmin_profile_screen/subscription_toAdmin_screen.dart';
@@ -125,6 +126,7 @@ void main() async{
     ChangeNotifierProvider(create: (_) => FastTimeEditViewModel()),
     ChangeNotifierProvider(create: (_) => CaloriesViewModel()),
     ChangeNotifierProvider(create: (_) => MealsImagesToAdmin()),
+    ChangeNotifierProvider(create: (_) => AdminMembersToMasterViewModel()),
     //ChangeNotifierProvider(create: (_) => NotificationViewModel()),
   ],
       child:  const MyApp())
