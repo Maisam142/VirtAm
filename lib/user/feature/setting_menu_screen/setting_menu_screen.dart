@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:virtam/component/back_component.dart';
+import 'package:virtam/user/feature/notification_screen/notification_sceen.dart';
 import 'package:virtam/user/feature/register_screen/register_screen_view_model.dart';
 
 import '../../../component/back_component.dart';
@@ -86,6 +87,7 @@ class SettingMenuScreen extends StatelessWidget {
                           prefs.setBool('isLoggedIn', false);
 
                           registerViewModel.logOut();
+                          NotificationHelper.cancelAllNotifications();
                           Beamer.of(context).beamToNamed('/welcomeScreen');
                         },
                         icon: const Icon(Icons.login),

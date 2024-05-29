@@ -281,7 +281,9 @@ class NotificationHelper {
     );
   }
 
-
+  static Future<void> cancelAllNotifications() async {
+    await AwesomeNotifications().cancelAll();
+  }
 
 
 }

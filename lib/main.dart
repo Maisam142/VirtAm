@@ -69,6 +69,7 @@ import 'admin_feature/admin/add_daily_meals_screen/add_daily_meals_screen.dart';
 import 'admin_feature/admin/add_exercise_screen/add_exercise_screen.dart';
 import 'admin_feature/admin/admin_members_screen/admin_members_details_screen.dart';
 import 'admin_feature/admin/admin_members_screen/admin_members_screen.dart';
+import 'admin_feature/admin/admin_profile_screen/admin_profile_screen.dart';
 import 'admin_feature/admin/home_admin_screen/home_admin_screen.dart';
 import 'admin_feature/admin/meals_Images_to_admin_screen/meals_Images_to_admin_screen.dart';
 import 'admin_feature/admin/meals_Images_to_admin_screen/meals_iamges_to_admin_view_model.dart';
@@ -82,6 +83,7 @@ import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_memb
 import 'admin_feature/master_admin/admin_members_tomasterAdmin_screen/admin_members_view_model.dart';
 import 'admin_feature/master_admin/home_masterAdmin_screen/home_masterAdmin_screen.dart';
 import 'admin_feature/master_admin/masterAdmin_profile_screen/masterAdmin_profile_screen.dart';
+import 'admin_feature/master_admin/masterAdmin_profile_screen/masterAdmin_profile_view_model.dart';
 import 'admin_feature/master_admin/masterAdmin_profile_screen/subscription_toAdmin_screen.dart';
 import 'admin_feature/master_admin/members_toMasteradmins_screen/members_toMasteradmins_details_screen.dart';
 import 'admin_feature/master_admin/members_toMasteradmins_screen/members_toMasteradmins_screen.dart';
@@ -127,6 +129,7 @@ void main() async{
     ChangeNotifierProvider(create: (_) => CaloriesViewModel()),
     ChangeNotifierProvider(create: (_) => MealsImagesToAdmin()),
     ChangeNotifierProvider(create: (_) => AdminMembersToMasterViewModel()),
+    ChangeNotifierProvider(create: (_) => MasterAdminViewModel()),
     //ChangeNotifierProvider(create: (_) => NotificationViewModel()),
   ],
       child:  const MyApp())
@@ -220,6 +223,7 @@ class _MyApp extends State<MyApp> implements AddLanguageDefaultListeners {
         '/homeAdminScreen': (context, state, data) =>  const HomeAdminScreen(),
         '/addDailyMealsScreen': (context, state, data) =>  const AddDailyMealsScreen(),
         '/membersScreen': (context, state, data) =>  const MembersScreen(),
+        '/adminProfileScreen': (context, state, data) =>  const AdminProfileScreen(),
         '/mealsMembersCalories': (context, state, data) =>  const MealsMembersCaloriesContent(),
         '/mealsImagesToAdmin': (context, state, data) =>  const MealsImagesToAdminScreen(memberData: {},),
         '/userDetailsScreen': (context, state, data) =>   UserDetailsScreen(memberData: {},),

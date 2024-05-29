@@ -28,7 +28,7 @@ class HomeMasterAdminScreen extends StatelessWidget {
     ];
     return WillPopScope(
         onWillPop: () async {
-          Beamer.of(context).beamToNamed('/homeAdminScreen');
+          Beamer.of(context).beamToNamed('/homeMasterAdminScreen');
 
           return false;
         },

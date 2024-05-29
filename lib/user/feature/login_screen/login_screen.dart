@@ -117,12 +117,14 @@ class LoginForm extends StatelessWidget {
                                   password: viewModel.passwordController.text,
                                 );
 
-                                // Check if user exists in any collection
                                 DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('User').doc(viewModel.emailController.text).get();
                                 DocumentSnapshot adminDoc = await FirebaseFirestore.instance.collection('admin').doc(viewModel.emailController.text).get();
                                 DocumentSnapshot masterAdminDoc = await FirebaseFirestore.instance.collection('masterAdmin').doc(viewModel.emailController.text).get();
 
                                 if (adminDoc.exists) {
+                                  final prefs = await SharedPreferences.getInstance();
+                                  prefs.setBool('isLoggedIn', true);
+                                  prefs.setString('email', viewModel.emailController.text);
                                   Beamer.of(context).beamToNamed('/homeAdminScreen');
                                 } else if (userDoc.exists) {
                                   final prefs = await SharedPreferences.getInstance();
@@ -130,7 +132,9 @@ class LoginForm extends StatelessWidget {
                                   prefs.setString('email', viewModel.emailController.text);
                                   Beamer.of(context).beamToNamed('/homeNavigationBar');
                                 } else if (masterAdminDoc.exists) {
-                                  // You might want to add specific logic for master admin
+                                  final prefs = await SharedPreferences.getInstance();
+                                  prefs.setBool('isLoggedIn', true);
+                                  prefs.setString('email', viewModel.emailController.text);
                                   Beamer.of(context).beamToNamed('/homeMasterAdminScreen');
                                 } else {
                                   // User not found in any collection

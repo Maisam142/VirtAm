@@ -1,12 +1,16 @@
 import 'package:beamer/beamer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:virtam/admin_feature/master_admin/masterAdmin_profile_screen/masterAdmin_profile_view_model.dart';
 import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/text_component.dart';
 import 'package:virtam/user/feature/setting_menu_screen/setting_menu_view_model.dart';
 
 import '../../../component/back_component.dart';
+import '../../../component/popup_component.dart';
 import '../../../generated/l10n.dart';
+import '../../../user/feature/register_screen/register_screen_view_model.dart';
 
 
 class SubscriptionToAdminScreen extends StatelessWidget {
@@ -15,12 +19,14 @@ class SubscriptionToAdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    final SettingMenuViewModel userDataModel =
-    Provider.of<SettingMenuViewModel>(context);
+    final RegisterViewModel registerViewModel =
+    Provider.of<RegisterViewModel>(context);
+    final MasterAdminViewModel userDataModel =
+    Provider.of<MasterAdminViewModel>(context);
 
     return WillPopScope(
         onWillPop: () async {
-          Beamer.of(context).beamToNamed('/settingMenuScreen');
+          Beamer.of(context).beamToNamed('/masterAdminProfileScreen');
           return false;
         },
         child:SafeArea(
@@ -31,7 +37,7 @@ class SubscriptionToAdminScreen extends StatelessWidget {
                 BackComponent(
                   text: '',
                   onPressed: (){
-                    Beamer.of(context).beamBack();
+                    Beamer.of(context).beamToNamed('/masterAdminProfileScreen');
 
                   },
                 ),
@@ -136,7 +142,28 @@ class SubscriptionToAdminScreen extends StatelessWidget {
                 SizedBox(height: screenSize.height * 0.06,),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: ButtonComponentContinue(text: S.of(context).subscription),
+                  child: ButtonComponentContinue(
+                      text: S.of(context).subscription,
+                    onPress: ()async {
+                      Map<String, dynamic> additionalData = {
+                        'subscription': userDataModel.selectedPurpose,
+
+                      };
+                      await FirebaseFirestore.instance
+                          .collection('masterAdmin')
+                          .doc(registerViewModel.emailController.text.toLowerCase())
+                          .update(additionalData);
+                      showDialog(
+                        context: context,
+                        builder: (context) => PopupWidget(
+                          titleText: S.of(context).done,
+                          contentText: userDataModel.selectedPurpose ,
+
+                          body: [],
+                        ),
+                      );
+                    },
+                  ),
                 )
               ],
             ),
