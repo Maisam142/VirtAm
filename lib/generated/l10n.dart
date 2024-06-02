@@ -1837,6 +1837,26 @@ class S {
     );
   }
 
+  /// ` Subscription Price:  `
+  String get subscriptionPrice {
+    return Intl.message(
+      ' Subscription Price:  ',
+      name: 'subscriptionPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Location Link:  `
+  String get locationLink {
+    return Intl.message(
+      ' Location Link:  ',
+      name: 'locationLink',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add New Admin`
   String get addNewAdmin {
     return Intl.message(

@@ -17,6 +17,7 @@ class FormComponent extends StatelessWidget {
   final IconButton? suffixIcon;
   final Icon? prefixIcon;
   final Function(String)? onChanged;
+  final int? maxLines;
 
   FormComponent({
     super.key,
@@ -35,7 +36,7 @@ class FormComponent extends StatelessWidget {
     this.onTap,
     this.suffixIcon,
     this.prefixIcon,
-    this.onChanged,
+    this.onChanged, this.maxLines,
   });
 
   @override
@@ -52,11 +53,11 @@ class FormComponent extends StatelessWidget {
         obscureText: obscureText,
         textInputAction: textInputAction,
         textAlign: TextAlign.start,
-        maxLines: 1,
+        maxLines: maxLines,
 
         keyboardType: textInputType,
         maxLength: 40,
-          style: TextStyle(fontSize: 15,color: Colors.black),
+          style: TextStyle(fontSize: 15,color: Colors.black,),
           decoration: InputDecoration(
           hoverColor: Color(0xfffe504f),
           prefixIcon: prefixIcon ,

@@ -7,6 +7,8 @@ class RegisterViewModel extends ChangeNotifier{
   final TextEditingController countryController  = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
+  final TextEditingController descController = TextEditingController();
+  final TextEditingController locationLinkController = TextEditingController();
 
   String? name;
   String? email;

@@ -233,6 +233,8 @@
   "centerSendNotification": " The center send reminder\n  notification for members:",
   "send": "send",
   "notificationText": "Notification Text: ",
+  "subscriptionPrice": " Subscription Price:  ",
+  "locationLink": " Location Link:  ",
 
 
 

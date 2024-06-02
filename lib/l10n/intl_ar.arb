@@ -243,5 +243,7 @@
 
   "fillAllFields": "يرجى ملء جميع الحقول",
   "notificationSent": "تم إرسال الإشعار بنجاح",
-  "notificationFailed": "فشل في إرسال الإشعار"
+  "notificationFailed": "فشل في إرسال الإشعار",
+  "subscriptionPrice": " ثمن المشاركة:  ",
+  "locationLink": " رابط الموقع:  "
 }
