@@ -17,7 +17,7 @@ class FormComponent extends StatelessWidget {
   final IconButton? suffixIcon;
   final Icon? prefixIcon;
   final Function(String)? onChanged;
-  final int? maxLines;
+  final int? maxLines ;
 
   FormComponent({
     super.key,
@@ -36,7 +36,7 @@ class FormComponent extends StatelessWidget {
     this.onTap,
     this.suffixIcon,
     this.prefixIcon,
-    this.onChanged, this.maxLines,
+    this.onChanged, this.maxLines =1,
   });
 
   @override

@@ -1,6 +1,8 @@
 import 'package:beamer/beamer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:virtam/component/button_component.dart';
 import 'package:virtam/component/home_component.dart';
@@ -8,6 +10,7 @@ import 'package:virtam/component/text_component.dart';
 
 import '../../../component/back_component.dart';
 import '../../../component/circular_component.dart';
+import '../../../component/popup_component.dart';
 import '../../../generated/l10n.dart';
 import '../../../helper/fasting.dart';
 import '../home_screen/home_screen_view_model.dart';
@@ -182,7 +185,55 @@ class FastScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0,right: 15.0,top: 5.0),
-                      child: ButtonComponentContinue(text: S.of(context).end),
+                      child: ButtonComponentContinue(text: S.of(context).end,
+                      onPress: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) => PopupWidget(
+                          titleText: 'End Fasting !',
+                          contentText: 'Are You Sure You Want To End Fasting ?',
+                          body: [
+                            Row(
+                              children: [
+                                Expanded(child: Container(
+                                  width:15,
+                                    height: 35,
+                                    child: ButtonComponent(
+                                      text: 'Cancel',
+                                      customColor: Colors.grey,
+                                      onPress: (){
+                                        Navigator.pop(context);
+                                        //Beamer.of(context).beamBack();
+                                      },
+                                    ),)),
+                                const SizedBox(width: 10,),
+                                Expanded(child:
+                                SizedBox(
+                                    width:15,
+                                    height: 35,child: ButtonComponent(
+                                  text: 'Oki',
+                                  onPress: () async{
+                                    Map<String, dynamic> additionalData = {
+                                      'startFastTime': '00:00 AM',
+                                      'endFastTime': '00:00 AM',
+                                    };
+                                    await FirebaseFirestore.instance
+                                        .collection('User')
+                                        .doc(registerViewModel.emailController.text.toLowerCase())
+                                        .update(additionalData);
+                                    Navigator.pop(context);
+
+                                  },),
+                                ),
+                                ),
+
+
+                              ],
+                            ),
+
+                          ],
+                        ));
+                      },),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0,right: 15.0,top: 5.0),
